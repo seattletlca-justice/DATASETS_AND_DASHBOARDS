@@ -1,6 +1,23 @@
 # DATASETS_AND_DASHBOARDS
 PAYLOAD GENERATOR
 
+## TL;DR (just do this)
+1. Open terminal in your local `DATASETS_AND_DASHBOARDS` folder.
+2. Run this exact block:
+
+```bash
+cp STLCA_homepage_dashboard_v7b_2026-01-15.html index.html
+touch .nojekyll
+git add index.html STLCA_homepage_dashboard_v7b_2026-01-15.html .nojekyll
+git commit -m "Publish dashboard"
+git push origin main
+```
+
+3. On GitHub: **Settings → Pages → Deploy from a branch → main + /(root)**.
+4. Wait 1–3 minutes, refresh your site.
+
+---
+
 ## What does "from this repo folder" mean?
 It means the folder that contains these files:
 - `README.md`
