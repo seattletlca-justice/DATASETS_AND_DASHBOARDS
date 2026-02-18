@@ -1,6 +1,35 @@
 # DATASETS_AND_DASHBOARDS
 PAYLOAD GENERATOR
 
+## What does "from this repo folder" mean?
+It means the folder that contains these files:
+- `README.md`
+- `STLCA_homepage_dashboard_v7b_2026-01-15.html`
+- `index.html`
+
+If you run `pwd` and see this (or your local equivalent), you are in the right place:
+
+```bash
+/workspace/DATASETS_AND_DASHBOARDS
+```
+
+On your own computer, first move into your local repo folder, then run publish commands:
+
+```bash
+cd <path-to-your-local>/DATASETS_AND_DASHBOARDS
+```
+
+Quick check before publishing:
+
+```bash
+pwd
+ls
+```
+
+You should see `README.md`, `STLCA_homepage_dashboard_v7b_2026-01-15.html`, and `index.html` listed.
+
+---
+
 ## STOP THE CHAOS: do these exact steps to publish
 If you are getting 403 and just want this live, run these commands in this repo folder:
 
