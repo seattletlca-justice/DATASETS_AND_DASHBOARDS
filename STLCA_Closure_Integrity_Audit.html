@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>STLCA Dashboard - City Records</title>
+
+  <!-- Plotly for charts -->
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+
+  <!-- PapaParse for CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --panel:#0f1624;
+      --panel2:#101a2c;
+      --text:#e8eefc;
+      --muted:#9fb0d3;
+      --border:#1d2a45;
+      --accent:#7aa2ff;
+      --warn:#ffcc66;
+      --bad:#ff6b6b;
+      --good:#6bffb0;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:var(--bg);
+      color:var(--text);
+    }
+    header{
+      padding:18px 18px 10px 18px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg, #0b0f17 0%, #0b0f17 55%, rgba(11,15,23,0.4) 100%);
+    }
+    h1{
+      margin:0 0 6px 0;
+      font-size:20px;
+      letter-spacing:0.2px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .wrap{
+      padding:16px 18px 24px 18px;
+      max-width:1400px;
+      margin:0 auto;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr 2.2fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+
+    label{
+      font-size:12px;
+      color:var(--muted);
+      display:block;
+      margin-bottom:6px;
+    }
+    select,input[type="date"],input[type="file"],button{
+      width:100%;
+      background:var(--panel2);
+      border:1px solid var(--border);
+      color:var(--text);
+      border-radius:10px;
+      padding:10px 10px;
+      font-size:13px;
+      outline:none;
+    }
+    button{
+      cursor:pointer;
+      font-weight:600;
+    }
+    button:hover{border-color:#2b3d63}
+    .note{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+      margin-top:8px;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .kpi{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 12px;
+      min-height:86px;
+    }
+    .kpi .label{
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:8px;
+    }
+    .kpi .value{
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:0.2px;
+      margin-bottom:4px;
+    }
+    .kpi .subv{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .section-title{
+      font-size:13px;
+      letter-spacing:0.2px;
+      color:var(--muted);
+      margin:4px 0 10px 0;
+      text-transform:uppercase;
+    }
+
+    .charts{
+      display:grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap:14px;
+    }
+    .chart{
+      height:320px;
+    }
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    .smallchart{height:280px}
+
+    .footer{
+      margin-top:14px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(122,162,255,0.12);
+      color:var(--text);
+      font-size:12px;
+      margin-left:8px;
+    }
+
+    @media (max-width: 1100px){
+      .grid{grid-template-columns:1fr}
+      .kpis{grid-template-columns: repeat(2, 1fr);}
+      .charts{grid-template-columns:1fr}
+    }
+    @media (max-width: 560px){
+      .kpis{grid-template-columns:1fr;}
+      .two{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>STLCA Dashboard - City Records <span class="pill" id="dataStatus">No data loaded</span></h1>
+  <p class="sub">
+    Load your CSV locally, then filter and evaluate closure verification integrity.
+    If a record is marked Closed or Completed, this dashboard checks whether inspection date and inspection result exist.
+  </p>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+    <!-- LEFT: controls -->
+    <div class="card">
+      <div class="section-title">Controls</div>
+
+      <div class="controls">
+        <div>
+          <label>Load CSV (local file)</label>
+          <input id="csvFile" type="file" accept=".csv,text/csv" />
+          <div class="note">
+            This runs entirely in your browser. Nothing uploads anywhere.
+            Your CSV needs headers.
+          </div>
+        </div>
+
+        <div>
+          <label>Date field used for range filter</label>
+          <select id="dateField">
+            <option value="OpenDate">OpenDate</option>
+            <option value="CreatedDate">CreatedDate</option>
+            <option value="Created Date">Created Date</option>
+            <option value="Created Date (portal)">Created Date (portal)</option>
+          </select>
+          <div class="note">
+            Pick the column that represents when the record was opened/created.
+            If none match, the date filter will be ignored.
+          </div>
+        </div>
+
+        <div>
+          <label>Date range (optional)</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <input id="dateFrom" type="date" />
+            <input id="dateTo" type="date" />
+          </div>
+        </div>
+
+        <div>
+          <label>Council District field</label>
+          <select id="districtField">
+            <option value="CouncilDistrict">CouncilDistrict</option>
+            <option value="Council District">Council District</option>
+            <option value="District">District</option>
+          </select>
+        </div>
+
+        <div>
+          <label>District filter</label>
+          <select id="districtFilter">
+            <option value="">All districts</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Record type field</label>
+          <select id="recordTypeField">
+            <option value="RecordType">RecordType</option>
+            <option value="Record Type">Record Type</option>
+            <option value="Record Type (portal)">Record Type (portal)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Record type filter</label>
+          <select id="recordTypeFilter">
+            <option value="">All record types</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Status field</label>
+          <select id="statusField">
+            <option value="StatusCurrent">StatusCurrent</option>
+            <option value="Status">Status</option>
+            <option value="Current Status">Current Status</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Inspection date field</label>
+          <select id="inspDateField">
+            <option value="LastInspDate">LastInspDate</option>
+            <option value="Last Inspection Date">Last Inspection Date</option>
+            <option value="InspectionDate">InspectionDate</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Inspection result field</label>
+          <select id="inspResultField">
+            <option value="LastInspResult">LastInspResult</option>
+            <option value="Last Inspection Result">Last Inspection Result</option>
+            <option value="InspectionResult">InspectionResult</option>
+          </select>
+        </div>
+
+        <button id="applyBtn" disabled>Apply Filters and Render</button>
+
+        <div class="note" id="loadNote"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: dashboard -->
+    <div>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">Total records (filtered)</div>
+          <div class="value" id="kpiTotal">0</div>
+          <div class="subv" id="kpiTotalSub">Load a CSV to begin.</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Total closures (Closed or Completed)</div>
+          <div class="value" id="kpiClosures">0</div>
+          <div class="subv" id="kpiClosuresSub">Based on selected status field.</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Verified closures</div>
+          <div class="value" id="kpiVerified">0</div>
+          <div class="subv" id="kpiVerifiedSub">Has inspection date and result.</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Integrity rate</div>
+          <div class="value" id="kpiIntegrity">0.0%</div>
+          <div class="subv" id="kpiIntegritySub">Verified closures / total closures.</div>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="card">
+          <div class="section-title">Closure verification integrity</div>
+          <div id="chartIntegrity" class="chart"></div>
+          <div class="footer">
+            Definition:
+            <br>Verified closure = status contains Closed or Completed AND inspection date exists AND inspection result exists.
+            <br>Unverified closure = status contains Closed or Completed AND (inspection date missing OR inspection result missing).
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">Status distribution (filtered)</div>
+          <div id="chartStatus" class="chart"></div>
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="card">
+          <div class="section-title">Top record types (filtered)</div>
+          <div id="chartRecordType" class="smallchart"></div>
+        </div>
+        <div class="card">
+          <div class="section-title">Closures by district (integrity rate)</div>
+          <div id="chartDistrictIntegrity" class="smallchart"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <div class="section-title">How to read this</div>
+        <div class="footer">
+          If an agency marks records Closed or Completed, the public deserves proof that closure corresponds to documented inspection activity.
+          This dashboard does not claim wrongdoing by itself. It quantifies whether basic verification fields exist in the dataset you load.
+          If the integrity rate is low, the correct response is not spin. The correct response is audit and remediation.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // State
+  let RAW = [];
+  let HEADERS = [];
+
+  function $(id){ return document.getElementById(id); }
+
+  function safeStr(v){
+    if (v === null || v === undefined) return "";
+    return String(v).trim();
+  }
+
+  function toLower(v){ return safeStr(v).toLowerCase(); }
+
+  function hasValue(v){
+    const s = safeStr(v);
+    return s !== "" && s.toLowerCase() !== "null" && s.toLowerCase() !== "nan" && s.toLowerCase() !== "undefined";
+  }
+
+  function parseDateLoose(s){
+    // Accepts YYYY-MM-DD, MM/DD/YYYY, etc. Returns Date or null.
+    const v = safeStr(s);
+    if (!v) return null;
+    const d = new Date(v);
+    if (!isNaN(d.getTime())) return d;
+
+    // Try MM/DD/YYYY explicitly
+    const m = v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    if (m){
+      const mm = parseInt(m[1],10);
+      const dd = parseInt(m[2],10);
+      const yy = parseInt(m[3],10);
+      const d2 = new Date(yy, mm-1, dd);
+      if (!isNaN(d2.getTime())) return d2;
+    }
+    return null;
+  }
+
+  function getField(row, fieldName){
+    // exact match first
+    if (fieldName in row) return row[fieldName];
+
+    // fallback: case-insensitive header match
+    const target = fieldName.toLowerCase();
+    for (const k of Object.keys(row)){
+      if (k.toLowerCase() === target) return row[k];
+    }
+    return "";
+  }
+
+  function isClosure(statusValue){
+    const s = toLower(statusValue);
+    return s.includes("closed") || s.includes("completed");
+  }
+
+  function calculateClosureIntegrity(data, fields){
+    let total = 0;
+    let verified = 0;
+    let unverified = 0;
+
+    for (const row of data){
+      const status = getField(row, fields.statusField);
+      if (!isClosure(status)) continue;
+
+      total++;
+
+      const inspDate = getField(row, fields.inspDateField);
+      const inspResult = getField(row, fields.inspResultField);
+
+      const okDate = hasValue(inspDate);
+      const okResult = hasValue(inspResult);
+
+      if (okDate && okResult) verified++;
+      else unverified++;
+    }
+
+    const integrityRate = total > 0 ? (verified / total) * 100 : 0;
+
+    return { totalClosures: total, verified, unverified, integrityRate };
+  }
+
+  function buildOptions(selectEl, values){
+    const cur = selectEl.value;
+    selectEl.innerHTML = "";
+    const optAll = document.createElement("option");
+    optAll.value = "";
+    optAll.textContent = selectEl.id.includes("district") ? "All districts" : "All record types";
+    selectEl.appendChild(optAll);
+
+    values.forEach(v => {
+      const o = document.createElement("option");
+      o.value = v;
+      o.textContent = v;
+      selectEl.appendChild(o);
+    });
+
+    // restore if still present
+    if ([...selectEl.options].some(o => o.value === cur)){
+      selectEl.value = cur;
+    }
+  }
+
+  function uniqueSorted(arr){
+    const set = new Set(arr.filter(v => hasValue(v)));
+    return Array.from(set).sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric:true, sensitivity:"base"}));
+  }
+
+  function applyFilters(){
+    const fields = {
+      dateField: $("dateField").value,
+      districtField: $("districtField").value,
+      recordTypeField: $("recordTypeField").value,
+      statusField: $("statusField").value,
+      inspDateField: $("inspDateField").value,
+      inspResultField: $("inspResultField").value
+    };
+
+    const districtVal = $("districtFilter").value;
+    const recordTypeVal = $("recordTypeFilter").value;
+
+    const fromStr = $("dateFrom").value;
+    const toStr = $("dateTo").value;
+
+    const fromDate = fromStr ? new Date(fromStr + "T00:00:00") : null;
+    const toDate = toStr ? new Date(toStr + "T23:59:59") : null;
+
+    let filtered = RAW;
+
+    // District filter
+    if (districtVal){
+      filtered = filtered.filter(r => safeStr(getField(r, fields.districtField)) === districtVal);
+    }
+
+    // Record type filter
+    if (recordTypeVal){
+      filtered = filtered.filter(r => safeStr(getField(r, fields.recordTypeField)) === recordTypeVal);
+    }
+
+    // Date filter (only if dateField exists in headers and any date parses)
+    const dateFieldExists = HEADERS.some(h => h.toLowerCase() === fields.dateField.toLowerCase());
+    if (dateFieldExists && (fromDate || toDate)){
+      filtered = filtered.filter(r => {
+        const d = parseDateLoose(getField(r, fields.dateField));
+        if (!d) return false;
+        if (fromDate && d < fromDate) return false;
+        if (toDate && d > toDate) return false;
+        return true;
+      });
+    }
+
+    return { filtered, fields };
+  }
+
+  function topCounts(data, fieldName, limit=12){
+    const counts = new Map();
+    for (const row of data){
+      const v = safeStr(getField(row, fieldName));
+      const key = v || "(blank)";
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+    const sorted = Array.from(counts.entries()).sort((a,b) => b[1] - a[1]).slice(0, limit);
+    return sorted;
+  }
+
+  function statusCounts(data, statusField){
+    const counts = new Map();
+    for (const row of data){
+      const v = safeStr(getField(row, statusField));
+      const key = v || "(blank)";
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+    return Array.from(counts.entries()).sort((a,b) => b[1]-a[1]);
+  }
+
+  function districtIntegrity(data, fields){
+    // For each district: closures total, verified, integrity rate
+    const map = new Map();
+
+    for (const row of data){
+      const dist = safeStr(getField(row, fields.districtField)) || "(blank)";
+      if (!map.has(dist)) map.set(dist, {dist, closures:0, verified:0});
+
+      const status = getField(row, fields.statusField);
+      if (!isClosure(status)) continue;
+
+      const rec = map.get(dist);
+      rec.closures++;
+
+      const okDate = hasValue(getField(row, fields.inspDateField));
+      const okRes = hasValue(getField(row, fields.inspResultField));
+      if (okDate && okRes) rec.verified++;
+    }
+
+    const out = Array.from(map.values()).map(r => {
+      const rate = r.closures > 0 ? (r.verified / r.closures) * 100 : 0;
+      return {dist:r.dist, closures:r.closures, verified:r.verified, rate};
+    });
+
+    // Show only districts with closures, sort by closures desc
+    return out.filter(x => x.closures > 0).sort((a,b) => b.closures - a.closures);
+  }
+
+  function render(){
+    const { filtered, fields } = applyFilters();
+
+    // KPIs
+    $("kpiTotal").textContent = filtered.length.toLocaleString();
+
+    const integrity = calculateClosureIntegrity(filtered, fields);
+    $("kpiClosures").textContent = integrity.totalClosures.toLocaleString();
+    $("kpiVerified").textContent = integrity.verified.toLocaleString();
+    $("kpiIntegrity").textContent = integrity.integrityRate.toFixed(1) + "%";
+
+    $("kpiTotalSub").textContent = RAW.length ? ("Raw rows loaded: " + RAW.length.toLocaleString()) : "Load a CSV to begin.";
+
+    // Integrity donut
+    Plotly.newPlot("chartIntegrity", [{
+      values: [integrity.verified, integrity.unverified],
+      labels: ["Verified closures", "Unverified closures"],
+      type: "pie",
+      hole: 0.52,
+      textinfo: "label+percent",
+      hovertemplate: "%{label}<br>%{value:,} records<extra></extra>"
+    }], {
+      margin: {t: 10, r: 10, b: 10, l: 10},
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+      showlegend: false
+    }, {displayModeBar: false});
+
+    // Status distribution
+    const sc = statusCounts(filtered, fields.statusField).slice(0, 14);
+    Plotly.newPlot("chartStatus", [{
+      x: sc.map(d => d[1]),
+      y: sc.map(d => d[0]),
+      type: "bar",
+      orientation: "h",
+      hovertemplate: "%{y}<br>%{x:,} records<extra></extra>"
+    }], {
+      margin: {t: 10, r: 10, b: 30, l: 160},
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+      xaxis: {title: "Count", gridcolor: "rgba(255,255,255,0.08)"},
+      yaxis: {title: "", automargin: true}
+    }, {displayModeBar: false});
+
+    // Record types
+    const rc = topCounts(filtered, fields.recordTypeField, 12);
+    Plotly.newPlot("chartRecordType", [{
+      x: rc.map(d => d[0]),
+      y: rc.map(d => d[1]),
+      type: "bar",
+      hovertemplate: "%{x}<br>%{y:,} records<extra></extra>"
+    }], {
+      margin: {t: 10, r: 10, b: 110, l: 60},
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+      xaxis: {tickangle: -35, automargin: true, gridcolor: "rgba(255,255,255,0.08)"},
+      yaxis: {title: "Count", gridcolor: "rgba(255,255,255,0.08)"}
+    }, {displayModeBar: false});
+
+    // District integrity rate
+    const di = districtIntegrity(filtered, fields).slice(0, 14); // top 14 districts by closures
+    Plotly.newPlot("chartDistrictIntegrity", [{
+      x: di.map(d => d.rate),
+      y: di.map(d => d.dist),
+      type: "bar",
+      orientation: "h",
+      hovertemplate: "District %{y}<br>Integrity %{x:.1f}%<br>Closures %{customdata[0]:,}<br>Verified %{customdata[1]:,}<extra></extra>",
+      customdata: di.map(d => [d.closures, d.verified])
+    }], {
+      margin: {t: 10, r: 10, b: 30, l: 130},
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+      xaxis: {title: "Integrity rate (%)", range:[0,100], gridcolor: "rgba(255,255,255,0.08)"},
+      yaxis: {title: "", automargin: true}
+    }, {displayModeBar: false});
+  }
+
+  function populateFilters(){
+    const districtField = $("districtField").value;
+    const recordTypeField = $("recordTypeField").value;
+
+    const districts = uniqueSorted(RAW.map(r => safeStr(getField(r, districtField))));
+    const recordTypes = uniqueSorted(RAW.map(r => safeStr(getField(r, recordTypeField))));
+
+    buildOptions($("districtFilter"), districts);
+    buildOptions($("recordTypeFilter"), recordTypes);
+  }
+
+  function setStatus(text){
+    $("dataStatus").textContent = text;
+  }
+
+  $("csvFile").addEventListener("change", (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    setStatus("Loading...");
+    $("loadNote").textContent = "";
+
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      dynamicTyping: false,
+      complete: (results) => {
+        RAW = results.data || [];
+        HEADERS = results.meta && results.meta.fields ? results.meta.fields : [];
+
+        // Basic sanity
+        if (!RAW.length || !HEADERS.length){
+          setStatus("Load failed");
+          $("loadNote").textContent = "CSV parsed but no rows or headers were found. Check the file format.";
+          $("applyBtn").disabled = true;
+          return;
+        }
+
+        setStatus("Loaded " + RAW.length.toLocaleString() + " rows");
+        $("applyBtn").disabled = false;
+
+        populateFilters();
+        render();
+      },
+      error: (err) => {
+        setStatus("Load failed");
+        $("loadNote").textContent = "CSV parse error: " + (err && err.message ? err.message : "Unknown error");
+        $("applyBtn").disabled = true;
+      }
+    });
+  });
+
+  // Rebuild filter dropdowns when field selections change
+  ["districtField", "recordTypeField"].forEach(id => {
+    $(id).addEventListener("change", () => {
+      if (!RAW.length) return;
+      populateFilters();
+      render();
+    });
+  });
+
+  $("applyBtn").addEventListener("click", () => {
+    if (!RAW.length) return;
+    render();
+  });
+
+  // Auto-render when filter values change
+  ["districtFilter","recordTypeFilter","dateFrom","dateTo","dateField","statusField","inspDateField","inspResultField"].forEach(id => {
+    $(id).addEventListener("change", () => {
+      if (!RAW.length) return;
+      render();
+    });
+  });
+</script>
+</body>
+</html>
