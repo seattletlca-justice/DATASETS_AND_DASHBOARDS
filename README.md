@@ -16,6 +16,28 @@ git push origin main
 3. On GitHub: **Settings → Pages → Deploy from a branch → main + /(root)**.
 4. Wait 1–3 minutes, refresh your site.
 
+## "Isn't this the terminal right here?"
+Short answer: **kind of, but not the one on your own computer**.
+
+- This chat can run terminal commands in a cloud workspace for editing/help.
+- **You still need your own terminal** (PowerShell/Terminal) to run commands in your local folder and push your GitHub account changes.
+
+### Open terminal on your computer
+- **Windows:** open Start menu → type `PowerShell` → open it.
+- **Mac:** open Spotlight (`Cmd + Space`) → type `Terminal` → open it.
+
+Then go to your repo folder (example):
+
+```bash
+cd C:\Users\<you>\stlca_data\github\DATASETS_AND_DASHBOARDS
+```
+
+If this command shows `README.md`, you are in the right place:
+
+```bash
+dir
+```
+
 ---
 
 ## What does "from this repo folder" mean?
