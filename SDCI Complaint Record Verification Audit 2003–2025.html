@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SDCI Complaint Record Verification Audit</title>
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<style>
+  :root{
+    --bg:#070b12;
+    --panel:#0c1424;
+    --border:rgba(255,255,255,.08);
+    --text:#e9eef7;
+    --muted:rgba(233,238,247,.55);
+    --blue:#2d7ff9;
+    --orange:#f59e0b;
+    --red:#ef4444;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:radial-gradient(1200px 700px at 25% -10%,rgba(45,127,249,.22),transparent 55%),
+               radial-gradient(900px 600px at 85% 10%,rgba(245,158,11,.15),transparent 55%),
+               var(--bg);
+    color:var(--text);min-height:100vh;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:28px 20px 60px}
+
+  /* topbar */
+  .topbar{
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+    padding:12px 18px;margin-bottom:24px;
+    background:rgba(7,11,18,.96);
+    border:1px solid var(--border);border-radius:12px;
+    backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(0,0,0,.5);
+    flex-wrap:wrap;
+  }
+  .topbar-left{display:flex;flex-direction:column;gap:3px}
+  .topbar-eyebrow{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+  .topbar-h1{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.1px;line-height:1.2}
+  .topbar-sub{font-size:10px;color:var(--muted);margin-top:1px}
+  .topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:2px}
+  .topbar-right label{font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+  select{
+    background:#060b14;border:1px solid rgba(255,255,255,.18);
+    color:var(--text);border-radius:8px;padding:7px 12px;
+    outline:none;font-weight:600;font-size:11px;cursor:pointer;min-width:210px;
+  }
+
+  /* toggle */
+  .toggle-wrap{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .tog{padding:7px 14px;font-size:11px;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);border:none;transition:all .15s;white-space:nowrap}
+  .tog.active-all{background:rgba(45,127,249,.15);color:var(--blue)}
+  .tog.active-lt{background:rgba(239,68,68,.15);color:var(--red)}
+  .tog-div{width:1px;background:var(--border);align-self:stretch}
+
+  /* nuclear */
+  .nuclear{
+    background:linear-gradient(90deg,rgba(239,68,68,.07),rgba(239,68,68,.02));
+    border:1px solid rgba(239,68,68,.18);border-radius:10px;
+    padding:14px 20px;margin-bottom:20px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  }
+  .nuc-left{display:flex;flex-direction:column;gap:3px}
+  .nuc-eyebrow{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(239,68,68,.65)}
+  .nuc-stat{font-size:22px;font-weight:800;color:var(--red)}
+  .nuc-sub{font-size:11px;color:var(--muted)}
+  .nuc-right{font-size:11px;color:var(--muted);max-width:380px;line-height:1.55;text-align:right}
+
+  /* verdict */
+  .verdict{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .vcard{padding:30px 36px 24px}
+  .vcard.ver{background:linear-gradient(145deg,rgba(45,127,249,.1),rgba(45,127,249,.03))}
+  .vcard.unv{background:linear-gradient(145deg,rgba(239,68,68,.12),rgba(239,68,68,.03))}
+  .vtag{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+  .vcard.ver .vtag{color:rgba(45,127,249,.75)}
+  .vcard.unv .vtag{color:rgba(239,68,68,.75)}
+  .vnum{font-size:60px;font-weight:800;line-height:1;letter-spacing:-2px}
+  .vcard.ver .vnum{color:var(--blue)}
+  .vcard.unv .vnum{color:var(--red)}
+  .vpct{font-size:13px;color:var(--muted);margin-top:6px}
+  .vpct strong{font-size:22px;font-weight:700;color:var(--text)}
+  .vdivider{width:1px;background:var(--border)}
+  .vcriteria{margin-top:18px;padding-top:16px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
+  .crit{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}
+  .ck{width:15px;height:15px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0}
+  .ck.y{background:rgba(45,127,249,.18);color:var(--blue)}
+  .ck.n{background:rgba(239,68,68,.18);color:var(--red)}
+
+  /* 4 KPI cards */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:20px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .kpi{padding:16px 18px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-right:1px solid var(--border)}
+  .kpi:last-child{border-right:none}
+  .kpi-l{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .kpi-v{font-size:20px;font-weight:750;color:var(--text)}
+  .kpi-v.blue{color:var(--blue)}
+  .kpi-v.red{color:var(--red)}
+  .kpi-v.red-big{color:var(--red);font-size:26px;font-weight:800}
+  .kpi-s{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4}
+
+  /* section */
+  .sec{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .sec::after{content:'';flex:1;height:1px;background:var(--border)}
+  .sec-wrap{margin-bottom:28px}
+
+  /* chart card */
+  .chartcard{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--border);border-radius:14px;padding:18px 18px 8px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .charttitle{font-size:12px;font-weight:650;color:rgba(233,238,247,.85);margin-bottom:3px}
+  .chartsub{font-size:10px;color:var(--muted);margin-bottom:2px}
+
+  /* pre/post chart side by side */
+  .two-charts{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:28px}
+
+  /* table card */
+  .tablecard{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .tablehead{padding:16px 18px 10px;border-bottom:1px solid var(--border)}
+  .tablehead h2{font-size:12px;font-weight:700;color:rgba(233,238,247,.9);margin-bottom:3px}
+  .tablehead p{font-size:10px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{padding:9px 14px;text-align:left;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:rgba(0,0,0,.15);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(233,238,247,.82);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(255,255,255,.015)}
+  tr.sel td{background:rgba(245,158,11,.04)}
+  tr.avg-row td{background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.08)}
+
+  .addr{font-weight:600;color:var(--text);font-size:11.5px}
+  .pill{display:inline-block;font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.04em;margin-left:5px;vertical-align:middle}
+  .pill-lt{background:rgba(245,158,11,.15);color:var(--orange)}
+  .ubar-wrap{display:flex;align-items:center;gap:7px}
+  .ubar-track{width:64px;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;flex-shrink:0}
+  .ubar-fill{height:100%;border-radius:2px;background:var(--red)}
+  .bar-track{flex:1;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;min-width:50px}
+  .bar-fill{height:100%;border-radius:2px}
+
+  .footnote{font-size:10px;color:rgba(233,238,247,.3);line-height:1.6;border-top:1px solid var(--border);padding-top:20px;margin-top:8px}
+  .footnote b{color:rgba(233,238,247,.45)}
+
+  @media(max-width:860px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .kpi:nth-child(2){border-right:none}
+    .kpi:nth-child(1),.kpi:nth-child(2){border-bottom:1px solid var(--border)}
+    .two-charts{grid-template-columns:1fr}
+    .verdict{grid-template-columns:1fr}.vdivider{width:100%;height:1px}
+    .vnum{font-size:46px}
+    .topbar{flex-direction:column;align-items:flex-start}
+  }
+  @media print{
+    body{background:#fff!important;color:#111}
+    .topbar{position:static;background:#f5f5f5!important;box-shadow:none}
+    .topbar-right{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-eyebrow">STLCA — Public Records Analysis</div>
+      <div class="topbar-h1">SDCI Complaint Record Verification Audit</div>
+      <div class="topbar-sub">2003–2025 &nbsp;·&nbsp; Seattle Department of Construction and Inspections &nbsp;·&nbsp; Complaint (CP) Records Only</div>
+    </div>
+    <div class="topbar-right">
+      <div class="toggle-wrap">
+        <button class="tog active-all" id="tog_all" onclick="setMode('all')">All CP Records</button>
+        <div class="tog-div"></div>
+        <button class="tog" id="tog_lt" onclick="setMode('lt')">Landlord / Tenant Only</button>
+      </div>
+      <label for="dsel">District</label>
+      <select id="dsel">
+        <option value="citywide">All Districts — Citywide</option>
+        <option value="D1">District 1 — Rob Saka</option>
+        <option value="D2">District 2 — Eddie Lin</option>
+        <option value="D3">District 3 — Joy Hollingsworth (President)</option>
+        <option value="D4">District 4 — Maritza Rivera</option>
+        <option value="D5">District 5 — Debora Juarez</option>
+        <option value="D6">District 6 — Dan Strauss</option>
+        <option value="D7">District 7 — Bob Kettle</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- NUCLEAR STRIP -->
+  <div class="nuclear">
+    <div class="nuc-left">
+      <div class="nuc-eyebrow" id="nuc_eyebrow">Since 2018 · All Districts · All CP Records</div>
+      <div class="nuc-stat" id="nuc_stat">—</div>
+      <div class="nuc-sub" id="nuc_sub">—</div>
+    </div>
+    <div class="nuc-right" id="nuc_right">—</div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="vcard ver">
+      <div class="vtag">✓ Verified Closures</div>
+      <div class="vnum" id="v_num">—</div>
+      <div class="vpct"><strong id="v_pct">—%</strong> of closed/completed</div>
+      <div class="vcriteria">
+        <div class="crit"><div class="ck y">✓</div>StatusCurrent: Closed or Completed</div>
+        <div class="crit"><div class="ck y">✓</div>LastInspDate — recorded</div>
+        <div class="crit"><div class="ck y">✓</div>LastInspResult — recorded</div>
+      </div>
+    </div>
+    <div class="vdivider"></div>
+    <div class="vcard unv">
+      <div class="vtag">✗ Unverified Closures</div>
+      <div class="vnum" id="u_num">—</div>
+      <div class="vpct"><strong id="u_pct">—%</strong> of closed/completed</div>
+      <div class="vcriteria">
+        <div class="crit"><div class="ck y">✓</div>StatusCurrent: Closed or Completed</div>
+        <div class="crit"><div class="ck n">✗</div>LastInspDate — not recorded</div>
+        <div class="crit"><div class="ck n">✗</div>LastInspResult — not recorded</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 KPI CARDS -->
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-l">Total Closed / Completed</div>
+      <div class="kpi-v blue" id="k_closed">—</div>
+      <div class="kpi-s" id="k_scope">CP complaints</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Verified Closures</div>
+      <div class="kpi-v blue" id="k_verified">—</div>
+      <div class="kpi-s" id="k_ver_pct">—% of closed</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Unverified Closures</div>
+      <div class="kpi-v red" id="k_unverified">—</div>
+      <div class="kpi-s" id="k_unver_pct">—% of closed</div>
+    </div>
+    <div class="kpi" style="border-right:none;border-top:2px solid var(--red)">
+      <div class="kpi-l" style="color:rgba(239,68,68,.7)">Closed — No Inspection Record</div>
+      <div class="kpi-v red-big" id="k_no_insp">—</div>
+      <div class="kpi-s">No date. No result. No record.</div>
+    </div>
+  </div>
+
+  <!-- CHARTS: stacked by year + pre/post -->
+  <div class="sec-wrap">
+    <div class="sec">Verification Record Over Time</div>
+    <div class="two-charts">
+      <div class="chartcard">
+        <div class="charttitle" id="chart_title">Verified vs Unverified Closures by Year</div>
+        <div class="chartsub">Blue = documented. Red = no inspection record. CP complaints only.</div>
+        <div id="plot_stacked" style="width:100%;height:240px"></div>
+      </div>
+      <div class="chartcard">
+        <div class="charttitle">Pre-2018 vs Post-2018</div>
+        <div class="chartsub">Unverified rate before and after 2018. Eliminates the legacy-data argument.</div>
+        <div id="plot_prepost" style="width:100%;height:240px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP 10 WORST PROPERTIES -->
+  <div class="sec-wrap">
+    <div class="sec" id="top10_sec">Top 10 Most-Complained Properties</div>
+    <div class="tablecard">
+      <div class="tablehead">
+        <h2 id="top10_title">—</h2>
+        <p id="top10_sub">Ranked by total CP complaints filed. Unverified % = closed complaints with no inspection documentation. Inspection Rate % = share of closed complaints that were verified.</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Address</th>
+            <th>Dist.</th>
+            <th>Complaints</th>
+            <th style="color:rgba(245,158,11,.8)">L/T</th>
+            <th style="color:rgba(239,68,68,.8)">Unverified</th>
+            <th style="color:rgba(239,68,68,.8)">Unver %</th>
+            <th style="color:rgba(45,127,249,.8)">Insp Rate %</th>
+            <th>Open</th>
+          </tr>
+        </thead>
+        <tbody id="top10_body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DISTRICT COMPARISON -->
+  <div class="sec-wrap">
+    <div class="sec">District Comparison</div>
+    <div class="tablecard">
+      <div class="tablehead">
+        <h2 id="dist_title">All Districts — Verification Rate</h2>
+        <p>Citywide average shown first. Districts sorted by unverified rate, highest first.</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>District</th>
+            <th>Council Member</th>
+            <th>Closed / Completed</th>
+            <th style="color:rgba(45,127,249,.8)">Verified</th>
+            <th style="color:rgba(45,127,249,.8)">Ver %</th>
+            <th style="color:rgba(239,68,68,.8)">Unverified</th>
+            <th style="color:rgba(239,68,68,.8)">Unver %</th>
+            <th>vs Citywide Avg</th>
+            <th>Rate</th>
+          </tr>
+        </thead>
+        <tbody id="dist_table"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <b>Verified</b> — StatusCurrent is Closed or Completed AND LastInspDate is present AND LastInspResult is present. &nbsp;
+    <b>Unverified</b> — Closed or Completed, but one or both inspection fields are absent. &nbsp;
+    <b>Closed — No Inspection Record</b> — both LastInspDate and LastInspResult are blank. &nbsp;
+    <b>L/T</b> includes explicit LandLord/Tenant records plus reclassified blank/emergency records whose descriptions contain tenant-housing keywords. &nbsp;
+    <b>CP records only.</b> Source: Seattle SDCI public records, 2003–2025. Analysis by STLCA, February 2026.
+  </div>
+</div>
+
+<script>
+const DATA = {"all":{"D1":{"district":1,"total_CP":30636,"total_CP_closed_completed":29666,"verified":17982,"unverified":11684,"verified_pct":60.6,"unverified_pct":39.4,"unverified_no_date_no_result":11684,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_result_breakdown":{"Completed":17620,"No Access/Unable to Observe":155,"Completed-Virtual":66,"No Violation":48,"Withdrawn":40,"Not Vacant":19,"Admin Closure":15,"No Structure":9,"Compliance Achieved":5,"Secured with No Violations":4,"Unable to Observe-Virtual":1},"verified_by_year":{"2001":2,"2002":2,"2003":72,"2004":782,"2005":727,"2006":798,"2007":898,"2008":1053,"2009":953,"2010":864,"2011":724,"2012":732,"2013":675,"2014":822,"2015":1316,"2016":1093,"2017":1147,"2018":610,"2019":719,"2020":588,"2021":665,"2022":646,"2023":667,"2024":699,"2025":727,"2026":1},"unverified_by_year":{"2003":22,"2004":87,"2005":69,"2006":67,"2007":63,"2008":23,"2009":32,"2010":10,"2011":128,"2012":173,"2013":134,"2014":208,"2015":237,"2016":336,"2017":328,"2018":983,"2019":1122,"2020":1032,"2021":1160,"2022":1552,"2023":1471,"2024":1225,"2025":1222},"closed_by_open_year":{"2003":113,"2004":875,"2005":803,"2006":864,"2007":983,"2008":1078,"2009":996,"2010":894,"2011":867,"2012":936,"2013":880,"2014":1065,"2015":1381,"2016":1435,"2017":1443,"2018":1591,"2019":1876,"2020":1711,"2021":1796,"2022":2194,"2023":2097,"2024":1957,"2025":1831}},"D2":{"district":2,"total_CP":27611,"total_CP_closed_completed":26233,"verified":15840,"unverified":10393,"verified_pct":60.4,"unverified_pct":39.6,"unverified_no_date_no_result":10393,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_result_breakdown":{"Completed":15614,"No Access/Unable to Observe":121,"No Violation":28,"Withdrawn":28,"Completed-Virtual":19,"Compliance Achieved":17,"Admin Closure":6,"Passed":3,"Pass":1,"Not Vacant":1,"Secured with No Violations":1,"Unable to Observe-Virtual":1},"verified_by_year":{"1999":1,"2000":3,"2002":1,"2003":61,"2004":645,"2005":602,"2006":703,"2007":873,"2008":814,"2009":832,"2010":807,"2011":665,"2012":622,"2013":680,"2014":869,"2015":867,"2016":738,"2017":924,"2018":690,"2019":763,"2020":550,"2021":612,"2022":448,"2023":624,"2024":738,"2025":708},"unverified_by_year":{"2003":10,"2004":57,"2005":51,"2006":39,"2007":34,"2008":29,"2009":41,"2010":30,"2011":125,"2012":103,"2013":131,"2014":123,"2015":240,"2016":339,"2017":320,"2018":842,"2019":987,"2020":1037,"2021":946,"2022":1448,"2023":1314,"2024":1009,"2025":1138},"closed_by_open_year":{"2003":81,"2004":702,"2005":663,"2006":734,"2007":925,"2008":850,"2009":875,"2010":849,"2011":807,"2012":723,"2013":828,"2014":1020,"2015":1060,"2016":1059,"2017":1245,"2018":1522,"2019":1782,"2020":1652,"2021":1553,"2022":1881,"2023":1864,"2024":1793,"2025":1765}},"D3":{"district":3,"total_CP":28564,"total_CP_closed_completed":27050,"verified":13991,"unverified":13059,"verified_pct":51.7,"unverified_pct":48.3,"unverified_no_date_no_result":13059,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_result_breakdown":{"Completed":13711,"No Access/Unable to Observe":164,"No Violation":46,"Compliance Achieved":28,"Admin Closure":16,"Completed-Virtual":14,"Withdrawn":11,"No Structure":1},"verified_by_year":{"2003":49,"2004":569,"2005":622,"2006":687,"2007":694,"2008":682,"2009":618,"2010":639,"2011":506,"2012":509,"2013":640,"2014":653,"2015":814,"2016":815,"2017":785,"2018":627,"2019":711,"2020":545,"2021":495,"2022":420,"2023":573,"2024":680,"2025":658},"unverified_by_year":{"2003":12,"2004":61,"2005":59,"2006":53,"2007":38,"2008":44,"2009":33,"2010":39,"2011":113,"2012":118,"2013":125,"2014":112,"2015":188,"2016":267,"2017":303,"2018":1125,"2019":1258,"2020":1184,"2021":1040,"2022":1807,"2023":2025,"2024":1534,"2025":1521},"closed_by_open_year":{"2003":68,"2004":631,"2005":681,"2006":746,"2007":740,"2008":717,"2009":652,"2010":693,"2011":605,"2012":636,"2013":771,"2014":785,"2015":982,"2016":1093,"2017":1080,"2018":1744,"2019":2004,"2020":1726,"2021":1569,"2022":2253,"2023":2530,"2024":2242,"2025":2102}},"D4":{"district":4,"total_CP":20822,"total_CP_closed_completed":19862,"verified":11201,"unverified":8661,"verified_pct":56.4,"unverified_pct":43.6,"unverified_no_date_no_result":8661,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_result_breakdown":{"Completed":11065,"No Access/Unable to Observe":59,"No Violation":38,"Compliance Achieved":23,"Completed-Virtual":9,"Withdrawn":4,"Admin Closure":3},"verified_by_year":{"2000":1,"2003":29,"2004":383,"2005":518,"2006":562,"2007":602,"2008":587,"2009":523,"2010":490,"2011":397,"2012":402,"2013":501,"2014":512,"2015":602,"2016":614,"2017":714,"2018":590,"2019":581,"2020":407,"2021":378,"2022":305,"2023":514,"2024":474,"2025":515},"unverified_by_year":{"2003":12,"2004":40,"2005":52,"2006":43,"2007":21,"2008":10,"2009":16,"2010":8,"2011":106,"2012":220,"2013":117,"2014":172,"2015":232,"2016":257,"2017":304,"2018":750,"2019":769,"2020":764,"2021":854,"2022":1089,"2023":1068,"2024":807,"2025":950},"closed_by_open_year":{"2003":45,"2004":445,"2005":558,"2006":605,"2007":639,"2008":583,"2009":537,"2010":494,"2011":506,"2012":622,"2013":621,"2014":688,"2015":826,"2016":882,"2017":1018,"2018":1348,"2019":1343,"2020":1191,"2021":1247,"2022":1431,"2023":1518,"2024":1316,"2025":1399}},"D5":{"district":5,"total_CP":22199,"total_CP_closed_completed":21135,"verified":12515,"unverified":8620,"verified_pct":59.2,"unverified_pct":40.8,"unverified_no_date_no_result":8620,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_result_breakdown":{"Completed":12368,"No Access/Unable to Observe":75,"No Violation":29,"Completed-Virtual":26,"Compliance Achieved":8,"Withdrawn":4,"Admin Closure":4,"Passed":1},"verified_by_year":{"2002":1,"2003":35,"2004":456,"2005":509,"2006":594,"2007":614,"2008":747,"2009":596,"2010":550,"2011":497,"2012":429,"2013":564,"2014":676,"2015":677,"2016":773,"2017":773,"2018":470,"2019":586,"2020":381,"2021":405,"2022":399,"2023":681,"2024":584,"2025":518},"unverified_by_year":{"2003":7,"2004":44,"2005":37,"2006":29,"2007":20,"2008":13,"2009":14,"2010":6,"2011":87,"2012":89,"2013":133,"2014":111,"2015":138,"2016":187,"2017":207,"2018":663,"2019":768,"2020":828,"2021":924,"2022":1392,"2023":1110,"2024":899,"2025":914},"closed_by_open_year":{"2003":47,"2004":522,"2005":536,"2006":618,"2007":657,"2008":746,"2009":607,"2010":555,"2011":582,"2012":516,"2013":704,"2014":784,"2015":816,"2016":967,"2017":977,"2018":1180,"2019":1327,"2020":1216,"2021":1363,"2022":1839,"2023":1707,"2024":1517,"2025":1352}},"D6":{"district":6,"total_CP":24201,"total_CP_closed_completed":23040,"verified":13127,"unverified":9913,"verified_pct":57.0,"unverified_pct":43.0,"unverified_no_date_no_result":9913,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_result_breakdown":{"Completed":12933,"No Access/Unable to Observe":80,"No Violation":46,"Completed-Virtual":34,"Admin Closure":17,"Compliance Achieved":9,"Withdrawn":4,"Not Vacant":3,"Secured with No Violations":1},"verified_by_year":{"2003":39,"2004":429,"2005":513,"2006":656,"2007":687,"2008":742,"2009":748,"2010":638,"2011":493,"2012":517,"2013":531,"2014":562,"2015":738,"2016":724,"2017":757,"2018":597,"2019":715,"2020":472,"2021":454,"2022":394,"2023":522,"2024":592,"2025":607},"unverified_by_year":{"2003":4,"2004":53,"2005":49,"2006":19,"2007":15,"2008":11,"2009":11,"2010":11,"2011":128,"2012":115,"2013":104,"2014":177,"2015":245,"2016":202,"2017":216,"2018":868,"2019":1011,"2020":1047,"2021":1050,"2022":1417,"2023":1085,"2024":1078,"2025":997},"closed_by_open_year":{"2003":47,"2004":487,"2005":589,"2006":652,"2007":727,"2008":734,"2009":770,"2010":638,"2011":610,"2012":635,"2013":640,"2014":745,"2015":988,"2016":925,"2017":979,"2018":1514,"2019":1712,"2020":1535,"2021":1495,"2022":1823,"2023":1559,"2024":1696,"2025":1540}},"D7":{"district":7,"total_CP":21137,"total_CP_closed_completed":20010,"verified":9128,"unverified":10882,"verified_pct":45.6,"unverified_pct":54.4,"unverified_no_date_no_result":10882,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_result_breakdown":{"Completed":8848,"No Access/Unable to Observe":133,"No Violation":55,"Withdrawn":26,"Completed-Virtual":21,"Admin Closure":18,"Not Vacant":8,"No Structure":7,"Compliance Achieved":5,"Passed":2,"Secured with No Violations":2,"Vacant":1,"Compliance Achieved-Virtual":1,"Occupied":1},"verified_by_year":{"2003":34,"2004":272,"2005":344,"2006":391,"2007":406,"2008":521,"2009":363,"2010":440,"2011":329,"2012":327,"2013":368,"2014":395,"2015":567,"2016":534,"2017":594,"2018":460,"2019":454,"2020":312,"2021":277,"2022":278,"2023":383,"2024":532,"2025":547},"unverified_by_year":{"2003":9,"2004":35,"2005":47,"2006":41,"2007":19,"2008":23,"2009":19,"2010":20,"2011":97,"2012":191,"2013":89,"2014":87,"2015":121,"2016":253,"2017":364,"2018":937,"2019":1111,"2020":1080,"2021":1023,"2022":1366,"2023":1344,"2024":1222,"2025":1384},"closed_by_open_year":{"2003":47,"2004":319,"2005":385,"2006":430,"2007":425,"2008":550,"2009":375,"2010":465,"2011":424,"2012":533,"2013":452,"2014":489,"2015":688,"2016":785,"2017":956,"2018":1389,"2019":1575,"2020":1403,"2021":1329,"2022":1641,"2023":1700,"2024":1778,"2025":1872}},"citywide":{"total_CP":175170,"total_CP_closed_completed":166996,"verified":93784,"unverified":73212,"unverified_no_date_no_result":73212,"unverified_has_date_no_result":0,"unverified_no_date_has_result":0,"verified_pct":56.2,"unverified_pct":43.8,"verified_by_year":{"1999":1,"2000":4,"2001":2,"2002":4,"2003":319,"2004":3536,"2005":3835,"2006":4391,"2007":4774,"2008":5146,"2009":4633,"2010":4428,"2011":3611,"2012":3538,"2013":3959,"2014":4489,"2015":5581,"2016":5291,"2017":5694,"2018":4044,"2019":4529,"2020":3255,"2021":3286,"2022":2890,"2023":3964,"2024":4299,"2025":4280,"2026":1},"unverified_by_year":{"1999":0,"2000":0,"2001":0,"2002":0,"2003":76,"2004":377,"2005":364,"2006":291,"2007":210,"2008":153,"2009":166,"2010":124,"2011":784,"2012":1009,"2013":833,"2014":990,"2015":1401,"2016":1841,"2017":2042,"2018":6168,"2019":7026,"2020":6972,"2021":6997,"2022":10071,"2023":9417,"2024":7774,"2025":8126,"2026":0}}},"lt":{"D1":{"verified":938,"unverified":2513,"total_closed":3451,"verified_pct":27.2,"unverified_pct":72.8,"verified_by_year":{"2003":3,"2004":37,"2005":20,"2006":26,"2007":26,"2008":38,"2009":37,"2010":47,"2011":45,"2012":58,"2013":72,"2014":72,"2015":67,"2016":61,"2017":78,"2018":32,"2019":28,"2020":21,"2021":22,"2022":37,"2023":34,"2024":27,"2025":50},"unverified_by_year":{"2003":2,"2004":10,"2005":7,"2006":20,"2007":12,"2008":4,"2009":1,"2011":3,"2012":2,"2014":2,"2015":3,"2016":9,"2017":62,"2018":256,"2019":281,"2020":261,"2021":252,"2022":356,"2023":347,"2024":296,"2025":327}},"D2":{"verified":1187,"unverified":2918,"total_closed":4105,"verified_pct":28.9,"unverified_pct":71.1,"verified_by_year":{"2003":3,"2004":34,"2005":26,"2006":45,"2007":52,"2008":42,"2009":65,"2010":57,"2011":72,"2012":75,"2013":80,"2014":92,"2015":69,"2016":63,"2017":77,"2018":54,"2019":50,"2020":41,"2021":38,"2022":36,"2023":30,"2024":45,"2025":41},"unverified_by_year":{"2004":7,"2005":6,"2006":11,"2007":6,"2008":6,"2009":8,"2010":10,"2011":4,"2012":2,"2013":5,"2014":1,"2015":3,"2016":12,"2017":66,"2018":284,"2019":301,"2020":312,"2021":297,"2022":435,"2023":359,"2024":363,"2025":420}},"D3":{"verified":1120,"unverified":4088,"total_closed":5208,"verified_pct":21.5,"unverified_pct":78.5,"verified_by_year":{"2003":5,"2004":29,"2005":33,"2006":54,"2007":40,"2008":39,"2009":63,"2010":52,"2011":58,"2012":54,"2013":62,"2014":76,"2015":57,"2016":67,"2017":78,"2018":58,"2019":51,"2020":33,"2021":29,"2022":25,"2023":43,"2024":70,"2025":44},"unverified_by_year":{"2003":4,"2004":15,"2005":13,"2006":10,"2007":12,"2008":15,"2009":10,"2010":14,"2011":3,"2012":4,"2013":3,"2014":2,"2015":6,"2016":19,"2017":62,"2018":362,"2019":364,"2020":379,"2021":425,"2022":574,"2023":544,"2024":613,"2025":635}},"D4":{"verified":795,"unverified":2287,"total_closed":3082,"verified_pct":25.8,"unverified_pct":74.2,"verified_by_year":{"2003":4,"2004":17,"2005":22,"2006":37,"2007":42,"2008":29,"2009":28,"2010":46,"2011":35,"2012":46,"2013":63,"2014":47,"2015":28,"2016":51,"2017":65,"2018":44,"2019":43,"2020":24,"2021":26,"2022":25,"2023":23,"2024":32,"2025":18},"unverified_by_year":{"2003":3,"2004":4,"2005":11,"2006":11,"2007":6,"2009":2,"2010":1,"2011":2,"2012":2,"2013":3,"2014":11,"2015":7,"2016":3,"2017":37,"2018":230,"2019":224,"2020":245,"2021":301,"2022":277,"2023":294,"2024":280,"2025":333}},"D5":{"verified":813,"unverified":2685,"total_closed":3498,"verified_pct":23.2,"unverified_pct":76.8,"verified_by_year":{"2003":1,"2004":10,"2005":11,"2006":41,"2007":32,"2008":29,"2009":36,"2010":36,"2011":32,"2012":42,"2013":69,"2014":53,"2015":45,"2016":61,"2017":60,"2018":39,"2019":28,"2020":17,"2021":18,"2022":38,"2023":29,"2024":55,"2025":31},"unverified_by_year":{"2003":1,"2004":11,"2005":2,"2006":9,"2008":3,"2009":2,"2010":1,"2011":5,"2012":3,"2013":1,"2014":9,"2015":6,"2016":4,"2017":46,"2018":240,"2019":320,"2020":263,"2021":346,"2022":435,"2023":336,"2024":285,"2025":357}},"D6":{"verified":589,"unverified":2219,"total_closed":2808,"verified_pct":21.0,"unverified_pct":79.0,"verified_by_year":{"2003":3,"2004":14,"2005":17,"2006":26,"2007":35,"2008":29,"2009":37,"2010":26,"2011":20,"2012":34,"2013":34,"2014":24,"2015":30,"2016":30,"2017":39,"2018":37,"2019":23,"2020":14,"2021":15,"2022":22,"2023":28,"2024":28,"2025":24},"unverified_by_year":{"2003":1,"2004":4,"2005":10,"2006":3,"2007":1,"2008":1,"2009":2,"2011":7,"2012":2,"2013":5,"2014":3,"2015":2,"2016":3,"2017":33,"2018":237,"2019":237,"2020":274,"2021":308,"2022":308,"2023":241,"2024":256,"2025":281}},"D7":{"verified":809,"unverified":3228,"total_closed":4037,"verified_pct":20.0,"unverified_pct":80.0,"verified_by_year":{"2003":5,"2004":17,"2005":17,"2006":41,"2007":30,"2008":21,"2009":27,"2010":28,"2011":35,"2012":52,"2013":49,"2014":32,"2015":55,"2016":42,"2017":52,"2018":53,"2019":42,"2020":19,"2021":24,"2022":18,"2023":45,"2024":47,"2025":58},"unverified_by_year":{"2003":1,"2004":6,"2005":11,"2006":3,"2007":6,"2008":8,"2009":6,"2010":8,"2011":4,"2012":2,"2013":4,"2014":2,"2015":3,"2016":17,"2017":38,"2018":283,"2019":312,"2020":294,"2021":340,"2022":439,"2023":422,"2024":481,"2025":538}},"citywide":{"verified":6251,"unverified":19938,"total_closed":26189,"verified_pct":23.9,"unverified_pct":76.1,"verified_by_year":{"2003":24,"2004":158,"2005":146,"2006":270,"2007":257,"2008":227,"2009":293,"2010":292,"2011":297,"2012":361,"2013":429,"2014":396,"2015":351,"2016":375,"2017":449,"2018":317,"2019":265,"2020":169,"2021":172,"2022":201,"2023":232,"2024":304,"2025":266},"unverified_by_year":{"2003":12,"2004":57,"2005":60,"2006":67,"2007":43,"2008":37,"2009":31,"2010":34,"2011":28,"2012":17,"2013":21,"2014":30,"2015":30,"2016":67,"2017":344,"2018":1892,"2019":2039,"2020":2028,"2021":2269,"2022":2824,"2023":2543,"2024":2574,"2025":2891}}},"post2018":{"D1":{"verified":5286,"unverified":9767,"total":15053,"unverified_pct":64.9},"D2":{"verified":5091,"unverified":8721,"total":13812,"unverified_pct":63.1},"D3":{"verified":4676,"unverified":11494,"total":16170,"unverified_pct":71.1},"D4":{"verified":3742,"unverified":7051,"total":10793,"unverified_pct":65.3},"D5":{"verified":4003,"unverified":7498,"total":11501,"unverified_pct":65.2},"D6":{"verified":4321,"unverified":8553,"total":12874,"unverified_pct":66.4},"D7":{"verified":3220,"unverified":9467,"total":12687,"unverified_pct":74.6},"citywide":{"verified":30339,"unverified":62551,"total":92890,"unverified_pct":67.3}},"top10":{"citywide":[{"address":"3621 33RD AVE S","complaints":148,"unverified":93,"verified":41,"open":14,"lt":92,"districts":[2]},{"address":"308 4TH AVE S","complaints":140,"unverified":89,"verified":43,"open":8,"lt":89,"districts":[2]},{"address":"800 SENECA ST","complaints":128,"unverified":80,"verified":16,"open":32,"lt":76,"districts":[7]},{"address":"1102 8TH AVE","complaints":111,"unverified":68,"verified":26,"open":17,"lt":72,"districts":[7]},{"address":"901 NW MARKET ST","complaints":100,"unverified":77,"verified":3,"open":20,"lt":1,"districts":[6]},{"address":"2000 3RD AVE","complaints":99,"unverified":91,"verified":7,"open":1,"lt":0,"districts":[7]},{"address":"201 YESLER WAY","complaints":94,"unverified":63,"verified":23,"open":8,"lt":44,"districts":[1]},{"address":"9061 SEWARD PARK AVE S","complaints":90,"unverified":53,"verified":33,"open":4,"lt":51,"districts":[2]},{"address":"1621 17TH AVE","complaints":90,"unverified":86,"verified":4,"open":0,"lt":12,"districts":[3]},{"address":"2012 NW 56TH ST","complaints":83,"unverified":63,"verified":4,"open":16,"lt":0,"districts":[6]}],"districts":{"D1":[{"address":"201 YESLER WAY","complaints":94,"unverified":63,"verified":23,"open":8,"lt":44},{"address":"8640 25TH AVE SW","complaints":72,"unverified":62,"verified":5,"open":5,"lt":3},{"address":"4545 42ND AVE SW","complaints":69,"unverified":46,"verified":18,"open":5,"lt":37},{"address":"223 YESLER WAY","complaints":64,"unverified":43,"verified":16,"open":5,"lt":28},{"address":"212 ALASKAN WAY S","complaints":61,"unverified":51,"verified":6,"open":4,"lt":45},{"address":"7319 31ST AVE SW","complaints":58,"unverified":46,"verified":12,"open":0,"lt":0},{"address":"1622 SUNSET AVE SW","complaints":57,"unverified":37,"verified":20,"open":0,"lt":0},{"address":"6968 24TH AVE SW","complaints":56,"unverified":50,"verified":6,"open":0,"lt":0},{"address":"8856 20TH AVE SW","complaints":51,"unverified":31,"verified":19,"open":1,"lt":1},{"address":"2420 SW TRENTON ST","complaints":44,"unverified":29,"verified":15,"open":0,"lt":1}],"D2":[{"address":"3621 33RD AVE S","complaints":148,"unverified":93,"verified":41,"open":14,"lt":92},{"address":"308 4TH AVE S","complaints":140,"unverified":89,"verified":43,"open":8,"lt":89},{"address":"9061 SEWARD PARK AVE S","complaints":90,"unverified":53,"verified":33,"open":4,"lt":51},{"address":"2803 S ORCAS ST","complaints":62,"unverified":59,"verified":3,"open":0,"lt":4},{"address":"3642 33RD AVE S","complaints":61,"unverified":28,"verified":24,"open":9,"lt":37},{"address":"913 S JACKSON ST","complaints":53,"unverified":41,"verified":5,"open":7,"lt":36},{"address":"4219 S OTHELLO ST","complaints":52,"unverified":40,"verified":9,"open":3,"lt":23},{"address":"800 JEFFERSON ST","complaints":47,"unverified":18,"verified":27,"open":2,"lt":31},{"address":"9400 RAINIER AVE S","complaints":47,"unverified":34,"verified":9,"open":4,"lt":37},{"address":"5960 M L KING JR WAY S","complaints":47,"unverified":36,"verified":11,"open":0,"lt":0}],"D3":[{"address":"1621 17TH AVE","complaints":90,"unverified":86,"verified":4,"open":0,"lt":12},{"address":"1727 SUMMIT AVE","complaints":74,"unverified":38,"verified":31,"open":5,"lt":33},{"address":"621 9TH AVE","complaints":67,"unverified":51,"verified":16,"open":0,"lt":0},{"address":"1020 BELLEVUE CT E","complaints":56,"unverified":39,"verified":15,"open":2,"lt":1},{"address":"903 UNION ST","complaints":56,"unverified":36,"verified":18,"open":2,"lt":25},{"address":"1116 15TH AVE E","complaints":54,"unverified":53,"verified":1,"open":0,"lt":2},{"address":"1100 UNIVERSITY ST","complaints":53,"unverified":30,"verified":15,"open":8,"lt":33},{"address":"430 12TH AVE E","complaints":49,"unverified":19,"verified":28,"open":2,"lt":25},{"address":"1400 MADISON ST","complaints":48,"unverified":29,"verified":11,"open":8,"lt":26},{"address":"843 HIAWATHA PL S","complaints":45,"unverified":39,"verified":3,"open":3,"lt":32}],"D4":[{"address":"6620 ROOSEVELT WAY NE","complaints":39,"unverified":26,"verified":6,"open":7,"lt":26},{"address":"7101 62ND AVE NE","complaints":35,"unverified":22,"verified":7,"open":6,"lt":14},{"address":"4126 12TH AVE NE","complaints":34,"unverified":12,"verified":5,"open":17,"lt":25},{"address":"4730 UNIVERSITY WAY NE","complaints":33,"unverified":23,"verified":7,"open":3,"lt":20},{"address":"4750 15TH AVE NE","complaints":31,"unverified":25,"verified":4,"open":2,"lt":23},{"address":"4801 24TH AVE NE","complaints":31,"unverified":20,"verified":3,"open":8,"lt":16},{"address":"1305 NE 43RD ST","complaints":31,"unverified":22,"verified":6,"open":3,"lt":7},{"address":"4547 19TH AVE NE","complaints":30,"unverified":12,"verified":18,"open":0,"lt":16},{"address":"4726 15TH AVE NE","complaints":29,"unverified":23,"verified":4,"open":2,"lt":2},{"address":"4504 BAGLEY AVE N","complaints":29,"unverified":28,"verified":1,"open":0,"lt":12}],"D5":[{"address":"12740 30TH AVE NE","complaints":79,"unverified":56,"verified":13,"open":10,"lt":66},{"address":"14100 LINDEN AVE N","complaints":62,"unverified":42,"verified":13,"open":7,"lt":48},{"address":"13000 LINDEN AVE N","complaints":60,"unverified":25,"verified":27,"open":8,"lt":35},{"address":"747 N 135TH ST","complaints":52,"unverified":28,"verified":19,"open":5,"lt":38},{"address":"14002 LINDEN AVE N","complaints":49,"unverified":29,"verified":18,"open":2,"lt":38},{"address":"8842 NESBIT AVE N","complaints":43,"unverified":24,"verified":18,"open":1,"lt":1},{"address":"12200 STONE AVE N","complaints":42,"unverified":29,"verified":13,"open":0,"lt":7},{"address":"3500 NE 125TH ST","complaints":39,"unverified":24,"verified":14,"open":1,"lt":0},{"address":"13280 LINDEN AVE N","complaints":36,"unverified":22,"verified":8,"open":6,"lt":25},{"address":"13751 32ND AVE NE","complaints":36,"unverified":23,"verified":12,"open":1,"lt":27}],"D6":[{"address":"901 NW MARKET ST","complaints":100,"unverified":77,"verified":3,"open":20,"lt":1},{"address":"2012 NW 56TH ST","complaints":83,"unverified":63,"verified":4,"open":16,"lt":0},{"address":"1103 NW MARKET ST","complaints":57,"unverified":39,"verified":17,"open":1,"lt":4},{"address":"7009 GREENWOOD AVE N","complaints":41,"unverified":24,"verified":14,"open":3,"lt":1},{"address":"5314 17TH AVE NW","complaints":41,"unverified":34,"verified":5,"open":2,"lt":0},{"address":"100 NW 85TH ST","complaints":40,"unverified":26,"verified":14,"open":0,"lt":0},{"address":"6416 15TH AVE NW","complaints":39,"unverified":22,"verified":13,"open":4,"lt":1},{"address":"7332 15TH AVE NW","complaints":36,"unverified":24,"verified":12,"open":0,"lt":0},{"address":"2233 NW 58TH ST","complaints":34,"unverified":23,"verified":4,"open":7,"lt":18},{"address":"618 NW 58TH ST","complaints":32,"unverified":20,"verified":9,"open":3,"lt":10}],"D7":[{"address":"800 SENECA ST","complaints":128,"unverified":80,"verified":16,"open":32,"lt":76},{"address":"1102 8TH AVE","complaints":111,"unverified":68,"verified":26,"open":17,"lt":72},{"address":"2000 3RD AVE","complaints":99,"unverified":91,"verified":7,"open":1,"lt":0},{"address":"700 5TH AVE","complaints":75,"unverified":69,"verified":5,"open":1,"lt":45},{"address":"505 HARRISON ST","complaints":71,"unverified":68,"verified":2,"open":1,"lt":0},{"address":"1820 MINOR AVE","complaints":70,"unverified":53,"verified":13,"open":4,"lt":37},{"address":"1110 8TH AVE","complaints":64,"unverified":44,"verified":16,"open":4,"lt":46},{"address":"3005 1ST AVE","complaints":63,"unverified":58,"verified":5,"open":0,"lt":0},{"address":"2224 2ND AVE","complaints":57,"unverified":41,"verified":16,"open":0,"lt":17},{"address":"1823 TERRY AVE","complaints":57,"unverified":39,"verified":11,"open":7,"lt":30}]}},"pre_post":{"D1":{"pre":{"verified":12696,"unverified":1917,"unverified_pct":13.1},"post":{"verified":5286,"unverified":9767,"unverified_pct":64.9},"pre_lt":{"verified":687,"unverified":137,"unverified_pct":16.6},"post_lt":{"verified":251,"unverified":2376,"unverified_pct":90.4}},"D2":{"pre":{"verified":10749,"unverified":1672,"unverified_pct":13.5},"post":{"verified":5091,"unverified":8721,"unverified_pct":63.1},"pre_lt":{"verified":852,"unverified":147,"unverified_pct":14.7},"post_lt":{"verified":335,"unverified":2771,"unverified_pct":89.2}},"D3":{"pre":{"verified":9315,"unverified":1565,"unverified_pct":14.4},"post":{"verified":4676,"unverified":11494,"unverified_pct":71.1},"pre_lt":{"verified":767,"unverified":192,"unverified_pct":20.0},"post_lt":{"verified":353,"unverified":3896,"unverified_pct":91.7}},"D4":{"pre":{"verified":7459,"unverified":1610,"unverified_pct":17.8},"post":{"verified":3742,"unverified":7051,"unverified_pct":65.3},"pre_lt":{"verified":560,"unverified":103,"unverified_pct":15.5},"post_lt":{"verified":235,"unverified":2184,"unverified_pct":90.3}},"D5":{"pre":{"verified":8512,"unverified":1122,"unverified_pct":11.6},"post":{"verified":4003,"unverified":7498,"unverified_pct":65.2},"pre_lt":{"verified":558,"unverified":103,"unverified_pct":15.6},"post_lt":{"verified":255,"unverified":2582,"unverified_pct":91.0}},"D6":{"pre":{"verified":8806,"unverified":1360,"unverified_pct":13.4},"post":{"verified":4321,"unverified":8553,"unverified_pct":66.4},"pre_lt":{"verified":398,"unverified":77,"unverified_pct":16.2},"post_lt":{"verified":191,"unverified":2142,"unverified_pct":91.8}},"D7":{"pre":{"verified":5908,"unverified":1415,"unverified_pct":19.3},"post":{"verified":3220,"unverified":9467,"unverified_pct":74.6},"pre_lt":{"verified":503,"unverified":119,"unverified_pct":19.1},"post_lt":{"verified":306,"unverified":3109,"unverified_pct":91.0}},"citywide":{"pre":{"verified":63445,"unverified":10661,"unverified_pct":14.4},"post":{"verified":30339,"unverified":62551,"unverified_pct":67.3},"pre_lt":{"verified":4325,"unverified":878,"unverified_pct":16.9},"post_lt":{"verified":1926,"unverified":19060,"unverified_pct":90.8}}}};
+
+const COUNCIL={D1:'Rob Saka',D2:'Eddie Lin',D3:'Joy Hollingsworth',D4:'Maritza Rivera',D5:'Debora Juarez',D6:'Dan Strauss',D7:'Bob Kettle'};
+const DKS=['D1','D2','D3','D4','D5','D6','D7'];
+let mode='all';
+
+const fi=n=>n==null?'—':Number(n).toLocaleString('en-US');
+const fp=n=>n==null?'—%':(+n).toFixed(1)+'%';
+const r=(n,d=1)=>Math.round(n*10**d)/10**d;
+
+function getD(dk){ return (mode==='lt'?DATA.lt:DATA.all)[dk==='citywide'?'citywide':dk]; }
+
+function setMode(m){
+  mode=m;
+  document.getElementById('tog_all').className='tog'+(m==='all'?' active-all':'');
+  document.getElementById('tog_lt').className ='tog'+(m==='lt' ?' active-lt':'');
+  update();
+}
+
+const BL=()=>({
+  margin:{l:44,r:14,t:12,b:34},
+  paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',
+  font:{color:'rgba(233,238,247,.75)'},
+  xaxis:{gridcolor:'rgba(255,255,255,.05)',zerolinecolor:'rgba(255,255,255,.05)',tickfont:{color:'rgba(233,238,247,.6)'}},
+  yaxis:{gridcolor:'rgba(255,255,255,.05)',zerolinecolor:'rgba(255,255,255,.05)',tickfont:{color:'rgba(233,238,247,.6)'}},
+  legend:{orientation:'h',y:1.08,x:0,font:{size:11,color:'rgba(233,238,247,.65)'}},
+});
+
+function update(){
+  const dk=document.getElementById('dsel').value;
+  const d=getD(dk);
+  const isLT=mode==='lt';
+  const lbl=dk==='citywide'?'Citywide':'District '+dk.slice(1);
+
+  // Nuclear strip — recalculates with mode + district
+  const ppSrc=DATA.pre_post[dk==='citywide'?'citywide':dk];
+  const ppKey=isLT?'post_lt':'post';
+  const ppKeyPre=isLT?'pre_lt':'pre';
+  const pp=ppSrc[ppKey];
+  const ppPre=ppSrc[ppKeyPre];
+  const nucScope=isLT?'L/T Complaints Only':'All CP Records';
+  document.getElementById('nuc_eyebrow').textContent=`Since 2018 · ${lbl} · ${nucScope}`;
+  document.getElementById('nuc_stat').textContent=fp(pp.unverified_pct)+' of Closed Complaints Are Unverified';
+  document.getElementById('nuc_sub').textContent=`${fi(pp.unverified)} of ${fi(pp.verified+pp.unverified)} closed complaints since 2018 — no inspection date, no result recorded`;
+  document.getElementById('nuc_right').textContent=`Before 2018, the unverified rate was ${fp(ppPre.unverified_pct)}. After 2018, it is ${fp(pp.unverified_pct)}. This is not a legacy data problem.`;
+
+  // Verdict
+  document.getElementById('v_num').textContent=fi(d.verified);
+  document.getElementById('v_pct').textContent=fp(d.verified_pct);
+  document.getElementById('u_num').textContent=fi(d.unverified);
+  document.getElementById('u_pct').textContent=fp(d.unverified_pct);
+
+  // KPIs
+  const totalClosed=(d.verified||0)+(d.unverified||0);
+  const noInsp=isLT?'N/A':fi(DATA.all[dk==='citywide'?'citywide':dk]?.unverified_no_date_no_result);
+  document.getElementById('k_closed').textContent=fi(totalClosed);
+  document.getElementById('k_scope').textContent=isLT?'L/T complaints only':'All CP complaints';
+  document.getElementById('k_verified').textContent=fi(d.verified);
+  document.getElementById('k_ver_pct').textContent=fp(d.verified_pct)+' of closed';
+  document.getElementById('k_unverified').textContent=fi(d.unverified);
+  document.getElementById('k_unver_pct').textContent=fp(d.unverified_pct)+' of closed';
+  document.getElementById('k_no_insp').textContent=noInsp;
+
+  // Stacked by year
+  const byV=d.verified_by_year||{},byU=d.unverified_by_year||{};
+  const yrs=Object.keys({...byV,...byU}).filter(y=>y&&y!=='').sort();
+  document.getElementById('chart_title').textContent=(isLT?'L/T Only — ':'All CP — ')+'Verified vs Unverified by Year — '+lbl;
+  Plotly.react('plot_stacked',[
+    {x:yrs,y:yrs.map(y=>byV[y]||0),type:'bar',name:'Verified',marker:{color:'rgba(45,127,249,.75)'},hovertemplate:'%{y:,}<extra>Verified</extra>'},
+    {x:yrs,y:yrs.map(y=>byU[y]||0),type:'bar',name:'Unverified',marker:{color:'rgba(239,68,68,.8)'},hovertemplate:'%{y:,}<extra>Unverified</extra>'},
+  ],{...BL(),barmode:'stack',height:240},{displayModeBar:false,responsive:true});
+
+  // Pre/Post chart
+  const preKey=isLT?'pre_lt':'pre';
+  const postKey=isLT?'post_lt':'post';
+  const pre=ppSrc[preKey],post=ppSrc[postKey];
+  Plotly.react('plot_prepost',[
+    {x:['Pre-2018','Post-2018'],y:[pre.unverified_pct,post.unverified_pct],
+     type:'bar',marker:{color:['rgba(45,127,249,.65)','rgba(239,68,68,.85)']},
+     text:[fp(pre.unverified_pct),fp(post.unverified_pct)],
+     textposition:'outside',textfont:{color:'rgba(233,238,247,.8)',size:13},
+     hovertemplate:'%{x}: %{y:.1f}% unverified<extra></extra>',
+    }
+  ],{...BL(),height:240,
+    yaxis:{...BL().yaxis,ticksuffix:'%',range:[0,Math.max(pre.unverified_pct,post.unverified_pct)*1.25]},
+    showlegend:false,margin:{l:44,r:14,t:30,b:34}
+  },{displayModeBar:false,responsive:true});
+
+  // Top 10 properties
+  const rawProps=dk==='citywide'?DATA.top10.citywide:DATA.top10.districts[dk];
+  const props=isLT
+    ?[...rawProps].filter(p=>p.lt>0).sort((a,b)=>b.lt-a.lt).slice(0,10)
+    :rawProps.slice(0,10);
+
+  document.getElementById('top10_title').textContent=
+    `Top 10 ${isLT?'L/T-Heaviest':'Most-Complained'} Properties — ${lbl}`;
+
+  document.getElementById('top10_body').innerHTML=props.map((p,i)=>{
+    const closed=(p.verified||0)+(p.unverified||0);
+    const uPct=closed?r(p.unverified/closed*100):0;
+    const inspPct=closed?r(p.verified/closed*100):0;
+    const uCol=uPct>=80?'var(--red)':uPct>=60?'var(--orange)':'rgba(233,238,247,.6)';
+    const iCol=inspPct<=30?'var(--red)':inspPct<=50?'var(--orange)':'var(--blue)';
+    const isLTHeavy=p.lt>0&&p.lt/(p.complaints||1)>.5;
+    const dists=p.districts?p.districts.map(d=>'D'+d).join(', '):`D${dk.slice(1)}`;
+    return `<tr>
+      <td style="color:var(--muted);font-size:10px;font-weight:700">${i+1}</td>
+      <td><div class="addr">${p.address}${isLTHeavy?'<span class="pill pill-lt">L/T</span>':''}</div></td>
+      <td style="color:var(--muted)">${dists}</td>
+      <td style="font-weight:700">${fi(p.complaints)}</td>
+      <td style="color:var(--orange)">${fi(p.lt)}</td>
+      <td style="color:var(--red)">${fi(p.unverified)}</td>
+      <td><div class="ubar-wrap"><div class="ubar-track"><div class="ubar-fill" style="width:${Math.min(uPct,100)}%"></div></div><span style="color:${uCol};font-weight:700;font-size:11px">${uPct>0?fp(uPct):'—'}</span></div></td>
+      <td style="color:${iCol};font-weight:700">${inspPct>0?fp(inspPct):'—'}</td>
+      <td style="color:${(p.open||0)>0?'var(--orange)':'var(--muted)'}">${fi(p.open)}</td>
+    </tr>`;
+  }).join('');
+
+  // District comparison table with citywide avg row + deviation
+  const distSrc=mode==='lt'?DATA.lt:DATA.all;
+  const cwAvg=distSrc.citywide?.unverified_pct||0;
+  const sorted=[...DKS].sort((a,b)=>(distSrc[b]?.unverified_pct||0)-(distSrc[a]?.unverified_pct||0));
+
+  document.getElementById('dist_title').textContent=
+    `All Districts — ${isLT?'Landlord/Tenant Only':'All CP Records'} — Verification Rate`;
+
+  const avgRow=`<tr class="avg-row">
+    <td style="font-weight:700;color:var(--muted)">Citywide</td>
+    <td style="color:var(--muted)">Average</td>
+    <td style="color:var(--muted)">${fi((distSrc.citywide?.verified||0)+(distSrc.citywide?.unverified||0))}</td>
+    <td style="color:var(--blue)">${fi(distSrc.citywide?.verified)}</td>
+    <td style="color:var(--blue);font-weight:700">${fp(distSrc.citywide?.verified_pct)}</td>
+    <td style="color:var(--red)">${fi(distSrc.citywide?.unverified)}</td>
+    <td style="color:var(--red);font-weight:700;font-size:13px">${fp(cwAvg)}</td>
+    <td style="color:var(--muted);font-size:10px">baseline</td>
+    <td><div style="display:flex;align-items:center;gap:6px"><div class="bar-track"><div class="bar-fill" style="width:${distSrc.citywide?.verified_pct||0}%;background:rgba(45,127,249,.6)"></div></div></div></td>
+  </tr>`;
+
+  const distRows=sorted.map(dk2=>{
+    const dd=distSrc[dk2]||{};
+    const uP=dd.unverified_pct||0,vP=dd.verified_pct||0;
+    const diff=r(uP-cwAvg);
+    const diffCol=diff>5?'var(--red)':diff>0?'var(--orange)':'rgba(45,127,249,.8)';
+    const diffStr=diff>0?`+${diff}pp`:diff<0?`${diff}pp`:'avg';
+    const uCol=uP>=(isLT?80:50)?'var(--red)':uP>=(isLT?70:43)?'var(--orange)':'rgba(233,238,247,.7)';
+    const isSel=dk2===dk;
+    return `<tr class="${isSel?'sel':''}">
+      <td style="font-weight:700;color:${isSel?'#ffd08a':'var(--orange)'}">D${dk2.slice(1)}</td>
+      <td style="color:var(--muted)">${COUNCIL[dk2]}</td>
+      <td style="color:var(--muted)">${fi((dd.verified||0)+(dd.unverified||0))}</td>
+      <td style="color:var(--blue)">${fi(dd.verified)}</td>
+      <td style="color:var(--blue);font-weight:700">${fp(vP)}</td>
+      <td style="color:var(--red)">${fi(dd.unverified)}</td>
+      <td style="color:${uCol};font-weight:700;font-size:13px">${fp(uP)}</td>
+      <td style="color:${diffCol};font-size:11px;font-weight:700">${diffStr}</td>
+      <td><div style="display:flex;align-items:center;gap:6px"><div class="bar-track"><div class="bar-fill" style="width:${vP}%;background:rgba(45,127,249,.6)"></div></div></div></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('dist_table').innerHTML=avgRow+distRows;
+}
+
+document.getElementById('dsel').addEventListener('change',update);
+update();
+</script>
+</body>
+</html>
