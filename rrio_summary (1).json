@@ -1,0 +1,78 @@
+{
+  "source": "RRIO_PROPERTY_TIMELINE_CLEAN.csv",
+  "generated": "2026-02-21",
+  "citywide": {
+    "total_records": 1073746,
+    "unique_addresses": 49864,
+    "active": 212731,
+    "expired": 67784,
+    "late_violation": 190816,
+    "private_inspector": 81872,
+    "violation": 55568
+  },
+  "by_district": {
+    "7": {
+      "total_records": 32444,
+      "unique_addresses": 2628,
+      "active": 28676,
+      "expired": 0,
+      "late_violation": 0,
+      "private_inspector": 0,
+      "violation": 0
+    },
+    "3": {
+      "total_records": 39865,
+      "unique_addresses": 4397,
+      "active": 35280,
+      "expired": 0,
+      "late_violation": 0,
+      "private_inspector": 0,
+      "violation": 0
+    },
+    "1": {
+      "total_records": 30945,
+      "unique_addresses": 4076,
+      "active": 27361,
+      "expired": 0,
+      "late_violation": 0,
+      "private_inspector": 0,
+      "violation": 0
+    },
+    "2": {
+      "total_records": 25347,
+      "unique_addresses": 3306,
+      "active": 22437,
+      "expired": 0,
+      "late_violation": 0,
+      "private_inspector": 0,
+      "violation": 0
+    },
+    "6": {
+      "total_records": 43933,
+      "unique_addresses": 5563,
+      "active": 38806,
+      "expired": 0,
+      "late_violation": 0,
+      "private_inspector": 0,
+      "violation": 0
+    },
+    "4": {
+      "total_records": 32646,
+      "unique_addresses": 4027,
+      "active": 28860,
+      "expired": 0,
+      "late_violation": 0,
+      "private_inspector": 0,
+      "violation": 0
+    },
+    "5": {
+      "total_records": 34094,
+      "unique_addresses": 4316,
+      "active": 30189,
+      "expired": 0,
+      "late_violation": 0,
+      "private_inspector": 0,
+      "violation": 0
+    }
+  }
+}
