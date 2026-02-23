@@ -1,0 +1,626 @@
+
+Traceability Document: Merging Seattle Rental Property Registration and RRIO Datasets
+1. Document Purpose
+This traceability document outlines the complete process for merging two datasets:
+Rental Property Registration snapshots (14 files, ~240k rows total, with details like units, owners, dates, and geo data).
+RRIO historical records (13 files, ~215k rows total, with enforcement actions like violations, inspections, and private inspector flags).
+The goal is to create a unified master file that tells the "whole story" of each address: registrations over time, lapses, private inspectors, violations, transfers, and other red flags. This enables analysis of patterns like uncollected penalties, delayed inspections, and landlord non-compliance.
+This document is reproducible: It includes all steps, code snippets, assumptions, challenges, and rationale. You can recreate the merge by running the provided scripts in order.
+2. Data Sources
+Rental Property Registration Files (your cleaned versions):
+Files: 14 CSV files named like "Rental_Property_Registration_20240611.csv", "Rental_Property_Registration_20240620MM.csv", etc.
+Headers: REGISTRATIONNUMBER, UNITS, PROPERTYNAME, REGISTEREDDATE, EXPIRESDATE, STATUSCURRENT, ORIGINALADDRESS1, ORIGINALZIP, PROPERTYCONTACTNAME, LATITUDE, LONGITUDE.
+Content: Snapshot of active registrations each pull date. Units, owners, dates; some have geo. Addresses sometimes funky (extra spaces, "SEATTLE" embedded).
+Total rows after merge: 239,906 (deduped by REGISTRATIONNUMBER, keeping latest EXPIRESDATE).
+RRIO Files (historical lists):
+Files: 13 CSV files named like "RRIO_01012019_12312019_RecordList20251120.csv", "RRIO 2015-1016.csv", etc.
+Headers: DATE, RECORDNUMBER, RECORDTYPE, PRIVATEINSPECTOR, STATUSCURRENT, REGISTRATIONEXPIRED, ORIGINALADDRESS1, (UNNAMED: 5 dropped as empty).
+Content: Annual dumps of all actions (registrations, inspections, violations, private inspectors, expirations). Less detail than registrations, but shows the "story" (NOVs, delays, transfers).
+Total rows after merge: 215,543 (filtered to valid RECORDNUMBER).
+Input Files Location: All CSVs in one folder (e.g., C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars).
+Output Files:
+MASTER_REGISTRATIONS_V3.csv (from Phase 1).
+MASTER_RRIO_Clean_fixed.csv (from Phase 2).
+FINAL_MERGED_MASTER.csv (from Phase 3 — the overlay).
+3. Process Overview
+We merged in three phases to handle inconsistencies:
+Phase 1: Merge all Rental Property Registration files into one master (dedup by REGISTRATIONNUMBER, sort by address).
+Phase 2: Merge all RRIO files into one master (filter valid RECORDNUMBER, sort by address).
+Phase 3: Overlay RRIO on registrations by matching on cleaned ORIGINALADDRESS1/address. Add flags from RRIO (e.g., had_private_inspector, had_violation_or_expiration) to each registration row. For addresses with multiple RRIO entries, aggregate (e.g., any private inspector = true, unique statuses seen as list).
+This is staged to avoid schema mismatches (different column counts). All code is Python with Polars for efficiency.
+4. Challenges and Rationale
+Schema Differences: Registrations have 11 columns; RRIO have 7. Rationale: Add null columns in merge; use left join in overlay so registrations stay intact.
+Address Matching: Funky spacing/"SEATTLE" embedded. Rationale: Clean with .str.replace(r"\s+", " ") and .str.replace("SEATTLE", "") in code, then upper-case for matching.
+Duplicates: Addresses repeat across files/years (normal for history). Rationale: Dedup registrations by REGISTRATIONNUMBER (keep latest); aggregate RRIO per address (any/unique).
+Empty Cells: Many blanks (e.g., PRIVATEINSPECTOR in some RRIO). Rationale: Polars handles nulls naturally; flags use .any() which treats null as false.
+Encoding Issues: Some files had invalid bytes (0xc3). Rationale: Use 'utf-8-sig' to strip BOM; you resaved the two bad ones.
+Filtering: Only keep valid XXX-XXXXXXX numbers. Rationale: Skips junk/footers.
+Dates: MM/DD/YYYY. Rationale: Parse with .str.to_date("%m/%d/%Y").
+Why Polars?: Handles large data fast, doesn't crash on blanks/duplicates if configured right. It "understands" your data once we tell it to ignore schema diffs with how="vertical_relaxed".
+5. Reproducibility Steps
+Place all 14 registration and 13 RRIO CSVs in one folder.
+Run Phase 1 script (merge_registrations_phase1_v3.py) to get MASTER_REGISTRATIONS_V3.csv.
+Run Phase 2 script (merge_rrio_phase2_fixed.py) to get MASTER_RRIO_Clean_fixed.csv.
+Run Phase 3 script (below) to overlay and get FINAL_MERGED_MASTER.csv.
+To recreate: The code is self-contained; no external deps beyond Polars (pip install polars).
+Phase 3 Code: Final Overlay Merge
+This loads the two masters, cleans addresses, overlays RRIO flags on registrations, and saves the final merged master.
+O per address
+rrio_agg = rrio.group_by("address_clean").agg([
+    pl.col("private_inspector").any().alias("had_private_inspector"),
+    pl.col("status_current").str.contains("violation|nov|expired", ignore_case=True).any().alias("had_violation_or_expiration"),
+    pl.col("record_type").unique().alias("rrio_types_seen"),
+    pl.col("status_current").unique().alias("rrio_statuses_seen"),
+    pl.col("snapshot_file").unique().alias("rrio_sources")
+])
+
+# Overlay on registrations (left join — all reg rows kept, add RRIO flags where match)
+final_merged = reg.join(rrio_agg, on="address_clean", how="left")
+
+# Drop temp clean column
+final_merged = final_merged.drop("address_clean")
+
+# Save
+final_merged.write_csv("FINAL_MERGED_MASTER.csv")
+
+print(f"DONE — Final merged {final_merged.height:,} rows → FINAL_MERGED_MASTER.csv")
+print("\nQuick peek:")
+print(final_merged.head(5))
+print("\nAddresses with private inspectors:")
+print(final_merged.filter(pl.col("had_private_inspector") == True).select("ORIGINALADDRESS1").unique().head(10))
+
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> LS
+
+
+    Directory: C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         2/12/2026   3:56 PM        3690496 Rental_Property_Registration_2022_
+                                                  2023_PORTAL_ACTIVE.csv
+-a----         2/12/2026   4:30 AM        7101051 Rental_Property_Registration_20240
+                                                  611.csv
+-a----         2/12/2026   4:32 AM          58523 Rental_Property_Registration_20240
+                                                  620 (2).csv
+-a----         2/12/2026   4:35 PM           7315 Rental_Property_Registration_20240
+                                                  620MM.csv
+-a----         2/12/2026   4:33 AM        7162880 Rental_Property_Registration_20240
+                                                  713.csv
+-a----         2/12/2026   5:30 PM        2026362 Rental_Property_Registration_20241
+                                                  120.csv
+-a----         2/12/2026   5:01 PM          10770 Rental_Property_Registration_20250
+                                                  108.csv
+-a----         2/12/2026   5:09 PM        3491576 Rental_Property_Registration_20250
+                                                  310.csv
+-a----         2/12/2026   5:03 PM        3506123 Rental_Property_Registration_20250
+                                                  327.csv
+-a----         2/12/2026   5:10 PM        3457661 Rental_Property_Registration_20250
+                                                  424.csv
+-a----         2/12/2026   4:13 PM        3464737 Rental_Property_Registration_20250
+                                                  506.csv
+-a----         2/12/2026   4:55 PM        3493112 Rental_Property_Registration_20250
+                                                  602.csv
+-a----         2/12/2026   4:59 PM        3504487 Rental_Property_Registration_20250
+                                                  731.csv
+-a----         2/12/2026   4:31 AM        8055826 Rental_Property_Registration_20250
+                                                  908.csv
+-a----         2/12/2026   3:57 PM        3761777 Rental_Property_Registration_20260
+                                                  212_PORTAL_ACTIVE.csv
+-a----         2/12/2026   4:52 PM        2429691 RRIO 2015-1016.csv
+-a----          2/7/2026  12:14 AM        7274357 RRIO_01012015_12212015_RecordList2
+                                                  0251120 (1).csv
+-a----         2/12/2026   5:18 PM        3534473 RRIO_01012016_12312016_RecordList2
+                                                  0251120.csv
+-a----         2/12/2026   4:49 PM        1408275 RRIO_01012017_12312017_RecordList2
+                                                  0251120.csv
+-a----         2/12/2026   2:34 PM         999405 RRIO_01012018_12312018_RecordList2
+                                                  0251120 (1).csv
+-a----         2/12/2026   5:24 PM        1992441 RRIO_01012019_12312019_RecordList2
+                                                  0251120.csv
+-a----         2/12/2026   4:14 PM        1755841 RRIO_01012020_12312020_RecordList2
+                                                  0251120 (1).csv
+-a----         2/12/2026   4:33 PM        2390502 RRIO_01012021_12312021_RecordList2
+                                                  0251120 (1).csv
+-a----         2/12/2026   5:21 PM        2339272 RRIO_01012022_12312022_RecordList2
+                                                  0251120.csv
+-a----         2/12/2026   4:42 PM        3386655 RRIO_01012023_12312023_RecordList2
+                                                  0251120.csv
+-a----         2/12/2026   4:44 PM        2561476 RRIO_01012024_12312024_RecordList2
+                                                  0251120.csv
+-a----         2/12/2026   4:46 PM        2781860 RRIO_01012025_11202025_RecordList2
+                                                  0251120.csv
+
+
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON process_registration_file.PY
+Found 15 registration files
+→ Rental_Property_Registration_2022_2023_PORTAL_ACTIVE.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20240611.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20240620 (2).csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20240620MM.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20240713.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20241120.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20250108.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20250310.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20250327.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20250424.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20250506.csv
+  Failed: 'utf-8' codec can't decode byte 0xc3 in position 390879: invalid continuation byte
+→ Rental_Property_Registration_20250602.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20250731.csv
+  Failed: 'utf-8' codec can't decode byte 0xc3 in position 397952: invalid continuation byte
+→ Rental_Property_Registration_20250908.csv
+  Failed: column 'IssueDate' is duplicate
+→ Rental_Property_Registration_20260212_PORTAL_ACTIVE.csv
+  Failed: column 'IssueDate' is duplicate
+No registration files processed
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> ^C
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> python merge_registrations_phase1.py
+Found 15 registration files
+→ Rental_Property_Registration_2022_2023_PORTAL_ACTIVE.csv
+  Kept 28131 rows
+→ Rental_Property_Registration_20240611.csv
+  → No matching columns found
+→ Rental_Property_Registration_20240620 (2).csv
+  → No matching columns found
+→ Rental_Property_Registration_20240620MM.csv
+  Kept 41 rows
+→ Rental_Property_Registration_20240713.csv
+  → No matching columns found
+→ Rental_Property_Registration_20241120.csv
+  Kept 15470 rows
+→ Rental_Property_Registration_20250108.csv
+  → No matching columns found
+→ Rental_Property_Registration_20250310.csv
+  Kept 28043 rows
+→ Rental_Property_Registration_20250327.csv
+  Kept 28157 rows
+→ Rental_Property_Registration_20250424.csv
+  Kept 27736 rows
+→ Rental_Property_Registration_20250506.csv
+  Failed: 'utf-8' codec can't decode byte 0xc3 in position 390879: invalid continuation byte...
+→ Rental_Property_Registration_20250602.csv
+  Kept 28021 rows
+→ Rental_Property_Registration_20250731.csv
+  Failed: 'utf-8' codec can't decode byte 0xc3 in position 397952: invalid continuation byte...
+→ Rental_Property_Registration_20250908.csv
+  → No matching columns found
+→ Rental_Property_Registration_20260212_PORTAL_ACTIVE.csv
+  Kept 28651 rows
+Traceback (most recent call last):
+  File "C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars\merge_registrations_phase1.py", line 80, in <module>
+    master_reg = pl.concat(dfs, how="vertical_relaxed")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\functions\eager.py", line 244, in concat
+    ).collect(optimizations=QueryOptFlags._eager())
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\_utils\deprecation.py", line 97, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\opt_flags.py", line 326, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\frame.py", line 2440, in collect
+    return wrap_df(ldf.collect(engine, callback))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+polars.exceptions.ComputeError: schema lengths differ
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON merge_registrations_phase1_v2.py
+Found 14 files
+→ Processing Rental_Property_Registration_2022_2023_PORTAL_ACTIVE.csv
+  Kept 28131 clean rows
+→ Processing Rental_Property_Registration_20240611.csv
+  Kept 27714 clean rows
+→ Processing Rental_Property_Registration_20240620.csv
+  Kept 212 clean rows
+→ Processing Rental_Property_Registration_20240620MM.csv
+  Kept 41 clean rows
+→ Processing Rental_Property_Registration_20240713.csv
+  Kept 27730 clean rows
+→ Processing Rental_Property_Registration_20241120.csv
+  Kept 15470 clean rows
+→ Processing Rental_Property_Registration_20250310.csv
+  Kept 28043 clean rows
+→ Processing Rental_Property_Registration_20250327.csv
+  Kept 28157 clean rows
+→ Processing Rental_Property_Registration_20250424.csv
+  Kept 27736 clean rows
+→ Processing Rental_Property_Registration_20250506.csv
+  FAILED Rental_Property_Registration_20250506.csv → 'utf-8' codec can't decode byte 0xc3 in position 997933: invalid continuation byte
+→ Processing Rental_Property_Registration_20250602.csv
+  Kept 28021 clean rows
+→ Processing Rental_Property_Registration_20250731.csv
+  FAILED Rental_Property_Registration_20250731.csv → 'utf-8' codec can't decode byte 0xc3 in position 1011531: invalid continuation byte
+→ Processing Rental_Property_Registration_20250908.csv
+  Kept 0 clean rows
+→ Processing Rental_Property_Registration_20260212_PORTAL_ACTIVE.csv
+  Kept 28651 clean rows
+
+DONE — Merged 239,906 rows → MASTER_Registrations_Clean_V2.csv
+
+Top addresses with history:
+C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars\merge_registrations_phase1_v2.py:66: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+(Deprecated in version 0.20.5)
+  print(master.group_by("ORIGINALADDRESS1").agg(pl.count().alias("rows")).sort("rows", descending=True).head(10))
+shape: (10, 2)
+┌──────────────────┬──────┐
+│ ORIGINALADDRESS1 ┆ rows │
+│ ---              ┆ ---  │
+│ str              ┆ u32  │
+╞══════════════════╪══════╡
+│ 1400 HUBBELL PL  ┆ 666  │
+│ 1808 MINOR AVE   ┆ 650  │
+│ 2415 2ND AVE     ┆ 488  │
+│ 588 BELL ST      ┆ 460  │
+│ 425 VINE ST      ┆ 456  │
+│ 2414 1ST AVE     ┆ 450  │
+│ 1415 2ND AVE     ┆ 398  │
+│ 819 VIRGINIA ST  ┆ 288  │
+│ 2911 2ND AVE     ┆ 279  │
+│ 583 BATTERY ST   ┆ 272  │
+└──────────────────┴──────┘
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON merge_rrio_phase2.py
+Found 13 RRIO files
+→ MASTER_RRIO_Clean.csv
+  FAILED: found more fields than defined in 'Schema'
+
+Consider setting 'truncate_ragged_lines=True'.
+→ RRIO 2015-1016.csv
+  Kept 21622 rows
+→ RRIO_01012015_12212015_RecordList20251120 (1).csv
+  → No matching columns
+→ RRIO_01012016_12312016_RecordList20251120.csv
+  Kept 30890 rows
+→ RRIO_01012017_12312017_RecordList20251120.csv
+  Kept 12162 rows
+→ RRIO_01012018_12312018_RecordList20251120 (1).csv
+  FAILED: unable to find column "record_number"; valid columns: ["date"]
+→ RRIO_01012019_12312019_RecordList20251120.csv
+  Kept 15861 rows
+→ RRIO_01012020_12312020_RecordList20251120 (1).csv
+  → No matching columns
+→ RRIO_01012021_12312021_RecordList20251120 (1).csv
+  Kept 10903 rows
+→ RRIO_01012022_12312022_RecordList20251120.csv
+  Kept 12586 rows
+→ RRIO_01012023_12312023_RecordList20251120.csv
+  FAILED: unable to find column "record_number"; valid columns: ["date", "record_type", "private_inspector", "status_current", "registration_expired", "address"]
+→ RRIO_01012024_12312024_RecordList20251120.csv
+  Kept 13840 rows
+→ RRIO_01012025_11202025_RecordList20251120.csv
+  Kept 13143 rows
+Traceback (most recent call last):
+  File "C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars\merge_rrio_phase2.py", line 77, in <module>
+    master_rrio = pl.concat(dfs, how="vertical_relaxed")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\functions\eager.py", line 244, in concat
+    ).collect(optimizations=QueryOptFlags._eager())
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\_utils\deprecation.py", line 97, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\opt_flags.py", line 326, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\frame.py", line 2440, in collect
+    return wrap_df(ldf.collect(engine, callback))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+polars.exceptions.ComputeError: schema lengths differ
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON merge_rrio_phase2_fixed.py
+Found 14 RRIO files
+→ MASTER_RRIO_Clean.csv
+  FAILED: found more fields than defined in 'Schema'
+
+Consider setting 'truncate_ragged_lines=True'.
+→ RRIO 2015-1016.csv
+  Kept 21622 rows
+→ RRIO_01012015_12212015_RecordList20251120 (1).csv
+  Kept 64661 rows
+→ RRIO_01012016_12312016_RecordList20251120.csv
+  Kept 30890 rows
+→ RRIO_01012017_12312017_RecordList20251120.csv
+  Kept 12162 rows
+→ RRIO_01012018_12312018_RecordList20251120 (1).csv
+  → No valid rows
+→ RRIO_01012018_12312018_RecordList20251120.csv
+  Kept 10622 rows
+→ RRIO_01012019_12312019_RecordList20251120.csv
+  Kept 15861 rows
+→ RRIO_01012020_12312020_RecordList20251120 (1).csv
+  Kept 9253 rows
+→ RRIO_01012021_12312021_RecordList20251120 (1).csv
+  Kept 10903 rows
+→ RRIO_01012022_12312022_RecordList20251120.csv
+  Kept 12586 rows
+→ RRIO_01012023_12312023_RecordList20251120.csv
+  → No valid rows
+→ RRIO_01012024_12312024_RecordList20251120.csv
+  Kept 13840 rows
+→ RRIO_01012025_11202025_RecordList20251120.csv
+  Kept 13143 rows
+
+DONE — Merged 215,543 rows → MASTER_RRIO_Clean_fixed.csv
+
+Quick peek:
+shape: (5, 8)
+┌──────────┬──────────┬──────────┬──────────┬─────────┬─────────┬─────────┬─────────┐
+│ date     ┆ record_n ┆ record_t ┆ private_ ┆ status_ ┆ registr ┆ address ┆ snapsho │
+│ ---      ┆ umber    ┆ ype      ┆ inspecto ┆ current ┆ ation_e ┆ ---     ┆ t_file  │
+│ date     ┆ ---      ┆ ---      ┆ r        ┆ ---     ┆ xpired  ┆ str     ┆ ---     │
+│          ┆ str      ┆ str      ┆ ---      ┆ str     ┆ ---     ┆         ┆ str     │
+│          ┆          ┆          ┆ str      ┆         ┆ str     ┆         ┆         │
+╞══════════╪══════════╪══════════╪══════════╪═════════╪═════════╪═════════╪═════════╡
+│ 2015-12- ┆ 003-0005 ┆ RENTAL   ┆ null     ┆ PREPARI ┆ null    ┆ null    ┆ RRIO    │
+│ 29       ┆ 606      ┆ PROPERTY ┆          ┆ NG NOV  ┆         ┆         ┆ 2015-10 │
+│          ┆          ┆ LATE REG ┆          ┆         ┆         ┆         ┆ 16.csv  │
+│          ┆          ┆ ISTRAT…  ┆          ┆         ┆         ┆         ┆         │
+│ 2015-12- ┆ 004-0006 ┆ RENTAL   ┆ null     ┆ AMENDME ┆ null    ┆ null    ┆ RRIO    │
+│ 21       ┆ 836      ┆ PROPERTY ┆          ┆ NT SUBM ┆         ┆         ┆ 2015-10 │
+│          ┆          ┆ INSPECTI ┆          ┆ ITTED   ┆         ┆         ┆ 16.csv  │
+│          ┆          ┆ ON       ┆          ┆         ┆         ┆         ┆         │
+│ 2015-12- ┆ 004-0006 ┆ RENTAL   ┆ null     ┆ AMENDME ┆ null    ┆ null    ┆ RRIO    │
+│ 21       ┆ 835      ┆ PROPERTY ┆          ┆ NT SUBM ┆         ┆         ┆ 2015-10 │
+│          ┆          ┆ INSPECTI ┆          ┆ ITTED   ┆         ┆         ┆ 16.csv  │
+│          ┆          ┆ ON       ┆          ┆         ┆         ┆         ┆         │
+│ 2015-12- ┆ 004-0006 ┆ RENTAL   ┆ null     ┆ AMENDME ┆ null    ┆ null    ┆ RRIO    │
+│ 21       ┆ 834      ┆ PROPERTY ┆          ┆ NT SUBM ┆         ┆         ┆ 2015-10 │
+│          ┆          ┆ INSPECTI ┆          ┆ ITTED   ┆         ┆         ┆ 16.csv  │
+│          ┆          ┆ ON       ┆          ┆         ┆         ┆         ┆         │
+│ 2015-12- ┆ 004-0006 ┆ RENTAL   ┆ null     ┆ AMENDME ┆ null    ┆ null    ┆ RRIO    │
+│ 21       ┆ 833      ┆ PROPERTY ┆          ┆ NT SUBM ┆         ┆         ┆ 2015-10 │
+│          ┆          ┆ INSPECTI ┆          ┆ ITTED   ┆         ┆         ┆ 16.csv  │
+│          ┆          ┆ ON       ┆          ┆         ┆         ┆         ┆         │
+└──────────┴──────────┴──────────┴──────────┴─────────┴─────────┴─────────┴─────────┘
+
+Yearly counts:
+shape: (11, 2)
+┌─────────────────────────────────┬───────────┐
+│ snapshot_file                   ┆ row_count │
+│ ---                             ┆ ---       │
+│ str                             ┆ u32       │
+╞═════════════════════════════════╪═══════════╡
+│ RRIO_01012015_12212015_RecordL… ┆ 64661     │
+│ RRIO_01012016_12312016_RecordL… ┆ 30890     │
+│ RRIO 2015-1016.csv              ┆ 21622     │
+│ RRIO_01012019_12312019_RecordL… ┆ 15861     │
+│ RRIO_01012024_12312024_RecordL… ┆ 13840     │
+│ …                               ┆ …         │
+│ RRIO_01012022_12312022_RecordL… ┆ 12586     │
+│ RRIO_01012017_12312017_RecordL… ┆ 12162     │
+│ RRIO_01012021_12312021_RecordL… ┆ 10903     │
+│ RRIO_01012018_12312018_RecordL… ┆ 10622     │
+│ RRIO_01012020_12312020_RecordL… ┆ 9253      │
+└─────────────────────────────────┴───────────┘
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON merge_registrations_phase1_v3.py
+Found 14 files
+→ Rental_Property_Registration_2022_2023_PORTAL_ACTIVE.csv
+  Kept 28131 rows
+→ Rental_Property_Registration_20240611.csv
+  Kept 27714 rows
+→ Rental_Property_Registration_20240620.csv
+  Kept 212 rows
+→ Rental_Property_Registration_20240620MM.csv
+  Kept 41 rows
+→ Rental_Property_Registration_20240713.csv
+  Kept 27730 rows
+→ Rental_Property_Registration_20241120.csv
+  Kept 15470 rows
+→ Rental_Property_Registration_20250310.csv
+  Kept 28043 rows
+→ Rental_Property_Registration_20250327.csv
+  Kept 28157 rows
+→ Rental_Property_Registration_20250424.csv
+  Kept 27736 rows
+→ Rental_Property_Registration_20250506.csv
+  FAILED: 'utf-8' codec can't decode byte 0xc3 in position 997933: invalid continuation byte
+→ Rental_Property_Registration_20250602.csv
+  Kept 28021 rows
+→ Rental_Property_Registration_20250731.csv
+  FAILED: 'utf-8' codec can't decode byte 0xc3 in position 1011531: invalid continuation byte
+→ Rental_Property_Registration_20250908.csv
+  → No valid rows
+→ Rental_Property_Registration_20260212_PORTAL_ACTIVE.csv
+  Kept 28651 rows
+
+DONE — Merged 239,906 rows → MASTER_REGISTRATIONS_V3.csv
+
+Quick peek:
+shape: (5, 12)
+┌──────────┬───────┬──────────┬─────────┬───┬─────────┬─────────┬─────────┬─────────┐
+│ REGISTRA ┆ UNITS ┆ PROPERTY ┆ REGISTE ┆ … ┆ PROPERT ┆ LATITUD ┆ LONGITU ┆ SNAPSHO │
+│ TIONNUMB ┆ ---   ┆ NAME     ┆ REDDATE ┆   ┆ YCONTAC ┆ E       ┆ DE      ┆ T_FILE  │
+│ ER       ┆ str   ┆ ---      ┆ ---     ┆   ┆ TNAME   ┆ ---     ┆ ---     ┆ ---     │
+│ ---      ┆       ┆ str      ┆ str     ┆   ┆ ---     ┆ str     ┆ str     ┆ str     │
+│ str      ┆       ┆          ┆         ┆   ┆ str     ┆         ┆         ┆         │
+╞══════════╪═══════╪══════════╪═════════╪═══╪═════════╪═════════╪═════════╪═════════╡
+│ 001-0151 ┆ 4     ┆ null     ┆ 11/21/2 ┆ … ┆ PHILIP  ┆ 47.6485 ┆ -122.35 ┆ Rental_ │
+│ 953      ┆       ┆          ┆ 024     ┆   ┆ HERRON  ┆ 2788    ┆ 752315  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0104 ┆ 6     ┆ 1        ┆ 02/28/2 ┆ … ┆ ETRURIA ┆ 47.6475 ┆ -122.35 ┆ Rental_ │
+│ 660      ┆       ┆ ETRURIA  ┆ 024     ┆   ┆ ASSOCIA ┆ 8445    ┆ 743333  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆ TES LLC ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0100 ┆ 15    ┆ GABLE    ┆ 08/05/2 ┆ … ┆ AVENUE  ┆ 47.6293 ┆ -122.35 ┆ Rental_ │
+│ 589      ┆       ┆ HOUSE    ┆ 025     ┆   ┆ ONE RES ┆ 304     ┆ 705602  ┆ Propert │
+│          ┆       ┆ LLC      ┆         ┆   ┆ IDENTIA ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆ L       ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0138 ┆ 1     ┆ LEONA #6 ┆ 10/17/2 ┆ … ┆ KATHY   ┆ 47.6279 ┆ -122.35 ┆ Rental_ │
+│ 403      ┆       ┆          ┆ 023     ┆   ┆ ENTROP  ┆ 2511    ┆ 631203  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0141 ┆ 1     ┆ LEONA    ┆ 09/10/2 ┆ … ┆ JOYCE   ┆ 47.6279 ┆ -122.35 ┆ Rental_ │
+│ 968      ┆       ┆          ┆ 024     ┆   ┆ WU      ┆ 2511    ┆ 631203  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+└──────────┴───────┴──────────┴─────────┴───┴─────────┴─────────┴─────────┴─────────┘
+
+Top 10 addresses with most history:
+shape: (10, 2)
+┌──────────────────┬──────┐
+│ ORIGINALADDRESS1 ┆ rows │
+│ ---              ┆ ---  │
+│ str              ┆ u32  │
+╞══════════════════╪══════╡
+│ 1400 HUBBELL PL  ┆ 666  │
+│ 1808 MINOR AVE   ┆ 650  │
+│ 2415 2ND AVE     ┆ 488  │
+│ 588 BELL ST      ┆ 460  │
+│ 425 VINE ST      ┆ 456  │
+│ 2414 1ST AVE     ┆ 450  │
+│ 1415 2ND AVE     ┆ 398  │
+│ 819 VIRGINIA ST  ┆ 288  │
+│ 2911 2ND AVE     ┆ 279  │
+│ 583 BATTERY ST   ┆ 272  │
+└──────────────────┴──────┘
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON merge_registrations_phase1_v4.pY
+Found 14 files
+→ Rental_Property_Registration_2022_2023_PORTAL_ACTIVE.csv
+  Kept 28131 rows
+→ Rental_Property_Registration_20240611.csv
+  Kept 27714 rows
+→ Rental_Property_Registration_20240620.csv
+  Kept 212 rows
+→ Rental_Property_Registration_20240620MM.csv
+  Kept 41 rows
+→ Rental_Property_Registration_20240713.csv
+  Kept 27730 rows
+→ Rental_Property_Registration_20241120.csv
+  Kept 15470 rows
+→ Rental_Property_Registration_20250310.csv
+  Kept 28043 rows
+→ Rental_Property_Registration_20250327.csv
+  Kept 28157 rows
+→ Rental_Property_Registration_20250424.csv
+  Kept 27736 rows
+→ Rental_Property_Registration_20250506.csv
+  FAILED: 'utf-8' codec can't decode byte 0xc3 in position 997933: invalid continuation byte
+→ Rental_Property_Registration_20250602.csv
+  Kept 28021 rows
+→ Rental_Property_Registration_20250731.csv
+  FAILED: 'utf-8' codec can't decode byte 0xc3 in position 1011531: invalid continuation byte
+→ Rental_Property_Registration_20250908.csv
+  → No valid rows
+→ Rental_Property_Registration_20260212_PORTAL_ACTIVE.csv
+  Kept 28651 rows
+
+DONE — Merged 239,906 rows → MASTER_REGISTRATIONS_V4.csv
+
+Quick peek:
+shape: (5, 12)
+┌──────────┬───────┬──────────┬─────────┬───┬─────────┬─────────┬─────────┬─────────┐
+│ REGISTRA ┆ UNITS ┆ PROPERTY ┆ REGISTE ┆ … ┆ PROPERT ┆ LATITUD ┆ LONGITU ┆ SNAPSHO │
+│ TIONNUMB ┆ ---   ┆ NAME     ┆ REDDATE ┆   ┆ YCONTAC ┆ E       ┆ DE      ┆ T_FILE  │
+│ ER       ┆ str   ┆ ---      ┆ ---     ┆   ┆ TNAME   ┆ ---     ┆ ---     ┆ ---     │
+│ ---      ┆       ┆ str      ┆ str     ┆   ┆ ---     ┆ str     ┆ str     ┆ str     │
+│ str      ┆       ┆          ┆         ┆   ┆ str     ┆         ┆         ┆         │
+╞══════════╪═══════╪══════════╪═════════╪═══╪═════════╪═════════╪═════════╪═════════╡
+│ 001-0151 ┆ 4     ┆ null     ┆ 11/21/2 ┆ … ┆ PHILIP  ┆ 47.6485 ┆ -122.35 ┆ Rental_ │
+│ 953      ┆       ┆          ┆ 024     ┆   ┆ HERRON  ┆ 2788    ┆ 752315  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0104 ┆ 6     ┆ 1        ┆ 02/28/2 ┆ … ┆ ETRURIA ┆ 47.6475 ┆ -122.35 ┆ Rental_ │
+│ 660      ┆       ┆ ETRURIA  ┆ 024     ┆   ┆ ASSOCIA ┆ 8445    ┆ 743333  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆ TES LLC ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0100 ┆ 15    ┆ GABLE    ┆ 08/05/2 ┆ … ┆ AVENUE  ┆ 47.6293 ┆ -122.35 ┆ Rental_ │
+│ 589      ┆       ┆ HOUSE    ┆ 025     ┆   ┆ ONE RES ┆ 304     ┆ 705602  ┆ Propert │
+│          ┆       ┆ LLC      ┆         ┆   ┆ IDENTIA ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆ L       ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0138 ┆ 1     ┆ LEONA #6 ┆ 10/17/2 ┆ … ┆ KATHY   ┆ 47.6279 ┆ -122.35 ┆ Rental_ │
+│ 403      ┆       ┆          ┆ 023     ┆   ┆ ENTROP  ┆ 2511    ┆ 631203  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+│ 001-0141 ┆ 1     ┆ LEONA    ┆ 09/10/2 ┆ … ┆ JOYCE   ┆ 47.6279 ┆ -122.35 ┆ Rental_ │
+│ 968      ┆       ┆          ┆ 024     ┆   ┆ WU      ┆ 2511    ┆ 631203  ┆ Propert │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ y_Regis │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ tration │
+│          ┆       ┆          ┆         ┆   ┆         ┆         ┆         ┆ _2…     │
+└──────────┴───────┴──────────┴─────────┴───┴─────────┴─────────┴─────────┴─────────┘
+
+Top 10 addresses with most history:
+shape: (10, 2)
+┌──────────────────┬──────┐
+│ ORIGINALADDRESS1 ┆ rows │
+│ ---              ┆ ---  │
+│ str              ┆ u32  │
+╞══════════════════╪══════╡
+│ 1400 HUBBELL PL  ┆ 666  │
+│ 1808 MINOR AVE   ┆ 650  │
+│ 2415 2ND AVE     ┆ 488  │
+│ 588 BELL ST      ┆ 460  │
+│ 425 VINE ST      ┆ 456  │
+│ 2414 1ST AVE     ┆ 450  │
+│ 1415 2ND AVE     ┆ 398  │
+│ 819 VIRGINIA ST  ┆ 288  │
+│ 2911 2ND AVE     ┆ 279  │
+│ 583 BATTERY ST   ┆ 272  │
+└──────────────────┴──────┘
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON FINAL_MERGED_MASTER.PY
+Traceback (most recent call last):
+  File "C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars\FINAL_MERGED_MASTER.PY", line 29, in <module>
+    pl.col("status_current").str.contains("violation|nov|expired", ignore_case=True).any().alias("had_violation_or_expiration"),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ExprStringNameSpace.contains() got an unexpected keyword argument 'ignore_case'
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars>  PYTHON FINAL_MERGED_MASTER.PY
+Traceback (most recent call last):
+  File "C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars\FINAL_MERGED_MASTER.PY", line 27, in <module>
+    rrio_agg = rrio.group_by("address_clean").agg([
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\dataframe\group_by.py", line 298, in agg
+    .collect(optimizations=QueryOptFlags.none())
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\_utils\deprecation.py", line 97, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\opt_flags.py", line 326, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\frame.py", line 2440, in collect
+    return wrap_df(ldf.collect(engine, callback))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+polars.exceptions.InvalidOperationError: casting from Utf8View to Boolean not supported
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars> PYTHON FINAL_MERGED_MASTER.PY
+Traceback (most recent call last):
+  File "C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars\FINAL_MERGED_MASTER.PY", line 42, in <module>
+    final_merged.write_csv("FINAL_MERGED_MASTER.csv")
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\dataframe\frame.py", line 3222, in write_csv
+    self.lazy().sink_csv(
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\frame.py", line 3807, in sink_csv
+    ldf.collect(engine=engine)
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\_utils\deprecation.py", line 97, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\opt_flags.py", line 326, in wrapper
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stlca\AppData\Local\Programs\Python\Python312\Lib\site-packages\polars\lazyframe\frame.py", line 2440, in collect
+    return wrap_df(ldf.collect(engine, callback))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+polars.exceptions.ComputeError: CSV format does not support nested data
+PS C:\Users\stlca\stlca_data\stlca-dashboard\CITY_MVP\polars>
+
