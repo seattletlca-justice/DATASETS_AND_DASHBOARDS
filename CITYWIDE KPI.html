@@ -29,9 +29,6 @@
   }
   .wrap{max-width:1180px;margin:0 auto;padding:20px 18px 28px}
   .topbar{
-    position:sticky;
-    top:0;
-    z-index:1000;
     display:flex;
     gap:14px;
     align-items:flex-start;
@@ -105,8 +102,6 @@
   .footerNote{margin-top:10px;color:rgba(233,238,247,.55);font-size:10.5px}
   @media (max-width: 980px){
     .topbar{
-      position:sticky;
-      top:0;
       flex-direction:column;
       align-items:stretch;
       gap:10px;
@@ -309,25 +304,77 @@ const timeRangeSel = document.getElementById('timeRange');
 const districtSel = document.getElementById('district');
 
 function fmtInt(x){
-  if(x===null||x===undefined) return "0";
+  if(x===null||x===undefined) return "\u2014";
   return Number(x).toLocaleString("en-US");
 }
 function fmtPct(x){
   return (Number(x)||0).toFixed(2) + "%";
 }
+const DISTRICT_LABELS = {
+  "Citywide": "Citywide",
+  "D1": "District 1 \u00b7 Rob Saka",
+  "D2": "District 2 \u00b7 Tammy Morales",
+  "D3": "District 3 \u00b7 Joy Hollingsworth",
+  "D4": "District 4 \u00b7 Ron Davis",
+  "D5": "District 5 \u00b7 Cathy Moore",
+  "D6": "District 6 \u00b7 Dan Strauss",
+  "D7": "District 7 \u00b7 Bob Kettle"
+};
+
+const TIME_LABELS = {
+  "All Years":  "All Time \u00b7 2003\u20132025",
+  "2015-2025":  "10 Years \u00b7 2015\u20132025",
+  "2025": "2025"
+};
+
+const SINGLE_YEARS = [2024, 2023, 2022, 2021, 2020];
+
 function metaText(){
-  return `${timeRangeSel.value} · ${districtSel.value}`;
+  const tr = timeRangeSel.value;
+  const distLabel = DISTRICT_LABELS[districtSel.value] || districtSel.value;
+  const timeLabel = TIME_LABELS[tr] || tr;
+  return `${timeLabel} \u00b7 ${distLabel}`;
+}
+
+function getYearPack(yr, dist){
+  const allPack = PACKS["All Years"][dist];
+  if(!allPack) return null;
+  const ydata = allPack.by_year.find(b => b.year === yr);
+  if(!ydata) return null;
+  const pct = ydata.complaints > 0 ? +(ydata.novs / ydata.complaints * 100).toFixed(2) : 0;
+  return {
+    totals: {
+      total_records: ydata.total,
+      complaints: ydata.complaints,
+      novs: ydata.novs,
+      pct_nov_per_complaint: pct,
+      missing_insp: ydata.missing,
+      closed_no_insp: null,
+      blank_recordtypedesc: null,
+      emergency: null
+    },
+    by_year: [ydata],
+    by_district: allPack.by_district,
+    by_category: allPack.by_category,
+    by_status: allPack.by_status,
+    oldest_open: allPack.oldest_open
+  };
 }
 
 function initSelectors(){
   Object.keys(PACKS).forEach(k=>{
     const opt=document.createElement('option');
-    opt.value=k; opt.textContent=k;
+    opt.value=k; opt.textContent=TIME_LABELS[k]||k;
+    timeRangeSel.appendChild(opt);
+  });
+  SINGLE_YEARS.forEach(yr=>{
+    const opt=document.createElement('option');
+    opt.value=String(yr); opt.textContent=String(yr);
     timeRangeSel.appendChild(opt);
   });
   Object.keys(PACKS[Object.keys(PACKS)[0]]).forEach(k=>{
     const opt=document.createElement('option');
-    opt.value=k; opt.textContent=(k==="Citywide"? "Citywide" : k.replace("D","District "));
+    opt.value=k; opt.textContent=DISTRICT_LABELS[k]||k;
     districtSel.appendChild(opt);
   });
   timeRangeSel.value="All Years";
@@ -528,7 +575,15 @@ function renderTable(pack){
 }
 
 function updateAll(){
-  const pack=PACKS[timeRangeSel.value][districtSel.value];
+  const tr = timeRangeSel.value;
+  const dist = districtSel.value;
+  let pack;
+  if(PACKS[tr] && PACKS[tr][dist]){
+    pack = PACKS[tr][dist];
+  } else {
+    pack = getYearPack(parseInt(tr), dist);
+    if(!pack) return;
+  }
   setKPIs(pack.totals);
 
   document.getElementById("metaA").textContent=metaText();
