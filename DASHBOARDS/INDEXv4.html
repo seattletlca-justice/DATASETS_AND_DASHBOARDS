@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>STLCA Dashboard – City Records</title>
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<style>
+  :root{
+    --bg:#070b12;
+    --panel:#0c1424;
+    --panel2:#0b1220;
+    --border:rgba(255,255,255,.08);
+    --text:#e9eef7;
+    --muted:rgba(233,238,247,.65);
+    --blue:#2d7ff9;
+    --orange:#f59e0b;
+    --red:#ef4444;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif;
+    background: radial-gradient(1200px 700px at 25% -10%, rgba(45,127,249,.25), transparent 55%),
+                radial-gradient(900px 600px at 85% 10%, rgba(245,158,11,.18), transparent 55%),
+                var(--bg);
+    color:var(--text);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 18px 28px}
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin:0 -4px 12px;
+    padding:12px;
+    background:rgba(7,11,18,.95);
+    border:1px solid var(--border);
+    border-radius:14px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 10px 24px rgba(0,0,0,.35);
+  }
+  h1{font-size:22px;margin:0 0 6px 0;letter-spacing:.2px}
+  .sub{margin:0;color:var(--muted);font-size:12px;line-height:1.35}
+  .controls{display:flex;gap:10px;align-items:flex-start}
+  .control{background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 10px 8px;min-width:150px}
+  .control label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}
+  select{
+    width:100%;
+    background:#060b14;
+    border:1px solid rgba(255,255,255,.2);
+    color:var(--text);
+    border-radius:10px;
+    padding:8px 10px;
+    outline:none;
+    font-weight:600;
+  }
+  select option{background:#060b14;color:var(--text);}
+  .layout{display:grid;grid-template-columns: 2.15fr .85fr;gap:14px}
+  .panel{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .main{padding:14px}
+  .side{padding:14px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+  .kpi{padding:12px 12px 10px}
+  .kpi .label{font-size:11px;color:rgba(233,238,247,.86);margin-bottom:8px}
+  .kpi .value{font-size:22px;font-weight:750;letter-spacing:.3px}
+  .kpi .note{font-size:11px;color:rgba(233,238,247,.8);margin-top:6px;line-height:1.3}
+  .kpi.blue .value{color:var(--blue)}
+  .kpi.orange .value{color:var(--orange)}
+  .kpi.red .value{color:var(--red)}
+  .kpiPrimary .label{font-weight:700}
+  .kpiPrimary .note{color:rgba(233,238,247,.9)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .grid3{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;margin-bottom:12px}
+  .chart{padding:10px}
+  .chart .title{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin:0 0 6px 0}
+  .chart .title h3{margin:0;font-size:12px;color:rgba(233,238,247,.85);font-weight:650}
+  .chart .title span{font-size:11px;color:var(--muted)}
+  .plot{width:100%;height:280px}
+  .plot.tall{height:310px}
+  .plot.short{height:240px}
+  .dividerText{margin:12px 0 10px 0;padding:12px;border-radius:14px;border:1px solid var(--border);background:rgba(0,0,0,.16)}
+  .dividerText h2{margin:0 0 8px 0;font-size:14px;letter-spacing:.2px}
+  .dividerText p{margin:0;color:rgba(233,238,247,.76);font-size:12px;line-height:1.45}
+  .sideStack{display:flex;flex-direction:column;gap:12px}
+  .sideCard{padding:12px}
+  .sideCard h3{margin:0 0 6px 0;font-size:12px;color:rgba(233,238,247,.85)}
+  .sideCard .big{font-size:22px;font-weight:780}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:rgba(233,238,247,.8);
+    border:1px solid var(--border);background:rgba(0,0,0,.2);padding:4px 8px;border-radius:999px;margin-left:8px}
+  .muted{color:var(--muted)}
+  .miniPlot{width:100%;height:190px}
+  .rules{padding:12px}
+  .rules h3{margin:0 0 8px 0;font-size:12px}
+  .rules ul{margin:0;padding-left:18px;color:rgba(233,238,247,.72);font-size:11px;line-height:1.45}
+  .tableWrap{padding:10px 10px 12px}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th,td{padding:8px 8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;vertical-align:top}
+  th{color:rgba(233,238,247,.7);font-weight:650}
+  td{color:rgba(233,238,247,.82)}
+  .recordLink{color:#8fc3ff;font-weight:650;text-decoration:none;border-bottom:1px dotted rgba(143,195,255,.45)}
+  .recordLink:hover{color:#c9e2ff;border-bottom-color:#c9e2ff}
+  .footerNote{margin-top:10px;color:rgba(233,238,247,.55);font-size:10.5px}
+  .tableTools{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 10px 4px}
+  .searchInput{width:100%;max-width:320px;background:#060b14;border:1px solid rgba(255,255,255,.2);color:var(--text);border-radius:10px;padding:8px 10px;outline:none}
+  .searchHint{font-size:10.5px;color:rgba(233,238,247,.55)}
+  .statusBar{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .pill{font-size:10px;border:1px solid var(--border);border-radius:999px;padding:4px 8px;color:rgba(233,238,247,.78);background:rgba(0,0,0,.2)}
+  .sideToggle{display:none;width:100%;margin-bottom:10px;background:#0b1220;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-weight:650}
+  .quickRanges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .quickBtn{background:#0b1220;border:1px solid var(--border);color:var(--text);border-radius:999px;padding:6px 10px;font-size:11px;cursor:pointer}
+  .quickBtn.active{border-color:#2d7ff9;color:#cfe1ff;box-shadow:0 0 0 1px rgba(45,127,249,.3) inset}
+  @media (max-width: 980px){
+    .topbar{
+      position:sticky;
+      top:0;
+      flex-direction:column;
+      align-items:stretch;
+      gap:10px;
+    }
+    .controls{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .control{min-width:0}
+    .layout{grid-template-columns:1fr}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .sideToggle{display:block}
+    .side[data-collapsed="true"] .sideStack{display:none}
+    .grid2,.grid3{grid-template-columns:1fr}
+    .plot,.plot.tall{height:300px}
+    .miniPlot{height:220px}
+  }
+  @media (max-width: 560px){
+    .wrap{padding:14px 12px 24px}
+    .controls{grid-template-columns:1fr}
+    .kpis{grid-template-columns:1fr}
+    .topbar{padding:10px}
+    .searchInput{max-width:100%}
+  }
+  @media (max-width: 420px){
+    .wrap{padding:10px 8px 20px}
+    .topbar{margin:0 0 10px;padding:8px}
+    .plot,.plot.tall,.plot.short{height:260px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>STLCA Dashboard – City Records</h1>
+      <p class="sub">Scope: Seattle SDCI housing-code records citywide (with district drill-down), using the bundled records export that powers this dashboard across the available years in the Time Range filter.</p>
+      <p class="sub">Core finding: because critical enforcement fields are blank or inconsistent, SDCI public records cannot reliably demonstrate timely and adequate enforcement. This matters for legal challenges, appeals, and public trust—not just transparency. Terms used here are consistent: complaints (-CP) and NOVs (-VI).</p>
+      <div class="statusBar">
+        <span class="pill" id="dataSourcePill">Source: payload.json</span>
+        <span class="pill" id="dataRangesPill">Ranges: loading…</span>
+      </div>
+      <div class="quickRanges" id="quickRanges">
+        <button class="quickBtn" data-range="All Years">2003-current</button>
+        <button class="quickBtn" data-range="2015-2025">2015-2025</button>
+        <button class="quickBtn" data-range="2021">2021</button>
+        <button class="quickBtn" data-range="2022">2022</button>
+        <button class="quickBtn" data-range="2023">2023</button>
+        <button class="quickBtn" data-range="2024">2024</button>
+        <button class="quickBtn" data-range="2025">2025</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <label for="timeRange">Time Range</label>
+        <select id="timeRange"></select>
+      </div>
+      <div class="control">
+        <label for="district">District</label>
+        <select id="district"></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="panel main">
+      <div class="kpis">
+        <div class="panel kpi blue kpiPrimary">
+          <div class="label">Total Records</div>
+          <div class="value" id="k_total">0</div>
+          <div class="note">All record types (complaints, NOVs, citations, etc.)</div>
+        </div>
+        <div class="panel kpi blue">
+          <div class="label">Complaints (CP)</div>
+          <div class="value" id="k_cp">0</div>
+          <div class="note">RecordNum ends with -CP</div>
+        </div>
+        <div class="panel kpi orange">
+          <div class="label">Notices of Violation (VI)</div>
+          <div class="value" id="k_vi">0</div>
+          <div class="note">RecordNum ends with -VI</div>
+        </div>
+        <div class="panel kpi orange">
+          <div class="label">% NOV per Complaint</div>
+          <div class="value" id="k_pct">0%</div>
+          <div class="note">Higher means more enforcement relative to complaints</div>
+        </div>
+
+        <div class="panel kpi orange">
+          <div class="label">Missing Inspection Date</div>
+          <div class="value" id="k_missing">0</div>
+          <div class="note">No LastInspDate (or flagged “No Inspection Date”)</div>
+        </div>
+        <div class="panel kpi red">
+          <div class="label">Closed/Completed with No Inspection Date</div>
+          <div class="value" id="k_closed_no_insp">0</div>
+          <div class="note">Cannot verify response time or whether a site visit occurred</div>
+        </div>
+        <div class="panel kpi">
+          <div class="label">Blank RecordTypeDesc</div>
+          <div class="value" id="k_blank">0</div>
+          <div class="note">Uncategorized: RecordTypeDesc is empty</div>
+        </div>
+        <div class="panel kpi orange">
+          <div class="label">Emergency (Unqualified)</div>
+          <div class="value" id="k_emergency">0</div>
+          <div class="note">Included inside Landlord/Tenant totals</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="panel chart">
+          <div class="title"><h3>Complaints vs NOVs over time (counts)</h3><span id="metaA">All Years · Citywide</span></div>
+          <div id="plot_counts" class="plot"></div>
+        </div>
+        <div class="panel chart">
+          <div class="title"><h3>NOV conversion rate by year (% VI per CP)</h3><span id="metaB">All Years · Citywide</span></div>
+          <div id="plot_conversion" class="plot"></div>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="panel chart">
+          <div class="title"><h3>NOV rate by district (highest to lowest)</h3><span id="metaC">All Years · Citywide</span></div>
+          <div id="plot_nov_by_dist" class="plot short"></div>
+        </div>
+        <div class="panel chart">
+          <div class="title"><h3>Top categories: Complaints vs NOVs</h3><span id="metaD">All Years · Citywide</span></div>
+          <div id="plot_categories" class="plot short"></div>
+        </div>
+      </div>
+
+      <div class="dividerText">
+        <h2>The Verification Gap</h2>
+        <p>If a record is marked “Closed” or “Completed” but has no inspection date, the public cannot verify if SDCI responded, how long it took, or whether a site visit happened at all. This is an evidence integrity problem, not a paperwork problem.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="panel chart">
+          <div class="title"><h3>Missing inspection rate by district (% records)</h3><span id="metaE">All Years · Citywide</span></div>
+          <div id="plot_missing_by_dist" class="plot short"></div>
+        </div>
+        <div class="panel chart">
+          <div class="title"><h3>Missing inspection dates by status (present vs missing)</h3><span id="metaF">All Years · Citywide</span></div>
+          <div id="plot_missing_by_status" class="plot short"></div>
+        </div>
+      </div>
+
+      <div class="panel chart">
+        <div class="title"><h3>Records missing an inspection date (by Open Year)</h3><span id="metaG">All Years · Citywide</span></div>
+        <div id="plot_missing_by_year" class="plot tall"></div>
+      </div>
+
+      <div class="panel tableWrap" style="margin-top:12px;">
+        <div class="title" style="padding:10px 10px 0 10px;">
+          <h3 style="margin:0;">Oldest “Open / Under Investigation” records (top 25)</h3>
+          <span id="metaH">All Years · Citywide</span>
+        </div>
+        <div style="padding:4px 10px 0 10px;" class="footerNote">What to notice: these are the longest-running complaints still open or under investigation; click any record number to open the original SDCI complaint page.</div>
+        <div style="padding:0 10px 10px 10px;">
+          <div class="tableTools">
+            <input id="tableSearch" class="searchInput" type="search" placeholder="Search records by address, status, category, or record #" aria-label="Search oldest open records">
+            <span id="tableCount" class="searchHint"></span>
+          </div>
+          <table>
+            <thead>
+              <tr><th>Open Date</th><th>Record</th><th>Status</th><th>Category</th><th>Address</th></tr>
+            </thead>
+            <tbody id="tbl_oldest"></tbody>
+          </table>
+          <div class="footerNote">If a record has no Open Date, it is excluded from this table. Click a record number to open that complaint in the SDCI portal search.</div>
+        </div>
+      </div>
+
+      <div class="panel rules" style="margin-top:12px;">
+        <h3>Calculation rules used in this dashboard</h3>
+        <ul>
+          <li><b>Complaints (-CP)</b> = RecordNum ends with <b>-CP</b>.</li>
+          <li><b>NOVs (-VI)</b> = RecordNum ends with <b>-VI</b>.</li>
+          <li><b>% NOV per Complaint</b> = NOVs ÷ Complaints.</li>
+          <li><b>Missing inspection date</b> = No LastInspDate (or “No Inspection Date” flag).</li>
+          <li><b>Closed/Completed with no inspection date</b> = StatusCurrent is exactly <b>Closed</b> or <b>Completed</b>, and inspection date is missing.</li>
+          <li><b>Blank RecordTypeDesc</b> = RecordTypeDesc is empty.</li>
+          <li><b>Emergency</b> = RecordTypeDesc equals <b>Emergency</b>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel side" id="sidePanel">
+      <button type="button" class="sideToggle" id="sideToggle" aria-expanded="true">Hide side insights</button>
+      <div class="sideStack">
+        <div class="panel sideCard">
+          <h3>How to read the top KPIs</h3>
+          <div class="muted" style="font-size:12px;line-height:1.45;">
+            Complaints are demand. NOVs are enforcement. The gap between them is where tenant protection either happens or it doesn’t. Use the filters to compare Citywide vs your district and to isolate 2025.
+          </div>
+        </div>
+
+        <div class="panel sideCard">
+          <h3>Why the inspection gap matters <span class="badge">evidence integrity</span></h3>
+          <div class="muted" style="font-size:12px;line-height:1.45;">
+            A closure without an inspection date is functionally unverifiable. It may still be legitimate, but the record as published cannot prove it. That is exactly the kind of ambiguity that allows repeat noncompliance to survive.
+          </div>
+        </div>
+
+        <div class="panel sideCard">
+          <h3>Closed/Completed with no inspection date</h3>
+          <div class="big" id="side_closed_no_insp">0</div>
+          <div class="muted" style="font-size:12px;line-height:1.35;">These are the “trust me” closures.</div>
+        </div>
+
+        <div class="panel sideCard">
+          <h3>Blank RecordTypeDesc</h3>
+          <div class="big" id="side_blank">0</div>
+          <div class="muted" style="font-size:12px;line-height:1.35;">Work that can’t be traced to a department or type.</div>
+        </div>
+
+        <div class="panel sideCard">
+          <h3>NOV rate by district (quick view)</h3>
+          <div id="mini_nov" class="miniPlot"></div>
+        </div>
+
+        <div class="panel sideCard">
+          <h3>Traceability</h3>
+          <div class="muted" style="font-size:12px;line-height:1.45;">Want the source assumptions and reconciliation checks?</div>
+          <div style="margin-top:8px;"><a class="recordLink" href="TRACEABILITY.md" target="_blank" rel="noopener noreferrer">Open traceability document</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PAYLOAD_URL = 'payload.json';
+let PACKS = {};
+
+const timeRangeSel = document.getElementById('timeRange');
+const districtSel = document.getElementById('district');
+const tableSearchInput = document.getElementById('tableSearch');
+const sideToggleBtn = document.getElementById('sideToggle');
+const sidePanel = document.getElementById('sidePanel');
+const quickRangesEl = document.getElementById('quickRanges');
+
+function fmtInt(x){
+  if(x===null||x===undefined) return "0";
+  return Number(x).toLocaleString("en-US");
+}
+function fmtPct(x){
+  return (Number(x)||0).toFixed(2) + "%";
+}
+function metaText(){
+  return `${timeRangeSel.value} · ${districtSel.value}`;
+}
+
+function hasRows(rows){
+  return Array.isArray(rows) && rows.length>0;
+}
+
+function renderNoDataPlot(id,msg="No data for current filters"){
+  Plotly.react(id, [], {
+    paper_bgcolor:'rgba(0,0,0,0)',
+    plot_bgcolor:'rgba(0,0,0,0)',
+    margin:{l:30,r:20,t:20,b:30},
+    xaxis:{visible:false},
+    yaxis:{visible:false},
+    annotations:[{text:msg,x:0.5,y:0.5,xref:'paper',yref:'paper',showarrow:false,font:{color:'rgba(233,238,247,.75)',size:13}}]
+  }, {displayModeBar:false,responsive:true});
+}
+
+function updateDataPills(){
+  const ranges = Object.keys(PACKS).map(labelForRange);
+  document.getElementById('dataRangesPill').textContent = `Ranges: ${ranges.join(', ')}`;
+}
+
+function toggleSidePanel(){
+  if(!sidePanel) return;
+  const collapsed = sidePanel.getAttribute('data-collapsed') === 'true';
+  sidePanel.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+  if(sideToggleBtn){
+    sideToggleBtn.setAttribute('aria-expanded', collapsed ? 'true' : 'false');
+    sideToggleBtn.textContent = collapsed ? 'Hide side insights' : 'Show side insights';
+  }
+}
+
+function labelForRange(range){
+  return range === 'All Years' ? '2003-current' : range;
+}
+
+function setActiveQuickRange(){
+  if(!quickRangesEl) return;
+  quickRangesEl.querySelectorAll('.quickBtn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.range === timeRangeSel.value);
+    const exists = Object.prototype.hasOwnProperty.call(PACKS, btn.dataset.range);
+    btn.disabled = !exists;
+    btn.title = exists ? '' : 'Range not available in payload.json yet';
+  });
+}
+
+function initSelectors(){
+  Object.keys(PACKS).forEach(k=>{
+    const opt=document.createElement('option');
+    opt.value=k; opt.textContent=labelForRange(k);
+    timeRangeSel.appendChild(opt);
+  });
+  Object.keys(PACKS[Object.keys(PACKS)[0]]).forEach(k=>{
+    const opt=document.createElement('option');
+    opt.value=k; opt.textContent=(k==="Citywide"? "Citywide" : k.replace("D","District "));
+    districtSel.appendChild(opt);
+  });
+  timeRangeSel.value="All Years";
+  districtSel.value="Citywide";
+}
+
+function setKPIs(t){
+  document.getElementById("k_total").textContent = fmtInt(t.total_records);
+  document.getElementById("k_cp").textContent = fmtInt(t.complaints);
+  document.getElementById("k_vi").textContent = fmtInt(t.novs);
+  document.getElementById("k_pct").textContent = fmtPct(t.pct_nov_per_complaint);
+
+  document.getElementById("k_missing").textContent = fmtInt(t.missing_insp);
+  document.getElementById("k_closed_no_insp").textContent = fmtInt(t.closed_no_insp);
+  document.getElementById("k_blank").textContent = fmtInt(t.blank_recordtypedesc);
+  document.getElementById("k_emergency").textContent = fmtInt(t.emergency);
+
+  document.getElementById("side_closed_no_insp").textContent = fmtInt(t.closed_no_insp);
+  document.getElementById("side_blank").textContent = fmtInt(t.blank_recordtypedesc);
+}
+
+function baseLayout(height){
+  return {
+    height,
+    margin: {l:46,r:18,t:10,b:40},
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    font: {color: 'rgba(233,238,247,.85)'},
+    xaxis: {
+      gridcolor: 'rgba(255,255,255,.06)',
+      zerolinecolor: 'rgba(255,255,255,.06)',
+      tickfont: {color:'rgba(233,238,247,.7)'},
+    },
+    yaxis: {
+      gridcolor: 'rgba(255,255,255,.06)',
+      zerolinecolor: 'rgba(255,255,255,.06)',
+      tickfont: {color:'rgba(233,238,247,.7)'},
+    },
+    legend: {
+      orientation:'h',
+      y:1.12,
+      x:0,
+      font: {size:11,color:'rgba(233,238,247,.75)'}
+    },
+  };
+}
+
+function renderCounts(pack){
+  const rows=pack.by_year.filter(r=>r.year>0);
+  const years=rows.map(r=>r.year);
+  const cp=rows.map(r=>r.complaints);
+  const vi=rows.map(r=>r.novs);
+
+  const data=[
+    {x:years,y:cp,type:'scatter',mode:'lines+markers',name:'Complaints (CP)',line:{color:'#2d7ff9',width:3},marker:{size:6}},
+    {x:years,y:vi,type:'scatter',mode:'lines+markers',name:'NOVs (VI)',line:{color:'#f59e0b',width:3},marker:{size:6}},
+  ];
+  const layout=baseLayout(280);
+  layout.yaxis={...layout.yaxis,title:''};
+  Plotly.react('plot_counts',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function renderConversion(pack){
+  const rows=pack.nov_conversion_by_year;
+  const years=rows.map(r=>r.year);
+  const pct=rows.map(r=>r.pct);
+
+  const data=[{x:years,y:pct,type:'scatter',mode:'lines+markers',name:'% VI per CP',line:{color:'#f59e0b',width:3},marker:{size:6}}];
+  const layout=baseLayout(280);
+  layout.yaxis={...layout.yaxis, ticksuffix:'%', rangemode:'tozero'};
+  Plotly.react('plot_conversion',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function renderNovByDistrict(pack,timeRange){
+  const comparePack = (PACKS?.[timeRange]?.Citywide) || pack;
+  const rows=(comparePack.nov_rate_by_district||[]);
+  const x=rows.map(r=>`D${r.district}`);
+  const y=rows.map(r=>r.pct);
+  const selected=districtSel.value;
+  const colors=x.map(d=> (selected!=="Citywide" && d===selected)? '#ffd08a' : '#f59e0b');
+
+  const data=[{x,y,type:'bar',marker:{color:colors},name:'% VI per CP',hovertemplate:'%{y:.2f}%<extra></extra>'}];
+  const layout=baseLayout(240);
+  layout.margin={l:48,r:12,t:10,b:40};
+  layout.yaxis={...layout.yaxis,ticksuffix:'%',rangemode:'tozero'};
+  Plotly.react('plot_nov_by_dist',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function renderCategories(pack){
+  const rows=pack.categories;
+  const cats=rows.map(r=>r.cat);
+  const cp=rows.map(r=>r.complaints);
+  const vi=rows.map(r=>r.novs);
+
+  const data=[
+    {x:cats,y:cp,type:'bar',name:'Complaints (CP)',marker:{color:'#2d7ff9'},hovertemplate:'%{y:,}<extra></extra>'},
+    {x:cats,y:vi,type:'bar',name:'NOVs (VI)',marker:{color:'#f59e0b'},hovertemplate:'%{y:,}<extra></extra>'},
+  ];
+  const layout=baseLayout(240);
+  layout.barmode='group';
+  layout.margin={l:52,r:12,t:10,b:70};
+  layout.xaxis={...layout.xaxis,tickangle:-25};
+  Plotly.react('plot_categories',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function renderMissingByDistrict(pack,timeRange){
+  const comparePack = (PACKS?.[timeRange]?.Citywide) || pack;
+  const rows=(comparePack.missing_rate_by_district||[]);
+  const x=rows.map(r=>`D${r.district}`);
+  const y=rows.map(r=>r.pct);
+  const selected=districtSel.value;
+  const colors=x.map(d=> (selected!=="Citywide" && d===selected)? '#8ab6ff' : '#2d7ff9');
+
+  const data=[{x,y,type:'bar',marker:{color:colors},name:'% records missing inspection date',hovertemplate:'%{y:.2f}%<extra></extra>'}];
+  const layout=baseLayout(240);
+  layout.margin={l:48,r:12,t:10,b:40};
+  layout.yaxis={...layout.yaxis,ticksuffix:'%',rangemode:'tozero'};
+  Plotly.react('plot_missing_by_dist',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function renderMissingByStatus(pack){
+  if(!hasRows(pack.missing_by_status)) return renderNoDataPlot('plot_missing_by_status');
+  const rows=pack.missing_by_status.slice().sort((a,b)=>((b.has+b.missing)-(a.has+a.missing)));
+  const status=rows.map(r=>r.status);
+  const has=rows.map(r=>r.has);
+  const mis=rows.map(r=>r.missing);
+
+  const data=[
+    {y:status,x:has,type:'bar',orientation:'h',name:'Has Insp Date',marker:{color:'#2d7ff9'},hovertemplate:'%{x:,}<extra></extra>'},
+    {y:status,x:mis,type:'bar',orientation:'h',name:'Missing Insp Date',marker:{color:'#ef4444'},hovertemplate:'%{x:,}<extra></extra>'},
+  ];
+  const layout=baseLayout(240);
+  layout.barmode='stack';
+  layout.margin={l:140,r:12,t:10,b:40};
+  layout.xaxis={...layout.xaxis, tickformat:','};
+  Plotly.react('plot_missing_by_status',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function renderMissingByYear(pack){
+  const rows=pack.by_year.filter(r=>r.year>0);
+  const years=rows.map(r=>r.year);
+  const missing=rows.map(r=>r.missing);
+  const data=[{x:years,y:missing,type:'bar',name:'Missing inspection date',marker:{color:'#2d7ff9'},hovertemplate:'%{y:,}<extra></extra>'}];
+  const layout=baseLayout(310);
+  layout.margin={l:52,r:12,t:10,b:44};
+  layout.yaxis={...layout.yaxis, rangemode:'tozero'};
+  Plotly.react('plot_missing_by_year',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function renderMiniNov(pack){
+  const rows=pack.nov_rate_by_district.slice().reverse(); // small, bottom-up
+  const y=rows.map(r=>`D${r.district}`);
+  const x=rows.map(r=>r.pct);
+  const selected=districtSel.value;
+  const colors=y.map(d=> (selected!=="Citywide" && d===selected)? '#ffd08a' : 'rgba(245,158,11,.75)');
+
+  const data=[{y,x,type:'bar',orientation:'h',marker:{color:colors},hovertemplate:'%{x:.2f}%<extra></extra>'}];
+  const layout=baseLayout(190);
+  layout.margin={l:48,r:10,t:10,b:24};
+  layout.xaxis={...layout.xaxis,ticksuffix:'%',rangemode:'tozero'};
+  layout.yaxis={...layout.yaxis};
+  layout.showlegend=false;
+  Plotly.react('mini_nov',data,layout,{displayModeBar:false,responsive:true});
+}
+
+function escapeHtml(v){
+  return String(v ?? "").replace(/[&<>"']/g, ch => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    "\"":"&quot;",
+    "'":"&#39;"
+  }[ch]));
+}
+
+function sdciComplaintUrl(record){
+  const base = "https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx";
+  const params = new URLSearchParams({
+    module: "DPDComplaints",
+    TabName: "DPDComplaints",
+    SearchType: "1000",
+    QueryText: record
+  });
+  return `${base}?${params.toString()}`;
+}
+
+function renderTable(pack){
+  const tbody=document.getElementById('tbl_oldest');
+  const tableCount=document.getElementById('tableCount');
+  tbody.innerHTML="";
+
+  const rows = Array.isArray(pack.oldest_open) ? pack.oldest_open : [];
+  const q = (tableSearchInput?.value || '').trim().toLowerCase();
+  const filtered = rows.filter(r=>{
+    const blob = `${r.Record ?? ''} ${r.OpenDate ?? ''} ${r.Status ?? ''} ${r.Category ?? ''} ${r.Address ?? ''}`.toLowerCase();
+    return !q || blob.includes(q);
+  });
+
+  if(filtered.length===0){
+    const tr=document.createElement('tr');
+    tr.innerHTML = `<td colspan="5">No matching records for current filters${q ? ' / search term' : ''}.</td>`;
+    tbody.appendChild(tr);
+  } else {
+    filtered.forEach(r=>{
+      const tr=document.createElement('tr');
+      const rec = escapeHtml(r.Record);
+      const openDate = escapeHtml(r.OpenDate);
+      const status = escapeHtml(r.Status);
+      const category = escapeHtml(r.Category);
+      const address = escapeHtml(r.Address);
+      const complaintUrl = sdciComplaintUrl(r.Record);
+      tr.innerHTML = `<td>${openDate}</td><td><a class="recordLink" href="${complaintUrl}" target="_blank" rel="noopener noreferrer">${rec}</a></td><td>${status}</td><td>${category}</td><td>${address}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  tableCount.textContent = `${filtered.length} shown / ${rows.length} total`;
+}
+
+function updateAll(){
+  const pack=(PACKS?.[timeRangeSel.value]||{})[districtSel.value];
+  if(!pack){
+    ['plot_counts','plot_conversion','plot_nov_by_dist','plot_categories','plot_missing_by_dist','plot_missing_by_status','plot_missing_by_year','mini_nov'].forEach(renderNoDataPlot);
+    renderTable({oldest_open:[]});
+    return;
+  }
+  setKPIs(pack.totals);
+
+  document.getElementById("metaA").textContent=metaText();
+  document.getElementById("metaB").textContent=metaText();
+  document.getElementById("metaC").textContent=metaText();
+  document.getElementById("metaD").textContent=metaText();
+  document.getElementById("metaE").textContent=metaText();
+  document.getElementById("metaF").textContent=metaText();
+  document.getElementById("metaG").textContent=metaText();
+  document.getElementById("metaH").textContent=metaText().replace('All Years','2003-current');
+
+  renderCounts(pack);
+  renderConversion(pack);
+  renderNovByDistrict(pack, timeRangeSel.value);
+  renderCategories(pack);
+  renderMissingByDistrict(pack, timeRangeSel.value);
+  renderMissingByStatus(pack);
+  renderMissingByYear(pack);
+  renderMiniNov(pack);
+  renderTable(pack);
+}
+
+
+async function loadPayload(){
+  const res = await fetch(PAYLOAD_URL, {cache: 'no-store'});
+  if(!res.ok){
+    throw new Error(`Failed to load payload: ${res.status}`);
+  }
+  PACKS = await res.json();
+}
+
+function showLoadError(err){
+  console.error(err);
+  const msg = 'Unable to load dashboard data payload. See TRACEABILITY.md for expected data files.';
+  ['plot_counts','plot_conversion','plot_nov_by_dist','plot_categories','plot_missing_by_dist','plot_missing_by_status','plot_missing_by_year','mini_nov'].forEach(id=>renderNoDataPlot(id,msg));
+  const tbody=document.getElementById('tbl_oldest');
+  tbody.innerHTML = '<tr><td colspan="5">Unable to load payload.json</td></tr>';
+}
+
+async function bootstrap(){
+  try{
+    await loadPayload();
+    initSelectors();
+    timeRangeSel.addEventListener('change',updateAll);
+    districtSel.addEventListener('change',updateAll);
+    let searchTimer = null;
+    tableSearchInput.addEventListener('input',()=>{
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(updateAll, 120);
+    });
+    sideToggleBtn?.addEventListener('click', toggleSidePanel);
+    updateDataPills();
+    quickRangesEl?.addEventListener('click',(e)=>{
+      const btn = e.target.closest('.quickBtn');
+      if(!btn || btn.disabled) return;
+      timeRangeSel.value = btn.dataset.range;
+      updateAll();
+      setActiveQuickRange();
+    });
+    timeRangeSel.addEventListener('change', setActiveQuickRange);
+    updateAll();
+    setActiveQuickRange();
+  }catch(err){
+    showLoadError(err);
+  }
+}
+
+bootstrap();
+</script>
+</body>
+</html>
