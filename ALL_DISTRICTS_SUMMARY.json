@@ -1,0 +1,5892 @@
+{
+  "District_1": {
+    "district": 1,
+    "total_records": 41466,
+    "record_type_breakdown": {
+      "Land Use": 12522,
+      "Weeds": 8977,
+      "Construction": 7284,
+      "[Blank]": 4744,
+      "Vacant Building": 2303,
+      "LandLord/Tenant": 2094,
+      "Noise": 1429,
+      "Tree": 368,
+      "Emergency , Vacant Building": 356,
+      "Emergency , LandLord/Tenant": 350,
+      "Emergency": 317,
+      "Shoreline": 141,
+      "Construction , Tree": 90,
+      "Construction , Emergency": 77,
+      "Land UseConstruction ,": 60,
+      "Land UseTree ,": 60,
+      "Construction , Noise": 42,
+      "Emergency , Tree": 32,
+      "Construction , ECA": 29,
+      "Land UseWeeds ,": 20,
+      "ECA , Tree": 19,
+      "Land UseVacant Building ,": 18,
+      "Land UseLandLord/Tenant ,": 14,
+      "Land UseNoise ,": 13,
+      "Land UseShoreline ,": 11,
+      "Vacant Building , Weeds": 11,
+      "Construction , Shoreline": 8,
+      "Tree , Weeds": 8,
+      "Land UseEmergency ,": 7,
+      "Land UseConstruction , Tree ,": 6,
+      "Land UseECA ,": 6,
+      "Land UseECA , Tree ,": 6,
+      "Construction , Emergency , Tree": 5,
+      "ECA": 4,
+      "Emergency , ECA , Tree": 4,
+      "Land UseEmergency , Vacant Building ,": 4,
+      "Shoreline , ECA": 4,
+      "Construction , ECA , Tree": 3,
+      "Construction , LandLord/Tenant": 3,
+      "Construction , Shoreline , ECA": 2,
+      "LandLord/Tenant , Vacant Building": 2,
+      "LandLord/Tenant , Weeds": 2,
+      "Construction , Emergency , ECA": 1,
+      "Construction , Emergency , Vacant Building": 1,
+      "Construction , Noise , ECA , Tree": 1,
+      "Construction , Shoreline , Tree": 1,
+      "Construction , Vacant Building": 1,
+      "Emergency , ECA": 1,
+      "Land UseConstruction , ECA ,": 1,
+      "Land UseConstruction , Noise ,": 1,
+      "Land UseTree , Weeds ,": 1,
+      "LandLord/Tenant , Noise": 1,
+      "Shoreline , Tree": 1
+    },
+    "mapped_type": {
+      "Request": 31146,
+      "Case": 10320
+    },
+    "subtype_flags": {
+      "Complaint_CP": 30636,
+      "Notice_of_Violation_VI": 6002,
+      "Citation_CT": 4241,
+      "TREO_TRAO_in_description": 392,
+      "POTA_in_description": 280,
+      "Unfit_Building_UB_in_description": 99
+    },
+    "landlord_tenant": {
+      "explicit_LT_records": 2466,
+      "blank_type_reclassified_as_LT": 2297,
+      "emergency_type_reclassified_as_LT": 524,
+      "total_estimated_LT_cases": 5287,
+      "pct_of_all_records": 12.8,
+      "status_breakdown": {
+        "Completed": 3781,
+        "Closed": 964,
+        "Under Investigation": 400,
+        "Initiated": 41,
+        "NOV Issued": 31,
+        "Open Duplicate": 18,
+        "Reviews Completed": 11,
+        "Issued": 10,
+        "Warning": 7,
+        "Referred to Law": 5,
+        "EO Repair Restore Issued": 4,
+        "EO Vacate Close Issued": 4,
+        "Compliance Achieved": 3,
+        "Reviews In Process": 3,
+        "Application Completed": 3,
+        "Withdrawn": 2
+      },
+      "lt_with_NOV": 733,
+      "lt_with_citation": 40,
+      "lt_closed_no_inspection": 3103,
+      "lt_closed_no_insp_pct": 65.4,
+      "lt_TREO_TRAO": 395,
+      "lt_POTA": 281,
+      "lt_referred_to_law": 5,
+      "lt_EO_vacate": 4,
+      "lt_habitability_buckets": {
+        "rent_deposits": 1204,
+        "plumbing": 884,
+        "mold": 741,
+        "infestation": 541,
+        "eviction_retaliation": 528,
+        "structural": 388,
+        "heat": 346,
+        "electrical": 290,
+        "windows_doors": 281,
+        "appliances": 157,
+        "garbage_debris": 138,
+        "hot_water": 134,
+        "fire_safety": 89,
+        "unfit_building": 82
+      }
+    },
+    "habitability_issues_all_records": {
+      "garbage_debris": 7326,
+      "plumbing": 2727,
+      "infestation": 2715,
+      "structural": 1233,
+      "windows_doors": 1218,
+      "rent_deposits": 1100,
+      "electrical": 1092,
+      "mold": 862,
+      "appliances": 572,
+      "heat": 531,
+      "eviction_retaliation": 483,
+      "fire_safety": 454,
+      "hot_water": 245,
+      "unfit_building": 135
+    },
+    "cases_with_multiple_habitability_issues": 3278,
+    "status_breakdown": {
+      "Completed": 36689,
+      "Closed": 2754,
+      "Under Investigation": 926,
+      "NOV Issued": 357,
+      "Initiated": 266,
+      "Warning": 112,
+      "Open Duplicate": 90,
+      "Referred to Law": 76,
+      "EO Vacate Close Issued": 49,
+      "Citation Issued": 39,
+      "Compliance Achieved": 24,
+      "EO Repair Restore Issued": 23,
+      "Hazard Correction Order Issued": 17,
+      "Reviews Completed": 11,
+      "Issued": 11,
+      "Withdrawn": 9,
+      "Stop Work Issued": 7,
+      "Reviews In Process": 3,
+      "Application Completed": 3
+    },
+    "inspection_integrity": {
+      "total_closed_completed": 39443,
+      "closed_with_NO_inspection_date": 13079,
+      "closed_no_insp_date_pct": 33.2,
+      "closed_has_insp_date_but_NO_result": 2,
+      "closed_has_date_no_result_pct": 0.0,
+      "cases_closed_BEFORE_opened_LastInspDate": 1232,
+      "impossible_date_examples": [
+        {
+          "record": "001061-03CP",
+          "open_date": "2003 Nov 13 12:00:00 AM",
+          "last_insp_date": "2003 Nov 12 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001063-03CP",
+          "open_date": "2003 Nov 13 12:00:00 AM",
+          "last_insp_date": "2003 Nov 12 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001404-03CP",
+          "open_date": "2003 Dec 23 12:00:00 AM",
+          "last_insp_date": "2003 Sep 25 12:00:00 AM",
+          "days_before_open": 89
+        },
+        {
+          "record": "001180-04CP",
+          "open_date": "2004 Jan 21 12:00:00 AM",
+          "last_insp_date": "2004 Jan 09 12:00:00 AM",
+          "days_before_open": 12
+        },
+        {
+          "record": "001280-04CP",
+          "open_date": "2004 Jan 30 12:00:00 AM",
+          "last_insp_date": "2004 Jan 28 12:00:00 AM",
+          "days_before_open": 2
+        },
+        {
+          "record": "001554-04CP",
+          "open_date": "2004 Feb 24 12:00:00 AM",
+          "last_insp_date": "2004 Feb 23 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001938-04CP",
+          "open_date": "2004 Mar 24 12:00:00 AM",
+          "last_insp_date": "2004 Mar 23 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001940-04CP",
+          "open_date": "2004 Mar 24 12:00:00 AM",
+          "last_insp_date": "2004 Mar 16 12:00:00 AM",
+          "days_before_open": 8
+        },
+        {
+          "record": "001968-04CP",
+          "open_date": "2004 Mar 25 12:00:00 AM",
+          "last_insp_date": "2004 Mar 04 12:00:00 AM",
+          "days_before_open": 21
+        },
+        {
+          "record": "002744-04CP",
+          "open_date": "2004 Jun 01 12:00:00 AM",
+          "last_insp_date": "2004 May 28 12:00:00 AM",
+          "days_before_open": 4
+        }
+      ],
+      "last_insp_result_breakdown": {
+        "Completed": 18052,
+        "": 13081,
+        "Compliance Achieved": 7614,
+        "No Access/Unable to Observe": 157,
+        "Admin Closure": 119,
+        "Vacant": 84,
+        "No Violation": 80,
+        "Closed": 77,
+        "Completed-Virtual": 68,
+        "Withdrawn": 42,
+        "Not Vacant": 19,
+        "Compliance Achieved-Virtual": 17,
+        "No Structure": 14,
+        "Secured with No Violations": 10,
+        "Closed with Violation": 6,
+        "Passed": 2,
+        "Unable to Observe-Virtual": 1
+      },
+      "no_access_unable_to_observe": 157,
+      "admin_closure": 119,
+      "compliance_achieved": 7631
+    },
+    "inspection_data_quality_by_year": {
+      "2003": {
+        "total_cases": 145,
+        "no_inspection_date": 27,
+        "no_inspection_date_pct": 18.6,
+        "no_inspection_result": 27,
+        "closed_completed_no_inspection": 27,
+        "closed_no_insp_pct": 18.6
+      },
+      "2004": {
+        "total_cases": 1467,
+        "no_inspection_date": 162,
+        "no_inspection_date_pct": 11.0,
+        "no_inspection_result": 162,
+        "closed_completed_no_inspection": 162,
+        "closed_no_insp_pct": 11.0
+      },
+      "2005": {
+        "total_cases": 1292,
+        "no_inspection_date": 114,
+        "no_inspection_date_pct": 8.8,
+        "no_inspection_result": 114,
+        "closed_completed_no_inspection": 114,
+        "closed_no_insp_pct": 8.8
+      },
+      "2006": {
+        "total_cases": 1461,
+        "no_inspection_date": 125,
+        "no_inspection_date_pct": 8.6,
+        "no_inspection_result": 125,
+        "closed_completed_no_inspection": 124,
+        "closed_no_insp_pct": 8.5
+      },
+      "2007": {
+        "total_cases": 1717,
+        "no_inspection_date": 151,
+        "no_inspection_date_pct": 8.8,
+        "no_inspection_result": 153,
+        "closed_completed_no_inspection": 150,
+        "closed_no_insp_pct": 8.7
+      },
+      "2008": {
+        "total_cases": 1880,
+        "no_inspection_date": 86,
+        "no_inspection_date_pct": 4.6,
+        "no_inspection_result": 86,
+        "closed_completed_no_inspection": 84,
+        "closed_no_insp_pct": 4.5
+      },
+      "2009": {
+        "total_cases": 1751,
+        "no_inspection_date": 92,
+        "no_inspection_date_pct": 5.3,
+        "no_inspection_result": 92,
+        "closed_completed_no_inspection": 89,
+        "closed_no_insp_pct": 5.1
+      },
+      "2010": {
+        "total_cases": 1480,
+        "no_inspection_date": 35,
+        "no_inspection_date_pct": 2.4,
+        "no_inspection_result": 35,
+        "closed_completed_no_inspection": 33,
+        "closed_no_insp_pct": 2.2
+      },
+      "2011": {
+        "total_cases": 1268,
+        "no_inspection_date": 168,
+        "no_inspection_date_pct": 13.2,
+        "no_inspection_result": 168,
+        "closed_completed_no_inspection": 161,
+        "closed_no_insp_pct": 12.7
+      },
+      "2012": {
+        "total_cases": 1368,
+        "no_inspection_date": 217,
+        "no_inspection_date_pct": 15.9,
+        "no_inspection_result": 217,
+        "closed_completed_no_inspection": 211,
+        "closed_no_insp_pct": 15.4
+      },
+      "2013": {
+        "total_cases": 1270,
+        "no_inspection_date": 170,
+        "no_inspection_date_pct": 13.4,
+        "no_inspection_result": 170,
+        "closed_completed_no_inspection": 165,
+        "closed_no_insp_pct": 13.0
+      },
+      "2014": {
+        "total_cases": 1483,
+        "no_inspection_date": 266,
+        "no_inspection_date_pct": 17.9,
+        "no_inspection_result": 266,
+        "closed_completed_no_inspection": 255,
+        "closed_no_insp_pct": 17.2
+      },
+      "2015": {
+        "total_cases": 1988,
+        "no_inspection_date": 353,
+        "no_inspection_date_pct": 17.8,
+        "no_inspection_result": 353,
+        "closed_completed_no_inspection": 315,
+        "closed_no_insp_pct": 15.8
+      },
+      "2016": {
+        "total_cases": 2007,
+        "no_inspection_date": 439,
+        "no_inspection_date_pct": 21.9,
+        "no_inspection_result": 439,
+        "closed_completed_no_inspection": 406,
+        "closed_no_insp_pct": 20.2
+      },
+      "2017": {
+        "total_cases": 2046,
+        "no_inspection_date": 491,
+        "no_inspection_date_pct": 24.0,
+        "no_inspection_result": 491,
+        "closed_completed_no_inspection": 428,
+        "closed_no_insp_pct": 20.9
+      },
+      "2018": {
+        "total_cases": 2015,
+        "no_inspection_date": 1139,
+        "no_inspection_date_pct": 56.5,
+        "no_inspection_result": 1139,
+        "closed_completed_no_inspection": 1105,
+        "closed_no_insp_pct": 54.8
+      },
+      "2019": {
+        "total_cases": 2340,
+        "no_inspection_date": 1237,
+        "no_inspection_date_pct": 52.9,
+        "no_inspection_result": 1237,
+        "closed_completed_no_inspection": 1207,
+        "closed_no_insp_pct": 51.6
+      },
+      "2020": {
+        "total_cases": 2038,
+        "no_inspection_date": 1145,
+        "no_inspection_date_pct": 56.2,
+        "no_inspection_result": 1145,
+        "closed_completed_no_inspection": 1109,
+        "closed_no_insp_pct": 54.4
+      },
+      "2021": {
+        "total_cases": 2100,
+        "no_inspection_date": 1294,
+        "no_inspection_date_pct": 61.6,
+        "no_inspection_result": 1294,
+        "closed_completed_no_inspection": 1239,
+        "closed_no_insp_pct": 59.0
+      },
+      "2022": {
+        "total_cases": 2555,
+        "no_inspection_date": 1768,
+        "no_inspection_date_pct": 69.2,
+        "no_inspection_result": 1768,
+        "closed_completed_no_inspection": 1620,
+        "closed_no_insp_pct": 63.4
+      },
+      "2023": {
+        "total_cases": 2605,
+        "no_inspection_date": 1741,
+        "no_inspection_date_pct": 66.8,
+        "no_inspection_result": 1741,
+        "closed_completed_no_inspection": 1537,
+        "closed_no_insp_pct": 59.0
+      },
+      "2024": {
+        "total_cases": 2482,
+        "no_inspection_date": 1505,
+        "no_inspection_date_pct": 60.6,
+        "no_inspection_result": 1505,
+        "closed_completed_no_inspection": 1283,
+        "closed_no_insp_pct": 51.7
+      },
+      "2025": {
+        "total_cases": 2708,
+        "no_inspection_date": 1847,
+        "no_inspection_date_pct": 68.2,
+        "no_inspection_result": 1847,
+        "closed_completed_no_inspection": 1255,
+        "closed_no_insp_pct": 46.3
+      }
+    },
+    "complaints_vs_NOV_by_year": {
+      "2003": {
+        "complaints_CP": 113,
+        "NOV_VI": 25,
+        "nov_rate_pct": 22.1
+      },
+      "2004": {
+        "complaints_CP": 875,
+        "NOV_VI": 394,
+        "nov_rate_pct": 45.0
+      },
+      "2005": {
+        "complaints_CP": 803,
+        "NOV_VI": 301,
+        "nov_rate_pct": 37.5
+      },
+      "2006": {
+        "complaints_CP": 864,
+        "NOV_VI": 436,
+        "nov_rate_pct": 50.5
+      },
+      "2007": {
+        "complaints_CP": 983,
+        "NOV_VI": 401,
+        "nov_rate_pct": 40.8
+      },
+      "2008": {
+        "complaints_CP": 1078,
+        "NOV_VI": 331,
+        "nov_rate_pct": 30.7
+      },
+      "2009": {
+        "complaints_CP": 996,
+        "NOV_VI": 249,
+        "nov_rate_pct": 25.0
+      },
+      "2010": {
+        "complaints_CP": 894,
+        "NOV_VI": 198,
+        "nov_rate_pct": 22.1
+      },
+      "2011": {
+        "complaints_CP": 867,
+        "NOV_VI": 213,
+        "nov_rate_pct": 24.6
+      },
+      "2012": {
+        "complaints_CP": 936,
+        "NOV_VI": 269,
+        "nov_rate_pct": 28.7
+      },
+      "2013": {
+        "complaints_CP": 880,
+        "NOV_VI": 225,
+        "nov_rate_pct": 25.6
+      },
+      "2014": {
+        "complaints_CP": 1065,
+        "NOV_VI": 257,
+        "nov_rate_pct": 24.1
+      },
+      "2015": {
+        "complaints_CP": 1381,
+        "NOV_VI": 345,
+        "nov_rate_pct": 25.0
+      },
+      "2016": {
+        "complaints_CP": 1435,
+        "NOV_VI": 244,
+        "nov_rate_pct": 17.0
+      },
+      "2017": {
+        "complaints_CP": 1443,
+        "NOV_VI": 349,
+        "nov_rate_pct": 24.2
+      },
+      "2018": {
+        "complaints_CP": 1592,
+        "NOV_VI": 258,
+        "nov_rate_pct": 16.2
+      },
+      "2019": {
+        "complaints_CP": 1877,
+        "NOV_VI": 265,
+        "nov_rate_pct": 14.1
+      },
+      "2020": {
+        "complaints_CP": 1717,
+        "NOV_VI": 178,
+        "nov_rate_pct": 10.4
+      },
+      "2021": {
+        "complaints_CP": 1806,
+        "NOV_VI": 187,
+        "nov_rate_pct": 10.4
+      },
+      "2022": {
+        "complaints_CP": 2287,
+        "NOV_VI": 209,
+        "nov_rate_pct": 9.1
+      },
+      "2023": {
+        "complaints_CP": 2243,
+        "NOV_VI": 244,
+        "nov_rate_pct": 10.9
+      },
+      "2024": {
+        "complaints_CP": 2119,
+        "NOV_VI": 242,
+        "nov_rate_pct": 11.4
+      },
+      "2025": {
+        "complaints_CP": 2382,
+        "NOV_VI": 182,
+        "nov_rate_pct": 7.6
+      }
+    },
+    "status_by_open_year": {
+      "2003": {
+        "Completed": 144,
+        "Closed": 1
+      },
+      "2004": {
+        "Completed": 1452,
+        "Closed": 15
+      },
+      "2005": {
+        "Completed": 1279,
+        "Closed": 13
+      },
+      "2006": {
+        "Completed": 1456,
+        "Closed": 3,
+        "NOV Issued": 2
+      },
+      "2007": {
+        "Completed": 1716,
+        "NOV Issued": 1
+      },
+      "2008": {
+        "Completed": 1873,
+        "Closed": 3,
+        "Initiated": 2,
+        "Referred to Law": 1,
+        "NOV Issued": 1
+      },
+      "2009": {
+        "Completed": 1745,
+        "NOV Issued": 2,
+        "Closed": 2,
+        "Initiated": 1,
+        "Citation Issued": 1
+      },
+      "2010": {
+        "Completed": 1478,
+        "NOV Issued": 1,
+        "Warning": 1
+      },
+      "2011": {
+        "Completed": 1254,
+        "Closed": 7,
+        "NOV Issued": 5,
+        "Initiated": 1,
+        "Withdrawn": 1
+      },
+      "2012": {
+        "Completed": 1358,
+        "NOV Issued": 5,
+        "Closed": 4,
+        "Initiated": 1
+      },
+      "2013": {
+        "Completed": 1256,
+        "Closed": 6,
+        "NOV Issued": 5,
+        "Referred to Law": 2,
+        "Citation Issued": 1
+      },
+      "2014": {
+        "Completed": 1464,
+        "Closed": 7,
+        "NOV Issued": 5,
+        "Referred to Law": 3,
+        "Initiated": 2,
+        "Hazard Correction Order Issued": 1,
+        "Citation Issued": 1
+      },
+      "2015": {
+        "Completed": 1936,
+        "NOV Issued": 13,
+        "Referred to Law": 12,
+        "Closed": 12,
+        "Initiated": 11,
+        "Stop Work Issued": 2,
+        "Warning": 1,
+        "Reviews Completed": 1
+      },
+      "2016": {
+        "Completed": 1937,
+        "Closed": 32,
+        "Initiated": 11,
+        "NOV Issued": 11,
+        "Citation Issued": 6,
+        "Referred to Law": 5,
+        "Stop Work Issued": 2,
+        "Under Investigation": 1,
+        "Warning": 1,
+        "Reviews Completed": 1
+      },
+      "2017": {
+        "Completed": 1933,
+        "Closed": 43,
+        "Referred to Law": 23,
+        "NOV Issued": 20,
+        "Initiated": 11,
+        "Citation Issued": 7,
+        "Warning": 6,
+        "Reviews Completed": 2,
+        "Stop Work Issued": 1
+      },
+      "2018": {
+        "Completed": 1666,
+        "Closed": 299,
+        "NOV Issued": 16,
+        "Initiated": 9,
+        "Under Investigation": 5,
+        "Referred to Law": 5,
+        "Compliance Achieved": 4,
+        "Citation Issued": 4,
+        "Warning": 3,
+        "Hazard Correction Order Issued": 1,
+        "Stop Work Issued": 1,
+        "EO Vacate Close Issued": 1,
+        "Issued": 1
+      },
+      "2019": {
+        "Completed": 1823,
+        "Closed": 433,
+        "NOV Issued": 24,
+        "Initiated": 18,
+        "Warning": 11,
+        "Citation Issued": 8,
+        "Under Investigation": 6,
+        "Referred to Law": 5,
+        "Compliance Achieved": 4,
+        "EO Repair Restore Issued": 4,
+        "Open Duplicate": 1,
+        "Withdrawn": 1,
+        "Reviews Completed": 1,
+        "Issued": 1
+      },
+      "2020": {
+        "Completed": 1592,
+        "Closed": 349,
+        "Initiated": 30,
+        "Warning": 25,
+        "NOV Issued": 13,
+        "Under Investigation": 7,
+        "Citation Issued": 7,
+        "Referred to Law": 4,
+        "EO Repair Restore Issued": 3,
+        "Withdrawn": 2,
+        "Issued": 2,
+        "EO Vacate Close Issued": 1,
+        "Reviews Completed": 1,
+        "Compliance Achieved": 1,
+        "Open Duplicate": 1
+      },
+      "2021": {
+        "Completed": 1714,
+        "Closed": 299,
+        "Initiated": 29,
+        "NOV Issued": 23,
+        "Warning": 12,
+        "Under Investigation": 8,
+        "Referred to Law": 4,
+        "Open Duplicate": 3,
+        "Withdrawn": 2,
+        "Issued": 2,
+        "EO Repair Restore Issued": 2,
+        "Hazard Correction Order Issued": 1,
+        "Compliance Achieved": 1
+      },
+      "2022": {
+        "Completed": 2006,
+        "Closed": 359,
+        "Under Investigation": 81,
+        "NOV Issued": 36,
+        "Initiated": 31,
+        "Open Duplicate": 16,
+        "EO Repair Restore Issued": 8,
+        "Referred to Law": 7,
+        "Compliance Achieved": 3,
+        "Warning": 2,
+        "Citation Issued": 2,
+        "Hazard Correction Order Issued": 2,
+        "Issued": 1,
+        "Reviews In Process": 1
+      },
+      "2023": {
+        "Completed": 2021,
+        "Closed": 324,
+        "Under Investigation": 142,
+        "NOV Issued": 47,
+        "Initiated": 31,
+        "Open Duplicate": 12,
+        "EO Vacate Close Issued": 7,
+        "Compliance Achieved": 5,
+        "EO Repair Restore Issued": 5,
+        "Referred to Law": 4,
+        "Withdrawn": 2,
+        "Hazard Correction Order Issued": 2,
+        "Warning": 2,
+        "Issued": 1
+      },
+      "2024": {
+        "Completed": 1897,
+        "Closed": 268,
+        "Under Investigation": 158,
+        "NOV Issued": 75,
+        "Initiated": 33,
+        "EO Vacate Close Issued": 17,
+        "Open Duplicate": 14,
+        "Warning": 7,
+        "Hazard Correction Order Issued": 5,
+        "Issued": 2,
+        "Withdrawn": 1,
+        "EO Repair Restore Issued": 1,
+        "Referred to Law": 1,
+        "Compliance Achieved": 1,
+        "Application Completed": 1,
+        "Reviews Completed": 1
+      },
+      "2025": {
+        "Completed": 1689,
+        "Under Investigation": 518,
+        "Closed": 275,
+        "NOV Issued": 52,
+        "Initiated": 45,
+        "Open Duplicate": 43,
+        "Warning": 41,
+        "EO Vacate Close Issued": 23,
+        "Hazard Correction Order Issued": 5,
+        "Compliance Achieved": 5,
+        "Reviews Completed": 4,
+        "Citation Issued": 2,
+        "Application Completed": 2,
+        "Reviews In Process": 2,
+        "Stop Work Issued": 1,
+        "Issued": 1
+      }
+    },
+    "time_to_resolution_days": {
+      "count": 25662,
+      "mean": 85.8,
+      "median": 19,
+      "min": 0,
+      "max": 5050,
+      "over_365_days": 1238,
+      "over_730_days": 580,
+      "over_1000_days": 387
+    },
+    "mass_closure_outliers": [
+      {
+        "month": "2008-08",
+        "closures": 225,
+        "avg_monthly": 94.8,
+        "multiplier": 2.4
+      },
+      {
+        "month": "2015-09",
+        "closures": 223,
+        "avg_monthly": 94.8,
+        "multiplier": 2.4
+      },
+      {
+        "month": "2008-07",
+        "closures": 219,
+        "avg_monthly": 94.8,
+        "multiplier": 2.3
+      },
+      {
+        "month": "2017-08",
+        "closures": 217,
+        "avg_monthly": 94.8,
+        "multiplier": 2.3
+      },
+      {
+        "month": "2015-01",
+        "closures": 202,
+        "avg_monthly": 94.8,
+        "multiplier": 2.1
+      },
+      {
+        "month": "2009-06",
+        "closures": 200,
+        "avg_monthly": 94.8,
+        "multiplier": 2.1
+      },
+      {
+        "month": "2008-06",
+        "closures": 197,
+        "avg_monthly": 94.8,
+        "multiplier": 2.1
+      }
+    ],
+    "still_open_cases_by_open_year": {
+      "2006": 2,
+      "2007": 1,
+      "2008": 4,
+      "2009": 4,
+      "2010": 2,
+      "2011": 6,
+      "2012": 6,
+      "2013": 8,
+      "2014": 12,
+      "2015": 40,
+      "2016": 38,
+      "2017": 70,
+      "2018": 45,
+      "2019": 78,
+      "2020": 92,
+      "2021": 82,
+      "2022": 186,
+      "2023": 252,
+      "2024": 312,
+      "2025": 736
+    },
+    "total_still_open": 1976,
+    "referred_to_law": {
+      "total": 76,
+      "by_open_year": {
+        "2017": 23,
+        "2015": 12,
+        "2022": 7,
+        "2016": 5,
+        "2018": 5,
+        "2019": 5,
+        "2020": 4,
+        "2023": 4,
+        "2021": 4,
+        "2014": 3,
+        "2013": 2,
+        "2024": 1,
+        "2008": 1
+      },
+      "by_record_type": {
+        "Construction": 31,
+        "Land Use": 17,
+        "[Blank]": 12,
+        "Vacant Building": 10,
+        "Shoreline": 2,
+        "Construction , Emergency": 1,
+        "Emergency": 1,
+        "Emergency , Vacant Building": 1,
+        "LandLord/Tenant": 1
+      }
+    },
+    "vacant_building": {
+      "total": 2696,
+      "status_breakdown": {
+        "Completed": 2388,
+        "Closed": 84,
+        "Initiated": 62,
+        "EO Vacate Close Issued": 46,
+        "NOV Issued": 36,
+        "Under Investigation": 32,
+        "EO Repair Restore Issued": 16,
+        "Open Duplicate": 13,
+        "Referred to Law": 11,
+        "Compliance Achieved": 8
+      },
+      "closed_no_inspection": 703,
+      "EO_vacate_issued": 46,
+      "NOV_issued": 920
+    }
+  },
+  "District_2": {
+    "district": 2,
+    "total_records": 38165,
+    "record_type_breakdown": {
+      "Land Use": 12103,
+      "Weeds": 7475,
+      "[Blank]": 5502,
+      "Construction": 5395,
+      "LandLord/Tenant": 2466,
+      "Vacant Building": 2150,
+      "Noise": 999,
+      "Emergency": 493,
+      "Emergency , LandLord/Tenant": 387,
+      "Emergency , Vacant Building": 353,
+      "Tree": 254,
+      "Shoreline": 137,
+      "Construction , Tree": 62,
+      "Construction , Emergency": 59,
+      "Land UseTree ,": 51,
+      "Emergency , Tree": 42,
+      "Land UseConstruction ,": 38,
+      "Construction , Noise": 29,
+      "Land UseWeeds ,": 29,
+      "Construction , ECA": 21,
+      "Land UseLandLord/Tenant ,": 19,
+      "Land UseEmergency ,": 17,
+      "Land UseNoise ,": 14,
+      "Construction , Shoreline": 9,
+      "Land UseVacant Building ,": 8,
+      "Construction , ECA , Tree": 5,
+      "Tree , Weeds": 5,
+      "Construction , LandLord/Tenant": 4,
+      "ECA , Tree": 4,
+      "Land UseConstruction , Tree ,": 4,
+      "Land UseECA ,": 4,
+      "Land UseShoreline ,": 4,
+      "Construction , Emergency , Tree": 3,
+      "ECA": 2,
+      "Emergency , ECA , Tree": 2,
+      "Land UseEmergency , Vacant Building ,": 2,
+      "Vacant Building , Weeds": 2,
+      "Construction , ECA , Weeds": 1,
+      "Construction , Emergency , Noise , Tree": 1,
+      "Construction , Vacant Building": 1,
+      "Construction , Weeds": 1,
+      "ECA , Tree , Weeds": 1,
+      "Emergency , Vacant Building , Weeds": 1,
+      "Land UseECA , Tree ,": 1,
+      "LandLord/Tenant , Vacant Building": 1,
+      "LandLord/Tenant , Weeds": 1,
+      "Shoreline , ECA": 1,
+      "Shoreline , ECA , Tree": 1,
+      "Shoreline , Tree": 1
+    },
+    "mapped_type": {
+      "Request": 28028,
+      "Case": 10137
+    },
+    "subtype_flags": {
+      "Complaint_CP": 27611,
+      "Notice_of_Violation_VI": 5737,
+      "Citation_CT": 4341,
+      "TREO_TRAO_in_description": 416,
+      "POTA_in_description": 320,
+      "Unfit_Building_UB_in_description": 79
+    },
+    "landlord_tenant": {
+      "explicit_LT_records": 2878,
+      "blank_type_reclassified_as_LT": 2685,
+      "emergency_type_reclassified_as_LT": 697,
+      "total_estimated_LT_cases": 6260,
+      "pct_of_all_records": 16.4,
+      "status_breakdown": {
+        "Completed": 4467,
+        "Closed": 1118,
+        "Under Investigation": 523,
+        "Initiated": 43,
+        "NOV Issued": 33,
+        "Open Duplicate": 21,
+        "Reviews Completed": 12,
+        "Issued": 9,
+        "Warning": 7,
+        "Citation Issued": 7,
+        "Compliance Achieved": 6,
+        "Application Completed": 5,
+        "Reviews In Process": 3,
+        "Referred to Law": 2,
+        "EO Repair Restore Issued": 2,
+        "EO Vacate Close Issued": 2
+      },
+      "lt_with_NOV": 1008,
+      "lt_with_citation": 63,
+      "lt_closed_no_inspection": 3489,
+      "lt_closed_no_insp_pct": 62.5,
+      "lt_TREO_TRAO": 418,
+      "lt_POTA": 313,
+      "lt_referred_to_law": 2,
+      "lt_EO_vacate": 2,
+      "lt_habitability_buckets": {
+        "rent_deposits": 1175,
+        "plumbing": 1014,
+        "mold": 824,
+        "infestation": 788,
+        "eviction_retaliation": 632,
+        "heat": 499,
+        "structural": 381,
+        "electrical": 312,
+        "hot_water": 280,
+        "windows_doors": 267,
+        "appliances": 262,
+        "garbage_debris": 176,
+        "fire_safety": 104,
+        "unfit_building": 61
+      }
+    },
+    "habitability_issues_all_records": {
+      "garbage_debris": 7572,
+      "infestation": 2701,
+      "plumbing": 2661,
+      "windows_doors": 1228,
+      "rent_deposits": 1122,
+      "structural": 1114,
+      "mold": 938,
+      "electrical": 935,
+      "appliances": 739,
+      "heat": 683,
+      "eviction_retaliation": 561,
+      "fire_safety": 422,
+      "hot_water": 414,
+      "unfit_building": 96
+    },
+    "cases_with_multiple_habitability_issues": 3520,
+    "status_breakdown": {
+      "Completed": 33250,
+      "Closed": 2631,
+      "Under Investigation": 1314,
+      "NOV Issued": 345,
+      "Initiated": 234,
+      "Open Duplicate": 117,
+      "EO Vacate Close Issued": 61,
+      "Warning": 57,
+      "Citation Issued": 49,
+      "Referred to Law": 25,
+      "Hazard Correction Order Issued": 17,
+      "Reviews Completed": 13,
+      "Compliance Achieved": 12,
+      "Withdrawn": 11,
+      "Issued": 10,
+      "Stop Work Issued": 8,
+      "Application Completed": 5,
+      "EO Repair Restore Issued": 3,
+      "Reviews In Process": 3
+    },
+    "inspection_integrity": {
+      "total_closed_completed": 35881,
+      "closed_with_NO_inspection_date": 11458,
+      "closed_no_insp_date_pct": 31.9,
+      "closed_has_insp_date_but_NO_result": 0,
+      "closed_has_date_no_result_pct": 0.0,
+      "cases_closed_BEFORE_opened_LastInspDate": 955,
+      "impossible_date_examples": [
+        {
+          "record": "001270-03CP",
+          "open_date": "2003 Dec 10 12:00:00 AM",
+          "last_insp_date": "2003 Nov 26 12:00:00 AM",
+          "days_before_open": 14
+        },
+        {
+          "record": "001444-04CP",
+          "open_date": "2004 Feb 13 12:00:00 AM",
+          "last_insp_date": "2004 Feb 12 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "002006-04CP",
+          "open_date": "2004 Mar 30 12:00:00 AM",
+          "last_insp_date": "2004 Mar 29 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "002290-04CP",
+          "open_date": "2004 Apr 26 12:00:00 AM",
+          "last_insp_date": "2004 Apr 22 12:00:00 AM",
+          "days_before_open": 4
+        },
+        {
+          "record": "002688-04CP",
+          "open_date": "2004 May 26 12:00:00 AM",
+          "last_insp_date": "2004 May 25 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "003163-04CP",
+          "open_date": "2004 Jul 02 12:00:00 AM",
+          "last_insp_date": "2004 Jul 01 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "003244-04CP",
+          "open_date": "2004 Jul 12 12:00:00 AM",
+          "last_insp_date": "2004 Jul 08 12:00:00 AM",
+          "days_before_open": 4
+        },
+        {
+          "record": "003448-04CP",
+          "open_date": "2004 Jul 27 12:00:00 AM",
+          "last_insp_date": "2004 Jul 20 12:00:00 AM",
+          "days_before_open": 7
+        },
+        {
+          "record": "003470-04CP",
+          "open_date": "2004 Jul 28 12:00:00 AM",
+          "last_insp_date": "2004 Jul 13 12:00:00 AM",
+          "days_before_open": 15
+        },
+        {
+          "record": "003832-04CP",
+          "open_date": "2004 Aug 25 12:00:00 AM",
+          "last_insp_date": "2003 Apr 15 12:00:00 AM",
+          "days_before_open": 498
+        }
+      ],
+      "last_insp_result_breakdown": {
+        "Completed": 15946,
+        "": 11458,
+        "Compliance Achieved": 8079,
+        "No Access/Unable to Observe": 121,
+        "Closed": 87,
+        "No Violation": 48,
+        "Vacant": 40,
+        "Withdrawn": 31,
+        "Completed-Virtual": 20,
+        "Admin Closure": 17,
+        "Compliance Achieved-Virtual": 12,
+        "Closed with Violation": 12,
+        "Passed": 6,
+        "Pass": 1,
+        "Not Vacant": 1,
+        "Secured with No Violations": 1,
+        "Unable to Observe-Virtual": 1
+      },
+      "no_access_unable_to_observe": 121,
+      "admin_closure": 17,
+      "compliance_achieved": 8091
+    },
+    "inspection_data_quality_by_year": {
+      "2003": {
+        "total_cases": 123,
+        "no_inspection_date": 17,
+        "no_inspection_date_pct": 13.8,
+        "no_inspection_result": 17,
+        "closed_completed_no_inspection": 17,
+        "closed_no_insp_pct": 13.8
+      },
+      "2004": {
+        "total_cases": 1233,
+        "no_inspection_date": 122,
+        "no_inspection_date_pct": 9.9,
+        "no_inspection_result": 122,
+        "closed_completed_no_inspection": 122,
+        "closed_no_insp_pct": 9.9
+      },
+      "2005": {
+        "total_cases": 1140,
+        "no_inspection_date": 91,
+        "no_inspection_date_pct": 8.0,
+        "no_inspection_result": 91,
+        "closed_completed_no_inspection": 91,
+        "closed_no_insp_pct": 8.0
+      },
+      "2006": {
+        "total_cases": 1318,
+        "no_inspection_date": 92,
+        "no_inspection_date_pct": 7.0,
+        "no_inspection_result": 92,
+        "closed_completed_no_inspection": 92,
+        "closed_no_insp_pct": 7.0
+      },
+      "2007": {
+        "total_cases": 1688,
+        "no_inspection_date": 104,
+        "no_inspection_date_pct": 6.2,
+        "no_inspection_result": 104,
+        "closed_completed_no_inspection": 103,
+        "closed_no_insp_pct": 6.1
+      },
+      "2008": {
+        "total_cases": 1522,
+        "no_inspection_date": 84,
+        "no_inspection_date_pct": 5.5,
+        "no_inspection_result": 84,
+        "closed_completed_no_inspection": 81,
+        "closed_no_insp_pct": 5.3
+      },
+      "2009": {
+        "total_cases": 1625,
+        "no_inspection_date": 114,
+        "no_inspection_date_pct": 7.0,
+        "no_inspection_result": 114,
+        "closed_completed_no_inspection": 110,
+        "closed_no_insp_pct": 6.8
+      },
+      "2010": {
+        "total_cases": 1545,
+        "no_inspection_date": 81,
+        "no_inspection_date_pct": 5.2,
+        "no_inspection_result": 81,
+        "closed_completed_no_inspection": 81,
+        "closed_no_insp_pct": 5.2
+      },
+      "2011": {
+        "total_cases": 1238,
+        "no_inspection_date": 163,
+        "no_inspection_date_pct": 13.2,
+        "no_inspection_result": 163,
+        "closed_completed_no_inspection": 163,
+        "closed_no_insp_pct": 13.2
+      },
+      "2012": {
+        "total_cases": 1171,
+        "no_inspection_date": 137,
+        "no_inspection_date_pct": 11.7,
+        "no_inspection_result": 137,
+        "closed_completed_no_inspection": 134,
+        "closed_no_insp_pct": 11.4
+      },
+      "2013": {
+        "total_cases": 1318,
+        "no_inspection_date": 164,
+        "no_inspection_date_pct": 12.4,
+        "no_inspection_result": 164,
+        "closed_completed_no_inspection": 154,
+        "closed_no_insp_pct": 11.7
+      },
+      "2014": {
+        "total_cases": 1561,
+        "no_inspection_date": 179,
+        "no_inspection_date_pct": 11.5,
+        "no_inspection_result": 179,
+        "closed_completed_no_inspection": 162,
+        "closed_no_insp_pct": 10.4
+      },
+      "2015": {
+        "total_cases": 1555,
+        "no_inspection_date": 311,
+        "no_inspection_date_pct": 20.0,
+        "no_inspection_result": 311,
+        "closed_completed_no_inspection": 290,
+        "closed_no_insp_pct": 18.6
+      },
+      "2016": {
+        "total_cases": 1519,
+        "no_inspection_date": 402,
+        "no_inspection_date_pct": 26.5,
+        "no_inspection_result": 402,
+        "closed_completed_no_inspection": 377,
+        "closed_no_insp_pct": 24.8
+      },
+      "2017": {
+        "total_cases": 1794,
+        "no_inspection_date": 426,
+        "no_inspection_date_pct": 23.7,
+        "no_inspection_result": 426,
+        "closed_completed_no_inspection": 373,
+        "closed_no_insp_pct": 20.8
+      },
+      "2018": {
+        "total_cases": 1973,
+        "no_inspection_date": 991,
+        "no_inspection_date_pct": 50.2,
+        "no_inspection_result": 991,
+        "closed_completed_no_inspection": 946,
+        "closed_no_insp_pct": 47.9
+      },
+      "2019": {
+        "total_cases": 2246,
+        "no_inspection_date": 1089,
+        "no_inspection_date_pct": 48.5,
+        "no_inspection_result": 1089,
+        "closed_completed_no_inspection": 1064,
+        "closed_no_insp_pct": 47.4
+      },
+      "2020": {
+        "total_cases": 1991,
+        "no_inspection_date": 1158,
+        "no_inspection_date_pct": 58.2,
+        "no_inspection_result": 1158,
+        "closed_completed_no_inspection": 1100,
+        "closed_no_insp_pct": 55.2
+      },
+      "2021": {
+        "total_cases": 1894,
+        "no_inspection_date": 1066,
+        "no_inspection_date_pct": 56.3,
+        "no_inspection_result": 1066,
+        "closed_completed_no_inspection": 980,
+        "closed_no_insp_pct": 51.7
+      },
+      "2022": {
+        "total_cases": 2242,
+        "no_inspection_date": 1668,
+        "no_inspection_date_pct": 74.4,
+        "no_inspection_result": 1668,
+        "closed_completed_no_inspection": 1486,
+        "closed_no_insp_pct": 66.3
+      },
+      "2023": {
+        "total_cases": 2469,
+        "no_inspection_date": 1632,
+        "no_inspection_date_pct": 66.1,
+        "no_inspection_result": 1632,
+        "closed_completed_no_inspection": 1345,
+        "closed_no_insp_pct": 54.5
+      },
+      "2024": {
+        "total_cases": 2404,
+        "no_inspection_date": 1327,
+        "no_inspection_date_pct": 55.2,
+        "no_inspection_result": 1327,
+        "closed_completed_no_inspection": 1033,
+        "closed_no_insp_pct": 43.0
+      },
+      "2025": {
+        "total_cases": 2596,
+        "no_inspection_date": 1759,
+        "no_inspection_date_pct": 67.8,
+        "no_inspection_result": 1759,
+        "closed_completed_no_inspection": 1154,
+        "closed_no_insp_pct": 44.5
+      }
+    },
+    "complaints_vs_NOV_by_year": {
+      "2003": {
+        "complaints_CP": 81,
+        "NOV_VI": 28,
+        "nov_rate_pct": 34.6
+      },
+      "2004": {
+        "complaints_CP": 702,
+        "NOV_VI": 313,
+        "nov_rate_pct": 44.6
+      },
+      "2005": {
+        "complaints_CP": 663,
+        "NOV_VI": 308,
+        "nov_rate_pct": 46.5
+      },
+      "2006": {
+        "complaints_CP": 734,
+        "NOV_VI": 396,
+        "nov_rate_pct": 54.0
+      },
+      "2007": {
+        "complaints_CP": 925,
+        "NOV_VI": 389,
+        "nov_rate_pct": 42.1
+      },
+      "2008": {
+        "complaints_CP": 850,
+        "NOV_VI": 298,
+        "nov_rate_pct": 35.1
+      },
+      "2009": {
+        "complaints_CP": 875,
+        "NOV_VI": 320,
+        "nov_rate_pct": 36.6
+      },
+      "2010": {
+        "complaints_CP": 849,
+        "NOV_VI": 271,
+        "nov_rate_pct": 31.9
+      },
+      "2011": {
+        "complaints_CP": 807,
+        "NOV_VI": 239,
+        "nov_rate_pct": 29.6
+      },
+      "2012": {
+        "complaints_CP": 723,
+        "NOV_VI": 279,
+        "nov_rate_pct": 38.6
+      },
+      "2013": {
+        "complaints_CP": 828,
+        "NOV_VI": 279,
+        "nov_rate_pct": 33.7
+      },
+      "2014": {
+        "complaints_CP": 1020,
+        "NOV_VI": 285,
+        "nov_rate_pct": 27.9
+      },
+      "2015": {
+        "complaints_CP": 1060,
+        "NOV_VI": 278,
+        "nov_rate_pct": 26.2
+      },
+      "2016": {
+        "complaints_CP": 1059,
+        "NOV_VI": 230,
+        "nov_rate_pct": 21.7
+      },
+      "2017": {
+        "complaints_CP": 1245,
+        "NOV_VI": 304,
+        "nov_rate_pct": 24.4
+      },
+      "2018": {
+        "complaints_CP": 1523,
+        "NOV_VI": 224,
+        "nov_rate_pct": 14.7
+      },
+      "2019": {
+        "complaints_CP": 1786,
+        "NOV_VI": 248,
+        "nov_rate_pct": 13.9
+      },
+      "2020": {
+        "complaints_CP": 1671,
+        "NOV_VI": 195,
+        "nov_rate_pct": 11.7
+      },
+      "2021": {
+        "complaints_CP": 1604,
+        "NOV_VI": 150,
+        "nov_rate_pct": 9.4
+      },
+      "2022": {
+        "complaints_CP": 2035,
+        "NOV_VI": 150,
+        "nov_rate_pct": 7.4
+      },
+      "2023": {
+        "complaints_CP": 2155,
+        "NOV_VI": 174,
+        "nov_rate_pct": 8.1
+      },
+      "2024": {
+        "complaints_CP": 2075,
+        "NOV_VI": 202,
+        "nov_rate_pct": 9.7
+      },
+      "2025": {
+        "complaints_CP": 2341,
+        "NOV_VI": 177,
+        "nov_rate_pct": 7.6
+      }
+    },
+    "status_by_open_year": {
+      "2003": {
+        "Completed": 122,
+        "Closed": 1
+      },
+      "2004": {
+        "Completed": 1223,
+        "Closed": 10
+      },
+      "2005": {
+        "Completed": 1123,
+        "Closed": 17
+      },
+      "2006": {
+        "Completed": 1314,
+        "Closed": 3,
+        "Under Investigation": 1
+      },
+      "2007": {
+        "Completed": 1684,
+        "Closed": 2,
+        "NOV Issued": 1,
+        "Reviews Completed": 1
+      },
+      "2008": {
+        "Completed": 1515,
+        "Closed": 4,
+        "NOV Issued": 2,
+        "Stop Work Issued": 1
+      },
+      "2009": {
+        "Completed": 1614,
+        "Closed": 6,
+        "NOV Issued": 2,
+        "Referred to Law": 2,
+        "Compliance Achieved": 1
+      },
+      "2010": {
+        "Completed": 1544,
+        "Closed": 1
+      },
+      "2011": {
+        "Completed": 1236,
+        "Closed": 2
+      },
+      "2012": {
+        "Completed": 1167,
+        "NOV Issued": 2,
+        "Closed": 1,
+        "Reviews In Process": 1
+      },
+      "2013": {
+        "Completed": 1306,
+        "NOV Issued": 8,
+        "Referred to Law": 2,
+        "Initiated": 1,
+        "Citation Issued": 1
+      },
+      "2014": {
+        "Completed": 1536,
+        "Initiated": 9,
+        "Closed": 7,
+        "Referred to Law": 5,
+        "NOV Issued": 3,
+        "Reviews Completed": 1
+      },
+      "2015": {
+        "Completed": 1530,
+        "Initiated": 9,
+        "NOV Issued": 8,
+        "Referred to Law": 2,
+        "Closed": 2,
+        "Under Investigation": 1,
+        "Stop Work Issued": 1,
+        "Hazard Correction Order Issued": 1,
+        "Citation Issued": 1
+      },
+      "2016": {
+        "Completed": 1475,
+        "Closed": 17,
+        "Initiated": 11,
+        "NOV Issued": 10,
+        "Citation Issued": 2,
+        "Under Investigation": 1,
+        "Hazard Correction Order Issued": 1,
+        "Warning": 1,
+        "Reviews Completed": 1
+      },
+      "2017": {
+        "Completed": 1706,
+        "Closed": 32,
+        "NOV Issued": 25,
+        "Initiated": 17,
+        "Stop Work Issued": 5,
+        "Citation Issued": 4,
+        "Referred to Law": 3,
+        "Hazard Correction Order Issued": 1,
+        "Under Investigation": 1
+      },
+      "2018": {
+        "Completed": 1616,
+        "Closed": 286,
+        "NOV Issued": 25,
+        "Initiated": 12,
+        "Under Investigation": 8,
+        "Citation Issued": 8,
+        "Warning": 6,
+        "Issued": 4,
+        "Reviews Completed": 4,
+        "Compliance Achieved": 2,
+        "EO Repair Restore Issued": 1,
+        "Open Duplicate": 1
+      },
+      "2019": {
+        "Completed": 1696,
+        "Closed": 442,
+        "NOV Issued": 42,
+        "Initiated": 20,
+        "Warning": 12,
+        "Citation Issued": 12,
+        "Under Investigation": 9,
+        "Referred to Law": 4,
+        "Compliance Achieved": 3,
+        "Application Completed": 2,
+        "Issued": 2,
+        "Open Duplicate": 1,
+        "EO Vacate Close Issued": 1
+      },
+      "2020": {
+        "Completed": 1441,
+        "Closed": 439,
+        "NOV Issued": 37,
+        "Initiated": 25,
+        "Under Investigation": 22,
+        "Warning": 10,
+        "Hazard Correction Order Issued": 6,
+        "Citation Issued": 4,
+        "Open Duplicate": 2,
+        "Application Completed": 2,
+        "Issued": 1,
+        "EO Vacate Close Issued": 1,
+        "Referred to Law": 1
+      },
+      "2021": {
+        "Completed": 1490,
+        "Closed": 266,
+        "Under Investigation": 48,
+        "NOV Issued": 39,
+        "Initiated": 20,
+        "Open Duplicate": 9,
+        "Warning": 7,
+        "Citation Issued": 6,
+        "EO Vacate Close Issued": 5,
+        "Compliance Achieved": 2,
+        "Referred to Law": 1,
+        "Withdrawn": 1
+      },
+      "2022": {
+        "Completed": 1685,
+        "Closed": 334,
+        "Under Investigation": 140,
+        "NOV Issued": 29,
+        "Open Duplicate": 19,
+        "Initiated": 13,
+        "EO Vacate Close Issued": 10,
+        "Withdrawn": 3,
+        "Issued": 2,
+        "EO Repair Restore Issued": 2,
+        "Referred to Law": 1,
+        "Citation Issued": 1,
+        "Warning": 1,
+        "Application Completed": 1,
+        "Reviews Completed": 1
+      },
+      "2023": {
+        "Completed": 1805,
+        "Under Investigation": 292,
+        "Closed": 289,
+        "Initiated": 29,
+        "NOV Issued": 23,
+        "Open Duplicate": 9,
+        "Warning": 4,
+        "Referred to Law": 4,
+        "Withdrawn": 4,
+        "EO Vacate Close Issued": 3,
+        "Hazard Correction Order Issued": 2,
+        "Citation Issued": 2,
+        "Compliance Achieved": 1,
+        "Stop Work Issued": 1,
+        "Reviews In Process": 1
+      },
+      "2024": {
+        "Completed": 1806,
+        "Under Investigation": 270,
+        "Closed": 217,
+        "NOV Issued": 36,
+        "Initiated": 25,
+        "Open Duplicate": 20,
+        "EO Vacate Close Issued": 14,
+        "Citation Issued": 5,
+        "Withdrawn": 3,
+        "Warning": 3,
+        "Hazard Correction Order Issued": 2,
+        "Reviews Completed": 2,
+        "Issued": 1
+      },
+      "2025": {
+        "Completed": 1616,
+        "Under Investigation": 521,
+        "Closed": 253,
+        "Open Duplicate": 56,
+        "NOV Issued": 53,
+        "Initiated": 43,
+        "EO Vacate Close Issued": 27,
+        "Warning": 13,
+        "Hazard Correction Order Issued": 4,
+        "Citation Issued": 3,
+        "Compliance Achieved": 3,
+        "Reviews Completed": 3,
+        "Reviews In Process": 1
+      }
+    },
+    "time_to_resolution_days": {
+      "count": 24033,
+      "mean": 77.4,
+      "median": 16,
+      "min": 0,
+      "max": 4703,
+      "over_365_days": 1061,
+      "over_730_days": 440,
+      "over_1000_days": 308
+    },
+    "mass_closure_outliers": [
+      {
+        "month": "2007-06",
+        "closures": 193,
+        "avg_monthly": 89.1,
+        "multiplier": 2.2
+      },
+      {
+        "month": "2010-06",
+        "closures": 190,
+        "avg_monthly": 89.1,
+        "multiplier": 2.1
+      }
+    ],
+    "still_open_cases_by_open_year": {
+      "2006": 1,
+      "2007": 2,
+      "2008": 3,
+      "2009": 4,
+      "2012": 3,
+      "2013": 12,
+      "2014": 18,
+      "2015": 23,
+      "2016": 27,
+      "2017": 56,
+      "2018": 65,
+      "2019": 101,
+      "2020": 108,
+      "2021": 135,
+      "2022": 217,
+      "2023": 370,
+      "2024": 377,
+      "2025": 724
+    },
+    "total_still_open": 2246,
+    "referred_to_law": {
+      "total": 25,
+      "by_open_year": {
+        "2014": 5,
+        "2019": 4,
+        "2023": 4,
+        "2017": 3,
+        "2009": 2,
+        "2013": 2,
+        "2015": 2,
+        "2022": 1,
+        "2020": 1,
+        "2021": 1
+      },
+      "by_record_type": {
+        "Construction": 13,
+        "Land Use": 5,
+        "[Blank]": 3,
+        "Emergency , Vacant Building": 1,
+        "Land UseConstruction ,": 1,
+        "LandLord/Tenant": 1,
+        "Vacant Building": 1
+      }
+    },
+    "vacant_building": {
+      "total": 2518,
+      "status_breakdown": {
+        "Completed": 2311,
+        "Closed": 93,
+        "EO Vacate Close Issued": 49,
+        "Open Duplicate": 24,
+        "Initiated": 17,
+        "Under Investigation": 13,
+        "NOV Issued": 9,
+        "Referred to Law": 2
+      },
+      "closed_no_inspection": 518,
+      "EO_vacate_issued": 49,
+      "NOV_issued": 838
+    }
+  },
+  "District_3": {
+    "district": 3,
+    "total_records": 36759,
+    "record_type_breakdown": {
+      "Land Use": 7967,
+      "[Blank]": 6743,
+      "Weeds": 6701,
+      "Construction": 5456,
+      "LandLord/Tenant": 3337,
+      "Noise": 2622,
+      "Vacant Building": 2036,
+      "Emergency , LandLord/Tenant": 589,
+      "Emergency": 395,
+      "Emergency , Vacant Building": 211,
+      "Tree": 202,
+      "Shoreline": 147,
+      "Construction , Tree": 50,
+      "Construction , Noise": 38,
+      "Land UseWeeds ,": 35,
+      "Land UseTree ,": 31,
+      "Construction , Emergency": 27,
+      "Land UseConstruction ,": 27,
+      "Construction , ECA": 25,
+      "Land UseLandLord/Tenant ,": 20,
+      "Land UseNoise ,": 14,
+      "Emergency , Tree": 13,
+      "ECA , Tree": 8,
+      "Land UseVacant Building ,": 8,
+      "Tree , Weeds": 5,
+      "Construction , Emergency , Tree": 4,
+      "Construction , Shoreline": 4,
+      "Construction , Vacant Building": 4,
+      "Land UseShoreline ,": 4,
+      "Construction , LandLord/Tenant": 3,
+      "Construction , Weeds": 3,
+      "Land UseEmergency ,": 3,
+      "LandLord/Tenant , Noise": 3,
+      "Vacant Building , Weeds": 3,
+      "Construction , ECA , Tree": 2,
+      "ECA": 2,
+      "Land UseECA ,": 2,
+      "Shoreline , ECA , Tree": 2,
+      "Tree , Vacant Building": 2,
+      "Construction , Shoreline , ECA": 1,
+      "ECA , Vacant Building": 1,
+      "Emergency , ECA , Tree": 1,
+      "Land UseConstruction , Noise ,": 1,
+      "Land UseConstruction , Tree ,": 1,
+      "Land UseConstruction , Vacant Building ,": 1,
+      "Land UseECA , Tree ,": 1,
+      "LandLord/Tenant , Tree": 1,
+      "LandLord/Tenant , Weeds": 1,
+      "Shoreline , ECA": 1,
+      "Shoreline , Tree": 1
+    },
+    "mapped_type": {
+      "Request": 29377,
+      "Case": 7382
+    },
+    "subtype_flags": {
+      "Complaint_CP": 28564,
+      "Notice_of_Violation_VI": 4766,
+      "Citation_CT": 2560,
+      "TREO_TRAO_in_description": 591,
+      "POTA_in_description": 394,
+      "Unfit_Building_UB_in_description": 93
+    },
+    "landlord_tenant": {
+      "explicit_LT_records": 3954,
+      "blank_type_reclassified_as_LT": 3192,
+      "emergency_type_reclassified_as_LT": 734,
+      "total_estimated_LT_cases": 7880,
+      "pct_of_all_records": 21.4,
+      "status_breakdown": {
+        "Completed": 5359,
+        "Closed": 1575,
+        "Under Investigation": 782,
+        "Open Duplicate": 43,
+        "Initiated": 37,
+        "NOV Issued": 25,
+        "Issued": 15,
+        "Warning": 10,
+        "Reviews Completed": 8,
+        "Referred to Law": 7,
+        "Application Completed": 7,
+        "Withdrawn": 5,
+        "Reviews In Process": 2,
+        "EO Repair Restore Issued": 2,
+        "Citation Issued": 1,
+        "Compliance Achieved": 1,
+        "Hazard Correction Order Issued": 1
+      },
+      "lt_with_NOV": 812,
+      "lt_with_citation": 32,
+      "lt_closed_no_inspection": 5032,
+      "lt_closed_no_insp_pct": 72.6,
+      "lt_TREO_TRAO": 592,
+      "lt_POTA": 393,
+      "lt_referred_to_law": 7,
+      "lt_EO_vacate": 0,
+      "lt_habitability_buckets": {
+        "rent_deposits": 1881,
+        "plumbing": 1109,
+        "mold": 890,
+        "eviction_retaliation": 681,
+        "heat": 598,
+        "infestation": 514,
+        "structural": 476,
+        "windows_doors": 386,
+        "electrical": 294,
+        "hot_water": 271,
+        "appliances": 219,
+        "garbage_debris": 155,
+        "fire_safety": 122,
+        "unfit_building": 79
+      }
+    },
+    "habitability_issues_all_records": {
+      "garbage_debris": 4784,
+      "plumbing": 2753,
+      "infestation": 2107,
+      "rent_deposits": 1714,
+      "windows_doors": 1582,
+      "structural": 1386,
+      "mold": 1010,
+      "electrical": 939,
+      "heat": 798,
+      "eviction_retaliation": 607,
+      "appliances": 560,
+      "hot_water": 449,
+      "fire_safety": 412,
+      "unfit_building": 116
+    },
+    "cases_with_multiple_habitability_issues": 3236,
+    "status_breakdown": {
+      "Completed": 30987,
+      "Closed": 3693,
+      "Under Investigation": 1434,
+      "NOV Issued": 195,
+      "Initiated": 160,
+      "Open Duplicate": 117,
+      "Warning": 35,
+      "Citation Issued": 26,
+      "Referred to Law": 21,
+      "EO Vacate Close Issued": 17,
+      "Hazard Correction Order Issued": 15,
+      "Issued": 15,
+      "Stop Work Issued": 8,
+      "Withdrawn": 8,
+      "Compliance Achieved": 8,
+      "Reviews Completed": 8,
+      "Application Completed": 7,
+      "EO Repair Restore Issued": 3,
+      "Reviews In Process": 2
+    },
+    "inspection_integrity": {
+      "total_closed_completed": 34680,
+      "closed_with_NO_inspection_date": 14366,
+      "closed_no_insp_date_pct": 41.4,
+      "closed_has_insp_date_but_NO_result": 2,
+      "closed_has_date_no_result_pct": 0.0,
+      "cases_closed_BEFORE_opened_LastInspDate": 875,
+      "impossible_date_examples": [
+        {
+          "record": "001407-03CP",
+          "open_date": "2003 Dec 23 12:00:00 AM",
+          "last_insp_date": "2003 Dec 19 12:00:00 AM",
+          "days_before_open": 4
+        },
+        {
+          "record": "002455-04CP",
+          "open_date": "2004 May 07 12:00:00 AM",
+          "last_insp_date": "2004 May 05 12:00:00 AM",
+          "days_before_open": 2
+        },
+        {
+          "record": "003092-04CP",
+          "open_date": "2004 Jun 28 12:00:00 AM",
+          "last_insp_date": "2004 Jun 25 12:00:00 AM",
+          "days_before_open": 3
+        },
+        {
+          "record": "003259-04CP",
+          "open_date": "2004 Jul 12 12:00:00 AM",
+          "last_insp_date": "2004 Jun 09 12:00:00 AM",
+          "days_before_open": 33
+        },
+        {
+          "record": "003275-04CP",
+          "open_date": "2004 Jul 13 12:00:00 AM",
+          "last_insp_date": "2004 Jul 12 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "003530-04CP",
+          "open_date": "2004 Aug 02 12:00:00 AM",
+          "last_insp_date": "2004 Jul 30 12:00:00 AM",
+          "days_before_open": 3
+        },
+        {
+          "record": "003852-04CP",
+          "open_date": "2004 Aug 27 12:00:00 AM",
+          "last_insp_date": "2004 Aug 23 12:00:00 AM",
+          "days_before_open": 4
+        },
+        {
+          "record": "003911-04CP",
+          "open_date": "2004 Sep 01 12:00:00 AM",
+          "last_insp_date": "2004 Aug 31 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "004069-04CP",
+          "open_date": "2004 Sep 14 12:00:00 AM",
+          "last_insp_date": "2004 Sep 03 12:00:00 AM",
+          "days_before_open": 11
+        },
+        {
+          "record": "004166-04CP",
+          "open_date": "2004 Sep 23 12:00:00 AM",
+          "last_insp_date": "2004 Sep 21 12:00:00 AM",
+          "days_before_open": 2
+        }
+      ],
+      "last_insp_result_breakdown": {
+        "": 14368,
+        "Completed": 14024,
+        "Compliance Achieved": 5798,
+        "No Access/Unable to Observe": 167,
+        "Vacant": 117,
+        "Closed": 73,
+        "No Violation": 56,
+        "Admin Closure": 33,
+        "Completed-Virtual": 15,
+        "Compliance Achieved-Virtual": 13,
+        "Withdrawn": 12,
+        "Not Vacant": 1,
+        "Secured with No Violations": 1,
+        "No Structure": 1,
+        "Closed with Violation": 1
+      },
+      "no_access_unable_to_observe": 167,
+      "admin_closure": 33,
+      "compliance_achieved": 5811
+    },
+    "inspection_data_quality_by_year": {
+      "2003": {
+        "total_cases": 102,
+        "no_inspection_date": 24,
+        "no_inspection_date_pct": 23.5,
+        "no_inspection_result": 24,
+        "closed_completed_no_inspection": 23,
+        "closed_no_insp_pct": 22.5
+      },
+      "2004": {
+        "total_cases": 1120,
+        "no_inspection_date": 141,
+        "no_inspection_date_pct": 12.6,
+        "no_inspection_result": 141,
+        "closed_completed_no_inspection": 141,
+        "closed_no_insp_pct": 12.6
+      },
+      "2005": {
+        "total_cases": 1173,
+        "no_inspection_date": 143,
+        "no_inspection_date_pct": 12.2,
+        "no_inspection_result": 143,
+        "closed_completed_no_inspection": 143,
+        "closed_no_insp_pct": 12.2
+      },
+      "2006": {
+        "total_cases": 1318,
+        "no_inspection_date": 130,
+        "no_inspection_date_pct": 9.9,
+        "no_inspection_result": 130,
+        "closed_completed_no_inspection": 130,
+        "closed_no_insp_pct": 9.9
+      },
+      "2007": {
+        "total_cases": 1321,
+        "no_inspection_date": 144,
+        "no_inspection_date_pct": 10.9,
+        "no_inspection_result": 145,
+        "closed_completed_no_inspection": 140,
+        "closed_no_insp_pct": 10.6
+      },
+      "2008": {
+        "total_cases": 1211,
+        "no_inspection_date": 98,
+        "no_inspection_date_pct": 8.1,
+        "no_inspection_result": 98,
+        "closed_completed_no_inspection": 95,
+        "closed_no_insp_pct": 7.8
+      },
+      "2009": {
+        "total_cases": 1074,
+        "no_inspection_date": 72,
+        "no_inspection_date_pct": 6.7,
+        "no_inspection_result": 72,
+        "closed_completed_no_inspection": 72,
+        "closed_no_insp_pct": 6.7
+      },
+      "2010": {
+        "total_cases": 1188,
+        "no_inspection_date": 72,
+        "no_inspection_date_pct": 6.1,
+        "no_inspection_result": 72,
+        "closed_completed_no_inspection": 72,
+        "closed_no_insp_pct": 6.1
+      },
+      "2011": {
+        "total_cases": 889,
+        "no_inspection_date": 141,
+        "no_inspection_date_pct": 15.9,
+        "no_inspection_result": 141,
+        "closed_completed_no_inspection": 139,
+        "closed_no_insp_pct": 15.6
+      },
+      "2012": {
+        "total_cases": 921,
+        "no_inspection_date": 156,
+        "no_inspection_date_pct": 16.9,
+        "no_inspection_result": 156,
+        "closed_completed_no_inspection": 154,
+        "closed_no_insp_pct": 16.7
+      },
+      "2013": {
+        "total_cases": 1095,
+        "no_inspection_date": 165,
+        "no_inspection_date_pct": 15.1,
+        "no_inspection_result": 165,
+        "closed_completed_no_inspection": 158,
+        "closed_no_insp_pct": 14.4
+      },
+      "2014": {
+        "total_cases": 1128,
+        "no_inspection_date": 171,
+        "no_inspection_date_pct": 15.2,
+        "no_inspection_result": 171,
+        "closed_completed_no_inspection": 166,
+        "closed_no_insp_pct": 14.7
+      },
+      "2015": {
+        "total_cases": 1360,
+        "no_inspection_date": 272,
+        "no_inspection_date_pct": 20.0,
+        "no_inspection_result": 272,
+        "closed_completed_no_inspection": 267,
+        "closed_no_insp_pct": 19.6
+      },
+      "2016": {
+        "total_cases": 1481,
+        "no_inspection_date": 359,
+        "no_inspection_date_pct": 24.2,
+        "no_inspection_result": 359,
+        "closed_completed_no_inspection": 340,
+        "closed_no_insp_pct": 23.0
+      },
+      "2017": {
+        "total_cases": 1445,
+        "no_inspection_date": 393,
+        "no_inspection_date_pct": 27.2,
+        "no_inspection_result": 394,
+        "closed_completed_no_inspection": 358,
+        "closed_no_insp_pct": 24.8
+      },
+      "2018": {
+        "total_cases": 2098,
+        "no_inspection_date": 1262,
+        "no_inspection_date_pct": 60.2,
+        "no_inspection_result": 1262,
+        "closed_completed_no_inspection": 1226,
+        "closed_no_insp_pct": 58.4
+      },
+      "2019": {
+        "total_cases": 2504,
+        "no_inspection_date": 1373,
+        "no_inspection_date_pct": 54.8,
+        "no_inspection_result": 1373,
+        "closed_completed_no_inspection": 1342,
+        "closed_no_insp_pct": 53.6
+      },
+      "2020": {
+        "total_cases": 2010,
+        "no_inspection_date": 1282,
+        "no_inspection_date_pct": 63.8,
+        "no_inspection_result": 1282,
+        "closed_completed_no_inspection": 1243,
+        "closed_no_insp_pct": 61.8
+      },
+      "2021": {
+        "total_cases": 1829,
+        "no_inspection_date": 1150,
+        "no_inspection_date_pct": 62.9,
+        "no_inspection_result": 1150,
+        "closed_completed_no_inspection": 1095,
+        "closed_no_insp_pct": 59.9
+      },
+      "2022": {
+        "total_cases": 2616,
+        "no_inspection_date": 2063,
+        "no_inspection_date_pct": 78.9,
+        "no_inspection_result": 2063,
+        "closed_completed_no_inspection": 1861,
+        "closed_no_insp_pct": 71.1
+      },
+      "2023": {
+        "total_cases": 3089,
+        "no_inspection_date": 2401,
+        "no_inspection_date_pct": 77.7,
+        "no_inspection_result": 2401,
+        "closed_completed_no_inspection": 2071,
+        "closed_no_insp_pct": 67.0
+      },
+      "2024": {
+        "total_cases": 2889,
+        "no_inspection_date": 1924,
+        "no_inspection_date_pct": 66.6,
+        "no_inspection_result": 1924,
+        "closed_completed_no_inspection": 1582,
+        "closed_no_insp_pct": 54.8
+      },
+      "2025": {
+        "total_cases": 2898,
+        "no_inspection_date": 2144,
+        "no_inspection_date_pct": 74.0,
+        "no_inspection_result": 2144,
+        "closed_completed_no_inspection": 1548,
+        "closed_no_insp_pct": 53.4
+      }
+    },
+    "complaints_vs_NOV_by_year": {
+      "2003": {
+        "complaints_CP": 68,
+        "NOV_VI": 21,
+        "nov_rate_pct": 30.9
+      },
+      "2004": {
+        "complaints_CP": 631,
+        "NOV_VI": 325,
+        "nov_rate_pct": 51.5
+      },
+      "2005": {
+        "complaints_CP": 681,
+        "NOV_VI": 347,
+        "nov_rate_pct": 51.0
+      },
+      "2006": {
+        "complaints_CP": 746,
+        "NOV_VI": 397,
+        "nov_rate_pct": 53.2
+      },
+      "2007": {
+        "complaints_CP": 740,
+        "NOV_VI": 369,
+        "nov_rate_pct": 49.9
+      },
+      "2008": {
+        "complaints_CP": 717,
+        "NOV_VI": 237,
+        "nov_rate_pct": 33.1
+      },
+      "2009": {
+        "complaints_CP": 652,
+        "NOV_VI": 206,
+        "nov_rate_pct": 31.6
+      },
+      "2010": {
+        "complaints_CP": 693,
+        "NOV_VI": 184,
+        "nov_rate_pct": 26.6
+      },
+      "2011": {
+        "complaints_CP": 605,
+        "NOV_VI": 185,
+        "nov_rate_pct": 30.6
+      },
+      "2012": {
+        "complaints_CP": 636,
+        "NOV_VI": 177,
+        "nov_rate_pct": 27.8
+      },
+      "2013": {
+        "complaints_CP": 771,
+        "NOV_VI": 208,
+        "nov_rate_pct": 27.0
+      },
+      "2014": {
+        "complaints_CP": 785,
+        "NOV_VI": 214,
+        "nov_rate_pct": 27.3
+      },
+      "2015": {
+        "complaints_CP": 982,
+        "NOV_VI": 214,
+        "nov_rate_pct": 21.8
+      },
+      "2016": {
+        "complaints_CP": 1093,
+        "NOV_VI": 222,
+        "nov_rate_pct": 20.3
+      },
+      "2017": {
+        "complaints_CP": 1080,
+        "NOV_VI": 230,
+        "nov_rate_pct": 21.3
+      },
+      "2018": {
+        "complaints_CP": 1747,
+        "NOV_VI": 189,
+        "nov_rate_pct": 10.8
+      },
+      "2019": {
+        "complaints_CP": 2007,
+        "NOV_VI": 250,
+        "nov_rate_pct": 12.5
+      },
+      "2020": {
+        "complaints_CP": 1754,
+        "NOV_VI": 146,
+        "nov_rate_pct": 8.3
+      },
+      "2021": {
+        "complaints_CP": 1604,
+        "NOV_VI": 117,
+        "nov_rate_pct": 7.3
+      },
+      "2022": {
+        "complaints_CP": 2436,
+        "NOV_VI": 93,
+        "nov_rate_pct": 3.8
+      },
+      "2023": {
+        "complaints_CP": 2869,
+        "NOV_VI": 131,
+        "nov_rate_pct": 4.6
+      },
+      "2024": {
+        "complaints_CP": 2586,
+        "NOV_VI": 180,
+        "nov_rate_pct": 7.0
+      },
+      "2025": {
+        "complaints_CP": 2681,
+        "NOV_VI": 124,
+        "nov_rate_pct": 4.6
+      }
+    },
+    "status_by_open_year": {
+      "2003": {
+        "Completed": 101,
+        "Issued": 1
+      },
+      "2004": {
+        "Completed": 1114,
+        "Closed": 6
+      },
+      "2005": {
+        "Completed": 1169,
+        "Closed": 4
+      },
+      "2006": {
+        "Completed": 1317,
+        "Closed": 1
+      },
+      "2007": {
+        "Completed": 1317,
+        "Initiated": 4
+      },
+      "2008": {
+        "Completed": 1207,
+        "Under Investigation": 1,
+        "Closed": 1,
+        "Referred to Law": 1,
+        "NOV Issued": 1
+      },
+      "2009": {
+        "Completed": 1071,
+        "Closed": 3
+      },
+      "2010": {
+        "Completed": 1184,
+        "Closed": 2,
+        "NOV Issued": 1,
+        "Referred to Law": 1
+      },
+      "2011": {
+        "Completed": 885,
+        "Closed": 2,
+        "NOV Issued": 2
+      },
+      "2012": {
+        "Completed": 918,
+        "Initiated": 2,
+        "Closed": 1
+      },
+      "2013": {
+        "Completed": 1083,
+        "NOV Issued": 4,
+        "Closed": 4,
+        "Initiated": 2,
+        "Referred to Law": 1,
+        "Under Investigation": 1
+      },
+      "2014": {
+        "Completed": 1117,
+        "Closed": 5,
+        "Referred to Law": 3,
+        "Initiated": 1,
+        "NOV Issued": 1,
+        "Under Investigation": 1
+      },
+      "2015": {
+        "Completed": 1345,
+        "Closed": 10,
+        "NOV Issued": 3,
+        "Referred to Law": 2
+      },
+      "2016": {
+        "Completed": 1455,
+        "Initiated": 8,
+        "Closed": 7,
+        "NOV Issued": 7,
+        "Citation Issued": 3,
+        "Referred to Law": 1
+      },
+      "2017": {
+        "Completed": 1373,
+        "Closed": 37,
+        "NOV Issued": 14,
+        "Initiated": 10,
+        "Stop Work Issued": 4,
+        "Referred to Law": 2,
+        "Citation Issued": 2,
+        "Under Investigation": 1,
+        "Issued": 1,
+        "Warning": 1
+      },
+      "2018": {
+        "Completed": 1638,
+        "Closed": 415,
+        "NOV Issued": 12,
+        "Under Investigation": 7,
+        "Initiated": 6,
+        "Citation Issued": 4,
+        "Issued": 4,
+        "Stop Work Issued": 3,
+        "Withdrawn": 3,
+        "Open Duplicate": 2,
+        "Warning": 2,
+        "Hazard Correction Order Issued": 1,
+        "Application Completed": 1
+      },
+      "2019": {
+        "Completed": 1974,
+        "Closed": 451,
+        "NOV Issued": 24,
+        "Under Investigation": 14,
+        "Initiated": 11,
+        "Warning": 9,
+        "EO Vacate Close Issued": 7,
+        "Citation Issued": 6,
+        "Referred to Law": 3,
+        "Issued": 3,
+        "Open Duplicate": 1,
+        "Compliance Achieved": 1
+      },
+      "2020": {
+        "Completed": 1461,
+        "Closed": 472,
+        "Under Investigation": 27,
+        "NOV Issued": 20,
+        "Initiated": 16,
+        "Referred to Law": 3,
+        "Application Completed": 3,
+        "Warning": 2,
+        "Citation Issued": 2,
+        "Withdrawn": 1,
+        "Open Duplicate": 1,
+        "Hazard Correction Order Issued": 1,
+        "Issued": 1
+      },
+      "2021": {
+        "Completed": 1408,
+        "Closed": 341,
+        "Under Investigation": 34,
+        "NOV Issued": 17,
+        "Initiated": 9,
+        "Open Duplicate": 4,
+        "Referred to Law": 3,
+        "Warning": 3,
+        "Issued": 2,
+        "Reviews In Process": 2,
+        "EO Vacate Close Issued": 2,
+        "Citation Issued": 2,
+        "Compliance Achieved": 1,
+        "Withdrawn": 1
+      },
+      "2022": {
+        "Completed": 1876,
+        "Closed": 515,
+        "Under Investigation": 171,
+        "NOV Issued": 13,
+        "Initiated": 13,
+        "Open Duplicate": 13,
+        "EO Vacate Close Issued": 3,
+        "Withdrawn": 3,
+        "Compliance Achieved": 2,
+        "Warning": 2,
+        "Hazard Correction Order Issued": 1,
+        "EO Repair Restore Issued": 1,
+        "Issued": 1,
+        "Reviews Completed": 1,
+        "Application Completed": 1
+      },
+      "2023": {
+        "Completed": 2113,
+        "Closed": 590,
+        "Under Investigation": 331,
+        "Initiated": 20,
+        "NOV Issued": 14,
+        "Open Duplicate": 13,
+        "Hazard Correction Order Issued": 3,
+        "Citation Issued": 2,
+        "Warning": 2,
+        "EO Vacate Close Issued": 1
+      },
+      "2024": {
+        "Completed": 2040,
+        "Closed": 429,
+        "Under Investigation": 320,
+        "NOV Issued": 33,
+        "Open Duplicate": 31,
+        "Initiated": 21,
+        "Hazard Correction Order Issued": 5,
+        "Warning": 4,
+        "Compliance Achieved": 2,
+        "Referred to Law": 1,
+        "Reviews Completed": 1,
+        "Application Completed": 1,
+        "Issued": 1
+      },
+      "2025": {
+        "Completed": 1821,
+        "Under Investigation": 526,
+        "Closed": 397,
+        "Open Duplicate": 52,
+        "Initiated": 37,
+        "NOV Issued": 29,
+        "Warning": 10,
+        "Reviews Completed": 6,
+        "Citation Issued": 5,
+        "Hazard Correction Order Issued": 4,
+        "EO Vacate Close Issued": 4,
+        "EO Repair Restore Issued": 2,
+        "Compliance Achieved": 2,
+        "Stop Work Issued": 1,
+        "Issued": 1,
+        "Application Completed": 1
+      }
+    },
+    "time_to_resolution_days": {
+      "count": 19804,
+      "mean": 60.0,
+      "median": 15,
+      "min": 0,
+      "max": 3585,
+      "over_365_days": 601,
+      "over_730_days": 224,
+      "over_1000_days": 126
+    },
+    "mass_closure_outliers": [
+      {
+        "month": "2019-07",
+        "closures": 156,
+        "avg_monthly": 75.8,
+        "multiplier": 2.1
+      }
+    ],
+    "still_open_cases_by_open_year": {
+      "2007": 4,
+      "2008": 3,
+      "2010": 2,
+      "2011": 2,
+      "2012": 2,
+      "2013": 8,
+      "2014": 6,
+      "2015": 5,
+      "2016": 19,
+      "2017": 34,
+      "2018": 37,
+      "2019": 75,
+      "2020": 72,
+      "2021": 76,
+      "2022": 218,
+      "2023": 386,
+      "2024": 416,
+      "2025": 676
+    },
+    "total_still_open": 2041,
+    "referred_to_law": {
+      "total": 21,
+      "by_open_year": {
+        "2014": 3,
+        "2019": 3,
+        "2020": 3,
+        "2021": 3,
+        "2015": 2,
+        "2017": 2,
+        "2013": 1,
+        "2016": 1,
+        "2024": 1,
+        "2008": 1,
+        "2010": 1
+      },
+      "by_record_type": {
+        "[Blank]": 11,
+        "Construction": 6,
+        "Land Use": 2,
+        "Emergency": 1,
+        "Tree": 1
+      }
+    },
+    "vacant_building": {
+      "total": 2266,
+      "status_breakdown": {
+        "Completed": 2098,
+        "Closed": 121,
+        "Under Investigation": 12,
+        "Open Duplicate": 11,
+        "NOV Issued": 9,
+        "EO Vacate Close Issued": 6,
+        "Initiated": 5,
+        "Compliance Achieved": 4
+      },
+      "closed_no_inspection": 499,
+      "EO_vacate_issued": 6,
+      "NOV_issued": 690
+    }
+  },
+  "District_4": {
+    "district": 4,
+    "total_records": 27498,
+    "record_type_breakdown": {
+      "Land Use": 6512,
+      "Weeds": 6477,
+      "[Blank]": 4122,
+      "Construction": 4028,
+      "LandLord/Tenant": 2032,
+      "Noise": 1663,
+      "Vacant Building": 1186,
+      "Emergency , Vacant Building": 299,
+      "Emergency , LandLord/Tenant": 295,
+      "Emergency": 215,
+      "Tree": 201,
+      "Shoreline": 150,
+      "Construction , Tree": 101,
+      "Land UseTree ,": 32,
+      "Construction , Noise": 30,
+      "Emergency , Tree": 29,
+      "Land UseWeeds ,": 22,
+      "Land UseConstruction ,": 20,
+      "Construction , Emergency": 18,
+      "Land UseLandLord/Tenant ,": 9,
+      "Land UseVacant Building ,": 7,
+      "Land UseNoise ,": 6,
+      "Construction , ECA": 5,
+      "Construction , Emergency , Tree": 5,
+      "Land UseShoreline ,": 5,
+      "Land UseEmergency ,": 3,
+      "Tree , Weeds": 3,
+      "Construction , LandLord/Tenant": 2,
+      "Land UseConstruction , Tree ,": 2,
+      "Shoreline , ECA , Tree": 2,
+      "Vacant Building , Weeds": 2,
+      "Construction , ECA , Tree": 1,
+      "Construction , Emergency , ECA , Tree": 1,
+      "Construction , Shoreline , ECA": 1,
+      "Construction , Vacant Building": 1,
+      "Construction , Weeds": 1,
+      "ECA , Tree": 1,
+      "ECA , Vacant Building": 1,
+      "Emergency , ECA , Tree": 1,
+      "Emergency , Weeds": 1,
+      "Land UseECA ,": 1,
+      "Land UseEmergency , LandLord/Tenant ,": 1,
+      "Land UseNoise , Tree ,": 1,
+      "Land UseTree , Weeds ,": 1,
+      "Noise , Tree": 1,
+      "Shoreline , ECA": 1
+    },
+    "mapped_type": {
+      "Request": 21344,
+      "Case": 6154
+    },
+    "subtype_flags": {
+      "Complaint_CP": 20822,
+      "Notice_of_Violation_VI": 3631,
+      "Citation_CT": 2487,
+      "TREO_TRAO_in_description": 437,
+      "POTA_in_description": 281,
+      "Unfit_Building_UB_in_description": 96
+    },
+    "landlord_tenant": {
+      "explicit_LT_records": 2339,
+      "blank_type_reclassified_as_LT": 2126,
+      "emergency_type_reclassified_as_LT": 396,
+      "total_estimated_LT_cases": 4861,
+      "pct_of_all_records": 17.7,
+      "status_breakdown": {
+        "Completed": 3429,
+        "Closed": 842,
+        "Under Investigation": 497,
+        "Initiated": 18,
+        "Open Duplicate": 17,
+        "Issued": 15,
+        "NOV Issued": 11,
+        "Reviews Completed": 9,
+        "Reviews In Process": 5,
+        "Warning": 4,
+        "Citation Issued": 4,
+        "Compliance Achieved": 3,
+        "Referred to Law": 3,
+        "Application Completed": 3,
+        "Withdrawn": 1
+      },
+      "lt_with_NOV": 623,
+      "lt_with_citation": 52,
+      "lt_closed_no_inspection": 2829,
+      "lt_closed_no_insp_pct": 66.2,
+      "lt_TREO_TRAO": 436,
+      "lt_POTA": 277,
+      "lt_referred_to_law": 3,
+      "lt_EO_vacate": 0,
+      "lt_habitability_buckets": {
+        "rent_deposits": 1124,
+        "plumbing": 727,
+        "mold": 706,
+        "eviction_retaliation": 351,
+        "heat": 332,
+        "structural": 298,
+        "infestation": 284,
+        "windows_doors": 277,
+        "electrical": 244,
+        "appliances": 148,
+        "garbage_debris": 114,
+        "hot_water": 109,
+        "fire_safety": 107,
+        "unfit_building": 79
+      }
+    },
+    "habitability_issues_all_records": {
+      "garbage_debris": 3464,
+      "infestation": 2228,
+      "plumbing": 1768,
+      "rent_deposits": 1062,
+      "windows_doors": 1024,
+      "structural": 793,
+      "mold": 793,
+      "electrical": 723,
+      "heat": 505,
+      "appliances": 362,
+      "fire_safety": 333,
+      "eviction_retaliation": 304,
+      "hot_water": 198,
+      "unfit_building": 110
+    },
+    "cases_with_multiple_habitability_issues": 2184,
+    "status_breakdown": {
+      "Completed": 24052,
+      "Closed": 2119,
+      "Under Investigation": 920,
+      "NOV Issued": 114,
+      "Initiated": 96,
+      "Open Duplicate": 51,
+      "Warning": 34,
+      "Citation Issued": 21,
+      "Hazard Correction Order Issued": 16,
+      "Compliance Achieved": 15,
+      "Issued": 15,
+      "Referred to Law": 14,
+      "EO Vacate Close Issued": 9,
+      "Reviews Completed": 9,
+      "Reviews In Process": 5,
+      "Withdrawn": 3,
+      "Application Completed": 3,
+      "EO Repair Restore Issued": 2
+    },
+    "inspection_integrity": {
+      "total_closed_completed": 26171,
+      "closed_with_NO_inspection_date": 9618,
+      "closed_no_insp_date_pct": 36.8,
+      "closed_has_insp_date_but_NO_result": 1,
+      "closed_has_date_no_result_pct": 0.0,
+      "cases_closed_BEFORE_opened_LastInspDate": 717,
+      "impossible_date_examples": [
+        {
+          "record": "001052-03CP",
+          "open_date": "2003 Nov 12 12:00:00 AM",
+          "last_insp_date": "2003 Nov 10 12:00:00 AM",
+          "days_before_open": 2
+        },
+        {
+          "record": "001147-03CP",
+          "open_date": "2003 Nov 21 12:00:00 AM",
+          "last_insp_date": "2003 Nov 20 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001534-04CP",
+          "open_date": "2004 Feb 23 12:00:00 AM",
+          "last_insp_date": "2004 Feb 20 12:00:00 AM",
+          "days_before_open": 3
+        },
+        {
+          "record": "001742-04CP",
+          "open_date": "2004 Mar 09 12:00:00 AM",
+          "last_insp_date": "2004 Mar 08 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "002021-04CP",
+          "open_date": "2004 Mar 31 12:00:00 AM",
+          "last_insp_date": "2004 Mar 29 12:00:00 AM",
+          "days_before_open": 2
+        },
+        {
+          "record": "002291-04CP",
+          "open_date": "2004 Apr 26 12:00:00 AM",
+          "last_insp_date": "2004 Apr 22 12:00:00 AM",
+          "days_before_open": 4
+        },
+        {
+          "record": "002294-04CP",
+          "open_date": "2004 Apr 26 12:00:00 AM",
+          "last_insp_date": "2004 Apr 22 12:00:00 AM",
+          "days_before_open": 4
+        },
+        {
+          "record": "002882-04CP",
+          "open_date": "2004 Jun 14 12:00:00 AM",
+          "last_insp_date": "2004 May 27 12:00:00 AM",
+          "days_before_open": 18
+        },
+        {
+          "record": "003055-04CP",
+          "open_date": "2004 Jun 24 12:00:00 AM",
+          "last_insp_date": "2004 Jun 23 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "003312-04CP",
+          "open_date": "2004 Jul 15 12:00:00 AM",
+          "last_insp_date": "2004 Jul 08 12:00:00 AM",
+          "days_before_open": 7
+        }
+      ],
+      "last_insp_result_breakdown": {
+        "Completed": 11360,
+        "": 9619,
+        "Compliance Achieved": 4926,
+        "Vacant": 74,
+        "No Access/Unable to Observe": 62,
+        "No Violation": 42,
+        "Closed": 35,
+        "Admin Closure": 16,
+        "Compliance Achieved-Virtual": 13,
+        "Completed-Virtual": 11,
+        "Closed with Violation": 8,
+        "Withdrawn": 4,
+        "Secured with No Violations": 1
+      },
+      "no_access_unable_to_observe": 62,
+      "admin_closure": 16,
+      "compliance_achieved": 4939
+    },
+    "inspection_data_quality_by_year": {
+      "2003": {
+        "total_cases": 63,
+        "no_inspection_date": 14,
+        "no_inspection_date_pct": 22.2,
+        "no_inspection_result": 14,
+        "closed_completed_no_inspection": 14,
+        "closed_no_insp_pct": 22.2
+      },
+      "2004": {
+        "total_cases": 746,
+        "no_inspection_date": 98,
+        "no_inspection_date_pct": 13.1,
+        "no_inspection_result": 98,
+        "closed_completed_no_inspection": 98,
+        "closed_no_insp_pct": 13.1
+      },
+      "2005": {
+        "total_cases": 931,
+        "no_inspection_date": 109,
+        "no_inspection_date_pct": 11.7,
+        "no_inspection_result": 109,
+        "closed_completed_no_inspection": 107,
+        "closed_no_insp_pct": 11.5
+      },
+      "2006": {
+        "total_cases": 1007,
+        "no_inspection_date": 76,
+        "no_inspection_date_pct": 7.5,
+        "no_inspection_result": 76,
+        "closed_completed_no_inspection": 75,
+        "closed_no_insp_pct": 7.4
+      },
+      "2007": {
+        "total_cases": 1053,
+        "no_inspection_date": 58,
+        "no_inspection_date_pct": 5.5,
+        "no_inspection_result": 58,
+        "closed_completed_no_inspection": 54,
+        "closed_no_insp_pct": 5.1
+      },
+      "2008": {
+        "total_cases": 950,
+        "no_inspection_date": 33,
+        "no_inspection_date_pct": 3.5,
+        "no_inspection_result": 33,
+        "closed_completed_no_inspection": 33,
+        "closed_no_insp_pct": 3.5
+      },
+      "2009": {
+        "total_cases": 841,
+        "no_inspection_date": 55,
+        "no_inspection_date_pct": 6.5,
+        "no_inspection_result": 55,
+        "closed_completed_no_inspection": 54,
+        "closed_no_insp_pct": 6.4
+      },
+      "2010": {
+        "total_cases": 776,
+        "no_inspection_date": 39,
+        "no_inspection_date_pct": 5.0,
+        "no_inspection_result": 39,
+        "closed_completed_no_inspection": 39,
+        "closed_no_insp_pct": 5.0
+      },
+      "2011": {
+        "total_cases": 715,
+        "no_inspection_date": 129,
+        "no_inspection_date_pct": 18.0,
+        "no_inspection_result": 129,
+        "closed_completed_no_inspection": 127,
+        "closed_no_insp_pct": 17.8
+      },
+      "2012": {
+        "total_cases": 876,
+        "no_inspection_date": 252,
+        "no_inspection_date_pct": 28.8,
+        "no_inspection_result": 252,
+        "closed_completed_no_inspection": 251,
+        "closed_no_insp_pct": 28.7
+      },
+      "2013": {
+        "total_cases": 890,
+        "no_inspection_date": 144,
+        "no_inspection_date_pct": 16.2,
+        "no_inspection_result": 144,
+        "closed_completed_no_inspection": 143,
+        "closed_no_insp_pct": 16.1
+      },
+      "2014": {
+        "total_cases": 968,
+        "no_inspection_date": 215,
+        "no_inspection_date_pct": 22.2,
+        "no_inspection_result": 215,
+        "closed_completed_no_inspection": 214,
+        "closed_no_insp_pct": 22.1
+      },
+      "2015": {
+        "total_cases": 1172,
+        "no_inspection_date": 298,
+        "no_inspection_date_pct": 25.4,
+        "no_inspection_result": 298,
+        "closed_completed_no_inspection": 288,
+        "closed_no_insp_pct": 24.6
+      },
+      "2016": {
+        "total_cases": 1195,
+        "no_inspection_date": 296,
+        "no_inspection_date_pct": 24.8,
+        "no_inspection_result": 296,
+        "closed_completed_no_inspection": 295,
+        "closed_no_insp_pct": 24.7
+      },
+      "2017": {
+        "total_cases": 1432,
+        "no_inspection_date": 367,
+        "no_inspection_date_pct": 25.6,
+        "no_inspection_result": 368,
+        "closed_completed_no_inspection": 359,
+        "closed_no_insp_pct": 25.1
+      },
+      "2018": {
+        "total_cases": 1700,
+        "no_inspection_date": 824,
+        "no_inspection_date_pct": 48.5,
+        "no_inspection_result": 824,
+        "closed_completed_no_inspection": 810,
+        "closed_no_insp_pct": 47.6
+      },
+      "2019": {
+        "total_cases": 1730,
+        "no_inspection_date": 838,
+        "no_inspection_date_pct": 48.4,
+        "no_inspection_result": 838,
+        "closed_completed_no_inspection": 825,
+        "closed_no_insp_pct": 47.7
+      },
+      "2020": {
+        "total_cases": 1461,
+        "no_inspection_date": 840,
+        "no_inspection_date_pct": 57.5,
+        "no_inspection_result": 840,
+        "closed_completed_no_inspection": 825,
+        "closed_no_insp_pct": 56.5
+      },
+      "2021": {
+        "total_cases": 1500,
+        "no_inspection_date": 962,
+        "no_inspection_date_pct": 64.1,
+        "no_inspection_result": 962,
+        "closed_completed_no_inspection": 939,
+        "closed_no_insp_pct": 62.6
+      },
+      "2022": {
+        "total_cases": 1682,
+        "no_inspection_date": 1239,
+        "no_inspection_date_pct": 73.7,
+        "no_inspection_result": 1239,
+        "closed_completed_no_inspection": 1153,
+        "closed_no_insp_pct": 68.5
+      },
+      "2023": {
+        "total_cases": 1925,
+        "no_inspection_date": 1287,
+        "no_inspection_date_pct": 66.9,
+        "no_inspection_result": 1287,
+        "closed_completed_no_inspection": 1104,
+        "closed_no_insp_pct": 57.4
+      },
+      "2024": {
+        "total_cases": 1785,
+        "no_inspection_date": 1068,
+        "no_inspection_date_pct": 59.8,
+        "no_inspection_result": 1068,
+        "closed_completed_no_inspection": 838,
+        "closed_no_insp_pct": 46.9
+      },
+      "2025": {
+        "total_cases": 2100,
+        "no_inspection_date": 1474,
+        "no_inspection_date_pct": 70.2,
+        "no_inspection_result": 1474,
+        "closed_completed_no_inspection": 973,
+        "closed_no_insp_pct": 46.3
+      }
+    },
+    "complaints_vs_NOV_by_year": {
+      "2003": {
+        "complaints_CP": 45,
+        "NOV_VI": 8,
+        "nov_rate_pct": 17.8
+      },
+      "2004": {
+        "complaints_CP": 445,
+        "NOV_VI": 200,
+        "nov_rate_pct": 44.9
+      },
+      "2005": {
+        "complaints_CP": 558,
+        "NOV_VI": 260,
+        "nov_rate_pct": 46.6
+      },
+      "2006": {
+        "complaints_CP": 605,
+        "NOV_VI": 303,
+        "nov_rate_pct": 50.1
+      },
+      "2007": {
+        "complaints_CP": 639,
+        "NOV_VI": 247,
+        "nov_rate_pct": 38.7
+      },
+      "2008": {
+        "complaints_CP": 583,
+        "NOV_VI": 160,
+        "nov_rate_pct": 27.4
+      },
+      "2009": {
+        "complaints_CP": 537,
+        "NOV_VI": 139,
+        "nov_rate_pct": 25.9
+      },
+      "2010": {
+        "complaints_CP": 494,
+        "NOV_VI": 144,
+        "nov_rate_pct": 29.1
+      },
+      "2011": {
+        "complaints_CP": 506,
+        "NOV_VI": 116,
+        "nov_rate_pct": 22.9
+      },
+      "2012": {
+        "complaints_CP": 622,
+        "NOV_VI": 137,
+        "nov_rate_pct": 22.0
+      },
+      "2013": {
+        "complaints_CP": 621,
+        "NOV_VI": 140,
+        "nov_rate_pct": 22.5
+      },
+      "2014": {
+        "complaints_CP": 688,
+        "NOV_VI": 170,
+        "nov_rate_pct": 24.7
+      },
+      "2015": {
+        "complaints_CP": 826,
+        "NOV_VI": 181,
+        "nov_rate_pct": 21.9
+      },
+      "2016": {
+        "complaints_CP": 882,
+        "NOV_VI": 183,
+        "nov_rate_pct": 20.7
+      },
+      "2017": {
+        "complaints_CP": 1018,
+        "NOV_VI": 194,
+        "nov_rate_pct": 19.1
+      },
+      "2018": {
+        "complaints_CP": 1350,
+        "NOV_VI": 159,
+        "nov_rate_pct": 11.8
+      },
+      "2019": {
+        "complaints_CP": 1343,
+        "NOV_VI": 145,
+        "nov_rate_pct": 10.8
+      },
+      "2020": {
+        "complaints_CP": 1196,
+        "NOV_VI": 127,
+        "nov_rate_pct": 10.6
+      },
+      "2021": {
+        "complaints_CP": 1251,
+        "NOV_VI": 133,
+        "nov_rate_pct": 10.6
+      },
+      "2022": {
+        "complaints_CP": 1500,
+        "NOV_VI": 120,
+        "nov_rate_pct": 8.0
+      },
+      "2023": {
+        "complaints_CP": 1704,
+        "NOV_VI": 139,
+        "nov_rate_pct": 8.2
+      },
+      "2024": {
+        "complaints_CP": 1532,
+        "NOV_VI": 129,
+        "nov_rate_pct": 8.4
+      },
+      "2025": {
+        "complaints_CP": 1877,
+        "NOV_VI": 97,
+        "nov_rate_pct": 5.2
+      }
+    },
+    "status_by_open_year": {
+      "2003": {
+        "Completed": 63
+      },
+      "2004": {
+        "Completed": 745,
+        "Closed": 1
+      },
+      "2005": {
+        "Completed": 928,
+        "Closed": 1,
+        "Issued": 1,
+        "Warning": 1
+      },
+      "2006": {
+        "Completed": 1006,
+        "Warning": 1
+      },
+      "2007": {
+        "Completed": 1049,
+        "Initiated": 4
+      },
+      "2008": {
+        "Completed": 949,
+        "Closed": 1
+      },
+      "2009": {
+        "Completed": 838,
+        "Closed": 2,
+        "Citation Issued": 1
+      },
+      "2010": {
+        "Completed": 773,
+        "Closed": 1,
+        "Compliance Achieved": 1,
+        "NOV Issued": 1
+      },
+      "2011": {
+        "Completed": 713,
+        "NOV Issued": 2
+      },
+      "2012": {
+        "Completed": 873,
+        "Closed": 2,
+        "Initiated": 1
+      },
+      "2013": {
+        "Completed": 889,
+        "Referred to Law": 1
+      },
+      "2014": {
+        "Completed": 951,
+        "Closed": 16,
+        "Initiated": 1
+      },
+      "2015": {
+        "Completed": 1147,
+        "Closed": 13,
+        "NOV Issued": 5,
+        "Referred to Law": 3,
+        "Initiated": 2,
+        "Citation Issued": 1,
+        "Reviews Completed": 1
+      },
+      "2016": {
+        "Completed": 1188,
+        "Closed": 5,
+        "Referred to Law": 2
+      },
+      "2017": {
+        "Completed": 1407,
+        "Closed": 15,
+        "NOV Issued": 3,
+        "Citation Issued": 2,
+        "Warning": 2,
+        "Referred to Law": 1,
+        "Compliance Achieved": 1,
+        "Issued": 1
+      },
+      "2018": {
+        "Completed": 1421,
+        "Closed": 261,
+        "Initiated": 5,
+        "Under Investigation": 4,
+        "Compliance Achieved": 2,
+        "Open Duplicate": 2,
+        "Citation Issued": 2,
+        "NOV Issued": 1,
+        "Withdrawn": 1,
+        "Issued": 1
+      },
+      "2019": {
+        "Completed": 1402,
+        "Closed": 304,
+        "Initiated": 6,
+        "Issued": 5,
+        "Warning": 4,
+        "NOV Issued": 3,
+        "Citation Issued": 3,
+        "Compliance Achieved": 1,
+        "Referred to Law": 1,
+        "Reviews Completed": 1
+      },
+      "2020": {
+        "Completed": 1134,
+        "Closed": 306,
+        "NOV Issued": 5,
+        "Initiated": 4,
+        "Under Investigation": 3,
+        "Compliance Achieved": 2,
+        "Open Duplicate": 2,
+        "Application Completed": 2,
+        "EO Repair Restore Issued": 1,
+        "Citation Issued": 1,
+        "Issued": 1
+      },
+      "2021": {
+        "Completed": 1263,
+        "Closed": 210,
+        "NOV Issued": 12,
+        "Open Duplicate": 4,
+        "Initiated": 4,
+        "EO Vacate Close Issued": 2,
+        "Reviews In Process": 2,
+        "Issued": 2,
+        "Citation Issued": 1
+      },
+      "2022": {
+        "Completed": 1298,
+        "Closed": 289,
+        "Under Investigation": 59,
+        "NOV Issued": 15,
+        "Open Duplicate": 10,
+        "Initiated": 4,
+        "Referred to Law": 2,
+        "Compliance Achieved": 2,
+        "EO Vacate Close Issued": 1,
+        "Warning": 1,
+        "Reviews In Process": 1
+      },
+      "2023": {
+        "Completed": 1415,
+        "Closed": 277,
+        "Under Investigation": 180,
+        "NOV Issued": 11,
+        "Initiated": 9,
+        "Open Duplicate": 7,
+        "Hazard Correction Order Issued": 5,
+        "Warning": 4,
+        "Referred to Law": 4,
+        "Compliance Achieved": 3,
+        "Reviews Completed": 3,
+        "Withdrawn": 2,
+        "EO Repair Restore Issued": 1,
+        "EO Vacate Close Issued": 1,
+        "Citation Issued": 1,
+        "Issued": 1,
+        "Reviews In Process": 1
+      },
+      "2024": {
+        "Completed": 1296,
+        "Under Investigation": 211,
+        "Closed": 209,
+        "NOV Issued": 23,
+        "Initiated": 14,
+        "Open Duplicate": 9,
+        "Hazard Correction Order Issued": 8,
+        "Warning": 3,
+        "EO Vacate Close Issued": 3,
+        "Citation Issued": 3,
+        "Issued": 3,
+        "Compliance Achieved": 1,
+        "Reviews Completed": 1,
+        "Reviews In Process": 1
+      },
+      "2025": {
+        "Completed": 1304,
+        "Under Investigation": 463,
+        "Closed": 206,
+        "Initiated": 42,
+        "NOV Issued": 33,
+        "Warning": 18,
+        "Open Duplicate": 17,
+        "Citation Issued": 6,
+        "Hazard Correction Order Issued": 3,
+        "Reviews Completed": 3,
+        "EO Vacate Close Issued": 2,
+        "Compliance Achieved": 2,
+        "Application Completed": 1
+      }
+    },
+    "time_to_resolution_days": {
+      "count": 16066,
+      "mean": 50.3,
+      "median": 15,
+      "min": 0,
+      "max": 3368,
+      "over_365_days": 345,
+      "over_730_days": 135,
+      "over_1000_days": 68
+    },
+    "mass_closure_outliers": [
+      {
+        "month": "2019-07",
+        "closures": 139,
+        "avg_monthly": 61.8,
+        "multiplier": 2.3
+      },
+      {
+        "month": "2008-10",
+        "closures": 134,
+        "avg_monthly": 61.8,
+        "multiplier": 2.2
+      },
+      {
+        "month": "2017-11",
+        "closures": 128,
+        "avg_monthly": 61.8,
+        "multiplier": 2.1
+      }
+    ],
+    "still_open_cases_by_open_year": {
+      "2005": 1,
+      "2006": 1,
+      "2007": 4,
+      "2009": 1,
+      "2010": 1,
+      "2011": 2,
+      "2012": 1,
+      "2013": 1,
+      "2014": 1,
+      "2015": 12,
+      "2016": 2,
+      "2017": 8,
+      "2018": 14,
+      "2019": 18,
+      "2020": 16,
+      "2021": 25,
+      "2022": 93,
+      "2023": 227,
+      "2024": 276,
+      "2025": 587
+    },
+    "total_still_open": 1291,
+    "referred_to_law": {
+      "total": 14,
+      "by_open_year": {
+        "2023": 4,
+        "2015": 3,
+        "2016": 2,
+        "2022": 2,
+        "2013": 1,
+        "2017": 1,
+        "2019": 1
+      },
+      "by_record_type": {
+        "[Blank]": 5,
+        "Construction": 4,
+        "Land Use": 2,
+        "Shoreline": 2,
+        "Emergency": 1
+      }
+    },
+    "vacant_building": {
+      "total": 1496,
+      "status_breakdown": {
+        "Completed": 1315,
+        "Closed": 105,
+        "NOV Issued": 23,
+        "Under Investigation": 17,
+        "Initiated": 11,
+        "EO Vacate Close Issued": 9,
+        "Open Duplicate": 8,
+        "Compliance Achieved": 5,
+        "Warning": 2,
+        "EO Repair Restore Issued": 1
+      },
+      "closed_no_inspection": 304,
+      "EO_vacate_issued": 9,
+      "NOV_issued": 476
+    }
+  },
+  "District_5": {
+    "district": 5,
+    "total_records": 29573,
+    "record_type_breakdown": {
+      "Land Use": 9333,
+      "Weeds": 4733,
+      "Construction": 4407,
+      "[Blank]": 4231,
+      "LandLord/Tenant": 2404,
+      "Vacant Building": 1548,
+      "Noise": 1063,
+      "Tree": 422,
+      "Emergency , LandLord/Tenant": 335,
+      "Emergency , Vacant Building": 285,
+      "Emergency": 247,
+      "Shoreline": 151,
+      "Construction , Tree": 110,
+      "Land UseTree ,": 63,
+      "Emergency , Tree": 48,
+      "Construction , Noise": 30,
+      "Land UseConstruction ,": 30,
+      "Land UseNoise ,": 24,
+      "Construction , Emergency": 20,
+      "Construction , ECA": 17,
+      "Land UseWeeds ,": 10,
+      "Land UseVacant Building ,": 7,
+      "Construction , Emergency , Tree": 5,
+      "Construction , LandLord/Tenant": 5,
+      "Land UseLandLord/Tenant ,": 5,
+      "Construction , Shoreline": 4,
+      "ECA , Tree": 4,
+      "Land UseECA ,": 4,
+      "Land UseECA , Tree ,": 4,
+      "Land UseConstruction , Tree ,": 3,
+      "Land UseEmergency ,": 3,
+      "Tree , Weeds": 3,
+      "Construction , ECA , Tree": 2,
+      "Land UseConstruction , LandLord/Tenant ,": 2,
+      "Land UseConstruction , Noise ,": 2,
+      "Land UseShoreline ,": 2,
+      "LandLord/Tenant , Noise": 2,
+      "Emergency , Weeds": 1,
+      "Land UseEmergency , Tree ,": 1,
+      "LandLord/Tenant , Vacant Building": 1,
+      "Shoreline , Tree": 1,
+      "Vacant Building , Weeds": 1
+    },
+    "mapped_type": {
+      "Request": 22725,
+      "Case": 6848
+    },
+    "subtype_flags": {
+      "Complaint_CP": 22199,
+      "Notice_of_Violation_VI": 4134,
+      "Citation_CT": 2680,
+      "TREO_TRAO_in_description": 433,
+      "POTA_in_description": 272,
+      "Unfit_Building_UB_in_description": 72
+    },
+    "landlord_tenant": {
+      "explicit_LT_records": 2754,
+      "blank_type_reclassified_as_LT": 2110,
+      "emergency_type_reclassified_as_LT": 459,
+      "total_estimated_LT_cases": 5323,
+      "pct_of_all_records": 18.0,
+      "status_breakdown": {
+        "Completed": 3702,
+        "Closed": 1023,
+        "Under Investigation": 496,
+        "NOV Issued": 24,
+        "Open Duplicate": 22,
+        "Initiated": 19,
+        "Issued": 10,
+        "Warning": 6,
+        "Reviews Completed": 6,
+        "Reviews In Process": 5,
+        "Citation Issued": 3,
+        "Referred to Law": 3,
+        "Compliance Achieved": 2,
+        "Application Completed": 2
+      },
+      "lt_with_NOV": 654,
+      "lt_with_citation": 33,
+      "lt_closed_no_inspection": 3294,
+      "lt_closed_no_insp_pct": 69.7,
+      "lt_TREO_TRAO": 434,
+      "lt_POTA": 270,
+      "lt_referred_to_law": 3,
+      "lt_EO_vacate": 0,
+      "lt_habitability_buckets": {
+        "rent_deposits": 1176,
+        "plumbing": 792,
+        "mold": 722,
+        "eviction_retaliation": 528,
+        "structural": 349,
+        "infestation": 342,
+        "heat": 281,
+        "windows_doors": 261,
+        "electrical": 217,
+        "hot_water": 137,
+        "appliances": 128,
+        "garbage_debris": 119,
+        "fire_safety": 75,
+        "unfit_building": 49
+      }
+    },
+    "habitability_issues_all_records": {
+      "garbage_debris": 5126,
+      "plumbing": 2085,
+      "infestation": 1463,
+      "rent_deposits": 1104,
+      "windows_doors": 939,
+      "structural": 885,
+      "electrical": 807,
+      "mold": 795,
+      "appliances": 494,
+      "eviction_retaliation": 470,
+      "heat": 448,
+      "fire_safety": 285,
+      "hot_water": 182,
+      "unfit_building": 87
+    },
+    "cases_with_multiple_habitability_issues": 2494,
+    "status_breakdown": {
+      "Completed": 25744,
+      "Closed": 2313,
+      "Under Investigation": 979,
+      "NOV Issued": 177,
+      "Initiated": 103,
+      "Open Duplicate": 98,
+      "Warning": 36,
+      "Referred to Law": 28,
+      "Citation Issued": 24,
+      "EO Vacate Close Issued": 17,
+      "Hazard Correction Order Issued": 13,
+      "Issued": 11,
+      "Withdrawn": 10,
+      "Compliance Achieved": 6,
+      "Reviews Completed": 6,
+      "Reviews In Process": 5,
+      "Application Completed": 3
+    },
+    "inspection_integrity": {
+      "total_closed_completed": 28057,
+      "closed_with_NO_inspection_date": 9706,
+      "closed_no_insp_date_pct": 34.6,
+      "closed_has_insp_date_but_NO_result": 1,
+      "closed_has_date_no_result_pct": 0.0,
+      "cases_closed_BEFORE_opened_LastInspDate": 783,
+      "impossible_date_examples": [
+        {
+          "record": "001064-03CP",
+          "open_date": "2003 Nov 13 12:00:00 AM",
+          "last_insp_date": "2003 Nov 05 12:00:00 AM",
+          "days_before_open": 8
+        },
+        {
+          "record": "001067-03CP",
+          "open_date": "2003 Nov 13 12:00:00 AM",
+          "last_insp_date": "2003 Nov 05 12:00:00 AM",
+          "days_before_open": 8
+        },
+        {
+          "record": "001163-04CP",
+          "open_date": "2004 Jan 21 12:00:00 AM",
+          "last_insp_date": "2004 Jan 20 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001164-04CP",
+          "open_date": "2004 Jan 21 12:00:00 AM",
+          "last_insp_date": "2004 Jan 20 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001265-04CP",
+          "open_date": "2004 Jan 28 12:00:00 AM",
+          "last_insp_date": "2004 Jan 15 12:00:00 AM",
+          "days_before_open": 13
+        },
+        {
+          "record": "001595-04CP",
+          "open_date": "2004 Feb 26 12:00:00 AM",
+          "last_insp_date": "2004 Feb 25 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "002043-04CP",
+          "open_date": "2004 Apr 01 12:00:00 AM",
+          "last_insp_date": "2004 Mar 17 12:00:00 AM",
+          "days_before_open": 15
+        },
+        {
+          "record": "002097-04CP",
+          "open_date": "2004 Apr 05 12:00:00 AM",
+          "last_insp_date": "2004 Mar 25 12:00:00 AM",
+          "days_before_open": 11
+        },
+        {
+          "record": "002850-04CP",
+          "open_date": "2004 Jun 10 12:00:00 AM",
+          "last_insp_date": "2004 Jun 09 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "003121-04CP",
+          "open_date": "2004 Jun 29 12:00:00 AM",
+          "last_insp_date": "2004 Jun 28 12:00:00 AM",
+          "days_before_open": 1
+        }
+      ],
+      "last_insp_result_breakdown": {
+        "Completed": 12685,
+        "": 9707,
+        "Compliance Achieved": 5325,
+        "Vacant": 82,
+        "No Access/Unable to Observe": 80,
+        "Closed": 50,
+        "No Violation": 43,
+        "Completed-Virtual": 29,
+        "Admin Closure": 21,
+        "Compliance Achieved-Virtual": 18,
+        "Closed with Violation": 10,
+        "Withdrawn": 4,
+        "Passed": 3
+      },
+      "no_access_unable_to_observe": 80,
+      "admin_closure": 21,
+      "compliance_achieved": 5343
+    },
+    "inspection_data_quality_by_year": {
+      "2003": {
+        "total_cases": 73,
+        "no_inspection_date": 15,
+        "no_inspection_date_pct": 20.5,
+        "no_inspection_result": 15,
+        "closed_completed_no_inspection": 15,
+        "closed_no_insp_pct": 20.5
+      },
+      "2004": {
+        "total_cases": 923,
+        "no_inspection_date": 113,
+        "no_inspection_date_pct": 12.2,
+        "no_inspection_result": 114,
+        "closed_completed_no_inspection": 113,
+        "closed_no_insp_pct": 12.2
+      },
+      "2005": {
+        "total_cases": 920,
+        "no_inspection_date": 96,
+        "no_inspection_date_pct": 10.4,
+        "no_inspection_result": 96,
+        "closed_completed_no_inspection": 95,
+        "closed_no_insp_pct": 10.3
+      },
+      "2006": {
+        "total_cases": 1090,
+        "no_inspection_date": 78,
+        "no_inspection_date_pct": 7.2,
+        "no_inspection_result": 78,
+        "closed_completed_no_inspection": 77,
+        "closed_no_insp_pct": 7.1
+      },
+      "2007": {
+        "total_cases": 1158,
+        "no_inspection_date": 84,
+        "no_inspection_date_pct": 7.3,
+        "no_inspection_result": 84,
+        "closed_completed_no_inspection": 82,
+        "closed_no_insp_pct": 7.1
+      },
+      "2008": {
+        "total_cases": 1269,
+        "no_inspection_date": 58,
+        "no_inspection_date_pct": 4.6,
+        "no_inspection_result": 58,
+        "closed_completed_no_inspection": 58,
+        "closed_no_insp_pct": 4.6
+      },
+      "2009": {
+        "total_cases": 978,
+        "no_inspection_date": 41,
+        "no_inspection_date_pct": 4.2,
+        "no_inspection_result": 41,
+        "closed_completed_no_inspection": 41,
+        "closed_no_insp_pct": 4.2
+      },
+      "2010": {
+        "total_cases": 913,
+        "no_inspection_date": 34,
+        "no_inspection_date_pct": 3.7,
+        "no_inspection_result": 34,
+        "closed_completed_no_inspection": 32,
+        "closed_no_insp_pct": 3.5
+      },
+      "2011": {
+        "total_cases": 851,
+        "no_inspection_date": 103,
+        "no_inspection_date_pct": 12.1,
+        "no_inspection_result": 103,
+        "closed_completed_no_inspection": 102,
+        "closed_no_insp_pct": 12.0
+      },
+      "2012": {
+        "total_cases": 755,
+        "no_inspection_date": 116,
+        "no_inspection_date_pct": 15.4,
+        "no_inspection_result": 116,
+        "closed_completed_no_inspection": 116,
+        "closed_no_insp_pct": 15.4
+      },
+      "2013": {
+        "total_cases": 1060,
+        "no_inspection_date": 161,
+        "no_inspection_date_pct": 15.2,
+        "no_inspection_result": 161,
+        "closed_completed_no_inspection": 160,
+        "closed_no_insp_pct": 15.1
+      },
+      "2014": {
+        "total_cases": 1195,
+        "no_inspection_date": 148,
+        "no_inspection_date_pct": 12.4,
+        "no_inspection_result": 148,
+        "closed_completed_no_inspection": 143,
+        "closed_no_insp_pct": 12.0
+      },
+      "2015": {
+        "total_cases": 1187,
+        "no_inspection_date": 182,
+        "no_inspection_date_pct": 15.3,
+        "no_inspection_result": 182,
+        "closed_completed_no_inspection": 176,
+        "closed_no_insp_pct": 14.8
+      },
+      "2016": {
+        "total_cases": 1395,
+        "no_inspection_date": 241,
+        "no_inspection_date_pct": 17.3,
+        "no_inspection_result": 241,
+        "closed_completed_no_inspection": 233,
+        "closed_no_insp_pct": 16.7
+      },
+      "2017": {
+        "total_cases": 1353,
+        "no_inspection_date": 294,
+        "no_inspection_date_pct": 21.7,
+        "no_inspection_result": 294,
+        "closed_completed_no_inspection": 279,
+        "closed_no_insp_pct": 20.6
+      },
+      "2018": {
+        "total_cases": 1397,
+        "no_inspection_date": 748,
+        "no_inspection_date_pct": 53.5,
+        "no_inspection_result": 748,
+        "closed_completed_no_inspection": 738,
+        "closed_no_insp_pct": 52.8
+      },
+      "2019": {
+        "total_cases": 1571,
+        "no_inspection_date": 833,
+        "no_inspection_date_pct": 53.0,
+        "no_inspection_result": 833,
+        "closed_completed_no_inspection": 826,
+        "closed_no_insp_pct": 52.6
+      },
+      "2020": {
+        "total_cases": 1389,
+        "no_inspection_date": 907,
+        "no_inspection_date_pct": 65.3,
+        "no_inspection_result": 907,
+        "closed_completed_no_inspection": 898,
+        "closed_no_insp_pct": 64.7
+      },
+      "2021": {
+        "total_cases": 1625,
+        "no_inspection_date": 1065,
+        "no_inspection_date_pct": 65.5,
+        "no_inspection_result": 1065,
+        "closed_completed_no_inspection": 1037,
+        "closed_no_insp_pct": 63.8
+      },
+      "2022": {
+        "total_cases": 2135,
+        "no_inspection_date": 1558,
+        "no_inspection_date_pct": 73.0,
+        "no_inspection_result": 1558,
+        "closed_completed_no_inspection": 1448,
+        "closed_no_insp_pct": 67.8
+      },
+      "2023": {
+        "total_cases": 2181,
+        "no_inspection_date": 1368,
+        "no_inspection_date_pct": 62.7,
+        "no_inspection_result": 1368,
+        "closed_completed_no_inspection": 1169,
+        "closed_no_insp_pct": 53.6
+      },
+      "2024": {
+        "total_cases": 2085,
+        "no_inspection_date": 1218,
+        "no_inspection_date_pct": 58.4,
+        "no_inspection_result": 1218,
+        "closed_completed_no_inspection": 936,
+        "closed_no_insp_pct": 44.9
+      },
+      "2025": {
+        "total_cases": 2070,
+        "no_inspection_date": 1433,
+        "no_inspection_date_pct": 69.2,
+        "no_inspection_result": 1433,
+        "closed_completed_no_inspection": 932,
+        "closed_no_insp_pct": 45.0
+      }
+    },
+    "complaints_vs_NOV_by_year": {
+      "2003": {
+        "complaints_CP": 47,
+        "NOV_VI": 15,
+        "nov_rate_pct": 31.9
+      },
+      "2004": {
+        "complaints_CP": 522,
+        "NOV_VI": 229,
+        "nov_rate_pct": 43.9
+      },
+      "2005": {
+        "complaints_CP": 536,
+        "NOV_VI": 226,
+        "nov_rate_pct": 42.2
+      },
+      "2006": {
+        "complaints_CP": 618,
+        "NOV_VI": 320,
+        "nov_rate_pct": 51.8
+      },
+      "2007": {
+        "complaints_CP": 657,
+        "NOV_VI": 248,
+        "nov_rate_pct": 37.7
+      },
+      "2008": {
+        "complaints_CP": 746,
+        "NOV_VI": 224,
+        "nov_rate_pct": 30.0
+      },
+      "2009": {
+        "complaints_CP": 607,
+        "NOV_VI": 179,
+        "nov_rate_pct": 29.5
+      },
+      "2010": {
+        "complaints_CP": 555,
+        "NOV_VI": 142,
+        "nov_rate_pct": 25.6
+      },
+      "2011": {
+        "complaints_CP": 582,
+        "NOV_VI": 148,
+        "nov_rate_pct": 25.4
+      },
+      "2012": {
+        "complaints_CP": 516,
+        "NOV_VI": 136,
+        "nov_rate_pct": 26.4
+      },
+      "2013": {
+        "complaints_CP": 704,
+        "NOV_VI": 164,
+        "nov_rate_pct": 23.3
+      },
+      "2014": {
+        "complaints_CP": 784,
+        "NOV_VI": 226,
+        "nov_rate_pct": 28.8
+      },
+      "2015": {
+        "complaints_CP": 816,
+        "NOV_VI": 230,
+        "nov_rate_pct": 28.2
+      },
+      "2016": {
+        "complaints_CP": 967,
+        "NOV_VI": 251,
+        "nov_rate_pct": 26.0
+      },
+      "2017": {
+        "complaints_CP": 977,
+        "NOV_VI": 231,
+        "nov_rate_pct": 23.6
+      },
+      "2018": {
+        "complaints_CP": 1180,
+        "NOV_VI": 147,
+        "nov_rate_pct": 12.5
+      },
+      "2019": {
+        "complaints_CP": 1328,
+        "NOV_VI": 145,
+        "nov_rate_pct": 10.9
+      },
+      "2020": {
+        "complaints_CP": 1221,
+        "NOV_VI": 95,
+        "nov_rate_pct": 7.8
+      },
+      "2021": {
+        "complaints_CP": 1373,
+        "NOV_VI": 129,
+        "nov_rate_pct": 9.4
+      },
+      "2022": {
+        "complaints_CP": 1922,
+        "NOV_VI": 157,
+        "nov_rate_pct": 8.2
+      },
+      "2023": {
+        "complaints_CP": 1911,
+        "NOV_VI": 171,
+        "nov_rate_pct": 8.9
+      },
+      "2024": {
+        "complaints_CP": 1796,
+        "NOV_VI": 183,
+        "nov_rate_pct": 10.2
+      },
+      "2025": {
+        "complaints_CP": 1834,
+        "NOV_VI": 138,
+        "nov_rate_pct": 7.5
+      }
+    },
+    "status_by_open_year": {
+      "2003": {
+        "Completed": 73
+      },
+      "2004": {
+        "Completed": 921,
+        "Closed": 2
+      },
+      "2005": {
+        "Completed": 917,
+        "Closed": 2,
+        "Issued": 1
+      },
+      "2006": {
+        "Completed": 1087,
+        "Reviews Completed": 1,
+        "Initiated": 1,
+        "Issued": 1
+      },
+      "2007": {
+        "Completed": 1155,
+        "Closed": 1,
+        "Warning": 1,
+        "NOV Issued": 1
+      },
+      "2008": {
+        "Completed": 1268,
+        "Closed": 1
+      },
+      "2009": {
+        "Completed": 978
+      },
+      "2010": {
+        "Completed": 909,
+        "Initiated": 2,
+        "Closed": 2
+      },
+      "2011": {
+        "Completed": 850,
+        "NOV Issued": 1
+      },
+      "2012": {
+        "Completed": 750,
+        "Closed": 5
+      },
+      "2013": {
+        "Completed": 1057,
+        "Closed": 2,
+        "NOV Issued": 1
+      },
+      "2014": {
+        "Completed": 1188,
+        "Referred to Law": 2,
+        "Closed": 2,
+        "NOV Issued": 2,
+        "Initiated": 1
+      },
+      "2015": {
+        "Completed": 1176,
+        "Referred to Law": 4,
+        "Closed": 4,
+        "NOV Issued": 3
+      },
+      "2016": {
+        "Completed": 1380,
+        "Closed": 6,
+        "NOV Issued": 6,
+        "Referred to Law": 2,
+        "Issued": 1
+      },
+      "2017": {
+        "Completed": 1311,
+        "Closed": 24,
+        "NOV Issued": 6,
+        "Initiated": 3,
+        "Under Investigation": 3,
+        "Referred to Law": 2,
+        "Citation Issued": 2,
+        "Withdrawn": 1,
+        "Warning": 1
+      },
+      "2018": {
+        "Completed": 1170,
+        "Closed": 213,
+        "Citation Issued": 6,
+        "NOV Issued": 4,
+        "Compliance Achieved": 1,
+        "Warning": 1,
+        "Initiated": 1,
+        "Issued": 1
+      },
+      "2019": {
+        "Completed": 1223,
+        "Closed": 327,
+        "NOV Issued": 7,
+        "Initiated": 4,
+        "Warning": 3,
+        "Under Investigation": 2,
+        "Citation Issued": 2,
+        "Compliance Achieved": 1,
+        "Application Completed": 1,
+        "Reviews Completed": 1
+      },
+      "2020": {
+        "Completed": 1013,
+        "Closed": 350,
+        "NOV Issued": 7,
+        "Referred to Law": 4,
+        "Open Duplicate": 3,
+        "Issued": 3,
+        "Withdrawn": 2,
+        "Initiated": 2,
+        "Under Investigation": 2,
+        "Compliance Achieved": 1,
+        "Warning": 1,
+        "Hazard Correction Order Issued": 1
+      },
+      "2021": {
+        "Completed": 1301,
+        "Closed": 290,
+        "NOV Issued": 13,
+        "Open Duplicate": 8,
+        "Initiated": 4,
+        "Under Investigation": 2,
+        "EO Vacate Close Issued": 2,
+        "Reviews Completed": 1,
+        "Application Completed": 1,
+        "Citation Issued": 1,
+        "Withdrawn": 1,
+        "Referred to Law": 1
+      },
+      "2022": {
+        "Completed": 1675,
+        "Closed": 324,
+        "Under Investigation": 71,
+        "NOV Issued": 29,
+        "Open Duplicate": 13,
+        "Initiated": 7,
+        "Referred to Law": 5,
+        "Withdrawn": 3,
+        "EO Vacate Close Issued": 2,
+        "Issued": 2,
+        "Warning": 1,
+        "Compliance Achieved": 1,
+        "Reviews Completed": 1,
+        "Reviews In Process": 1
+      },
+      "2023": {
+        "Completed": 1619,
+        "Closed": 299,
+        "Under Investigation": 191,
+        "NOV Issued": 22,
+        "Initiated": 18,
+        "Open Duplicate": 13,
+        "Referred to Law": 6,
+        "Hazard Correction Order Issued": 4,
+        "Citation Issued": 3,
+        "Compliance Achieved": 2,
+        "EO Vacate Close Issued": 1,
+        "Withdrawn": 1,
+        "Warning": 1,
+        "Issued": 1
+      },
+      "2024": {
+        "Completed": 1510,
+        "Under Investigation": 258,
+        "Closed": 208,
+        "Open Duplicate": 29,
+        "Initiated": 25,
+        "NOV Issued": 24,
+        "Warning": 8,
+        "EO Vacate Close Issued": 8,
+        "Hazard Correction Order Issued": 7,
+        "Citation Issued": 3,
+        "Referred to Law": 2,
+        "Withdrawn": 1,
+        "Issued": 1,
+        "Reviews Completed": 1
+      },
+      "2025": {
+        "Completed": 1213,
+        "Under Investigation": 450,
+        "Closed": 251,
+        "NOV Issued": 51,
+        "Initiated": 35,
+        "Open Duplicate": 32,
+        "Warning": 19,
+        "Citation Issued": 7,
+        "EO Vacate Close Issued": 4,
+        "Reviews In Process": 4,
+        "Hazard Correction Order Issued": 1,
+        "Withdrawn": 1,
+        "Reviews Completed": 1,
+        "Application Completed": 1
+      }
+    },
+    "time_to_resolution_days": {
+      "count": 17896,
+      "mean": 55.2,
+      "median": 15,
+      "min": 0,
+      "max": 3526,
+      "over_365_days": 472,
+      "over_730_days": 138,
+      "over_1000_days": 66
+    },
+    "mass_closure_outliers": [
+      {
+        "month": "2006-08",
+        "closures": 166,
+        "avg_monthly": 68.5,
+        "multiplier": 2.4
+      },
+      {
+        "month": "2008-10",
+        "closures": 146,
+        "avg_monthly": 68.5,
+        "multiplier": 2.1
+      }
+    ],
+    "still_open_cases_by_open_year": {
+      "2006": 2,
+      "2007": 2,
+      "2010": 2,
+      "2011": 1,
+      "2013": 1,
+      "2014": 5,
+      "2015": 7,
+      "2016": 8,
+      "2017": 17,
+      "2018": 12,
+      "2019": 19,
+      "2020": 20,
+      "2021": 32,
+      "2022": 130,
+      "2023": 259,
+      "2024": 365,
+      "2025": 604
+    },
+    "total_still_open": 1486,
+    "referred_to_law": {
+      "total": 28,
+      "by_open_year": {
+        "2023": 6,
+        "2022": 5,
+        "2015": 4,
+        "2020": 4,
+        "2014": 2,
+        "2016": 2,
+        "2017": 2,
+        "2024": 2,
+        "2021": 1
+      },
+      "by_record_type": {
+        "Construction": 11,
+        "Land Use": 6,
+        "Tree": 5,
+        "[Blank]": 3,
+        "Emergency": 2,
+        "Shoreline": 1
+      }
+    },
+    "vacant_building": {
+      "total": 1842,
+      "status_breakdown": {
+        "Completed": 1661,
+        "Closed": 89,
+        "NOV Issued": 34,
+        "Initiated": 16,
+        "EO Vacate Close Issued": 15,
+        "Open Duplicate": 13,
+        "Under Investigation": 11,
+        "Compliance Achieved": 2,
+        "Warning": 1
+      },
+      "closed_no_inspection": 377,
+      "EO_vacate_issued": 15,
+      "NOV_issued": 629
+    }
+  },
+  "District_6": {
+    "district": 6,
+    "total_records": 31829,
+    "record_type_breakdown": {
+      "Land Use": 7688,
+      "Weeds": 6932,
+      "Construction": 6110,
+      "[Blank]": 3849,
+      "LandLord/Tenant": 2004,
+      "Noise": 1863,
+      "Vacant Building": 1784,
+      "Tree": 333,
+      "Emergency , Vacant Building": 282,
+      "Emergency , LandLord/Tenant": 268,
+      "Emergency": 160,
+      "Shoreline": 119,
+      "Construction , Tree": 102,
+      "Land UseTree ,": 52,
+      "Land UseConstruction ,": 42,
+      "Construction , Noise": 37,
+      "Emergency , Tree": 34,
+      "Land UseWeeds ,": 24,
+      "Land UseNoise ,": 20,
+      "Construction , Emergency": 18,
+      "Construction , ECA": 16,
+      "ECA , Tree": 13,
+      "Tree , Weeds": 12,
+      "Land UseVacant Building ,": 11,
+      "Land UseLandLord/Tenant ,": 8,
+      "Land UseShoreline ,": 6,
+      "Construction , LandLord/Tenant": 5,
+      "Shoreline , ECA": 5,
+      "Shoreline , Tree": 5,
+      "Construction , Emergency , Tree": 4,
+      "Land UseConstruction , Tree ,": 3,
+      "Vacant Building , Weeds": 3,
+      "Construction , Shoreline": 2,
+      "ECA": 2,
+      "Construction , ECA , Tree": 1,
+      "Construction , Shoreline , ECA": 1,
+      "Construction , Weeds": 1,
+      "ECA , Vacant Building": 1,
+      "Land UseConstruction , ECA ,": 1,
+      "Land UseConstruction , ECA , Tree ,": 1,
+      "Land UseConstruction , Noise ,": 1,
+      "Land UseECA , Tree ,": 1,
+      "Land UseEmergency , Tree ,": 1,
+      "LandLord/Tenant , Weeds": 1,
+      "Noise , Vacant Building": 1,
+      "Shoreline , ECA , Tree": 1,
+      "Tree , Vacant Building": 1
+    },
+    "mapped_type": {
+      "Request": 25018,
+      "Case": 6811
+    },
+    "subtype_flags": {
+      "Complaint_CP": 24201,
+      "Notice_of_Violation_VI": 4171,
+      "Citation_CT": 2613,
+      "TREO_TRAO_in_description": 542,
+      "POTA_in_description": 247,
+      "Unfit_Building_UB_in_description": 52
+    },
+    "landlord_tenant": {
+      "explicit_LT_records": 2286,
+      "blank_type_reclassified_as_LT": 1867,
+      "emergency_type_reclassified_as_LT": 345,
+      "total_estimated_LT_cases": 4498,
+      "pct_of_all_records": 14.1,
+      "status_breakdown": {
+        "Completed": 3085,
+        "Closed": 919,
+        "Under Investigation": 371,
+        "Initiated": 33,
+        "Issued": 24,
+        "NOV Issued": 15,
+        "Open Duplicate": 15,
+        "Reviews Completed": 8,
+        "Reviews In Process": 6,
+        "Warning": 5,
+        "Citation Issued": 4,
+        "EO Repair Restore Issued": 4,
+        "Compliance Achieved": 3,
+        "Application Completed": 3,
+        "EO Vacate Close Issued": 3
+      },
+      "lt_with_NOV": 452,
+      "lt_with_citation": 25,
+      "lt_closed_no_inspection": 2916,
+      "lt_closed_no_insp_pct": 72.8,
+      "lt_TREO_TRAO": 545,
+      "lt_POTA": 247,
+      "lt_referred_to_law": 0,
+      "lt_EO_vacate": 3,
+      "lt_habitability_buckets": {
+        "rent_deposits": 1314,
+        "plumbing": 575,
+        "mold": 487,
+        "eviction_retaliation": 294,
+        "structural": 226,
+        "heat": 213,
+        "windows_doors": 211,
+        "electrical": 156,
+        "infestation": 140,
+        "hot_water": 129,
+        "appliances": 95,
+        "garbage_debris": 78,
+        "fire_safety": 74,
+        "unfit_building": 31
+      }
+    },
+    "habitability_issues_all_records": {
+      "garbage_debris": 3995,
+      "plumbing": 1863,
+      "infestation": 1629,
+      "rent_deposits": 1199,
+      "windows_doors": 1164,
+      "structural": 986,
+      "electrical": 748,
+      "mold": 583,
+      "heat": 395,
+      "appliances": 363,
+      "fire_safety": 318,
+      "eviction_retaliation": 265,
+      "hot_water": 215,
+      "unfit_building": 79
+    },
+    "cases_with_multiple_habitability_issues": 2152,
+    "status_breakdown": {
+      "Completed": 27703,
+      "Closed": 2462,
+      "Under Investigation": 1033,
+      "NOV Issued": 159,
+      "Open Duplicate": 143,
+      "Initiated": 138,
+      "Warning": 34,
+      "Citation Issued": 33,
+      "Issued": 24,
+      "Hazard Correction Order Issued": 17,
+      "EO Vacate Close Issued": 17,
+      "Referred to Law": 15,
+      "Compliance Achieved": 15,
+      "Withdrawn": 12,
+      "Reviews Completed": 9,
+      "EO Repair Restore Issued": 6,
+      "Reviews In Process": 6,
+      "Application Completed": 3
+    },
+    "inspection_integrity": {
+      "total_closed_completed": 30165,
+      "closed_with_NO_inspection_date": 11208,
+      "closed_no_insp_date_pct": 37.2,
+      "closed_has_insp_date_but_NO_result": 3,
+      "closed_has_date_no_result_pct": 0.0,
+      "cases_closed_BEFORE_opened_LastInspDate": 798,
+      "impossible_date_examples": [
+        {
+          "record": "001126-03CP",
+          "open_date": "2003 Nov 19 12:00:00 AM",
+          "last_insp_date": "2003 Nov 17 12:00:00 AM",
+          "days_before_open": 2
+        },
+        {
+          "record": "001443-04CP",
+          "open_date": "2004 Feb 13 12:00:00 AM",
+          "last_insp_date": "2004 Feb 12 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001768-04CP",
+          "open_date": "2004 Mar 10 12:00:00 AM",
+          "last_insp_date": "2004 Mar 05 12:00:00 AM",
+          "days_before_open": 5
+        },
+        {
+          "record": "001900-04CP",
+          "open_date": "2004 Mar 19 12:00:00 AM",
+          "last_insp_date": "2004 Mar 17 12:00:00 AM",
+          "days_before_open": 2
+        },
+        {
+          "record": "002086-04CP",
+          "open_date": "2004 Apr 05 12:00:00 AM",
+          "last_insp_date": "2004 Mar 31 12:00:00 AM",
+          "days_before_open": 5
+        },
+        {
+          "record": "002285-04CP",
+          "open_date": "2004 Apr 23 12:00:00 AM",
+          "last_insp_date": "2004 Apr 22 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "002397-04CP",
+          "open_date": "2004 May 04 12:00:00 AM",
+          "last_insp_date": "2004 Apr 30 12:00:00 AM",
+          "days_before_open": 4
+        },
+        {
+          "record": "002814-04CP",
+          "open_date": "2004 Jun 08 12:00:00 AM",
+          "last_insp_date": "2004 Jun 02 12:00:00 AM",
+          "days_before_open": 6
+        },
+        {
+          "record": "002849-04CP",
+          "open_date": "2004 Jun 10 12:00:00 AM",
+          "last_insp_date": "2004 Jun 09 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "002926-04CP",
+          "open_date": "2004 Jun 16 12:00:00 AM",
+          "last_insp_date": "2004 Jun 15 12:00:00 AM",
+          "days_before_open": 1
+        }
+      ],
+      "last_insp_result_breakdown": {
+        "Completed": 13379,
+        "": 11211,
+        "Compliance Achieved": 5091,
+        "Vacant": 157,
+        "No Access/Unable to Observe": 82,
+        "No Violation": 70,
+        "Admin Closure": 50,
+        "Closed": 47,
+        "Completed-Virtual": 34,
+        "Compliance Achieved-Virtual": 23,
+        "Closed with Violation": 9,
+        "Withdrawn": 6,
+        "Not Vacant": 3,
+        "Secured with No Violations": 2,
+        "Passed": 1
+      },
+      "no_access_unable_to_observe": 82,
+      "admin_closure": 50,
+      "compliance_achieved": 5114
+    },
+    "inspection_data_quality_by_year": {
+      "2003": {
+        "total_cases": 62,
+        "no_inspection_date": 5,
+        "no_inspection_date_pct": 8.1,
+        "no_inspection_result": 5,
+        "closed_completed_no_inspection": 5,
+        "closed_no_insp_pct": 8.1
+      },
+      "2004": {
+        "total_cases": 864,
+        "no_inspection_date": 115,
+        "no_inspection_date_pct": 13.3,
+        "no_inspection_result": 116,
+        "closed_completed_no_inspection": 115,
+        "closed_no_insp_pct": 13.3
+      },
+      "2005": {
+        "total_cases": 987,
+        "no_inspection_date": 117,
+        "no_inspection_date_pct": 11.9,
+        "no_inspection_result": 117,
+        "closed_completed_no_inspection": 116,
+        "closed_no_insp_pct": 11.8
+      },
+      "2006": {
+        "total_cases": 1134,
+        "no_inspection_date": 88,
+        "no_inspection_date_pct": 7.8,
+        "no_inspection_result": 88,
+        "closed_completed_no_inspection": 88,
+        "closed_no_insp_pct": 7.8
+      },
+      "2007": {
+        "total_cases": 1198,
+        "no_inspection_date": 79,
+        "no_inspection_date_pct": 6.6,
+        "no_inspection_result": 80,
+        "closed_completed_no_inspection": 79,
+        "closed_no_insp_pct": 6.6
+      },
+      "2008": {
+        "total_cases": 1167,
+        "no_inspection_date": 44,
+        "no_inspection_date_pct": 3.8,
+        "no_inspection_result": 44,
+        "closed_completed_no_inspection": 44,
+        "closed_no_insp_pct": 3.8
+      },
+      "2009": {
+        "total_cases": 1222,
+        "no_inspection_date": 51,
+        "no_inspection_date_pct": 4.2,
+        "no_inspection_result": 51,
+        "closed_completed_no_inspection": 51,
+        "closed_no_insp_pct": 4.2
+      },
+      "2010": {
+        "total_cases": 1061,
+        "no_inspection_date": 27,
+        "no_inspection_date_pct": 2.5,
+        "no_inspection_result": 27,
+        "closed_completed_no_inspection": 27,
+        "closed_no_insp_pct": 2.5
+      },
+      "2011": {
+        "total_cases": 886,
+        "no_inspection_date": 153,
+        "no_inspection_date_pct": 17.3,
+        "no_inspection_result": 153,
+        "closed_completed_no_inspection": 151,
+        "closed_no_insp_pct": 17.0
+      },
+      "2012": {
+        "total_cases": 921,
+        "no_inspection_date": 147,
+        "no_inspection_date_pct": 16.0,
+        "no_inspection_result": 147,
+        "closed_completed_no_inspection": 147,
+        "closed_no_insp_pct": 16.0
+      },
+      "2013": {
+        "total_cases": 948,
+        "no_inspection_date": 146,
+        "no_inspection_date_pct": 15.4,
+        "no_inspection_result": 146,
+        "closed_completed_no_inspection": 144,
+        "closed_no_insp_pct": 15.2
+      },
+      "2014": {
+        "total_cases": 1086,
+        "no_inspection_date": 239,
+        "no_inspection_date_pct": 22.0,
+        "no_inspection_result": 239,
+        "closed_completed_no_inspection": 237,
+        "closed_no_insp_pct": 21.8
+      },
+      "2015": {
+        "total_cases": 1328,
+        "no_inspection_date": 304,
+        "no_inspection_date_pct": 22.9,
+        "no_inspection_result": 304,
+        "closed_completed_no_inspection": 301,
+        "closed_no_insp_pct": 22.7
+      },
+      "2016": {
+        "total_cases": 1232,
+        "no_inspection_date": 266,
+        "no_inspection_date_pct": 21.6,
+        "no_inspection_result": 266,
+        "closed_completed_no_inspection": 260,
+        "closed_no_insp_pct": 21.1
+      },
+      "2017": {
+        "total_cases": 1331,
+        "no_inspection_date": 312,
+        "no_inspection_date_pct": 23.4,
+        "no_inspection_result": 313,
+        "closed_completed_no_inspection": 302,
+        "closed_no_insp_pct": 22.7
+      },
+      "2018": {
+        "total_cases": 1857,
+        "no_inspection_date": 995,
+        "no_inspection_date_pct": 53.6,
+        "no_inspection_result": 995,
+        "closed_completed_no_inspection": 977,
+        "closed_no_insp_pct": 52.6
+      },
+      "2019": {
+        "total_cases": 2108,
+        "no_inspection_date": 1097,
+        "no_inspection_date_pct": 52.0,
+        "no_inspection_result": 1097,
+        "closed_completed_no_inspection": 1084,
+        "closed_no_insp_pct": 51.4
+      },
+      "2020": {
+        "total_cases": 1808,
+        "no_inspection_date": 1173,
+        "no_inspection_date_pct": 64.9,
+        "no_inspection_result": 1173,
+        "closed_completed_no_inspection": 1139,
+        "closed_no_insp_pct": 63.0
+      },
+      "2021": {
+        "total_cases": 1805,
+        "no_inspection_date": 1208,
+        "no_inspection_date_pct": 66.9,
+        "no_inspection_result": 1208,
+        "closed_completed_no_inspection": 1169,
+        "closed_no_insp_pct": 64.8
+      },
+      "2022": {
+        "total_cases": 2154,
+        "no_inspection_date": 1631,
+        "no_inspection_date_pct": 75.7,
+        "no_inspection_result": 1631,
+        "closed_completed_no_inspection": 1506,
+        "closed_no_insp_pct": 69.9
+      },
+      "2023": {
+        "total_cases": 1955,
+        "no_inspection_date": 1274,
+        "no_inspection_date_pct": 65.2,
+        "no_inspection_result": 1274,
+        "closed_completed_no_inspection": 1130,
+        "closed_no_insp_pct": 57.8
+      },
+      "2024": {
+        "total_cases": 2266,
+        "no_inspection_date": 1401,
+        "no_inspection_date_pct": 61.8,
+        "no_inspection_result": 1401,
+        "closed_completed_no_inspection": 1113,
+        "closed_no_insp_pct": 49.1
+      },
+      "2025": {
+        "total_cases": 2449,
+        "no_inspection_date": 1678,
+        "no_inspection_date_pct": 68.5,
+        "no_inspection_result": 1678,
+        "closed_completed_no_inspection": 1023,
+        "closed_no_insp_pct": 41.8
+      }
+    },
+    "complaints_vs_NOV_by_year": {
+      "2003": {
+        "complaints_CP": 47,
+        "NOV_VI": 13,
+        "nov_rate_pct": 27.7
+      },
+      "2004": {
+        "complaints_CP": 487,
+        "NOV_VI": 260,
+        "nov_rate_pct": 53.4
+      },
+      "2005": {
+        "complaints_CP": 589,
+        "NOV_VI": 260,
+        "nov_rate_pct": 44.1
+      },
+      "2006": {
+        "complaints_CP": 652,
+        "NOV_VI": 354,
+        "nov_rate_pct": 54.3
+      },
+      "2007": {
+        "complaints_CP": 727,
+        "NOV_VI": 276,
+        "nov_rate_pct": 38.0
+      },
+      "2008": {
+        "complaints_CP": 734,
+        "NOV_VI": 189,
+        "nov_rate_pct": 25.7
+      },
+      "2009": {
+        "complaints_CP": 770,
+        "NOV_VI": 163,
+        "nov_rate_pct": 21.2
+      },
+      "2010": {
+        "complaints_CP": 638,
+        "NOV_VI": 146,
+        "nov_rate_pct": 22.9
+      },
+      "2011": {
+        "complaints_CP": 610,
+        "NOV_VI": 161,
+        "nov_rate_pct": 26.4
+      },
+      "2012": {
+        "complaints_CP": 635,
+        "NOV_VI": 165,
+        "nov_rate_pct": 26.0
+      },
+      "2013": {
+        "complaints_CP": 640,
+        "NOV_VI": 163,
+        "nov_rate_pct": 25.5
+      },
+      "2014": {
+        "complaints_CP": 745,
+        "NOV_VI": 201,
+        "nov_rate_pct": 27.0
+      },
+      "2015": {
+        "complaints_CP": 988,
+        "NOV_VI": 193,
+        "nov_rate_pct": 19.5
+      },
+      "2016": {
+        "complaints_CP": 925,
+        "NOV_VI": 166,
+        "nov_rate_pct": 17.9
+      },
+      "2017": {
+        "complaints_CP": 979,
+        "NOV_VI": 203,
+        "nov_rate_pct": 20.7
+      },
+      "2018": {
+        "complaints_CP": 1515,
+        "NOV_VI": 196,
+        "nov_rate_pct": 12.9
+      },
+      "2019": {
+        "complaints_CP": 1712,
+        "NOV_VI": 202,
+        "nov_rate_pct": 11.8
+      },
+      "2020": {
+        "complaints_CP": 1536,
+        "NOV_VI": 131,
+        "nov_rate_pct": 8.5
+      },
+      "2021": {
+        "complaints_CP": 1504,
+        "NOV_VI": 157,
+        "nov_rate_pct": 10.4
+      },
+      "2022": {
+        "complaints_CP": 1899,
+        "NOV_VI": 168,
+        "nov_rate_pct": 8.8
+      },
+      "2023": {
+        "complaints_CP": 1713,
+        "NOV_VI": 146,
+        "nov_rate_pct": 8.5
+      },
+      "2024": {
+        "complaints_CP": 1965,
+        "NOV_VI": 144,
+        "nov_rate_pct": 7.3
+      },
+      "2025": {
+        "complaints_CP": 2191,
+        "NOV_VI": 114,
+        "nov_rate_pct": 5.2
+      }
+    },
+    "status_by_open_year": {
+      "2003": {
+        "Completed": 62
+      },
+      "2004": {
+        "Completed": 861,
+        "Closed": 3
+      },
+      "2005": {
+        "Completed": 982,
+        "Closed": 4,
+        "Initiated": 1
+      },
+      "2006": {
+        "Completed": 1132,
+        "Closed": 2
+      },
+      "2007": {
+        "Completed": 1195,
+        "Closed": 3
+      },
+      "2008": {
+        "Completed": 1166,
+        "Closed": 1
+      },
+      "2009": {
+        "Completed": 1220,
+        "Closed": 2
+      },
+      "2010": {
+        "Completed": 1060,
+        "Closed": 1
+      },
+      "2011": {
+        "Completed": 882,
+        "Closed": 2,
+        "Under Investigation": 1,
+        "NOV Issued": 1
+      },
+      "2012": {
+        "Completed": 920,
+        "Closed": 1
+      },
+      "2013": {
+        "Completed": 944,
+        "Referred to Law": 2,
+        "Closed": 2
+      },
+      "2014": {
+        "Completed": 1074,
+        "Closed": 10,
+        "Referred to Law": 1,
+        "NOV Issued": 1
+      },
+      "2015": {
+        "Completed": 1323,
+        "NOV Issued": 2,
+        "Closed": 2,
+        "Referred to Law": 1
+      },
+      "2016": {
+        "Completed": 1221,
+        "Closed": 5,
+        "NOV Issued": 2,
+        "Initiated": 2,
+        "Referred to Law": 1,
+        "Citation Issued": 1
+      },
+      "2017": {
+        "Completed": 1302,
+        "Closed": 19,
+        "Citation Issued": 5,
+        "Referred to Law": 2,
+        "EO Repair Restore Issued": 1,
+        "Warning": 1,
+        "Initiated": 1
+      },
+      "2018": {
+        "Completed": 1491,
+        "Closed": 339,
+        "NOV Issued": 7,
+        "Citation Issued": 4,
+        "Under Investigation": 4,
+        "Referred to Law": 3,
+        "Initiated": 3,
+        "Issued": 3,
+        "Compliance Achieved": 2,
+        "Open Duplicate": 1
+      },
+      "2019": {
+        "Completed": 1666,
+        "Closed": 406,
+        "NOV Issued": 10,
+        "Warning": 6,
+        "Citation Issued": 5,
+        "Initiated": 4,
+        "Issued": 3,
+        "Compliance Achieved": 2,
+        "Reviews Completed": 2,
+        "Referred to Law": 1,
+        "EO Repair Restore Issued": 1,
+        "EO Vacate Close Issued": 1,
+        "Under Investigation": 1
+      },
+      "2020": {
+        "Completed": 1355,
+        "Closed": 408,
+        "Initiated": 21,
+        "NOV Issued": 11,
+        "Issued": 3,
+        "Compliance Achieved": 2,
+        "Warning": 2,
+        "EO Vacate Close Issued": 2,
+        "Withdrawn": 1,
+        "Referred to Law": 1,
+        "Open Duplicate": 1,
+        "Application Completed": 1
+      },
+      "2021": {
+        "Completed": 1469,
+        "Closed": 278,
+        "NOV Issued": 16,
+        "Initiated": 13,
+        "Open Duplicate": 7,
+        "Compliance Achieved": 5,
+        "Under Investigation": 3,
+        "EO Vacate Close Issued": 3,
+        "Issued": 3,
+        "Withdrawn": 2,
+        "Warning": 2,
+        "Reviews In Process": 2,
+        "Hazard Correction Order Issued": 1,
+        "Citation Issued": 1
+      },
+      "2022": {
+        "Completed": 1721,
+        "Closed": 288,
+        "Under Investigation": 63,
+        "NOV Issued": 25,
+        "Initiated": 25,
+        "Open Duplicate": 14,
+        "Withdrawn": 4,
+        "EO Vacate Close Issued": 2,
+        "Compliance Achieved": 2,
+        "Citation Issued": 2,
+        "Reviews Completed": 2,
+        "Reviews In Process": 2,
+        "Hazard Correction Order Issued": 1,
+        "EO Repair Restore Issued": 1,
+        "Warning": 1,
+        "Issued": 1
+      },
+      "2023": {
+        "Completed": 1485,
+        "Closed": 251,
+        "Under Investigation": 154,
+        "NOV Issued": 24,
+        "Initiated": 9,
+        "Open Duplicate": 6,
+        "Citation Issued": 5,
+        "Hazard Correction Order Issued": 3,
+        "EO Vacate Close Issued": 3,
+        "Warning": 3,
+        "Issued": 3,
+        "Withdrawn": 2,
+        "EO Repair Restore Issued": 2,
+        "Compliance Achieved": 2,
+        "Referred to Law": 2,
+        "Reviews In Process": 1
+      },
+      "2024": {
+        "Completed": 1706,
+        "Under Investigation": 220,
+        "Closed": 219,
+        "Open Duplicate": 51,
+        "NOV Issued": 25,
+        "Initiated": 25,
+        "Warning": 6,
+        "Issued": 4,
+        "Hazard Correction Order Issued": 3,
+        "Withdrawn": 3,
+        "Citation Issued": 2,
+        "EO Vacate Close Issued": 1,
+        "Reviews Completed": 1
+      },
+      "2025": {
+        "Completed": 1466,
+        "Under Investigation": 587,
+        "Closed": 216,
+        "Open Duplicate": 63,
+        "NOV Issued": 35,
+        "Initiated": 34,
+        "Warning": 13,
+        "Hazard Correction Order Issued": 9,
+        "Citation Issued": 8,
+        "EO Vacate Close Issued": 5,
+        "Issued": 4,
+        "Reviews Completed": 4,
+        "Application Completed": 2,
+        "EO Repair Restore Issued": 1,
+        "Referred to Law": 1,
+        "Reviews In Process": 1
+      }
+    },
+    "time_to_resolution_days": {
+      "count": 18481,
+      "mean": 55.3,
+      "median": 14,
+      "min": 0,
+      "max": 3208,
+      "over_365_days": 504,
+      "over_730_days": 164,
+      "over_1000_days": 74
+    },
+    "mass_closure_outliers": [
+      {
+        "month": "2019-07",
+        "closures": 171,
+        "avg_monthly": 71.0,
+        "multiplier": 2.4
+      },
+      {
+        "month": "2009-07",
+        "closures": 153,
+        "avg_monthly": 71.0,
+        "multiplier": 2.2
+      },
+      {
+        "month": "2008-10",
+        "closures": 149,
+        "avg_monthly": 71.0,
+        "multiplier": 2.1
+      }
+    ],
+    "still_open_cases_by_open_year": {
+      "2005": 1,
+      "2011": 2,
+      "2013": 2,
+      "2014": 2,
+      "2015": 3,
+      "2016": 6,
+      "2017": 10,
+      "2018": 22,
+      "2019": 31,
+      "2020": 38,
+      "2021": 48,
+      "2022": 138,
+      "2023": 212,
+      "2024": 334,
+      "2025": 761
+    },
+    "total_still_open": 1610,
+    "referred_to_law": {
+      "total": 15,
+      "by_open_year": {
+        "2018": 3,
+        "2013": 2,
+        "2017": 2,
+        "2023": 2,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2019": 1,
+        "2020": 1,
+        "2025": 1
+      },
+      "by_record_type": {
+        "Construction": 10,
+        "Land Use": 2,
+        "Shoreline": 2,
+        "Tree": 1
+      }
+    },
+    "vacant_building": {
+      "total": 2083,
+      "status_breakdown": {
+        "Completed": 1855,
+        "Closed": 138,
+        "NOV Issued": 26,
+        "Initiated": 21,
+        "Under Investigation": 20,
+        "EO Vacate Close Issued": 11,
+        "Open Duplicate": 10,
+        "EO Repair Restore Issued": 1,
+        "Compliance Achieved": 1
+      },
+      "closed_no_inspection": 533,
+      "EO_vacate_issued": 11,
+      "NOV_issued": 587
+    }
+  },
+  "District_7": {
+    "district": 7,
+    "total_records": 25582,
+    "record_type_breakdown": {
+      "Land Use": 4398,
+      "[Blank]": 4398,
+      "Weeds": 4171,
+      "Noise": 3827,
+      "Construction": 3821,
+      "LandLord/Tenant": 2751,
+      "Vacant Building": 862,
+      "Emergency , LandLord/Tenant": 530,
+      "Emergency": 197,
+      "Emergency , Vacant Building": 160,
+      "Tree": 133,
+      "Shoreline": 108,
+      "Construction , Noise": 38,
+      "Construction , Tree": 24,
+      "Land UseConstruction ,": 22,
+      "Emergency , Tree": 20,
+      "Construction , ECA": 18,
+      "Construction , Emergency": 17,
+      "Land UseNoise ,": 15,
+      "Land UseWeeds ,": 11,
+      "Land UseTree ,": 9,
+      "Land UseLandLord/Tenant ,": 8,
+      "Land UseVacant Building ,": 7,
+      "Construction , Vacant Building": 5,
+      "Construction , LandLord/Tenant": 4,
+      "LandLord/Tenant , Noise": 3,
+      "Tree , Weeds": 3,
+      "Construction , ECA , Tree": 2,
+      "ECA , Tree": 2,
+      "Land UseConstruction , Tree ,": 2,
+      "Land UseECA , Tree ,": 2,
+      "Land UseShoreline ,": 2,
+      "Construction , ECA , Tree , Weeds": 1,
+      "Construction , Noise , Tree": 1,
+      "Construction , Shoreline": 1,
+      "Construction , Tree , Vacant Building": 1,
+      "Emergency , LandLord/Tenant , Shoreline": 1,
+      "Land UseConstruction , Noise ,": 1,
+      "Land UseEmergency ,": 1,
+      "Land UseEmergency , Tree ,": 1,
+      "Land UseLandLord/Tenant , Noise ,": 1,
+      "LandLord/Tenant , Weeds": 1,
+      "Noise , Vacant Building": 1,
+      "Vacant Building , Weeds": 1
+    },
+    "mapped_type": {
+      "Request": 21547,
+      "Case": 4035
+    },
+    "subtype_flags": {
+      "Complaint_CP": 21137,
+      "Notice_of_Violation_VI": 2689,
+      "Citation_CT": 1324,
+      "TREO_TRAO_in_description": 328,
+      "POTA_in_description": 287,
+      "Unfit_Building_UB_in_description": 90
+    },
+    "landlord_tenant": {
+      "explicit_LT_records": 3299,
+      "blank_type_reclassified_as_LT": 2084,
+      "emergency_type_reclassified_as_LT": 570,
+      "total_estimated_LT_cases": 5953,
+      "pct_of_all_records": 23.3,
+      "status_breakdown": {
+        "Completed": 3849,
+        "Closed": 1259,
+        "Under Investigation": 708,
+        "Open Duplicate": 43,
+        "Initiated": 25,
+        "NOV Issued": 19,
+        "Issued": 15,
+        "Reviews Completed": 14,
+        "Reviews In Process": 6,
+        "Warning": 4,
+        "Compliance Achieved": 3,
+        "EO Repair Restore Issued": 3,
+        "Referred to Law": 2,
+        "Application Completed": 2,
+        "Withdrawn": 1
+      },
+      "lt_with_NOV": 456,
+      "lt_with_citation": 13,
+      "lt_closed_no_inspection": 3862,
+      "lt_closed_no_insp_pct": 75.6,
+      "lt_TREO_TRAO": 327,
+      "lt_POTA": 284,
+      "lt_referred_to_law": 2,
+      "lt_EO_vacate": 0,
+      "lt_habitability_buckets": {
+        "rent_deposits": 1405,
+        "plumbing": 818,
+        "mold": 631,
+        "eviction_retaliation": 538,
+        "infestation": 375,
+        "structural": 335,
+        "heat": 325,
+        "windows_doors": 226,
+        "hot_water": 174,
+        "electrical": 169,
+        "appliances": 127,
+        "garbage_debris": 120,
+        "unfit_building": 81,
+        "fire_safety": 71
+      }
+    },
+    "habitability_issues_all_records": {
+      "garbage_debris": 2193,
+      "plumbing": 1766,
+      "infestation": 1269,
+      "rent_deposits": 1234,
+      "windows_doors": 1017,
+      "structural": 920,
+      "mold": 697,
+      "electrical": 664,
+      "heat": 473,
+      "eviction_retaliation": 450,
+      "hot_water": 302,
+      "appliances": 270,
+      "fire_safety": 222,
+      "unfit_building": 102
+    },
+    "cases_with_multiple_habitability_issues": 1913,
+    "status_breakdown": {
+      "Completed": 21246,
+      "Closed": 2772,
+      "Under Investigation": 1000,
+      "Initiated": 144,
+      "Open Duplicate": 135,
+      "NOV Issued": 123,
+      "Citation Issued": 35,
+      "Warning": 28,
+      "Issued": 17,
+      "Hazard Correction Order Issued": 15,
+      "Referred to Law": 14,
+      "EO Vacate Close Issued": 14,
+      "Reviews Completed": 14,
+      "EO Repair Restore Issued": 9,
+      "Reviews In Process": 6,
+      "Compliance Achieved": 5,
+      "Withdrawn": 3,
+      "Application Completed": 2
+    },
+    "inspection_integrity": {
+      "total_closed_completed": 24018,
+      "closed_with_NO_inspection_date": 11651,
+      "closed_no_insp_date_pct": 48.5,
+      "closed_has_insp_date_but_NO_result": 0,
+      "closed_has_date_no_result_pct": 0.0,
+      "cases_closed_BEFORE_opened_LastInspDate": 633,
+      "impossible_date_examples": [
+        {
+          "record": "001616-04CP",
+          "open_date": "2004 Feb 27 12:00:00 AM",
+          "last_insp_date": "2004 Feb 26 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "001926-04CP",
+          "open_date": "2004 Mar 22 12:00:00 AM",
+          "last_insp_date": "2004 Mar 03 12:00:00 AM",
+          "days_before_open": 19
+        },
+        {
+          "record": "001957-04CP",
+          "open_date": "2004 Mar 24 12:00:00 AM",
+          "last_insp_date": "2004 Mar 04 12:00:00 AM",
+          "days_before_open": 20
+        },
+        {
+          "record": "001966-04CP",
+          "open_date": "2004 Mar 25 12:00:00 AM",
+          "last_insp_date": "2004 Mar 04 12:00:00 AM",
+          "days_before_open": 21
+        },
+        {
+          "record": "002034-04CP",
+          "open_date": "2004 Mar 31 12:00:00 AM",
+          "last_insp_date": "2004 Mar 12 12:00:00 AM",
+          "days_before_open": 19
+        },
+        {
+          "record": "002498-04CP",
+          "open_date": "2004 May 13 12:00:00 AM",
+          "last_insp_date": "2004 May 12 12:00:00 AM",
+          "days_before_open": 1
+        },
+        {
+          "record": "003139-04CP",
+          "open_date": "2004 Jul 01 12:00:00 AM",
+          "last_insp_date": "2004 Jun 15 12:00:00 AM",
+          "days_before_open": 16
+        },
+        {
+          "record": "004372-04CP",
+          "open_date": "2004 Oct 11 12:00:00 AM",
+          "last_insp_date": "2004 Oct 08 12:00:00 AM",
+          "days_before_open": 3
+        },
+        {
+          "record": "004471-04CP",
+          "open_date": "2004 Oct 20 12:00:00 AM",
+          "last_insp_date": "2004 Oct 18 12:00:00 AM",
+          "days_before_open": 2
+        },
+        {
+          "record": "001169-05CP",
+          "open_date": "2005 Jan 20 12:00:00 AM",
+          "last_insp_date": "2005 Jan 19 12:00:00 AM",
+          "days_before_open": 1
+        }
+      ],
+      "last_insp_result_breakdown": {
+        "": 11651,
+        "Completed": 9059,
+        "Compliance Achieved": 2866,
+        "No Access/Unable to Observe": 136,
+        "No Violation": 73,
+        "Vacant": 67,
+        "Admin Closure": 38,
+        "Compliance Achieved-Virtual": 29,
+        "Withdrawn": 26,
+        "Completed-Virtual": 21,
+        "Closed": 21,
+        "No Structure": 8,
+        "Not Vacant": 8,
+        "Secured with No Violations": 7,
+        "Closed with Violation": 5,
+        "Passed": 2,
+        "Occupied": 1
+      },
+      "no_access_unable_to_observe": 136,
+      "admin_closure": 38,
+      "compliance_achieved": 2895
+    },
+    "inspection_data_quality_by_year": {
+      "2003": {
+        "total_cases": 67,
+        "no_inspection_date": 9,
+        "no_inspection_date_pct": 13.4,
+        "no_inspection_result": 9,
+        "closed_completed_no_inspection": 9,
+        "closed_no_insp_pct": 13.4
+      },
+      "2004": {
+        "total_cases": 499,
+        "no_inspection_date": 86,
+        "no_inspection_date_pct": 17.2,
+        "no_inspection_result": 86,
+        "closed_completed_no_inspection": 86,
+        "closed_no_insp_pct": 17.2
+      },
+      "2005": {
+        "total_cases": 611,
+        "no_inspection_date": 91,
+        "no_inspection_date_pct": 14.9,
+        "no_inspection_result": 91,
+        "closed_completed_no_inspection": 91,
+        "closed_no_insp_pct": 14.9
+      },
+      "2006": {
+        "total_cases": 681,
+        "no_inspection_date": 76,
+        "no_inspection_date_pct": 11.2,
+        "no_inspection_result": 76,
+        "closed_completed_no_inspection": 75,
+        "closed_no_insp_pct": 11.0
+      },
+      "2007": {
+        "total_cases": 662,
+        "no_inspection_date": 63,
+        "no_inspection_date_pct": 9.5,
+        "no_inspection_result": 63,
+        "closed_completed_no_inspection": 62,
+        "closed_no_insp_pct": 9.4
+      },
+      "2008": {
+        "total_cases": 822,
+        "no_inspection_date": 49,
+        "no_inspection_date_pct": 6.0,
+        "no_inspection_result": 49,
+        "closed_completed_no_inspection": 49,
+        "closed_no_insp_pct": 6.0
+      },
+      "2009": {
+        "total_cases": 584,
+        "no_inspection_date": 35,
+        "no_inspection_date_pct": 6.0,
+        "no_inspection_result": 35,
+        "closed_completed_no_inspection": 33,
+        "closed_no_insp_pct": 5.7
+      },
+      "2010": {
+        "total_cases": 738,
+        "no_inspection_date": 37,
+        "no_inspection_date_pct": 5.0,
+        "no_inspection_result": 37,
+        "closed_completed_no_inspection": 37,
+        "closed_no_insp_pct": 5.0
+      },
+      "2011": {
+        "total_cases": 587,
+        "no_inspection_date": 120,
+        "no_inspection_date_pct": 20.4,
+        "no_inspection_result": 120,
+        "closed_completed_no_inspection": 118,
+        "closed_no_insp_pct": 20.1
+      },
+      "2012": {
+        "total_cases": 684,
+        "no_inspection_date": 214,
+        "no_inspection_date_pct": 31.3,
+        "no_inspection_result": 214,
+        "closed_completed_no_inspection": 212,
+        "closed_no_insp_pct": 31.0
+      },
+      "2013": {
+        "total_cases": 590,
+        "no_inspection_date": 110,
+        "no_inspection_date_pct": 18.6,
+        "no_inspection_result": 110,
+        "closed_completed_no_inspection": 110,
+        "closed_no_insp_pct": 18.6
+      },
+      "2014": {
+        "total_cases": 657,
+        "no_inspection_date": 126,
+        "no_inspection_date_pct": 19.2,
+        "no_inspection_result": 126,
+        "closed_completed_no_inspection": 123,
+        "closed_no_insp_pct": 18.7
+      },
+      "2015": {
+        "total_cases": 890,
+        "no_inspection_date": 156,
+        "no_inspection_date_pct": 17.5,
+        "no_inspection_result": 156,
+        "closed_completed_no_inspection": 153,
+        "closed_no_insp_pct": 17.2
+      },
+      "2016": {
+        "total_cases": 983,
+        "no_inspection_date": 294,
+        "no_inspection_date_pct": 29.9,
+        "no_inspection_result": 294,
+        "closed_completed_no_inspection": 280,
+        "closed_no_insp_pct": 28.5
+      },
+      "2017": {
+        "total_cases": 1197,
+        "no_inspection_date": 427,
+        "no_inspection_date_pct": 35.7,
+        "no_inspection_result": 427,
+        "closed_completed_no_inspection": 412,
+        "closed_no_insp_pct": 34.4
+      },
+      "2018": {
+        "total_cases": 1590,
+        "no_inspection_date": 1033,
+        "no_inspection_date_pct": 65.0,
+        "no_inspection_result": 1033,
+        "closed_completed_no_inspection": 1007,
+        "closed_no_insp_pct": 63.3
+      },
+      "2019": {
+        "total_cases": 1823,
+        "no_inspection_date": 1166,
+        "no_inspection_date_pct": 64.0,
+        "no_inspection_result": 1166,
+        "closed_completed_no_inspection": 1159,
+        "closed_no_insp_pct": 63.6
+      },
+      "2020": {
+        "total_cases": 1578,
+        "no_inspection_date": 1160,
+        "no_inspection_date_pct": 73.5,
+        "no_inspection_result": 1160,
+        "closed_completed_no_inspection": 1132,
+        "closed_no_insp_pct": 71.7
+      },
+      "2021": {
+        "total_cases": 1477,
+        "no_inspection_date": 1093,
+        "no_inspection_date_pct": 74.0,
+        "no_inspection_result": 1093,
+        "closed_completed_no_inspection": 1062,
+        "closed_no_insp_pct": 71.9
+      },
+      "2022": {
+        "total_cases": 1887,
+        "no_inspection_date": 1557,
+        "no_inspection_date_pct": 82.5,
+        "no_inspection_result": 1557,
+        "closed_completed_no_inspection": 1407,
+        "closed_no_insp_pct": 74.6
+      },
+      "2023": {
+        "total_cases": 2082,
+        "no_inspection_date": 1614,
+        "no_inspection_date_pct": 77.5,
+        "no_inspection_result": 1614,
+        "closed_completed_no_inspection": 1379,
+        "closed_no_insp_pct": 66.2
+      },
+      "2024": {
+        "total_cases": 2263,
+        "no_inspection_date": 1529,
+        "no_inspection_date_pct": 67.6,
+        "no_inspection_result": 1529,
+        "closed_completed_no_inspection": 1257,
+        "closed_no_insp_pct": 55.5
+      },
+      "2025": {
+        "total_cases": 2630,
+        "no_inspection_date": 1958,
+        "no_inspection_date_pct": 74.4,
+        "no_inspection_result": 1958,
+        "closed_completed_no_inspection": 1398,
+        "closed_no_insp_pct": 53.2
+      }
+    },
+    "complaints_vs_NOV_by_year": {
+      "2003": {
+        "complaints_CP": 47,
+        "NOV_VI": 19,
+        "nov_rate_pct": 40.4
+      },
+      "2004": {
+        "complaints_CP": 319,
+        "NOV_VI": 131,
+        "nov_rate_pct": 41.1
+      },
+      "2005": {
+        "complaints_CP": 385,
+        "NOV_VI": 176,
+        "nov_rate_pct": 45.7
+      },
+      "2006": {
+        "complaints_CP": 430,
+        "NOV_VI": 196,
+        "nov_rate_pct": 45.6
+      },
+      "2007": {
+        "complaints_CP": 425,
+        "NOV_VI": 139,
+        "nov_rate_pct": 32.7
+      },
+      "2008": {
+        "complaints_CP": 550,
+        "NOV_VI": 112,
+        "nov_rate_pct": 20.4
+      },
+      "2009": {
+        "complaints_CP": 375,
+        "NOV_VI": 113,
+        "nov_rate_pct": 30.1
+      },
+      "2010": {
+        "complaints_CP": 465,
+        "NOV_VI": 120,
+        "nov_rate_pct": 25.8
+      },
+      "2011": {
+        "complaints_CP": 424,
+        "NOV_VI": 95,
+        "nov_rate_pct": 22.4
+      },
+      "2012": {
+        "complaints_CP": 533,
+        "NOV_VI": 90,
+        "nov_rate_pct": 16.9
+      },
+      "2013": {
+        "complaints_CP": 452,
+        "NOV_VI": 92,
+        "nov_rate_pct": 20.4
+      },
+      "2014": {
+        "complaints_CP": 489,
+        "NOV_VI": 105,
+        "nov_rate_pct": 21.5
+      },
+      "2015": {
+        "complaints_CP": 688,
+        "NOV_VI": 125,
+        "nov_rate_pct": 18.2
+      },
+      "2016": {
+        "complaints_CP": 785,
+        "NOV_VI": 111,
+        "nov_rate_pct": 14.1
+      },
+      "2017": {
+        "complaints_CP": 956,
+        "NOV_VI": 146,
+        "nov_rate_pct": 15.3
+      },
+      "2018": {
+        "complaints_CP": 1390,
+        "NOV_VI": 117,
+        "nov_rate_pct": 8.4
+      },
+      "2019": {
+        "complaints_CP": 1575,
+        "NOV_VI": 150,
+        "nov_rate_pct": 9.5
+      },
+      "2020": {
+        "complaints_CP": 1405,
+        "NOV_VI": 93,
+        "nov_rate_pct": 6.6
+      },
+      "2021": {
+        "complaints_CP": 1338,
+        "NOV_VI": 84,
+        "nov_rate_pct": 6.3
+      },
+      "2022": {
+        "complaints_CP": 1749,
+        "NOV_VI": 103,
+        "nov_rate_pct": 5.9
+      },
+      "2023": {
+        "complaints_CP": 1933,
+        "NOV_VI": 94,
+        "nov_rate_pct": 4.9
+      },
+      "2024": {
+        "complaints_CP": 2019,
+        "NOV_VI": 151,
+        "nov_rate_pct": 7.5
+      },
+      "2025": {
+        "complaints_CP": 2405,
+        "NOV_VI": 127,
+        "nov_rate_pct": 5.3
+      }
+    },
+    "status_by_open_year": {
+      "2003": {
+        "Completed": 67
+      },
+      "2004": {
+        "Completed": 495,
+        "Closed": 4
+      },
+      "2005": {
+        "Completed": 609,
+        "Closed": 2
+      },
+      "2006": {
+        "Completed": 679,
+        "Closed": 1,
+        "Initiated": 1
+      },
+      "2007": {
+        "Completed": 661,
+        "NOV Issued": 1
+      },
+      "2008": {
+        "Completed": 821,
+        "Closed": 1
+      },
+      "2009": {
+        "Completed": 581,
+        "Initiated": 2,
+        "Closed": 1
+      },
+      "2010": {
+        "Completed": 738
+      },
+      "2011": {
+        "Completed": 585,
+        "NOV Issued": 1,
+        "Warning": 1
+      },
+      "2012": {
+        "Completed": 681,
+        "Referred to Law": 1,
+        "Under Investigation": 1,
+        "Reviews In Process": 1
+      },
+      "2013": {
+        "Completed": 588,
+        "Closed": 2
+      },
+      "2014": {
+        "Completed": 646,
+        "Closed": 6,
+        "Initiated": 3,
+        "NOV Issued": 1,
+        "Reviews Completed": 1
+      },
+      "2015": {
+        "Completed": 882,
+        "Closed": 5,
+        "NOV Issued": 2,
+        "Referred to Law": 1
+      },
+      "2016": {
+        "Completed": 962,
+        "Citation Issued": 10,
+        "Closed": 5,
+        "Initiated": 2,
+        "Issued": 2,
+        "Under Investigation": 1,
+        "NOV Issued": 1
+      },
+      "2017": {
+        "Completed": 1161,
+        "Closed": 18,
+        "Initiated": 6,
+        "Citation Issued": 5,
+        "NOV Issued": 3,
+        "Referred to Law": 2,
+        "Warning": 2
+      },
+      "2018": {
+        "Completed": 1293,
+        "Closed": 268,
+        "Initiated": 14,
+        "Citation Issued": 7,
+        "NOV Issued": 4,
+        "Issued": 3,
+        "Under Investigation": 1
+      },
+      "2019": {
+        "Completed": 1423,
+        "Closed": 381,
+        "NOV Issued": 6,
+        "Referred to Law": 4,
+        "Initiated": 4,
+        "Citation Issued": 2,
+        "Under Investigation": 1,
+        "Issued": 1,
+        "EO Vacate Close Issued": 1
+      },
+      "2020": {
+        "Completed": 1145,
+        "Closed": 388,
+        "Initiated": 21,
+        "NOV Issued": 10,
+        "Warning": 4,
+        "Issued": 3,
+        "EO Repair Restore Issued": 2,
+        "Referred to Law": 1,
+        "Under Investigation": 1,
+        "Open Duplicate": 1,
+        "Reviews In Process": 1,
+        "Reviews Completed": 1
+      },
+      "2021": {
+        "Completed": 1151,
+        "Closed": 289,
+        "Initiated": 11,
+        "Under Investigation": 8,
+        "NOV Issued": 5,
+        "Compliance Achieved": 3,
+        "Withdrawn": 2,
+        "EO Repair Restore Issued": 2,
+        "Citation Issued": 1,
+        "Issued": 1,
+        "Open Duplicate": 1,
+        "Application Completed": 1,
+        "EO Vacate Close Issued": 1,
+        "Hazard Correction Order Issued": 1
+      },
+      "2022": {
+        "Completed": 1348,
+        "Closed": 371,
+        "Under Investigation": 96,
+        "NOV Issued": 22,
+        "Initiated": 21,
+        "Open Duplicate": 13,
+        "Hazard Correction Order Issued": 3,
+        "Citation Issued": 2,
+        "Reviews Completed": 2,
+        "EO Repair Restore Issued": 2,
+        "Reviews In Process": 2,
+        "EO Vacate Close Issued": 1,
+        "Withdrawn": 1,
+        "Compliance Achieved": 1,
+        "Issued": 1,
+        "Referred to Law": 1
+      },
+      "2023": {
+        "Completed": 1444,
+        "Closed": 366,
+        "Under Investigation": 219,
+        "Open Duplicate": 15,
+        "Initiated": 14,
+        "NOV Issued": 12,
+        "Citation Issued": 4,
+        "Hazard Correction Order Issued": 3,
+        "Issued": 2,
+        "EO Repair Restore Issued": 1,
+        "EO Vacate Close Issued": 1,
+        "Referred to Law": 1
+      },
+      "2024": {
+        "Completed": 1644,
+        "Closed": 312,
+        "Under Investigation": 212,
+        "Open Duplicate": 29,
+        "NOV Issued": 27,
+        "Initiated": 14,
+        "Warning": 6,
+        "Hazard Correction Order Issued": 4,
+        "EO Vacate Close Issued": 4,
+        "Citation Issued": 4,
+        "Referred to Law": 3,
+        "Issued": 3,
+        "Reviews Completed": 1
+      },
+      "2025": {
+        "Completed": 1642,
+        "Under Investigation": 460,
+        "Closed": 352,
+        "Open Duplicate": 76,
+        "Initiated": 31,
+        "NOV Issued": 28,
+        "Warning": 15,
+        "Reviews Completed": 9,
+        "EO Vacate Close Issued": 6,
+        "Hazard Correction Order Issued": 4,
+        "EO Repair Restore Issued": 2,
+        "Reviews In Process": 2,
+        "Issued": 1,
+        "Compliance Achieved": 1,
+        "Application Completed": 1
+      }
+    },
+    "time_to_resolution_days": {
+      "count": 11946,
+      "mean": 54.1,
+      "median": 14,
+      "min": 0,
+      "max": 3116,
+      "over_365_days": 306,
+      "over_730_days": 89,
+      "over_1000_days": 52
+    },
+    "mass_closure_outliers": [
+      {
+        "month": "2010-07",
+        "closures": 115,
+        "avg_monthly": 46.5,
+        "multiplier": 2.5
+      },
+      {
+        "month": "2008-07",
+        "closures": 99,
+        "avg_monthly": 46.5,
+        "multiplier": 2.1
+      }
+    ],
+    "still_open_cases_by_open_year": {
+      "2006": 1,
+      "2007": 1,
+      "2009": 2,
+      "2011": 2,
+      "2012": 3,
+      "2014": 5,
+      "2015": 3,
+      "2016": 14,
+      "2017": 18,
+      "2018": 26,
+      "2019": 18,
+      "2020": 42,
+      "2021": 30,
+      "2022": 165,
+      "2023": 270,
+      "2024": 304,
+      "2025": 633
+    },
+    "total_still_open": 1537,
+    "referred_to_law": {
+      "total": 14,
+      "by_open_year": {
+        "2019": 4,
+        "2024": 3,
+        "2017": 2,
+        "2012": 1,
+        "2015": 1,
+        "2020": 1,
+        "2023": 1,
+        "2022": 1
+      },
+      "by_record_type": {
+        "Construction": 9,
+        "[Blank]": 3,
+        "Construction , Vacant Building": 1,
+        "Tree": 1
+      }
+    },
+    "vacant_building": {
+      "total": 1037,
+      "status_breakdown": {
+        "Completed": 947,
+        "Closed": 46,
+        "EO Vacate Close Issued": 12,
+        "Initiated": 9,
+        "NOV Issued": 9,
+        "Under Investigation": 7,
+        "Open Duplicate": 6,
+        "Referred to Law": 1
+      },
+      "closed_no_inspection": 289,
+      "EO_vacate_issued": 12,
+      "NOV_issued": 290
+    }
+  }
+}

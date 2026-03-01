@@ -1,0 +1,240 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>District 5 Enforcement Dossier -- Debora Juarez</title>
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<style>
+:root{--bg:#070b12;--panel:#0c1424;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.65);--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:radial-gradient(1200px 700px at 25% -10%,rgba(45,127,249,.22),transparent 55%),
+             radial-gradient(900px 600px at 85% 10%,rgba(245,158,11,.15),transparent 55%),var(--bg);
+  color:var(--text);}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px 40px}
+.hdr{border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:22px}
+.hdr h1{margin:0 0 4px;font-size:26px;letter-spacing:.3px}
+.hdr .sub{margin:0;color:var(--muted);font-size:13px}
+.hdr .badge{display:inline-block;background:rgba(45,127,249,.18);border:1px solid rgba(45,127,249,.4);
+  color:#8fc3ff;font-size:11px;padding:3px 10px;border-radius:999px;margin-right:8px;margin-bottom:4px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+  border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.kpi{padding:14px 14px 12px}
+.kpi .lbl{font-size:11px;color:var(--muted);margin-bottom:8px;line-height:1.3}
+.kpi .val{font-size:24px;font-weight:750;letter-spacing:.3px}
+.kpi .note{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.3}
+.kpi.blue .val{color:var(--blue)}.kpi.orange .val{color:var(--orange)}.kpi.red .val{color:var(--red)}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.chart{padding:14px}
+.chart h3{margin:0 0 8px;font-size:12px;color:rgba(233,238,247,.85);font-weight:650}
+.plot{width:100%;height:260px}
+.section{padding:16px;margin-bottom:14px}
+.section h2{margin:0 0 12px;font-size:14px;letter-spacing:.2px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;vertical-align:top}
+th{color:rgba(233,238,247,.7);font-weight:650}
+td{color:rgba(233,238,247,.82)}
+.rl{color:#8fc3ff;font-weight:600;text-decoration:none;border-bottom:1px dotted rgba(143,195,255,.4)}
+.rl:hover{color:#c9e2ff}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.cmpCard{padding:14px}
+.cmpCard h3{margin:0 0 10px;font-size:12px;color:rgba(233,238,247,.85)}
+.cmpRow{display:flex;justify-content:space-between;font-size:11.5px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.cmpRow:last-child{border-bottom:none}
+.cmpLbl{color:var(--muted)}
+.cmpVal{font-weight:650}
+.higher{color:var(--red)}.lower{color:#4ade80}.same{color:var(--muted)}
+.foot{margin-top:22px;padding:14px;border-top:1px solid var(--border);font-size:10.5px;color:rgba(233,238,247,.45);line-height:1.55}
+@media(max-width:780px){.kpis{grid-template-columns:repeat(2,1fr)}.charts,.cmp{grid-template-columns:1fr}}
+@media(max-width:500px){.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <span class="badge">District 5</span>
+    <span class="badge">Council Member -- Debora Juarez</span>
+    <span class="badge">North Seattle, Lake City, Bitter Lake, Broadview</span>
+    <h1>SDCI Enforcement Accountability Dossier</h1>
+    <p class="sub">Seattle Department of Construction and Inspections -- Complaint Records 2003-2025 -- Source: CITYWIDE_ALL_20251231_ENRICHED_01272025</p>
+  </div>
+
+  <!-- KPI ROW 1 -->
+  <div class="kpis">
+    <div class="panel kpi blue">
+      <div class="lbl">Total Records (All Years)</div>
+      <div class="val">29,573</div>
+      <div class="note">All record types, District 5</div>
+    </div>
+    <div class="panel kpi blue">
+      <div class="lbl">Complaints (CP)</div>
+      <div class="val">22,199</div>
+      <div class="note">75.1% of all D5 records</div>
+    </div>
+    <div class="panel kpi orange">
+      <div class="lbl">Notices of Violation (NOV)</div>
+      <div class="val">4,134</div>
+      <div class="note">Formal enforcement actions issued</div>
+    </div>
+    <div class="panel kpi orange">
+      <div class="lbl">NOV Rate (NOV per CP)</div>
+      <div class="val">18.62%</div>
+      <div class="note">Citywide avg: 17.7% -- District is above avg</div>
+    </div>
+  </div>
+
+  <!-- KPI ROW 2 -->
+  <div class="kpis">
+    <div class="panel kpi orange">
+      <div class="lbl">Missing Inspection Date</div>
+      <div class="val">10,894</div>
+      <div class="note">No LastInspDate recorded in structured fields</div>
+    </div>
+    <div class="panel kpi red">
+      <div class="lbl">Closed -- No Inspection Result</div>
+      <div class="val">9,709</div>
+      <div class="note">34.6% of closed records -- Citywide: 37.3%</div>
+    </div>
+    <div class="panel kpi blue">
+      <div class="lbl">Landlord/Tenant Records (LLT)</div>
+      <div class="val">2,754</div>
+      <div class="note">RecordTypeDesc contains LANDLORD (all years)</div>
+    </div>
+    <div class="panel kpi orange">
+      <div class="lbl">LLT NOV Rate</div>
+      <div class="val">2.6%</div>
+      <div class="note">Of LLT complaints, this % escalated to NOV</div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts">
+    <div class="panel chart">
+      <h3>Complaints vs NOVs by Year -- District 5</h3>
+      <div id="chart_trend" class="plot"></div>
+    </div>
+    <div class="panel chart">
+      <h3>Records Missing Inspection Date by Year -- District 5</h3>
+      <div id="chart_missing" class="plot"></div>
+    </div>
+  </div>
+
+  <!-- LLT BREAKDOWN -->
+  <div class="panel section" style="margin-bottom:14px">
+    <h2>Landlord/Tenant (LLT) Enforcement Breakdown -- District 5 (All Years)</h2>
+    <table>
+      <thead><tr><th>Category</th><th>Count</th><th>% of LLT Total</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>LLT Total Records</td><td>2,754</td><td>100%</td><td>All records where RecordTypeDesc contains LANDLORD</td></tr>
+        <tr><td>LLT Complaints (CP)</td><td>2,672</td><td>97%</td><td>Initial complaint filings</td></tr>
+        <tr><td>LLT Notices of Violation (NOV)</td><td>72</td><td>2.6%</td><td>Formal enforcement actions</td></tr>
+        <tr><td>LLT Citations (CI)</td><td>10</td><td>0.4%</td><td>Monetary enforcement penalties</td></tr>
+        <tr><td>LLT Tenant Relocation (TR)</td><td>0</td><td>0%</td><td>No TR records in LLT category for this district</td></tr>
+        <tr><td>LLT Unfit Building (UB)</td><td>0</td><td>0%</td><td>No UB records in LLT category for this district</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COMPARISON vs CITYWIDE -->
+  <div class="cmp">
+    <div class="panel cmpCard">
+      <h3>District 5 vs Citywide -- Key Enforcement Metrics</h3>
+      <div class="cmpRow"><span class="cmpLbl">Total Records</span><span class="cmpVal">29,573 vs 233,543</span></div>
+      <div class="cmpRow"><span class="cmpLbl">Complaints</span><span class="cmpVal">22,199 vs 177,431</span></div>
+      <div class="cmpRow"><span class="cmpLbl">NOVs</span><span class="cmpVal">4,134 vs 31,409</span></div>
+      <div class="cmpRow"><span class="cmpLbl">NOV Rate</span>
+        <span class="cmpVal higher">18.62% vs 17.7%</span></div>
+      <div class="cmpRow"><span class="cmpLbl">Missing Inspection Date</span><span class="cmpVal">10,894 vs 92,564</span></div>
+      <div class="cmpRow"><span class="cmpLbl">Closed Without Insp Result</span>
+        <span class="cmpVal lower">34.6% vs 37.3%</span></div>
+    </div>
+    <div class="panel cmpCard">
+      <h3>District 5 -- LLT vs Citywide</h3>
+      <div class="cmpRow"><span class="cmpLbl">LLT Total Records</span><span class="cmpVal">2,754 vs 20,325</span></div>
+      <div class="cmpRow"><span class="cmpLbl">LLT Complaints</span><span class="cmpVal">2,672</span></div>
+      <div class="cmpRow"><span class="cmpLbl">LLT NOVs</span><span class="cmpVal">72</span></div>
+      <div class="cmpRow"><span class="cmpLbl">LLT Citations</span><span class="cmpVal">10</span></div>
+      <div class="cmpRow"><span class="cmpLbl">LLT NOV Rate</span>
+        <span class="cmpVal higher">2.6% vs 2.5% citywide</span></div>
+      <div class="cmpRow"><span class="cmpLbl">Closed No Result Rank</span>
+        <span class="cmpVal">34.6% -- below citywide avg</span></div>
+    </div>
+  </div>
+
+  <!-- OLDEST OPEN CASES -->
+  <div class="panel section" style="margin-bottom:14px">
+    <h2>Oldest Open Cases -- District 5 (Structured Records, Linked to SDCI)</h2>
+    <table>
+      <thead><tr><th>Open Date</th><th>Record Number</th><th>Status</th><th>Category</th><th>Address</th></tr></thead>
+      <tbody><tr><td>2017-03-07</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1039619-VI' target='_blank' rel='noopener'>1039619-VI</a></td><td>Under Investigation</td><td>Blank</td><td>4106 NE 103RD PL</td></tr>
+<tr><td>2017-06-20</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1040465-VI' target='_blank' rel='noopener'>1040465-VI</a></td><td>Under Investigation</td><td>Land Use</td><td>12570 33RD AVE NE</td></tr>
+<tr><td>2017-12-19</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1042039-UB' target='_blank' rel='noopener'>1042039-UB</a></td><td>Under Investigation</td><td>Blank</td><td>1015 NE 100TH ST</td></tr>
+<tr><td>2019-02-27</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=001463-19CP' target='_blank' rel='noopener'>001463-19CP</a></td><td>Under Investigation</td><td>Noise</td><td>2820 NE 127TH ST</td></tr>
+<tr><td>2019-12-06</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1049215-VI' target='_blank' rel='noopener'>1049215-VI</a></td><td>Under Investigation</td><td>Emergency</td><td>14307 35TH AVE NE</td></tr>
+<tr><td>2020-06-20</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=005121-20CP' target='_blank' rel='noopener'>005121-20CP</a></td><td>Open Duplicate</td><td>Land Use</td><td>9017 3RD AVE NW</td></tr>
+<tr><td>2020-08-20</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=007357-20CP' target='_blank' rel='noopener'>007357-20CP</a></td><td>Open Duplicate</td><td>Land Use</td><td>2544 NE 143RD ST</td></tr>
+<tr><td>2020-11-20</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=009900-20CP' target='_blank' rel='noopener'>009900-20CP</a></td><td>Open Duplicate</td><td>Land Use</td><td>13215 37th AVE NE</td></tr>
+<tr><td>2020-12-07</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=010215-20CP' target='_blank' rel='noopener'>010215-20CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>14324 32ND AVE NE</td></tr>
+<tr><td>2020-12-07</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=010302-20CP' target='_blank' rel='noopener'>010302-20CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>14324 32ND AVE NE</td></tr>
+<tr><td>2021-06-24</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004899-21CP' target='_blank' rel='noopener'>004899-21CP</a></td><td>Open Duplicate</td><td>Weeds</td><td>10172 HOLMAN RD NW</td></tr>
+<tr><td>2021-06-24</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004898-21CP' target='_blank' rel='noopener'>004898-21CP</a></td><td>Open Duplicate</td><td>Weeds</td><td>10164 HOLMAN RD NW</td></tr>
+<tr><td>2021-06-24</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004897-21CP' target='_blank' rel='noopener'>004897-21CP</a></td><td>Open Duplicate</td><td>Weeds</td><td>10158 A HOLMAN RD NW</td></tr>
+<tr><td>2021-06-24</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004896-21CP' target='_blank' rel='noopener'>004896-21CP</a></td><td>Open Duplicate</td><td>Weeds</td><td>10146 HOLMAN RD NW</td></tr>
+<tr><td>2021-06-24</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004895-21CP' target='_blank' rel='noopener'>004895-21CP</a></td><td>Open Duplicate</td><td>Weeds</td><td>10138 A HOLMAN RD NW</td></tr>
+<tr><td>2021-06-24</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004894-21CP' target='_blank' rel='noopener'>004894-21CP</a></td><td>Open Duplicate</td><td>Weeds</td><td>10126 A HOLMAN RD NW</td></tr>
+<tr><td>2021-06-24</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004893-21CP' target='_blank' rel='noopener'>004893-21CP</a></td><td>Open Duplicate</td><td>Weeds</td><td>10124 A HOLMAN RD NW</td></tr>
+<tr><td>2021-08-02</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=006170-21CP' target='_blank' rel='noopener'>006170-21CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>13700 AURORA AVE N</td></tr>
+<tr><td>2021-11-09</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=009450-21CP' target='_blank' rel='noopener'>009450-21CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>12750 9TH AVE NW</td></tr>
+<tr><td>2021-12-27</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=010617-21CP' target='_blank' rel='noopener'>010617-21CP</a></td><td>Open Duplicate</td><td>Blank</td><td>13000 LINDEN AVE N</td></tr>
+<tr><td>2022-01-06</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=000224-22CP' target='_blank' rel='noopener'>000224-22CP</a></td><td>Open Duplicate</td><td>LandLord/Tenant</td><td>510 NE 98TH ST</td></tr>
+<tr><td>2022-01-31</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=000979-22CP' target='_blank' rel='noopener'>000979-22CP</a></td><td>Open Duplicate</td><td>Noise</td><td>8751 14TH AVE NW</td></tr>
+<tr><td>2022-02-01</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=001051-22CP' target='_blank' rel='noopener'>001051-22CP</a></td><td>Open Duplicate</td><td>Blank</td><td>9000 20TH AVE NE</td></tr>
+<tr><td>2022-03-01</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=001817-22CP' target='_blank' rel='noopener'>001817-22CP</a></td><td>Open Duplicate</td><td>Blank</td><td>8520 EVANSTON AVE N</td></tr>
+<tr><td>2022-03-12</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=002195-22CP' target='_blank' rel='noopener'>002195-22CP</a></td><td>Under Investigation</td><td>Construction</td><td>3500 NE 125TH ST</td></tr>
+</tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    <strong>Data source:</strong> CITYWIDE_ALL_20251231_ENRICHED_01272025__PLUS_RECORDLIST_TEXT.csv -- Seattle SDCI enforcement records 2003-2025 (233,543 records total).<br>
+    <strong>Methodology:</strong> All figures derived from structured CSV fields only (RECORDTYPE, STATUSCURRENT, LASTINSPDATE, LASTINSPRESULT, DISTRICT, OPENYEAR). No narrative or description text used for enforcement outcome claims.<br>
+    <strong>Core KPI definition (Rulebook 4.6):</strong> "Closed/Completed without recorded inspection result" = STATUSCURRENT in {Closed, Completed} AND LASTINSPRESULT is blank.<br>
+    <strong>LLT definition:</strong> RECORDTYPEDESC field contains "LANDLORD" (case-insensitive wildcard match).<br>
+    <strong>District assignments:</strong> Based on DISTRICT field in CSV. 2670 records citywide have no district assigned and are excluded from district totals.<br>
+    <strong>Generated:</strong> 2026-03-01 -- Seattle Landlord-Tenant Coalition for Accountability (STLCA)
+  </div>
+
+</div>
+<script>
+const YEARS   = [2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const CP_DATA = [47,522,536,618,657,746,607,555,582,516,704,784,816,967,977,1180,1328,1221,1373,1922,1911,1796,1834];
+const NOV_DATA= [15,229,226,320,248,224,179,142,148,136,164,226,230,251,231,147,145,95,129,157,171,183,138];
+const MISS    = [15,113,96,78,84,58,41,34,103,116,161,148,182,241,294,748,833,907,1065,1558,1368,1218,1433];
+
+const LAYOUT = (title) => ({
+  height:260, margin:{l:50,r:16,t:10,b:40},
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
+  font:{color:'rgba(233,238,247,.82)',size:11},
+  xaxis:{gridcolor:'rgba(255,255,255,.06)',tickfont:{size:10}},
+  yaxis:{gridcolor:'rgba(255,255,255,.06)',tickfont:{size:10}},
+  legend:{orientation:'h',x:0,y:1.12,font:{size:10}}
+});
+const CFG = {responsive:true,displayModeBar:false};
+
+Plotly.newPlot('chart_trend',[
+  {x:YEARS,y:CP_DATA,name:'Complaints',type:'scatter',mode:'lines+markers',
+   line:{color:'#2d7ff9',width:2},marker:{size:4}},
+  {x:YEARS,y:NOV_DATA,name:'NOVs',type:'scatter',mode:'lines+markers',
+   line:{color:'#f59e0b',width:2},marker:{size:4}}
+], LAYOUT(), CFG);
+
+Plotly.newPlot('chart_missing',[
+  {x:YEARS,y:MISS,name:'Missing Insp Date',type:'bar',
+   marker:{color:'rgba(239,68,68,.7)',line:{color:'rgba(239,68,68,.9)',width:1}}}
+], LAYOUT(), CFG);
+</script>
+</body>
+</html>
