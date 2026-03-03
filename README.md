@@ -1,145 +1,223 @@
-# STLCA — Seattle Housing Enforcement Audit
-## Public Records Analysis | February 2026
+# STLCA — Seattle Tenant & Landlord Compliance Audit
 
-> **Seattle Tenants & Landlord Code Accountability (STLCA)**  
-> Analysis of SDCI complaint records, RRIO registration data, and city permit files.  
-> All source data obtained via public records request and Seattle Open Data Portal.
+**Live site:** https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html
 
 ---
 
 ## What This Is
 
-A data-driven audit of Seattle's Department of Construction and Inspections (SDCI) enforcement record, specifically examining how landlord/tenant complaints are documented, closed, and cross-referenced against rental registration and permit activity.
+STLCA is an independent, non-partisan data analytics and oversight project. It analyzes publicly available City of Seattle enforcement records — specifically complaint data from the Seattle Department of Construction and Inspections (SDCI) — to produce structured, verifiable assessments of how code compliance is documented, and where the public record cannot confirm that enforcement occurred.
 
-**Core finding:** 43.8% of all closed CP complaints citywide (73,212 records) have zero inspection documentation — no date, no result, nothing. For landlord/tenant cases the rate is 76.1%. The failure is not partial logging. It is total absence.
+This is not a tenant advocacy organization. It is an oversight project that presents verified findings from public data. The work contains no political asks and no calls to action. The data speaks on its own terms, measured against itself.
 
----
-
-## Dashboard Suite
-
-Six self-contained HTML files. Open in any browser. No server required.
-
-| File | What It Shows |
-|------|--------------|
-| `STLCA_Verified_Audit_v6.html` | Main audit — verified vs unverified closures by district, L/T toggle, pre/post 2018 collapse, top 10 worst properties |
-| `SDCI_NOV_Conversion_Collapse.html` | NOV issuance rate by year 2003–2025. Collapsed from ~15% to 6.1% in 2025 |
-| `SDCI_Impossible_Chronology.html` | 40,328 records where inspection date precedes complaint open date — data integrity failure |
-| `SDCI_RRIO_CrossReference.html` | Complaint data matched against RRIO registration — 4,803 unregistered properties with L/T complaints |
-| `SDCI_Permit_Complaint_Disparity.html` | Permit vs complaint verification rate gap — LT complaints 40pp more likely to be closed unverified than non-LT complaints at same permitted addresses |
+The methodology is fully transparent and independently replicable from Seattle's Open Data Portal.
 
 ---
 
-## Data Files
+## Data Sources
 
-### JSON (analysis outputs)
+All data is sourced from the [Seattle Open Data Portal](https://data.seattle.gov) and is publicly available.
 
-| File | Contents | Size |
-|------|----------|------|
-| `STLCA_MASTER_DATA.json` | All findings in one file — complaint audit, NOV trend, RRIO crossref, permit disparity | ~67 KB |
-| `rrio_summary.json` | RRIO registration counts by district and status | ~1 KB |
-| `complaint_summary.json` | CP complaint counts, verified/unverified rates by district | ~1 KB |
-| `permit_summary.json` | Permit counts by type, status, class | ~1 KB |
+| Dataset | Records | Date Range | Notes |
+|---|---|---|---|
+| SDCI Complaint Records (primary) | 233,543 | 2003–2025 | Enriched with district assignments |
+| Building Permits | Multiple exports | 2024–2026 | Split into parts for upload |
+| Electrical Permits | Multiple exports | 2024–2026 | Split into parts for upload |
+| Construction Permits | Snapshot 2026-01-27 | 2026 | — |
+| Conveyance Permits | Snapshot 2026-01-27 | 2026 | — |
+| RRIO Rental Registration | Annual files | 2015–2025 | Year-by-year exports |
 
-### Source Data (not in repo — large files)
+### Primary File
 
-| File | Source | Size | Notes |
-|------|--------|------|-------|
-| `District_1-7_ALL_ENRICHED.csv` | SDCI via public records | ~110 MB total | CP records 2003–2025, enriched with district assignment and LT classification |
-| `RRIO_PROPERTY_TIMELINE_CLEAN.csv` | Seattle Open Data / SDCI | 77.8 MB | 656,510 rows, 21 columns, deduped and cleaned |
-| `PERMITS_Building_Permits_20260206.csv` | Seattle Open Data | 92 MB | Partial — parts 1-2 not analyzed |
-| `PERMITS_Electrical_Permits_20260206.csv` | Seattle Open Data | 179 MB | All 7 parts analyzed |
-| `PERMITS_Land_Use_Permits_20260206.csv` | Seattle Open Data | 12 MB | Fully analyzed |
-| `PERMITS_CONSTRUCTION_PERMITS_20260127.csv` | Seattle Open Data | 17 MB | Fully analyzed |
-| `PERMITS_CONVEYANCE_PERMITS_20260127.csv` | Seattle Open Data | 2 MB | Fully analyzed |
-| `PERMITS_Issued_Building_Permits_20260206.csv` | Seattle Open Data | 1 MB | Fully analyzed |
+`CITYWIDE_ALL_20251231_ENRICHED_01272025.csv` — 233,543 complaint records, 2003–2025, enriched with council district assignments. This is the authoritative source for all counts in this project.
+
+**Note on unassigned records:** 2,671 records (1.1% of 233,543) could not be assigned to a council district in the SDCI source data — geocoding was not available for these addresses. These records are analyzed separately and excluded from all district-level counts.
 
 ---
 
-## Methodology
+## LLT Filter Definition
 
-### Complaint Classification
-- **CP records** — filtered to complaint type only (CP = True)
-- **L/T classification** — explicit `LandLord/Tenant` RecordTypeDesc, plus keyword reclassification of blank/emergency types matching: `tenant, landlord, renter, rental, rent, lease, evict, trao, treo, pota, habitab, no heat, no water, bed bug, roach, mold, unfit, notice to vacate, lockout, deposit, housing code`
-- **Verified** — Closed/Completed status AND both `LastInspDate` AND `LastInspResult` present
-- **Unverified** — Closed/Completed status with missing date OR missing result (or both)
+Landlord-Tenant (LLT) records are defined by the following rule applied to the `RecordTypeDesc` field:
 
-### RRIO Cross-Reference
-- Address matching: exact match on normalized uppercase `ORIGINALADDRESS1`
-- **Unregistered** — address in complaint data with no matching RRIO entry
-- **Expired** — RRIO record present, `REGISTRATION_EXPIRED = REGISTRATION EXPIRED`, no active record
-- **Late Violation** — `RECORD_TYPE = RENTAL PROPERTY LATE REGISTRATION VIOLATION`
-- **Private Inspector** — `PRIVATE_INSPECTOR = PRIVATE INSPECTOR`
+```
+RecordTypeDesc IS NULL
+  OR RecordTypeDesc contains "Emergency"
+  OR RecordTypeDesc contains "LandLord/Tenant"
+```
 
-### Permit Cross-Reference
-- Address matching: exact match on normalized uppercase `Address`
-- **Active permit** — Status in: Issued, Application Completed, Reviews In Process, Scheduled, Ready for Issuance, Awaiting Information, Ready for Intake, Reviews Completed, Additional Info Requested, Corrections Required
-- **Permit coverage is partial** — Building_20260206 parts 1–2 not yet analyzed. Numbers will shift with full dataset.
+**Total LLT records (2003–2025): 58,761**
 
-### Pre/Post 2018 Split
-- 2018 chosen as threshold based on observed structural change in documentation rates
-- Pre-2018: 14.4% unverified citywide / 16.9% L/T
-- Post-2018: 67.3% unverified citywide / 90.8% L/T
-- This is not a legacy data problem. Post-2018 data is recent and should be fully documented.
-
-### NOV Conversion Rate
-- `NOV rate = NOV Issued records / total CP complaints` by year
-- 2025: 6.1% (959 NOVs / 15,711 CP complaints)
-- Peak year identified in dashboard
-
-### Impossible Chronology
-- Flag: `LastInspDate < OpenDate`
-- 40,328 records citywide where inspection is recorded before the complaint existed
-- Disqualifies these records from use in enforcement proceedings
+This rule was derived from direct inspection of SDCI record type categories. An earlier narrow version of this filter (label match only) produces a count of 20,325, which is incorrect. All figures in this project use the corrected broad rule.
 
 ---
 
-## Key Numbers
+## Dataset Counts
 
-| Metric | Value |
-|--------|-------|
-| Total CP complaints analyzed | 230,872 |
-| Closed without any inspection record | 73,212 (43.8%) |
-| L/T complaints closed unverified | 76.1% |
-| Post-2018 L/T complaints closed unverified | 90.8% |
-| NOV issuance rate 2025 | 6.1% |
-| Impossible chronology records | 40,328 |
-| Unregistered properties with L/T complaints | 4,803 |
-| LT unverified rate at permitted addresses | 77.4% |
-| Non-LT unverified rate at same addresses | 37.3% |
-| Gap | **40.1 percentage points** |
+*Verified 2026-03-02. Source: `FOUR_DATASETS.txt`.*
 
----
+### All Records
 
-## Tools Used
+| Window | Total | Complaints | NOV | Citations | Tenant Relocation | Unfit Building |
+|---|---|---|---|---|---|---|
+| 2003–2025 | 233,543 | 177,431 | 31,409 | 20,340 | 4,045 | 318 |
+| 2015–2025 | 148,349 | 124,194 | 13,701 | 8,032 | 2,360 | 62 |
 
-All analysis performed with Python (csv, collections, json, re — stdlib only, no pandas).  
-Dashboards: HTML/CSS/JavaScript with Plotly.js (CDN).  
-Word documents: docx npm package.  
-No external APIs. No proprietary software.
+### LLT Only (Corrected Rule)
 
----
+| Window | Total | Complaints | NOV | Citations | Tenant Relocation | Unfit Building |
+|---|---|---|---|---|---|---|
+| 2003–2025 | 58,761 | 41,653 | 11,341 | 1,404 | 4,045 | 318 |
+| 2015–2025 | 46,108 | 35,867 | 6,867 | 952 | 2,360 | 62 |
 
-## Files Generated
+### LLT by Council District (All Years, 2003–2025)
 
-### Processing Scripts
-| Script | Purpose |
-|--------|---------|
-| `dedup_rrio.py` | Remove exact duplicate rows from RRIO files |
-| `clean_rrio_columns.py` | Drop sanity-check/pipeline columns from RRIO_PROPERTY_TIMELINE |
-| `split_rrio_clean.py` | Split 77.8MB RRIO file into uploadable 25MB chunks |
-| `chunk_permits.py` | Split large permit files into uploadable chunks |
+| District | Council Member | Total LLT | Complaints | NOV | Citations | Tenant Relocation | Unfit Building |
+|---|---|---|---|---|---|---|---|
+| D1 (West Seattle) | Saka | 8,015 | 5,341 | 1,900 | 187 | 510 | 77 |
+| D2 (Southeast) | Lin | 9,353 | 6,337 | 2,245 | 295 | 417 | 59 |
+| D3 (Capitol Hill) | Hollingsworth | 11,351 | 8,419 | 1,856 | 207 | 813 | 56 |
+| D4 (Northeast) | Rivera | 7,033 | 4,816 | 1,431 | 228 | 522 | 36 |
+| D5 (North) | Juarez | 7,595 | 5,296 | 1,552 | 187 | 526 | 34 |
+| D6 (Northwest) | Strauss | 6,634 | 4,371 | 1,234 | 185 | 817 | 27 |
+| D7 (Downtown/Kettle) | Moore | 8,094 | 6,513 | 1,051 | 98 | 410 | 22 |
 
 ---
 
-## Limitations & Caveats
+## Key Findings
 
-- **Permit data is partial.** Building_20260206 parts 1–2 missing from permit cross-reference. Full dataset will shift numbers.
-- **Address matching is exact.** Fuzzy matching not applied. Some addresses may fail to match due to formatting differences (e.g., "AVE" vs "AVENUE", unit numbers). Unregistered count may be slightly overstated.
-- **LT keyword classification** is conservative. Some L/T complaints may be missed; some non-LT complaints may be included. Error rate estimated low given explicit RecordTypeDesc anchor.
-- **RRIO timeline data** is a snapshot. Registration status may have changed since export date.
-- **This analysis does not determine causation.** It identifies patterns in public records. The inference that permit revenue incentivizes differential enforcement is supported by the data but requires further investigation.
+These findings are derived directly from the SDCI complaint records. They describe what the public record does and does not contain — not what any party intended.
+
+- **62.3%** of all LLT complaint records have no inspection date in SDCI's own data.
+- **59.8%** of closed LLT cases show no documented inspection result.
+- **D7 (Downtown/Kettle):** 69.7% no inspection date; 67.2% closed with no documented result; 16.1% NOV rate — the worst documentation gap of any district.
+- **D3 (Capitol Hill/Hollingsworth):** highest LLT total citywide (11,351 records); 411% growth from 2015 to 2025.
+- **D7 LLT volume grew 745%** from 2015 to 2025 — the fastest growth rate of any district in the city.
+- Seattle has no independent oversight body for SDCI comparable to the Office of Inspector General for SPD.
 
 ---
 
-*Analysis by STLCA — Seattle Tenants & Landlord Code Accountability*  
-*February 2026 | All source data is public record*
+## Repository Contents
+
+### Dashboards and Reports
+
+| File | Description |
+|---|---|
+| `STLCA_Home.html` | Homepage — entry point and index for all district and citywide dashboards |
+| `CITYWIDE KPI.html` | Citywide enforcement audit dashboard |
+| `District_1_Dossier.html` — `District_7_Dossier.html` | Per-district data dashboards: LLT counts, disparity metrics, trend charts, keyword analysis |
+| `D1_Accountability_Dossier.html` — `D7_Accountability_Dossier.html` | Narrative accountability documents with verbatim SDCI complaint case studies |
+| `STLCA_City_Auditor_Report_2026.html` | City auditor-style enforcement findings report |
+| `STLCA_Citywide_Enforcement_Report_2026.html` | Citywide enforcement findings |
+| `STLCA_Council_Static_Report.html` | Council briefing, static format |
+| `STLCA_Public_Report_2026.html` | Public-facing findings document |
+
+All HTML files are self-contained and open directly in any browser. No server required.
+
+### Analysis Scripts
+
+| File | Description |
+|---|---|
+| `SCRIPTS/all_districts_keyword_analysis.py` | Processes all 7 districts and unassigned records in a single pass; produces ALL and LLT Smart Analysis CSVs |
+| `SCRIPTS/d7_keyword_analysis.py` | D7 keyword analysis (initial run) |
+| `SCRIPTS/d7_keyword_drilldown.py` | Per-keyword hit counts for D7 |
+| `SCRIPTS/build_dossiers.py` | Generates district data dossier HTML files |
+| `SCRIPTS/build_narrative_dossiers.py` | Generates narrative accountability dossier HTML files |
+| `SCRIPTS/stlca_classify_with_permits.py` | Cross-references complaints against permit records |
+
+### Analysis Outputs (CSV)
+
+| File Pattern | Description |
+|---|---|
+| `D{n}_ALL_Smart_Analysis.csv` | All records for district N tagged across 19 keyword categories (D1–D7) |
+| `D{n}_LLT_Smart_Analysis.csv` | LLT-filtered records for district N with keyword tags (D1–D7) |
+| `D{n}_LLT_ALL_HARM_AND_RISK.csv` | Harm and risk term analysis per district (D1–D7) |
+| `UNASSIGNED_Smart_Analysis.csv` | The 2,671 records with no district geocode, analyzed separately |
+| `KEYWORD_PIVOT.csv` | Citywide keyword category pivot |
+| `CITY_VP_FULL_ANALYSIS.csv` | Citywide violation pattern full analysis |
+| `CITY_VP_ADDRESS_SUMMARY.csv` | Per-address complaint summary |
+| `CITY_VP_PROOFS.csv` | Verified proof records for violation patterns |
+| `DISPLACEMENT_HABITABILITY_HITS.csv` | Records matching displacement and habitability keyword categories |
+| `PROPERTY_MASTER_CONFLICTS.csv` | Properties with conflicting permit and complaint records |
+| `RRIO_PROPERTY_TIMELINE_CLEAN.csv` | RRIO rental registration timeline by property |
+| `STLCA_Problem_Properties_Full.csv` | Compiled problem property records |
+
+### Reference Files
+
+| File | Description |
+|---|---|
+| `FOUR_DATASETS.txt` | Verified record counts for all four primary data windows with LLT rule documentation |
+| `REPORT_STATS.txt` | Key statistics referenced across reports |
+| `DISPLACEMENT_SUMMARY.txt` | Displacement-related findings summary |
+| `RULEBOOK_KPI.txt` | KPI definitions and calculation rules |
+
+### RRIO Rental Registration Data
+
+Annual registration CSV files (2015–2025), sourced directly from the Seattle Open Data Portal. Used to cross-reference complaint properties against registered rental units.
+
+### Permit Data
+
+Building, electrical, construction, and conveyance permit exports from SDCI. Split into parts for upload due to file size. Used to cross-reference complaint properties against active permits and identify permit-complaint conflicts.
+
+---
+
+## Keyword Analysis Methodology
+
+Keyword tagging applies two-stage matching to complaint `Description` text fields:
+
+1. **spaCy lemmatization** (`en_core_web_sm`) — normalizes verb forms and plurals before matching
+2. **rapidfuzz fuzzy matching** (threshold: 85) — catches spelling variations and transcription errors common in SDCI complaint text
+
+**19 issue categories are tagged per record:**
+
+| Category | Category | Category |
+|---|---|---|
+| No_Heat | No_Hot_Water | Gas_Shutoff |
+| No_Water | Mold | Pest_Infestation |
+| Plumbing | Electrical | Habitability |
+| Eviction | Displacement | Tenant_Rights |
+| Retaliation | Entry_Privacy | Security |
+| ADA_Access | Rent | Illegal_Unit |
+| Structural | — | — |
+
+Each output CSV contains binary tag columns for all 19 categories alongside the original SDCI record fields.
+
+**Runtime:** Python 3.12, polars, spaCy, rapidfuzz, tqdm.
+
+---
+
+## Reproducing This Analysis
+
+All source data is publicly available on the [Seattle Open Data Portal](https://data.seattle.gov). The LLT filter rule, district breakdowns, and keyword methodology are fully documented in this repository.
+
+To reproduce the keyword analysis outputs, with the primary CSV in place:
+
+```bash
+python SCRIPTS/all_districts_keyword_analysis.py
+```
+
+This script reads `CITYWIDE_ALL_20251231_ENRICHED_01272025.csv` and produces per-district ALL and LLT Smart Analysis CSVs plus the unassigned records file.
+
+---
+
+## Scope and Limitations
+
+- **This project does not determine causation.** It identifies what is and is not present in the public record.
+- **Where an inspection date or result is absent from the SDCI record, this project reports it as absent.** No inference is made about whether activity occurred outside the public record. The absence of documentation is itself the finding.
+- **Address matching between datasets uses normalized exact matching.** Formatting differences (e.g., "AVE" vs "AVENUE", unit number variations) may cause some records to fail matching. Affected counts are noted where material.
+- **Permit data is partial.** Large permit files were split for upload; all parts are included in the repository. Any analysis noting partial permit coverage is flagged.
+- **RRIO snapshot data reflects registration status at export date.** Status may have changed subsequently.
+
+---
+
+## What This Project Is Not
+
+- This project is not affiliated with the City of Seattle, SDCI, or any City department.
+- This project is not a tenant union, advocacy organization, or legal services provider.
+- This project does not make referrals, provide legal advice, or represent any party in any proceeding.
+- The findings described here reflect what is documented in the public record. They do not constitute legal conclusions about any individual landlord, property, or complaint.
+
+---
+
+*STLCA — Seattle Tenant & Landlord Compliance Audit*
+*Data current through December 31, 2025. Last updated March 2026.*
+*All source data is public record, available at data.seattle.gov.*
