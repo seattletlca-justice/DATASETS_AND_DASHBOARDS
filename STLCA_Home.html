@@ -129,16 +129,24 @@
   .finding-row .val.bad{color:var(--orange)}
   .finding-row .val.worse{color:var(--red)}
   .finding-row .val.blue{color:var(--blue)}
-  .district-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:4px}
+  .district-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
   .dist-tile{
-    background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:12px;
-    padding:12px 10px;text-align:center;text-decoration:none;
-    transition:all .2s;
+    background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:14px;
+    padding:14px 10px 10px;text-align:center;transition:border-color .2s;
   }
-  .dist-tile:hover{border-color:var(--blue);background:rgba(45,127,249,.08)}
+  .dist-tile:hover{border-color:rgba(45,127,249,.4)}
   .dist-tile .d-num{font-size:18px;font-weight:800;color:var(--blue)}
   .dist-tile .d-name{font-size:10px;color:var(--muted);margin-top:3px}
-  .dist-tile .d-stat{font-size:11px;font-weight:700;color:var(--orange);margin-top:5px}
+  .dist-tile .d-stat{font-size:11px;font-weight:700;color:var(--orange);margin-top:5px;margin-bottom:10px}
+  .dist-btns{display:flex;gap:5px;justify-content:center;margin-top:8px}
+  .dist-btns a{
+    flex:1;font-size:10px;font-weight:700;text-align:center;padding:5px 4px;
+    border-radius:7px;text-decoration:none;transition:all .2s;
+  }
+  .dist-btns .db{background:rgba(45,127,249,.15);color:var(--blue);border:1px solid rgba(45,127,249,.25)}
+  .dist-btns .db:hover{background:rgba(45,127,249,.3)}
+  .dist-btns .do{background:rgba(245,158,11,.12);color:var(--orange);border:1px solid rgba(245,158,11,.25)}
+  .dist-btns .do:hover{background:rgba(245,158,11,.25)}
 
   /* METHODOLOGY NOTE */
   .method-note{
@@ -327,46 +335,14 @@
         Figures show % of LLT cases closed with no recorded inspection result.
       </p>
       <div class="district-grid">
-        <a class="dist-tile" href="District_1_Dossier.html">
-          <div class="d-num">D1</div>
-          <div class="d-name">Saka</div>
-          <div class="d-stat">56.6%</div>
-        </a>
-        <a class="dist-tile" href="District_2_Dossier.html">
-          <div class="d-num">D2</div>
-          <div class="d-name">Lin</div>
-          <div class="d-stat">52.3%</div>
-        </a>
-        <a class="dist-tile" href="District_3_Dossier.html">
-          <div class="d-num">D3</div>
-          <div class="d-name">Hollingsworth</div>
-          <div class="d-stat">62.9%</div>
-        </a>
-        <a class="dist-tile" href="District_4_Dossier.html">
-          <div class="d-num">D4</div>
-          <div class="d-name">Rivera</div>
-          <div class="d-stat">57.0%</div>
-        </a>
-        <a class="dist-tile" href="District_5_Dossier.html">
-          <div class="d-num">D5</div>
-          <div class="d-name">Juarez</div>
-          <div class="d-stat">58.8%</div>
-        </a>
-        <a class="dist-tile" href="District_6_Dossier.html">
-          <div class="d-num">D6</div>
-          <div class="d-name">Strauss</div>
-          <div class="d-stat">62.0%</div>
-        </a>
-        <a class="dist-tile" href="District_7_Dossier.html">
-          <div class="d-num">D7</div>
-          <div class="d-name">Kettle</div>
-          <div class="d-stat">67.2%</div>
-        </a>
-        <a class="dist-tile" href="CITYWIDE KPI.html">
-          <div class="d-num" style="font-size:13px">CW</div>
-          <div class="d-name">Citywide</div>
-          <div class="d-stat">59.8%</div>
-        </a>
+        <div class="dist-tile"><div class="d-num">D1</div><div class="d-name">Saka</div><div class="d-stat">56.6%</div><div class="dist-btns"><a class="db" href="District_1_Dossier.html">Dashboard</a><a class="do" href="D1_Accountability_Dossier.html">Dossier</a></div></div>
+        <div class="dist-tile"><div class="d-num">D2</div><div class="d-name">Lin</div><div class="d-stat">52.3%</div><div class="dist-btns"><a class="db" href="District_2_Dossier.html">Dashboard</a><a class="do" href="D2_Accountability_Dossier.html">Dossier</a></div></div>
+        <div class="dist-tile"><div class="d-num">D3</div><div class="d-name">Hollingsworth</div><div class="d-stat">62.9%</div><div class="dist-btns"><a class="db" href="District_3_Dossier.html">Dashboard</a><a class="do" href="D3_Accountability_Dossier.html">Dossier</a></div></div>
+        <div class="dist-tile"><div class="d-num">D4</div><div class="d-name">Rivera</div><div class="d-stat">57.0%</div><div class="dist-btns"><a class="db" href="District_4_Dossier.html">Dashboard</a><a class="do" href="D4_Accountability_Dossier.html">Dossier</a></div></div>
+        <div class="dist-tile"><div class="d-num">D5</div><div class="d-name">Juarez</div><div class="d-stat">58.8%</div><div class="dist-btns"><a class="db" href="District_5_Dossier.html">Dashboard</a><a class="do" href="D5_Accountability_Dossier.html">Dossier</a></div></div>
+        <div class="dist-tile"><div class="d-num">D6</div><div class="d-name">Strauss</div><div class="d-stat">62.0%</div><div class="dist-btns"><a class="db" href="District_6_Dossier.html">Dashboard</a><a class="do" href="D6_Accountability_Dossier.html">Dossier</a></div></div>
+        <div class="dist-tile"><div class="d-num">D7</div><div class="d-name">Kettle</div><div class="d-stat">67.2%</div><div class="dist-btns"><a class="db" href="District_7_Dossier.html">Dashboard</a><a class="do" href="D7_Accountability_Dossier.html">Dossier</a></div></div>
+        <div class="dist-tile"><div class="d-num" style="font-size:13px">CW</div><div class="d-name">Citywide</div><div class="d-stat">59.8%</div><div class="dist-btns"><a class="db" href="CITYWIDE KPI.html" style="flex:unset;width:100%">Citywide Audit</a></div></div>
       </div>
       <div style="margin-top:14px;padding:12px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.18);border-radius:12px">
         <div style="font-size:11px;color:var(--muted);line-height:1.55">
