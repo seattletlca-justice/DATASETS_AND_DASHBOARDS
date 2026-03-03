@@ -1,0 +1,73 @@
+FOUR DATASET COUNTS - CORRECTED 2026-03-02
+Source: CITYWIDE_ALL_20251231_ENRICHED_01272025
+LLT RULE: RecordTypeDesc is NULL/blank  OR  contains "Emergency"  OR  contains "LandLord/Tenant"
+NOTE: Previous version used WRONG narrow rule (LandLord/Tenant label only). All LLT figures below are corrected.
+=============================================================
+
+DATASET 1: ALL RECORDS -- 2003-2025
+  TOTAL:              233543
+  COMPLAINTS:         177431
+  NOV:                31409
+  CITATIONS:          20340
+  TENANT RELOCATION:  4045
+  UNFIT BUILDING:     318
+  OTHER:              0
+
+DATASET 2: ALL RECORDS -- 2015-2025
+  TOTAL:              148349
+  COMPLAINTS:         124194
+  NOV:                13701
+  CITATIONS:          8032
+  TENANT RELOCATION:  2360
+  UNFIT BUILDING:     62
+  OTHER:              0
+
+DATASET 3: LLT ONLY -- 2003-2025  (CORRECTED)
+  TOTAL:              58761
+  COMPLAINTS:         41653
+  NOV:                11341
+  CITATIONS:          1404
+  TENANT RELOCATION:  4045
+  UNFIT BUILDING:     318
+  OTHER:              0
+
+DATASET 4: LLT ONLY -- 2015-2025  (CORRECTED)
+  TOTAL:              46108
+  COMPLAINTS:         35867
+  NOV:                6867
+  CITATIONS:          952
+  TENANT RELOCATION:  2360
+  UNFIT BUILDING:     62
+  OTHER:              0
+
+LLT BY DISTRICT (correct rule, all years)
+  DIST   TOTAL      CP     NOV      CI      TR      UB
+  1       8015    5341    1900     187     510      77
+  2       9353    6337    2245     295     417      59
+  3      11351    8419    1856     207     813      56
+  4       7033    4816    1431     228     522      36
+  5       7595    5296    1552     187     526      34
+  6       6634    4371    1234     185     817      27
+  7       8094    6513    1051      98     410      22
+
+LLT BY YEAR (correct rule)
+  YEAR    TOTAL      CP     NOV      CI      TR      UB
+  2015     1419     661     484       0       0       0
+  2016     1462     709     518       0       0       0
+  2017     2064    1200     629       0       0       0
+  2018     3580    2853     475      52     198       2
+  2019     3932    2995     619     106     210       2
+  2020     4054    2886     695      99     370       4
+  2021     4796    3083     954     151     607       1
+  2022     6083    4925     807     148     197       6
+  2023     6013    5286     557      74     93        3
+  2024     6156    5364     643      68     77        4
+  2025     6549    5905     486      57     98        3
+
+=============================================================
+UNASSIGNED RECORDS (no district in SDCI source data)
+  2671 records could not be assigned to any council district.
+  These represent 1.1% of total 233,543 records.
+  Cite in all reports: "2,671 SDCI records (1.1%) had no district geocode
+  and are excluded from district-level counts."
+=============================================================

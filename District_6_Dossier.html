@@ -1,240 +1,173 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>District 6 Enforcement Dossier -- Dan Strauss</title>
-<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 <style>
-:root{--bg:#070b12;--panel:#0c1424;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.65);--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  background:radial-gradient(1200px 700px at 25% -10%,rgba(45,127,249,.22),transparent 55%),
-             radial-gradient(900px 600px at 85% 10%,rgba(245,158,11,.15),transparent 55%),var(--bg);
-  color:var(--text);}
-.wrap{max-width:1180px;margin:0 auto;padding:24px 18px 40px}
-.hdr{border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:22px}
-.hdr h1{margin:0 0 4px;font-size:26px;letter-spacing:.3px}
-.hdr .sub{margin:0;color:var(--muted);font-size:13px}
-.hdr .badge{display:inline-block;background:rgba(45,127,249,.18);border:1px solid rgba(45,127,249,.4);
-  color:#8fc3ff;font-size:11px;padding:3px 10px;border-radius:999px;margin-right:8px;margin-bottom:4px}
-.panel{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
-  border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
-.kpi{padding:14px 14px 12px}
-.kpi .lbl{font-size:11px;color:var(--muted);margin-bottom:8px;line-height:1.3}
-.kpi .val{font-size:24px;font-weight:750;letter-spacing:.3px}
-.kpi .note{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.3}
-.kpi.blue .val{color:var(--blue)}.kpi.orange .val{color:var(--orange)}.kpi.red .val{color:var(--red)}
-.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.chart{padding:14px}
-.chart h3{margin:0 0 8px;font-size:12px;color:rgba(233,238,247,.85);font-weight:650}
-.plot{width:100%;height:260px}
-.section{padding:16px;margin-bottom:14px}
-.section h2{margin:0 0 12px;font-size:14px;letter-spacing:.2px}
-table{width:100%;border-collapse:collapse;font-size:11px}
-th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;vertical-align:top}
-th{color:rgba(233,238,247,.7);font-weight:650}
-td{color:rgba(233,238,247,.82)}
-.rl{color:#8fc3ff;font-weight:600;text-decoration:none;border-bottom:1px dotted rgba(143,195,255,.4)}
-.rl:hover{color:#c9e2ff}
-.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-.cmpCard{padding:14px}
-.cmpCard h3{margin:0 0 10px;font-size:12px;color:rgba(233,238,247,.85)}
-.cmpRow{display:flex;justify-content:space-between;font-size:11.5px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-.cmpRow:last-child{border-bottom:none}
-.cmpLbl{color:var(--muted)}
-.cmpVal{font-weight:650}
-.higher{color:var(--red)}.lower{color:#4ade80}.same{color:var(--muted)}
-.foot{margin-top:22px;padding:14px;border-top:1px solid var(--border);font-size:10.5px;color:rgba(233,238,247,.45);line-height:1.55}
-@media(max-width:780px){.kpis{grid-template-columns:repeat(2,1fr)}.charts,.cmp{grid-template-columns:1fr}}
-@media(max-width:500px){.kpis{grid-template-columns:1fr}}
+:root{--bg:#070b12;--panel:#0c1424;--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#10b981;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.55)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1140px;margin:0 auto;padding:32px 20px}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.5px}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-size:12px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.hdr{background:linear-gradient(135deg,rgba(45,127,249,.12),rgba(245,158,11,.06));border:1px solid rgba(45,127,249,.2);border-radius:20px;padding:36px 36px 28px;margin-bottom:24px}
+.hdr-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.badge{background:rgba(45,127,249,.15);border:1px solid rgba(45,127,249,.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--blue);font-weight:600}
+.badge.orange{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.3);color:var(--orange)}
+.hdr h1{font-size:26px;font-weight:800;margin-bottom:8px}
+.hdr .sub{font-size:12px;color:var(--muted);line-height:1.6}
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px 16px}
+.kpi .lbl{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.kpi .val{font-size:28px;font-weight:800;line-height:1}
+.kpi .note{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.4}
+.val.blue{color:var(--blue)}.val.orange{color:var(--orange)}.val.red{color:var(--red)}.val.green{color:var(--green)}
+.sec-lbl{font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px 20px;margin-bottom:20px}
+.panel h2{font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{border-bottom:1px solid rgba(255,255,255,.12)}
+th{padding:8px 10px;text-align:left;font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+tr:hover td{background:rgba(255,255,255,.02)}
+.rec-link{font-family:monospace;font-size:11px}
+.addr{color:var(--text);font-weight:500}
+.cnt{font-weight:700;color:var(--blue);text-align:right;width:90px}
+.cmp-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px}
+.cmp-lbl{color:var(--muted)}.cmp-val{font-weight:700}
+.higher{color:var(--red)}.lower{color:var(--green)}.neutral{color:var(--text)}
+.chart-wrap{height:230px;position:relative}
+.pending-box{background:rgba(45,127,249,.05);border:1px dashed rgba(45,127,249,.25);border-radius:12px;padding:20px;text-align:center;color:var(--muted);font-size:12px}
+.pending-box strong{color:var(--blue);display:block;margin-bottom:6px;font-size:13px}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-size:11px;color:rgba(233,238,247,.3);margin-top:32px}
+@media(max-width:768px){.kpi-strip{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<nav>
+  <div class="nav-brand">STLCA &mdash; Seattle Tenant &amp; Landlord Compliance Audit</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="CITYWIDE KPI.html">Citywide</a>
+    <a href="#llt">LLT Data</a>
+    <a href="#properties">Properties</a>
+    <a href="#oldest">Open Cases</a>
+  </div>
+</nav>
 <div class="wrap">
 
-  <div class="hdr">
+<div class="hdr">
+  <div class="hdr-badges">
     <span class="badge">District 6</span>
-    <span class="badge">Council Member -- Dan Strauss</span>
-    <span class="badge">Ballard, Fremont, Crown Hill, Greenwood</span>
-    <h1>SDCI Enforcement Accountability Dossier</h1>
-    <p class="sub">Seattle Department of Construction and Inspections -- Complaint Records 2003-2025 -- Source: CITYWIDE_ALL_20251231_ENRICHED_01272025</p>
+    <span class="badge">Council Member &mdash; Dan Strauss</span>
+    <span class="badge orange">Ballard, Crown Hill, Broadview, Greenwood, Green Lake (W), Phinney</span>
+    <span class="badge">2003 &ndash; 2025</span>
   </div>
+  <h1>SDCI Enforcement Accountability Dossier &mdash; District 6</h1>
+  <p class="sub">Source: CITYWIDE_ALL_20251231_ENRICHED_01272025 &bull; Seattle Department of Construction and Inspections public complaint records &bull; LLT Rule: RecordTypeDesc blank, contains &ldquo;Emergency,&rdquo; or contains &ldquo;LandLord/Tenant&rdquo; &bull; All figures computed directly from SDCI open data</p>
+</div>
 
-  <!-- KPI ROW 1 -->
-  <div class="kpis">
-    <div class="panel kpi blue">
-      <div class="lbl">Total Records (All Years)</div>
-      <div class="val">31,829</div>
-      <div class="note">All record types, District 6</div>
-    </div>
-    <div class="panel kpi blue">
-      <div class="lbl">Complaints (CP)</div>
-      <div class="val">24,201</div>
-      <div class="note">76% of all D6 records</div>
-    </div>
-    <div class="panel kpi orange">
-      <div class="lbl">Notices of Violation (NOV)</div>
-      <div class="val">4,171</div>
-      <div class="note">Formal enforcement actions issued</div>
-    </div>
-    <div class="panel kpi orange">
-      <div class="lbl">NOV Rate (NOV per CP)</div>
-      <div class="val">17.23%</div>
-      <div class="note">Citywide avg: 17.7% -- District is below avg</div>
-    </div>
-  </div>
+<div class="sec-lbl">All Record Types &mdash; District 6</div>
+<div class="kpi-strip">
+  <div class="kpi"><div class="lbl">Total Records</div><div class="val blue">31,829</div><div class="note">All types, all years 2003&ndash;2025</div></div>
+  <div class="kpi"><div class="lbl">Complaints Filed</div><div class="val blue">24,201</div><div class="note">76.0% of all D6 records</div></div>
+  <div class="kpi"><div class="lbl">Notices of Violation</div><div class="val orange">4,171</div><div class="note">NOV rate: 17.2% of complaints &mdash; citywide 17.7%</div></div>
+  <div class="kpi"><div class="lbl">Missing Inspection Date</div><div class="val orange">12,550</div><div class="note">39.4% of all records &mdash; all types</div></div>
+</div>
 
-  <!-- KPI ROW 2 -->
-  <div class="kpis">
-    <div class="panel kpi orange">
-      <div class="lbl">Missing Inspection Date</div>
-      <div class="val">12,550</div>
-      <div class="note">No LastInspDate recorded in structured fields</div>
-    </div>
-    <div class="panel kpi red">
-      <div class="lbl">Closed -- No Inspection Result</div>
-      <div class="val">11,219</div>
-      <div class="note">37.2% of closed records -- Citywide: 37.3%</div>
-    </div>
-    <div class="panel kpi blue">
-      <div class="lbl">Landlord/Tenant Records (LLT)</div>
-      <div class="val">2,286</div>
-      <div class="note">RecordTypeDesc contains LANDLORD (all years)</div>
-    </div>
-    <div class="panel kpi orange">
-      <div class="lbl">LLT NOV Rate</div>
-      <div class="val">2.8%</div>
-      <div class="note">Of LLT complaints, this % escalated to NOV</div>
-    </div>
-  </div>
+<div class="sec-lbl" id="llt">Landlord &ndash; Tenant Records Only (LLT) &mdash; District 6</div>
+<div class="kpi-strip">
+  <div class="kpi"><div class="lbl">LLT Total Records</div><div class="val blue">6,634</div><div class="note">Blank + Emergency + LandLord/Tenant (all years)</div></div>
+  <div class="kpi"><div class="lbl">LLT No Inspection Date</div><div class="val orange">4,251</div><div class="note">64.1% of LLT &mdash; citywide avg 62.3%</div></div>
+  <div class="kpi"><div class="lbl">LLT Closed / No Insp Result</div><div class="val red">62.0%</div><div class="note">3,728 of 6,014 closed LLT cases &mdash; citywide 59.8%</div></div>
+  <div class="kpi"><div class="lbl">LLT NOV Rate</div><div class="val blue">28.2%</div><div class="note">1,234 NOVs / 4,371 complaints &mdash; citywide 27.2%</div></div>
+</div>
 
-  <!-- CHARTS -->
-  <div class="charts">
-    <div class="panel chart">
-      <h3>Complaints vs NOVs by Year -- District 6</h3>
-      <div id="chart_trend" class="plot"></div>
-    </div>
-    <div class="panel chart">
-      <h3>Records Missing Inspection Date by Year -- District 6</h3>
-      <div id="chart_missing" class="plot"></div>
-    </div>
-  </div>
-
-  <!-- LLT BREAKDOWN -->
-  <div class="panel section" style="margin-bottom:14px">
-    <h2>Landlord/Tenant (LLT) Enforcement Breakdown -- District 6 (All Years)</h2>
+<div class="grid-2">
+  <div class="panel">
+    <h2>LLT Enforcement Breakdown &mdash; All Years</h2>
     <table>
-      <thead><tr><th>Category</th><th>Count</th><th>% of LLT Total</th><th>Notes</th></tr></thead>
+      <thead><tr><th>Category</th><th>Count</th><th>% of LLT Total</th></tr></thead>
       <tbody>
-        <tr><td>LLT Total Records</td><td>2,286</td><td>100%</td><td>All records where RecordTypeDesc contains LANDLORD</td></tr>
-        <tr><td>LLT Complaints (CP)</td><td>2,211</td><td>96.7%</td><td>Initial complaint filings</td></tr>
-        <tr><td>LLT Notices of Violation (NOV)</td><td>64</td><td>2.8%</td><td>Formal enforcement actions</td></tr>
-        <tr><td>LLT Citations (CI)</td><td>11</td><td>0.5%</td><td>Monetary enforcement penalties</td></tr>
-        <tr><td>LLT Tenant Relocation (TR)</td><td>0</td><td>0%</td><td>No TR records in LLT category for this district</td></tr>
-        <tr><td>LLT Unfit Building (UB)</td><td>0</td><td>0%</td><td>No UB records in LLT category for this district</td></tr>
+        <tr><td><strong>Total LLT Records</strong></td><td><strong>6,634</strong></td><td>100%</td></tr>
+        <tr><td>LLT Complaints (CP)</td><td>4,371</td><td>65.9%</td></tr>
+        <tr><td>LLT Notices of Violation (NOV)</td><td>1,234</td><td>18.6%</td></tr>
+        <tr><td>LLT Citations (CI)</td><td>185</td><td>2.8%</td></tr>
+        <tr><td>LLT Tenant Relocation (TR)</td><td>817</td><td>12.3%</td></tr>
+        <tr><td>LLT Unfit Building (UB)</td><td>27</td><td>0.4%</td></tr>
       </tbody>
     </table>
   </div>
-
-  <!-- COMPARISON vs CITYWIDE -->
-  <div class="cmp">
-    <div class="panel cmpCard">
-      <h3>District 6 vs Citywide -- Key Enforcement Metrics</h3>
-      <div class="cmpRow"><span class="cmpLbl">Total Records</span><span class="cmpVal">31,829 vs 233,543</span></div>
-      <div class="cmpRow"><span class="cmpLbl">Complaints</span><span class="cmpVal">24,201 vs 177,431</span></div>
-      <div class="cmpRow"><span class="cmpLbl">NOVs</span><span class="cmpVal">4,171 vs 31,409</span></div>
-      <div class="cmpRow"><span class="cmpLbl">NOV Rate</span>
-        <span class="cmpVal lower">17.23% vs 17.7%</span></div>
-      <div class="cmpRow"><span class="cmpLbl">Missing Inspection Date</span><span class="cmpVal">12,550 vs 92,564</span></div>
-      <div class="cmpRow"><span class="cmpLbl">Closed Without Insp Result</span>
-        <span class="cmpVal lower">37.2% vs 37.3%</span></div>
-    </div>
-    <div class="panel cmpCard">
-      <h3>District 6 -- LLT vs Citywide</h3>
-      <div class="cmpRow"><span class="cmpLbl">LLT Total Records</span><span class="cmpVal">2,286 vs 20,325</span></div>
-      <div class="cmpRow"><span class="cmpLbl">LLT Complaints</span><span class="cmpVal">2,211</span></div>
-      <div class="cmpRow"><span class="cmpLbl">LLT NOVs</span><span class="cmpVal">64</span></div>
-      <div class="cmpRow"><span class="cmpLbl">LLT Citations</span><span class="cmpVal">11</span></div>
-      <div class="cmpRow"><span class="cmpLbl">LLT NOV Rate</span>
-        <span class="cmpVal higher">2.8% vs 2.5% citywide</span></div>
-      <div class="cmpRow"><span class="cmpLbl">Closed No Result Rank</span>
-        <span class="cmpVal">37.2% -- below citywide avg</span></div>
-    </div>
+  <div class="panel">
+    <h2>District 6 vs Citywide &mdash; LLT Accountability</h2>
+    <div class="cmp-row"><span class="cmp-lbl">LLT Total Records</span><span class="cmp-val neutral">6,634 vs 58,761 CW</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT Complaints</span><span class="cmp-val neutral">4,371 vs 41,653 CW</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT NOVs Issued</span><span class="cmp-val neutral">1,234 vs 11,341 CW</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT NOV Rate</span><span class="cmp-val higher">28.2% vs 27.2% CW</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT No Inspection Date</span><span class="cmp-val higher">64.1% vs 62.3% CW</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT Closed / No Insp Result</span><span class="cmp-val red">62.0% vs 59.8% CW</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">Tenant Relocation Orders (TR)</span><span class="cmp-val neutral">817 in this district</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">Unfit Building Orders (UB)</span><span class="cmp-val neutral">27 in this district</span></div>
   </div>
+</div>
 
-  <!-- OLDEST OPEN CASES -->
-  <div class="panel section" style="margin-bottom:14px">
-    <h2>Oldest Open Cases -- District 6 (Structured Records, Linked to SDCI)</h2>
-    <table>
-      <thead><tr><th>Open Date</th><th>Record Number</th><th>Status</th><th>Category</th><th>Address</th></tr></thead>
-      <tbody><tr><td>2011-05-26</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1025442-VI' target='_blank' rel='noopener'>1025442-VI</a></td><td>Under Investigation</td><td>Construction</td><td>5110 PALATINE AVE N</td></tr>
-<tr><td>2018-05-15</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1044215-UB' target='_blank' rel='noopener'>1044215-UB</a></td><td>Under Investigation</td><td>Blank</td><td>3047 30th AVE W</td></tr>
-<tr><td>2018-06-20</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1044422-UB' target='_blank' rel='noopener'>1044422-UB</a></td><td>Under Investigation</td><td>Blank</td><td>3412 34TH AVE W</td></tr>
-<tr><td>2018-10-08</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1045173-VI' target='_blank' rel='noopener'>1045173-VI</a></td><td>Under Investigation</td><td>Tree</td><td>3857 25TH AVE W</td></tr>
-<tr><td>2018-10-22</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=009913-18CP' target='_blank' rel='noopener'>009913-18CP</a></td><td>Open Duplicate</td><td>Tree</td><td>4439 1st AVE NW</td></tr>
-<tr><td>2018-10-23</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1045289-VI' target='_blank' rel='noopener'>1045289-VI</a></td><td>Under Investigation</td><td>Blank</td><td>1515 NW 52ND ST</td></tr>
-<tr><td>2019-05-10</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1046430-VI' target='_blank' rel='noopener'>1046430-VI</a></td><td>Under Investigation</td><td>Tree</td><td>3803 33rd AVE W</td></tr>
-<tr><td>2020-11-16</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=009767-20CP' target='_blank' rel='noopener'>009767-20CP</a></td><td>Open Duplicate</td><td>LandLord/Tenant</td><td>3241 34TH AVE W</td></tr>
-<tr><td>2021-06-01</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004066-21CP' target='_blank' rel='noopener'>004066-21CP</a></td><td>Open Duplicate</td><td>Vacant Building</td><td>7705 15TH AVE NW</td></tr>
-<tr><td>2021-06-22</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=004764-21CP' target='_blank' rel='noopener'>004764-21CP</a></td><td>Open Duplicate</td><td>ECA , Tree</td><td>9239 VIEW AVE NW</td></tr>
-<tr><td>2021-07-23</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=005863-21CP' target='_blank' rel='noopener'>005863-21CP</a></td><td>Open Duplicate</td><td>LandLord/Tenant</td><td>2024 NW 59TH ST</td></tr>
-<tr><td>2021-07-26</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=005898-21CP' target='_blank' rel='noopener'>005898-21CP</a></td><td>Open Duplicate</td><td>Land Use</td><td>4108 PALATINE AVE N</td></tr>
-<tr><td>2021-09-08</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=1052818-VI' target='_blank' rel='noopener'>1052818-VI</a></td><td>Under Investigation</td><td>Blank</td><td>3827 29th AVE W</td></tr>
-<tr><td>2021-09-14</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=007639-21CP' target='_blank' rel='noopener'>007639-21CP</a></td><td>Open Duplicate</td><td>Land Use</td><td>4615 8TH AVE NW</td></tr>
-<tr><td>2021-09-14</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=007649-21CP' target='_blank' rel='noopener'>007649-21CP</a></td><td>Open Duplicate</td><td>Land Use</td><td>1103 NW MARKET ST</td></tr>
-<tr><td>2021-09-22</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=007912-21CP' target='_blank' rel='noopener'>007912-21CP</a></td><td>Under Investigation</td><td>Land UseConstruction ,</td><td>1423 N 52ND ST</td></tr>
-<tr><td>2021-10-13</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=008572-21CP' target='_blank' rel='noopener'>008572-21CP</a></td><td>Under Investigation</td><td>Construction</td><td>2613 NW 67th ST</td></tr>
-<tr><td>2021-12-28</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=000157-22CP' target='_blank' rel='noopener'>000157-22CP</a></td><td>Open Duplicate</td><td>Blank</td><td>8036 27TH AVE NW</td></tr>
-<tr><td>2022-01-05</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=000199-22CP' target='_blank' rel='noopener'>000199-22CP</a></td><td>Open Duplicate</td><td>Vacant Building</td><td>715 N 81ST ST</td></tr>
-<tr><td>2022-01-11</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=000343-22CP' target='_blank' rel='noopener'>000343-22CP</a></td><td>Open Duplicate</td><td>Blank</td><td>6820 OSWEGO PL NE</td></tr>
-<tr><td>2022-01-14</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=000512-22CP' target='_blank' rel='noopener'>000512-22CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>7733 SUNNYSIDE AVE N</td></tr>
-<tr><td>2022-02-07</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=001209-22CP' target='_blank' rel='noopener'>001209-22CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>6109 PHINNEY AVE N</td></tr>
-<tr><td>2022-02-16</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=001476-22CP' target='_blank' rel='noopener'>001476-22CP</a></td><td>Under Investigation</td><td>Construction , Tree</td><td>3255 NW 56TH ST</td></tr>
-<tr><td>2022-03-10</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=003549-22CP' target='_blank' rel='noopener'>003549-22CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>2015 NW 63RD ST</td></tr>
-<tr><td>2022-03-18</td><td><a class='rl' href='https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx?module=DPDComplaints&TabName=DPDComplaints&SearchType=1000&QueryText=003615-22CP' target='_blank' rel='noopener'>003615-22CP</a></td><td>Under Investigation</td><td>LandLord/Tenant</td><td>2651 NW 87TH ST</td></tr>
-</tbody>
-    </table>
+<div class="grid-2">
+  <div class="panel">
+    <h2>Complaints vs NOVs by Year &mdash; District 6</h2>
+    <div class="chart-wrap" id="chart_trend"></div>
   </div>
+  <div class="panel">
+    <h2>Records Missing Inspection Date by Year &mdash; District 6</h2>
+    <div class="chart-wrap" id="chart_missing"></div>
+  </div>
+</div>
 
-  <div class="foot">
-    <strong>Data source:</strong> CITYWIDE_ALL_20251231_ENRICHED_01272025__PLUS_RECORDLIST_TEXT.csv -- Seattle SDCI enforcement records 2003-2025 (233,543 records total).<br>
-    <strong>Methodology:</strong> All figures derived from structured CSV fields only (RECORDTYPE, STATUSCURRENT, LASTINSPDATE, LASTINSPRESULT, DISTRICT, OPENYEAR). No narrative or description text used for enforcement outcome claims.<br>
-    <strong>Core KPI definition (Rulebook 4.6):</strong> "Closed/Completed without recorded inspection result" = STATUSCURRENT in {Closed, Completed} AND LASTINSPRESULT is blank.<br>
-    <strong>LLT definition:</strong> RECORDTYPEDESC field contains "LANDLORD" (case-insensitive wildcard match).<br>
-    <strong>District assignments:</strong> Based on DISTRICT field in CSV. 2670 records citywide have no district assigned and are excluded from district totals.<br>
-    <strong>Generated:</strong> 2026-03-01 -- Seattle Landlord-Tenant Coalition for Accountability (STLCA)
-  </div>
+<div class="panel" id="properties">
+  <h2>Top LLT Complaint Properties &mdash; District 6 (All Years)</h2>
+  <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Addresses with the highest LLT complaint counts in SDCI public records 2003&ndash;2025. Verified from primary source. Search link opens SDCI portal for that address.</p>
+  <table>
+    <thead><tr><th>LLT Complaints</th><th>Address</th><th>SDCI Records</th></tr></thead>
+    <tbody><tr><td class='cnt'>29</td><td class='addr'>2233 NW 58TH ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=2233%20NW%2058TH%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr><tr><td class='cnt'>26</td><td class='addr'>505 NE 70TH ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=505%20NE%2070TH%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr><tr><td class='cnt'>25</td><td class='addr'>6900 EAST GREEN LAKE WAY N, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=6900%20EAST%20GREEN%20LAKE%20WAY%20N&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr><tr><td class='cnt'>24</td><td class='addr'>1545 NW MARKET ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1545%20NW%20MARKET%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr><tr><td class='cnt'>21</td><td class='addr'>618 NW 58TH ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=618%20NW%2058TH%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr><tr><td class='cnt'>19</td><td class='addr'>414 NE RAVENNA BLVD, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=414%20NE%20RAVENNA%20BLVD&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr><tr><td class='cnt'>19</td><td class='addr'>1701 NW 56TH ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1701%20NW%2056TH%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr><tr><td class='cnt'>17</td><td class='addr'>2035 NW 63RD ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=2035%20NW%2063RD%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI</a></td></tr></tbody>
+  </table>
+</div>
+
+<div class="panel">
+  <h2>Complaint Keyword Analysis &mdash; District 6 LLT (6,634 records)</h2>
+  <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Each LLT complaint was analyzed using spaCy lemmatization + rapidfuzz fuzzy matching (threshold 85) across 19 issue categories. One complaint may match multiple categories. Source: D6_LLT_Smart_Analysis.csv</p>
+  <table>
+    <thead><tr><th>Category</th><th style="text-align:right">Count</th><th style="text-align:right">% of LLT</th></tr></thead>
+    <tbody><tr><td>Tenant Rights / Access</td><td style='text-align:right;font-weight:700;color:#e9eef7'>2,280</td><td style='text-align:right'><span style='display:inline-block;width:68px;height:8px;background:#ef4444;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>34.4%</span></td></tr><tr><td>Habitability (HAB)</td><td style='text-align:right;font-weight:700;color:#e9eef7'>2,032</td><td style='text-align:right'><span style='display:inline-block;width:61px;height:8px;background:#ef4444;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>30.6%</span></td></tr><tr><td>Displacement / Relocation</td><td style='text-align:right;font-weight:700;color:#e9eef7'>1,687</td><td style='text-align:right'><span style='display:inline-block;width:50px;height:8px;background:#f59e0b;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>25.4%</span></td></tr><tr><td>Plumbing / Water</td><td style='text-align:right;font-weight:700;color:#e9eef7'>1,309</td><td style='text-align:right'><span style='display:inline-block;width:39px;height:8px;background:#f59e0b;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>19.7%</span></td></tr><tr><td>Pest Infestation</td><td style='text-align:right;font-weight:700;color:#e9eef7'>1,066</td><td style='text-align:right'><span style='display:inline-block;width:32px;height:8px;background:#f59e0b;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>16.1%</span></td></tr><tr><td>Structural Defects</td><td style='text-align:right;font-weight:700;color:#e9eef7'>910</td><td style='text-align:right'><span style='display:inline-block;width:27px;height:8px;background:#f59e0b;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>13.7%</span></td></tr><tr><td>Appliances / Equipment</td><td style='text-align:right;font-weight:700;color:#e9eef7'>768</td><td style='text-align:right'><span style='display:inline-block;width:23px;height:8px;background:#f59e0b;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>11.6%</span></td></tr><tr><td>Eviction / Notice</td><td style='text-align:right;font-weight:700;color:#e9eef7'>716</td><td style='text-align:right'><span style='display:inline-block;width:21px;height:8px;background:#f59e0b;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>10.8%</span></td></tr><tr><td>Electrical</td><td style='text-align:right;font-weight:700;color:#e9eef7'>660</td><td style='text-align:right'><span style='display:inline-block;width:19px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>9.9%</span></td></tr><tr><td>Rent Issues</td><td style='text-align:right;font-weight:700;color:#e9eef7'>608</td><td style='text-align:right'><span style='display:inline-block;width:18px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>9.2%</span></td></tr><tr><td>Mold / Moisture</td><td style='text-align:right;font-weight:700;color:#e9eef7'>504</td><td style='text-align:right'><span style='display:inline-block;width:15px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>7.6%</span></td></tr><tr><td>Legal / Enforcement Action</td><td style='text-align:right;font-weight:700;color:#e9eef7'>494</td><td style='text-align:right'><span style='display:inline-block;width:14px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>7.4%</span></td></tr><tr><td>Trash / Site Conditions</td><td style='text-align:right;font-weight:700;color:#e9eef7'>434</td><td style='text-align:right'><span style='display:inline-block;width:13px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>6.5%</span></td></tr><tr><td>Permit / Code Compliance</td><td style='text-align:right;font-weight:700;color:#e9eef7'>390</td><td style='text-align:right'><span style='display:inline-block;width:11px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>5.9%</span></td></tr><tr><td>Fire / Smoke Safety</td><td style='text-align:right;font-weight:700;color:#e9eef7'>313</td><td style='text-align:right'><span style='display:inline-block;width:9px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>4.7%</span></td></tr><tr><td>No Heat / Heating Failure</td><td style='text-align:right;font-weight:700;color:#e9eef7'>274</td><td style='text-align:right'><span style='display:inline-block;width:8px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>4.1%</span></td></tr><tr><td>Retaliation / Security</td><td style='text-align:right;font-weight:700;color:#e9eef7'>180</td><td style='text-align:right'><span style='display:inline-block;width:5px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>2.7%</span></td></tr><tr><td>No Hot Water</td><td style='text-align:right;font-weight:700;color:#e9eef7'>127</td><td style='text-align:right'><span style='display:inline-block;width:3px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>1.9%</span></td></tr><tr><td>Gas / Utility Shutoff</td><td style='text-align:right;font-weight:700;color:#e9eef7'>38</td><td style='text-align:right'><span style='display:inline-block;width:1px;height:8px;background:#2d7ff9;border-radius:4px;margin-right:6px;vertical-align:middle'></span><span style='color:var(--muted)'>0.6%</span></td></tr></tbody>
+  </table>
+</div>
+
+<div class="panel" id="oldest">
+  <h2>Oldest Open Cases &mdash; District 6 (All Record Types)</h2>
+  <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Each record number links directly to the complaint in the SDCI public portal via services.seattle.gov. Source: SDCI open data, status = open or under investigation.</p>
+  <table>
+    <thead><tr><th>Open Date</th><th>Record Number</th><th>Status</th><th>Category</th><th>Address</th></tr></thead>
+    <tbody><tr><td>2011-05-26</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1025442-VI' target='_blank' rel='noopener'>1025442-VI</a></td><td style='font-size:11px;color:var(--muted)'>Under Investigation</td><td>Construction</td><td class='addr'>5110 PALATINE AVE N</td></tr><tr><td>2018-05-15</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1044215-UB' target='_blank' rel='noopener'>1044215-UB</a></td><td style='font-size:11px;color:var(--muted)'>Under Investigation</td><td>Blank</td><td class='addr'>3047 30th AVE W</td></tr><tr><td>2018-06-20</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1044422-UB' target='_blank' rel='noopener'>1044422-UB</a></td><td style='font-size:11px;color:var(--muted)'>Under Investigation</td><td>Blank</td><td class='addr'>3412 34TH AVE W</td></tr><tr><td>2018-10-08</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1045173-VI' target='_blank' rel='noopener'>1045173-VI</a></td><td style='font-size:11px;color:var(--muted)'>Under Investigation</td><td>Tree</td><td class='addr'>3857 25TH AVE W</td></tr><tr><td>2018-10-22</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=009913-18CP' target='_blank' rel='noopener'>009913-18CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>Tree</td><td class='addr'>4439 1st AVE NW</td></tr><tr><td>2018-10-23</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1045289-VI' target='_blank' rel='noopener'>1045289-VI</a></td><td style='font-size:11px;color:var(--muted)'>Under Investigation</td><td>Blank</td><td class='addr'>1515 NW 52ND ST</td></tr><tr><td>2019-05-10</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1046430-VI' target='_blank' rel='noopener'>1046430-VI</a></td><td style='font-size:11px;color:var(--muted)'>Under Investigation</td><td>Tree</td><td class='addr'>3803 33rd AVE W</td></tr><tr><td>2020-11-16</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=009767-20CP' target='_blank' rel='noopener'>009767-20CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>LandLord/Tenant</td><td class='addr'>3241 34TH AVE W</td></tr><tr><td>2021-06-01</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004066-21CP' target='_blank' rel='noopener'>004066-21CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>Vacant Building</td><td class='addr'>7705 15TH AVE NW</td></tr><tr><td>2021-06-22</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004764-21CP' target='_blank' rel='noopener'>004764-21CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>ECA , Tree</td><td class='addr'>9239 VIEW AVE NW</td></tr><tr><td>2021-07-23</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005863-21CP' target='_blank' rel='noopener'>005863-21CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>LandLord/Tenant</td><td class='addr'>2024 NW 59TH ST</td></tr><tr><td>2021-07-26</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005898-21CP' target='_blank' rel='noopener'>005898-21CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>Land Use</td><td class='addr'>4108 PALATINE AVE N</td></tr><tr><td>2021-09-08</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1052818-VI' target='_blank' rel='noopener'>1052818-VI</a></td><td style='font-size:11px;color:var(--muted)'>Under Investigation</td><td>Blank</td><td class='addr'>3827 29th AVE W</td></tr><tr><td>2021-09-14</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007639-21CP' target='_blank' rel='noopener'>007639-21CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>Land Use</td><td class='addr'>4615 8TH AVE NW</td></tr><tr><td>2021-09-14</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007649-21CP' target='_blank' rel='noopener'>007649-21CP</a></td><td style='font-size:11px;color:var(--muted)'>Open Duplicate</td><td>Land Use</td><td class='addr'>1103 NW MARKET ST</td></tr></tbody>
+  </table>
+</div>
 
 </div>
+<footer>STLCA &mdash; Seattle Tenant &amp; Landlord Compliance Audit &bull; All data from SDCI Open Data Portal &bull; <a href="STLCA_Home.html">Home</a> &bull; <a href="CITYWIDE KPI.html">Citywide Audit</a></footer>
+
 <script>
-const YEARS   = [2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
-const CP_DATA = [47,487,589,652,727,734,770,638,610,635,640,745,988,925,979,1515,1712,1536,1504,1899,1713,1965,2191];
-const NOV_DATA= [13,260,260,354,276,189,163,146,161,165,163,201,193,166,203,196,202,131,157,168,146,144,114];
-const MISS    = [5,115,117,88,79,44,51,27,153,147,146,239,304,266,312,995,1097,1173,1208,1631,1274,1401,1678];
-
-const LAYOUT = (title) => ({
-  height:260, margin:{l:50,r:16,t:10,b:40},
-  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
-  font:{color:'rgba(233,238,247,.82)',size:11},
-  xaxis:{gridcolor:'rgba(255,255,255,.06)',tickfont:{size:10}},
-  yaxis:{gridcolor:'rgba(255,255,255,.06)',tickfont:{size:10}},
-  legend:{orientation:'h',x:0,y:1.12,font:{size:10}}
-});
-const CFG = {responsive:true,displayModeBar:false};
-
-Plotly.newPlot('chart_trend',[
-  {x:YEARS,y:CP_DATA,name:'Complaints',type:'scatter',mode:'lines+markers',
-   line:{color:'#2d7ff9',width:2},marker:{size:4}},
-  {x:YEARS,y:NOV_DATA,name:'NOVs',type:'scatter',mode:'lines+markers',
-   line:{color:'#f59e0b',width:2},marker:{size:4}}
-], LAYOUT(), CFG);
-
-Plotly.newPlot('chart_missing',[
-  {x:YEARS,y:MISS,name:'Missing Insp Date',type:'bar',
-   marker:{color:'rgba(239,68,68,.7)',line:{color:'rgba(239,68,68,.9)',width:1}}}
-], LAYOUT(), CFG);
+const YEARS=[2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
+const CP=[47, 487, 589, 652, 727, 734, 770, 638, 610, 635, 640, 745, 988, 925, 979, 1515, 1712, 1536, 1504, 1899, 1713, 1965, 2191];
+const NOV=[13, 260, 260, 354, 276, 189, 163, 146, 161, 165, 163, 201, 193, 166, 203, 196, 202, 131, 157, 168, 146, 144, 114];
+const MISS=[5, 115, 117, 88, 79, 44, 51, 27, 153, 147, 146, 239, 304, 266, 312, 995, 1097, 1173, 1208, 1631, 1274, 1401, 1678];
+const LAY=()=>({height:220,margin:{l:48,r:12,t:8,b:36},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'rgba(233,238,247,.75)',size:10},xaxis:{gridcolor:'rgba(255,255,255,.05)',tickfont:{size:9}},yaxis:{gridcolor:'rgba(255,255,255,.05)',tickfont:{size:9}},legend:{orientation:'h',x:0,y:1.1,font:{size:10}}});
+const CFG={responsive:true,displayModeBar:false};
+Plotly.newPlot('chart_trend',[{x:YEARS,y:CP,name:'Complaints',type:'scatter',mode:'lines+markers',line:{color:'#2d7ff9',width:2},marker:{size:4}},{x:YEARS,y:NOV,name:'NOVs',type:'scatter',mode:'lines+markers',line:{color:'#f59e0b',width:2},marker:{size:4}}],LAY(),CFG);
+Plotly.newPlot('chart_missing',[{x:YEARS,y:MISS,name:'Missing Insp Date',type:'bar',marker:{color:'rgba(239,68,68,.7)'}}],LAY(),CFG);
 </script>
 </body>
 </html>

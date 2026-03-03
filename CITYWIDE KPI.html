@@ -548,14 +548,7 @@ function escapeHtml(v){
 }
 
 function sdciComplaintUrl(record){
-  const base = "https://cosaccela.seattle.gov/Portal/Cap/CapHome.aspx";
-  const params = new URLSearchParams({
-    module: "DPDComplaints",
-    TabName: "DPDComplaints",
-    SearchType: "1000",
-    QueryText: record
-  });
-  return `${base}?${params.toString()}`;
+  return `https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=${encodeURIComponent(record)}`;
 }
 
 function renderTable(pack){
