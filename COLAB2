@@ -1,0 +1,60 @@
+!pip install rapidfuzz -q
+
+import polars as pl
+from rapidfuzz import fuzz
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+print("✅ spaCy + rapidfuzz ready")
+
+df = pl.read_csv("D7_ALL_WITHOUT_RECORDLIST_03022025.csv")
+print(f"Loaded {df.shape[0]:,} rows")
+
+categories = {
+    "No_Heat": ["NO HEAT", "no heat", "no heating", "cold", "freezing", "heater not working", "living room heater", "no heat for days", "heat not working"],
+    "No_Hot_Water": ["NO HOT WATER", "no hot water", "no hot water for days"],
+    "Elevator": ["ELEVATOR", "LIFT", "elevator gets stuck", "elevators down", "elevator not working"],
+    "Plumbing": ["PLUMBING", "LEAK", "FLOOD", "SEWAGE", "raw sewage", "exposed sewage", "sewer backup", "pipe burst", "burst pipe", "leaking", "water pouring", "from roof", "into apartment", "ceiling leak", "upstairs leaking", "leaking from upstairs", "toilet overflowing", "shower not draining", "sink clogged", "water pressure low", "no water", "without water", "water off", "water shut off", "water outage"],
+    "Mold": ["MOLD", "MILDEW", "BLACK MOLD", "mold issue", "breathing problems", "blisters", "allergies", "cannot stay here", "child cannot sleep"],
+    "Pests": ["RODENT", "RATS", "MICE", "COCKROACH", "BED BUG", "roaches", "cockroaches", "roach issue", "bed bugs", "bedbugs", "ants", "silver fish", "silverfish", "animals in the attic", "attic", "vermin", "pest", "infestation"],
+    "HAB": ["UNINHABITABLE", "unsafe conditions", "hazard", "dangerous", "need inspection asap", "structural", "crack", "ceiling", "floor", "wall", "collapse", "broken window", "broken door"],
+    "EVIC": ["EVICT", "EVICTION", "3-DAY", "3 DAY", "10-DAY", "14-DAY", "NOTICE TO PAY OR VACATE", "PAY OR VACATE", "UNLAWFUL DETAINER", "JUST CAUSE", "RETALIAT", "LOCKOUT", "CHANGED LOCK", "SHERIFF", "WRIT", "VACATE NOTICE", "MOVE OUT", "LEASE TERMINAT", "NOTICE TO TERMINATE", "evicted", "kicked me out", "kicked out", "locked out", "changed the locks", "forced out", "entered without notice", "unauthorized entry", "without permission", "harassment", "retaliation", "walked in", "permission to enter", "after knocking", "entered when not home", "landlord yelling", "threatened eviction"],
+    "DISP": ["DISPLACE", "RELOCAT", "TRAO", "TENANT RELOCATION", "DEMOLITION", "DEMO", "CHANGE OF USE", "CONVERSION", "MASS VACATE", "VACATE ORDER", "REDEVELOP", "CONSTRUCTION DISPLACE", "CASH FOR KEYS"],
+    "RENT": ["RENT INCREASE", "RAISE RENT", "RENT RAISE", "ILLEGAL FEE", "MOVE-IN FEE", "MOVE IN FEE", "DEPOSIT", "LATE FEE", "PAYMENT PLAN", "RENT DEMAND", "UTILITIES INCLUDED", "UTILITY INCLUDED", "BILL UNPAID", "SHUTOFF NOTICE", "NOT FIXED", "REFUSE TO REPAIR", "WON'T FIX", "rent increase", "rent raised", "rent hike", "illegal rent"],
+    "PERMIT": ["WITHOUT PERMIT", "NO PERMIT", "UNPERMITTED", "PERMIT", "PULLED PERMIT", "ISSUED PERMIT", "INSPECTION FOR PERMIT", "CODE COMPLIANCE", "FINAL INSPECTION"],
+    "LEGAL": ["NOTICE OF VIOLATION", "NOV", "CITATION", "NO VIOLATION", "ADMIN CLOSED", "REFERRED", "NO JURISDICTION", "CLOSED", "COMPLETED", "CASE CLOSED"],
+    "Tenant_Management": ["tenant rights", "what are my rights", "rights?", "needs guidance", "L/T questions", "landlord/tenant", "POTA", "past due rent", "help with past due rent", "Sec 8", "Section 8", "SHA", "Seattle Housing Authority", "subsidy", "balance transfer", "rent receipts", "money order", "RENTAG", "security deposit", "no response from management", "not returning my calls", "no response", "avoiding contact", "no plan of repair", "not communicating", "refuses to repair", "repairs being refused", "not doing anything", "nothing has been done", "slow/no response", "waiting for 3 months", "work orders unfulfilled", "promises", "never did", "work order ignored", "no response for 2 months", "landlord yelling"]
+}
+
+def analyze_complaint(text):
+    if not isinstance(text, str) or not text.strip():
+        return {cat: False for cat in categories}
+    doc = nlp(text.lower())
+    text_lower = text.lower()
+    results = {}
+    for cat, keywords in categories.items():
+        match = any(fuzz.partial_ratio(kw.lower(), text_lower) > 85 for kw in keywords)
+        if not match:
+            match = any(ent.text in text_lower for ent in doc.ents)
+        results[cat] = match
+    return results
+
+print("Running full analysis on all rows...")
+
+results_full = df.with_columns([
+    pl.col("DESCRIPTION").map_elements(analyze_complaint, return_dtype=pl.Object).alias("tags")
+])
+
+print("✅ FULL ANALYSIS COMPLETE!")
+
+summary = {}
+for cat in categories.keys():
+    count = results_full.select(pl.col("tags").map_elements(lambda x: x.get(cat, False), return_dtype=pl.Boolean).sum()).item()
+    summary[cat] = count
+
+print("\n=== SUMMARY COUNTS FOR DISTRICT 7 ===")
+for cat, count in sorted(summary.items(), key=lambda x: x[1], reverse=True):
+    print(f"{cat}: {count:,}")
+
+results_full.write_csv("D7_Full_Smart_Analysis.csv")
+print("\n✅ Saved to D7_Full_Smart_Analysis.csv (open this in Excel)")
