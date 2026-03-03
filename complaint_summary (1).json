@@ -1,0 +1,86 @@
+{
+  "source": "District_1-7_ALL_ENRICHED.csv",
+  "generated": "2026-02-21",
+  "citywide": {
+    "total": 175170,
+    "lt": 48620,
+    "verified": 93784,
+    "unverified": 73212,
+    "open": 8174,
+    "referred_to_law": 0,
+    "nov_issued": 0,
+    "unverified_pct": 43.8
+  },
+  "by_district": {
+    "D1": {
+      "total": 30636,
+      "lt": 7400,
+      "verified": 17982,
+      "unverified": 11684,
+      "open": 970,
+      "referred_to_law": 0,
+      "nov_issued": 0,
+      "unverified_pct": 39.4
+    },
+    "D2": {
+      "total": 27611,
+      "lt": 7647,
+      "verified": 15840,
+      "unverified": 10393,
+      "open": 1378,
+      "referred_to_law": 0,
+      "nov_issued": 0,
+      "unverified_pct": 39.6
+    },
+    "D3": {
+      "total": 28564,
+      "lt": 8712,
+      "verified": 13991,
+      "unverified": 13059,
+      "open": 1514,
+      "referred_to_law": 0,
+      "nov_issued": 0,
+      "unverified_pct": 48.3
+    },
+    "D4": {
+      "total": 20822,
+      "lt": 6180,
+      "verified": 11201,
+      "unverified": 8661,
+      "open": 960,
+      "referred_to_law": 0,
+      "nov_issued": 0,
+      "unverified_pct": 43.6
+    },
+    "D5": {
+      "total": 22199,
+      "lt": 6216,
+      "verified": 12515,
+      "unverified": 8620,
+      "open": 1064,
+      "referred_to_law": 0,
+      "nov_issued": 0,
+      "unverified_pct": 40.8
+    },
+    "D6": {
+      "total": 24201,
+      "lt": 5730,
+      "verified": 13127,
+      "unverified": 9913,
+      "open": 1161,
+      "referred_to_law": 0,
+      "nov_issued": 0,
+      "unverified_pct": 43.0
+    },
+    "D7": {
+      "total": 21137,
+      "lt": 6735,
+      "verified": 9128,
+      "unverified": 10882,
+      "open": 1127,
+      "referred_to_law": 0,
+      "nov_issued": 0,
+      "unverified_pct": 54.4
+    }
+  }
+}
