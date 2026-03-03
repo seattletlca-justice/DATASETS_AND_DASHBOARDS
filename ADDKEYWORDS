@@ -1,0 +1,46 @@
+    "HAB": [
+        "NO HEAT", "NO HOT WATER", "NO WATER", "WATER SHUTOFF", "GAS SHUTOFF", "POWER SHUTOFF",
+        "MOLD", "MILDEW", "RODENT", "RATS", "MICE", "COCKROACH", "BED BUG", "FLOOD", "SEWAGE",
+        "PLUMBING", "LEAK", "ELECTRICAL", "WIRING", "FIRE HAZARD", "STRUCTURAL", "COLLAPSE",
+        "UNINHABITABLE", "CONDemn", "PEST", "INFEST", "BROKEN WINDOW", "BROKEN DOOR", "HEATER",
+        "ELEVATOR", "LIFT", "ASBESTOS", "LEAD", "SMOKE", "CARBON MONOXIDE"
+    ],
+    "EVIC": [
+        "EVICT", "EVICTION", "3-DAY", "3 DAY", "10-DAY", "14-DAY", "NOTICE TO PAY OR VACATE",
+        "PAY OR VACATE", "UNLAWFUL DETAINER", "JUST CAUSE", "RETALIAT", "LOCKOUT", "CHANGED LOCK",
+        "SHERIFF", "WRIT", "VACATE NOTICE", "MOVE OUT", "LEASE TERMINAT", "NOTICE TO TERMINATE",
+        "evicted", "kicked me out", "kicked out", "locked out", "changed the locks", "forced out",
+        "entered without notice", "unauthorized entry"
+    ],
+    "DISP": [
+        "DISPLACE", "RELOCAT", "TRAO", "TENANT RELOCATION", "DEMOLITION", "DEMO", "CHANGE OF USE",
+        "CONVERSION", "MASS VACATE", "VACATE ORDER", "REDEVELOP", "CONSTRUCTION DISPLACE",
+        "CASH FOR KEYS"
+    ],
+    "RENT": [
+        "RENT INCREASE", "RAISE RENT", "RENT RAISE", "ILLEGAL FEE", "MOVE-IN FEE", "MOVE IN FEE",
+        "DEPOSIT", "LATE FEE", "PAYMENT PLAN", "RENT DEMAND", "UTILITIES INCLUDED", "UTILITY INCLUDED",
+        "BILL UNPAID", "SHUTOFF NOTICE", "NOT FIXED", "REFUSE TO REPAIR", "WON'T FIX",
+        "rent increase", "rent raised", "rent hike", "illegal rent"
+    ],
+    "PERMIT": [
+        "WITHOUT PERMIT", "NO PERMIT", "UNPERMITTED", "PERMIT", "PULLED PERMIT", "ISSUED PERMIT",
+        "INSPECTION FOR PERMIT", "CODE COMPLIANCE", "FINAL INSPECTION"
+    ],
+    "LEGAL": [
+        "NOTICE OF VIOLATION", "NOV", "CITATION", "NO VIOLATION", "ADMIN CLOSED", "REFERRED",
+        "NO JURISDICTION", "CLOSED", "COMPLETED", "CASE CLOSED"
+    ],
+
+    # === ALL YOUR PREVIOUS DETAILED ONES (kept for maximum granularity) ===
+    "Plumbing": ["no water", "without water", "water off", "water shut off", "water outage", "notice said", "given notices", "water would be out", "scheduled", "9am-5pm", "still no water", "over 24 hours", "48 hours", "pipe burst", "burst pipe", "leaking", "water pouring", "from roof", "into apartment", "ceiling leak", "upstairs leaking", "leaking from upstairs", "sewer backup", "sewer system back up", "back up", "raw sewage", "exposed sewage", "sewage outside", "smell is awful", "leak", "flood", "toilet", "shower", "clog", "clogged", "drain", "pipe", "sink", "no hot water", "hot water", "water pressure", "plumbing"],
+    "Mold": ["mold", "black mold", "smell/mold", "mold issue", "breathing problems", "blisters", "allergies", "cannot stay here", "child cannot sleep"],
+    "Pests": ["roaches", "cockroaches", "roach issue", "bed bugs", "bedbugs", "ants", "silver fish", "silverfish", "animals in the attic", "attic", "their responsibility to hire an exterminator", "hire an exterminator", "pest control sent", "problem not resolved", "rat", "mouse", "bug", "vermin", "pest", "infestation"],
+    "Appliances": ["washer", "washing machine", "dryer", "laundry", "laundry facilities", "washing machine out", "no washer", "inoperable", "broken", "washer leaking", "unit gets flooded", "flooded", "stove", "stoveneeds repair", "stove out", "microwave", "microwave work orders", "fridge", "refrigerator", "toilet", "toilet seat", "toilet seat cover", "heater", "no heat", "heater not working", "living room heater"],
+    "Electrical": ["electrical", "outlet", "wiring", "breaker", "fuse", "shock", "electrician", "power", "no power", "light fixture", "no lights", "lights in bathroom"],
+    "Fire_Safety": ["fire alarm", "faulty fire alarm", "smoke", "fire", "carbon monoxide", "detector", "alarm"],
+    "Structural": ["unsafe conditions", "hazard", "dangerous", "need inspection asap", "ceiling is cracked", "cracked", "cracks in the ceiling", "holes around the base", "hollow ground", "collapse", "sinkhole", "water goes under the building", "disappears", "broomstick", "concrete stairwell", "structural", "crack", "ceiling", "floor", "wall", "collapse"],
+    "Trash_Site": ["junk storage", "overflowing dumpsters", "trash being left outside", "overgrown vegetation", "weeds", "garbage", "debris", "trash", "junk", "hoarding"],
+    "Tenant_Rights": ["tenant rights", "what are my rights", "rights?", "needs guidance", "L/T questions", "landlord/tenant", "POTA", "pay or vacate", "rent increase", "rent increased", "increased the rent", "landlord increased", "eviction", "evicted", "notice to vacate", "vacate", "pay or vacate", "14-day notice", "14 day notice", "10day eviction notice", "10 day eviction notice", "3 Day Notice to Pay or Vacate", "past due rent", "help with past due rent", "Sec 8", "Section 8", "SHA", "Seattle Housing Authority", "subsidy", "balance transfer", "rent receipts", "money order", "RENTAG", "security deposit", "no response from management", "not returning my calls", "no response", "avoiding contact", "no plan of repair", "not communicating", "refuses to repair", "repairs being refused", "not doing anything", "nothing has been done", "slow/no response", "waiting for 3 months", "work orders unfulfilled", "promises", "never did", "walked in", "permission to enter", "after knocking", "entered when not home", "unauthorized entry", "without permission", "harassment", "retaliation"],
+    "Security_Retaliation": ["car towed", "towed in retaliation", "no sticker announcing tow", "security"]
+}
