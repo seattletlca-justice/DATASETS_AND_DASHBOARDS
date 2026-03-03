@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>District 6 Accountability Dossier &mdash; Dan Strauss</title>
+<style>
+:root{--bg:#070b12;--panel:#0c1424;--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#10b981;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.55)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Georgia',serif;font-size:15px;line-height:1.8}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);font-family:'Inter',system-ui,sans-serif;letter-spacing:.5px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;transition:color .2s}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.hdr{border-left:4px solid var(--blue);padding:0 0 0 24px;margin-bottom:40px}
+.hdr .kicker{font-family:'Inter',system-ui,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:10px}
+.hdr h1{font-size:32px;font-weight:400;line-height:1.25;margin-bottom:12px}
+.hdr .byline{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
+.stat-row{display:flex;gap:32px;margin:32px 0;flex-wrap:wrap}
+.stat{text-align:center;flex:1;min-width:120px}
+.stat .s-val{font-size:36px;font-weight:700;font-family:'Inter',system-ui,sans-serif;line-height:1}
+.stat .s-lbl{font-size:11px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.stat .s-cw{font-size:10px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;margin-top:4px}
+.blue{color:var(--blue)}.orange{color:var(--orange)}.red{color:var(--red)}.green{color:var(--green)}
+h2{font-size:20px;font-weight:400;margin:40px 0 12px;border-bottom:1px solid var(--border);padding-bottom:10px}
+h3{font-size:16px;font-weight:700;font-family:'Inter',system-ui,sans-serif;margin:28px 0 8px;color:var(--orange)}
+p{margin-bottom:16px;color:var(--text)}
+.quote{background:rgba(45,127,249,.05);border-left:3px solid rgba(45,127,249,.4);padding:14px 18px;margin:16px 0;font-style:italic;font-size:14px;color:rgba(233,238,247,.8);border-radius:0 8px 8px 0}
+.quote .q-src{font-style:normal;font-size:11px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;margin-top:8px;display:block}
+.case-box{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:24px 24px 20px;margin:24px 0}
+.case-box .c-addr{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px}
+.case-box .c-count{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--muted);margin-bottom:14px}
+.case-box .c-pattern{font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--orange);margin-bottom:10px}
+.finding{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:16px 20px;margin:8px 0;font-size:13px;font-family:'Inter',system-ui,sans-serif}
+.finding::before{content:'▸ ';color:var(--red);font-weight:700}
+ul{margin:0 0 16px 20px}
+ul li{margin-bottom:8px;font-size:14px}
+.section-intro{font-size:14px;color:rgba(233,238,247,.7);font-style:italic;margin-bottom:20px}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-size:11px;color:rgba(233,238,247,.3);font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">STLCA &mdash; Seattle Tenant &amp; Landlord Compliance Audit</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="District_6_Dossier.html">D6 Dashboard</a>
+    <a href="CITYWIDE KPI.html">Citywide</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#findings">Key Findings</a>
+  </div>
+</nav>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="kicker">District 6 &bull; Dan Strauss &bull; Accountability Dossier</div>
+  <h1>SDCI Enforcement Record: What the Complaints Say<br>About Landlord Accountability in District 6</h1>
+  <p class="byline">Source: CITYWIDE_ALL_20251231_ENRICHED_01272025 &bull; Seattle Department of Construction and Inspections public complaint records, 2003&ndash;2025 &bull; LLT filter: RecordTypeDesc blank, contains &ldquo;Emergency,&rdquo; or contains &ldquo;LandLord/Tenant&rdquo; &bull; All case study quotations are verbatim from SDCI complaint records &bull; 2,671 citywide records (1.1%) lacked district geocodes and are excluded from district counts</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat"><div class="s-val blue">6,634</div><div class="s-lbl">LLT Records</div><div class="s-cw">D6 total, all years</div></div>
+  <div class="stat"><div class="s-val blue">4,371</div><div class="s-lbl">LLT Complaints</div><div class="s-cw">filed by tenants</div></div>
+  <div class="stat"><div class="s-val orange">1,234</div><div class="s-lbl">NOVs Issued</div><div class="s-cw">NOV rate: 28.2% &bull; CW: 27.2%</div></div>
+  <div class="stat"><div class="s-val red">64.1%</div><div class="s-lbl">No Inspection Date</div><div class="s-cw">citywide avg: 62.3%</div></div>
+  <div class="stat"><div class="s-val red">62.0%</div><div class="s-lbl">Closed / No Result</div><div class="s-cw">of closed LLT cases &bull; CW: 59.8%</div></div>
+  <div class="stat"><div class="s-val red">+269%</div><div class="s-lbl">LLT Growth</div><div class="s-cw">164 (2015) &rarr; 605 (2025)</div></div>
+</div>
+
+<h2>District Overview</h2>
+<p class="section-intro">Ballard, Crown Hill, Broadview, Greenwood, Green Lake (W), Phinney</p>
+<p>District 6 — Ballard, Greenwood, Green Lake — is one of Seattle's most actively gentrifying districts, and the SDCI complaint record reflects that transformation. With 31,829 total records and 6,634 LLT complaints, the district's complaint pattern shifts noticeably from chronic habitability failures to displacement-adjacent issues: unauthorized landlord entry, illegal lease terminations, fire displacement without relocation assistance, and unpermitted construction. The highest LLT displacement (DISP) rate of any district — 25.4% of LLT complaints touch displacement or relocation — places District 6 at the center of Seattle's gentrification accountability question. LLT records grew 269% from 2015 to 2025.</p>
+
+<h2>What the Pattern Looks Like</h2>
+<p>District 6 tells a different story than the habitability-dominated complaint records of Districts 1–5. Here, the dominant complaint pattern is rights violation and displacement: managers entering units without notice or consent, landlords refusing to honor rescissions of termination agreements, tenants displaced by fires receiving no relocation assistance, and unpermitted electrical and plumbing work used to justify or accelerate turnover. Ballard's housing market transformation is visible in the complaint data.</p>
+
+<h2 id="cases">Case Studies: The Highest-Activity Addresses</h2>
+<p class="section-intro">The following case studies draw directly from SDCI public complaint records at District 6&rsquo;s most-documented LLT addresses. All quoted text is verbatim from the complaint record. Record numbers and addresses link to the SDCI public portal.</p>
+
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=2233%20NW%2058TH%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">2233 NW 58TH ST, Seattle WA</a></div>
+  <div class="c-count">29 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">Unauthorized entry + illegal termination + illegal pet deposit</div>
+  <p>The On the Park Ballard complex at 2233 NW 58th St has 29 LLT complaint records with a pattern centered on tenant rights violations rather than habitability failures. A 2017 complaint documents a manager entering without notice, and more critically, a landlord refusing to honor a tenant's legal right to rescind a Mutual Termination Form within the allowed period — then issuing a vacate notice when the tenant exercised that right. A 2019 complaint documents pet deposits of 50% of monthly rent — specifically for dogs under one year old — with at least one tenant reporting being charged "more than their rent" as a pet deposit.</p>
+  <div class="quote">&ldquo;Manager entered unit without notice. Move-out and Mutual Termination Forms signed 10/12/17 with right to rescind. After tenant wished to rescind, owner refused and issued vacate notice. Owner refused November rent payment.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2017 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=2233%20NW%2058TH%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;On the Park charges an additional pet deposit for dogs under the age of one. We were charged 50% of our rent. Others have been charged more than their rent.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2019 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=2233%20NW%2058TH%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> Refusing to honor a tenant's legal right to rescind a termination agreement — and then refusing their rent payment — is not a contract dispute. It is a documented attempt to use a management-drafted form to manufacture a legal basis for eviction. At 2233 NW 58th St, this strategy is in the SDCI record. So are pet deposits that exceed the legal maximum. These are not accidental violations; they are calculated ones.</p>
+</div>
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=6900%20EAST%20GREEN%20LAKE%20WAY%20N&city=Seattle&state=WA" target="_blank" rel="noopener">6900 EAST GREEN LAKE WAY N, Seattle WA</a></div>
+  <div class="c-count">25 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">Fire displacement — no relocation assistance — unpermitted construction</div>
+  <p>A 2018 complaint at 6900 East Green Lake Way N documents a tenant displaced by a fire in the unit above who received "no help for displacement costs" from management. Seattle's tenant relocation assistance ordinance creates specific obligations when tenants are displaced — obligations that were apparently not met here. A 2019 complaint at the same address documents unpermitted plumbing and electrical work, suggesting the building was undergoing changes that may have been driving the displacement pressure visible in the record.</p>
+  <div class="quote">&ldquo;POTA — per phone call — tenant has been displaced due to fire in unit above and has not gotten any help for displacement costs.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2018 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=6900%20EAST%20GREEN%20LAKE%20WAY%20N&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Doing plumbing and electrical work, no permits.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2019 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=6900%20EAST%20GREEN%20LAKE%20WAY%20N&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Currently leasing a commercial unit in a residential space using residential contract. This commercial space is in a gated community which requires a FAB to enter.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2016 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=6900%20EAST%20GREEN%20LAKE%20WAY%20N&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> A fire displacement without relocation assistance, followed by unpermitted construction at the same address, describes a property in active transition where the tenant protection laws designed for exactly this situation were not applied. The commercial-in-residential conversion complaint from the same address years earlier suggests a building that has been cycling between uses while the people living in it are left to navigate each change without the protections the law requires.</p>
+</div>
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1545%20NW%20MARKET%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">1545 NW MARKET ST, Seattle WA</a></div>
+  <div class="c-count">24 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">Construction noise at 4am + fire egress door locked shut for months</div>
+  <p>1545 NW Market St appears in the earliest relevant SDCI records with a Tenant Relocation License application — meaning a recognized displacement event was occurring at this address. Later complaints document construction starting at 4:50am, then drilling and hammering between 1am and 5am — nighttime construction noise severe enough that a tenant reports getting "no sleep at all." A 2017 complaint documents the exterior fire egress door on the south side locked shut with a sign reading "Door broken do not open" — a condition that had persisted since mid-January before the complaint was filed in March.</p>
+  <div class="quote">&ldquo;On 3/31/2016 12am, heard drilling next door. Last night between 1am–5am, heard more drilling and hammering. Got no sleep at all. Tired of it.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2016 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1545%20NW%20MARKET%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;The exterior fire egress door on the south side of the south building is locked shut with a sign 'Door broken do not open'. This door has been damaged since early to mid January.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2017 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1545%20NW%20MARKET%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> A fire egress door locked shut with a handwritten sign is not a maintenance matter — it is a fire evacuation hazard in a building undergoing active construction. At 1545 NW Market St, that door was locked for approximately two months before an SDCI complaint was filed. The same building had been in the tenant relocation pipeline years earlier. The construction noise timeline — from 4am starts to middle-of-the-night drilling — documents a building being pushed toward turnover while occupied residents live with the consequences.</p>
+</div>
+
+<h2 id="findings">Key Findings &mdash; District 6</h2>
+<p class="section-intro">Based on analysis of 6,634 LLT records across all years in District 6. Figures verified from primary source: CITYWIDE_ALL_20251231_ENRICHED_01272025.</p>
+<div class="finding">D6 has the highest LLT displacement rate of any district: 25.4% of LLT complaints involve displacement or relocation issues</div><div class="finding">Landlord refusal to honor legally required rescission rights documented in SDCI records — a calculated rights violation</div><div class="finding">Pet deposits exceeding legal limits documented at Ballard complex, with multiple tenants affected</div><div class="finding">Fire displacement without relocation assistance documented — tenant protection laws not applied when they should have been</div><div class="finding">64.1% of LLT records have no inspection date; 62.0% of closed cases show no inspection result — above citywide averages</div><div class="finding">LLT records grew 269% from 2015 (164) to 2025 (605) — the gentrification pressure on Ballard is measurable in the complaint data</div><div class="finding">817 Tenant Relocation orders — the highest TRAO count per LLT complaint total of any district</div>
+
+<h2>A Note on Enforcement Metrics</h2>
+<p>Two numbers define the enforcement accountability gap in District 6: <strong>64.1%</strong> of LLT records have no inspection date in the dataset — meaning SDCI cannot confirm from its own records that a field inspector visited in response to these complaints. And <strong>62.0%</strong> of closed LLT cases show no inspection result — cases that were closed without any documented finding. These are not data errors. They are the shape of an enforcement system that handles high complaint volume with insufficient inspection follow-through.</p>
+<p>When a complaint is filed and closed without inspection, the tenant receives no acknowledgment that their conditions were witnessed or documented. The landlord faces no accountability. And the same conditions appear again in the next complaint at the same address.</p>
+
+</div>
+<footer>STLCA &mdash; Seattle Tenant &amp; Landlord Compliance Audit &bull; All case study quotations verbatim from SDCI open data &bull; <a href="District_6_Dossier.html">D6 Data Dashboard</a> &bull; <a href="STLCA_Home.html">Home</a> &bull; <a href="CITYWIDE KPI.html">Citywide Audit</a></footer>
+</body>
+</html>
