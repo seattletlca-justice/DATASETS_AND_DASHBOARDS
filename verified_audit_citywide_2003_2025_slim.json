@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "window": "2003-2025",
+    "focus": "Verified vs Unverified closures for SDCI CP complaints",
+    "source_html": "SDCI Complaint Record Verification Audit 2003\u20132025.html",
+    "generated_at_utc": "2026-02-21T14:33:12Z",
+    "definitions": {
+      "verified": "Closed/Completed complaint with both LastInspDate and LastInspResult recorded",
+      "unverified": "Closed/Completed complaint missing one or both inspection fields"
+    }
+  },
+  "all": {
+    "citywide": {
+      "total_CP": 175170,
+      "total_CP_closed_completed": 166996,
+      "verified": 93784,
+      "unverified": 73212,
+      "verified_pct": 56.2,
+      "unverified_pct": 43.8,
+      "verified_by_year": {
+        "1999": 1,
+        "2000": 4,
+        "2001": 2,
+        "2002": 4,
+        "2003": 319,
+        "2004": 3536,
+        "2005": 3835,
+        "2006": 4391,
+        "2007": 4774,
+        "2008": 5146,
+        "2009": 4633,
+        "2010": 4428,
+        "2011": 3611,
+        "2012": 3538,
+        "2013": 3959,
+        "2014": 4489,
+        "2015": 5581,
+        "2016": 5291,
+        "2017": 5694,
+        "2018": 4044,
+        "2019": 4529,
+        "2020": 3255,
+        "2021": 3286,
+        "2022": 2890,
+        "2023": 3964,
+        "2024": 4299,
+        "2025": 4280,
+        "2026": 1
+      },
+      "unverified_by_year": {
+        "1999": 0,
+        "2000": 0,
+        "2001": 0,
+        "2002": 0,
+        "2003": 76,
+        "2004": 377,
+        "2005": 364,
+        "2006": 291,
+        "2007": 210,
+        "2008": 153,
+        "2009": 166,
+        "2010": 124,
+        "2011": 784,
+        "2012": 1009,
+        "2013": 833,
+        "2014": 990,
+        "2015": 1401,
+        "2016": 1841,
+        "2017": 2042,
+        "2018": 6168,
+        "2019": 7026,
+        "2020": 6972,
+        "2021": 6997,
+        "2022": 10071,
+        "2023": 9417,
+        "2024": 7774,
+        "2025": 8126,
+        "2026": 0
+      }
+    },
+    "districts": {
+      "D1": {
+        "total_CP": 30636,
+        "total_CP_closed_completed": 29666,
+        "verified": 17982,
+        "unverified": 11684,
+        "verified_pct": 60.6,
+        "unverified_pct": 39.4
+      },
+      "D2": {
+        "total_CP": 27611,
+        "total_CP_closed_completed": 26233,
+        "verified": 15840,
+        "unverified": 10393,
+        "verified_pct": 60.4,
+        "unverified_pct": 39.6
+      },
+      "D3": {
+        "total_CP": 28564,
+        "total_CP_closed_completed": 27050,
+        "verified": 13991,
+        "unverified": 13059,
+        "verified_pct": 51.7,
+        "unverified_pct": 48.3
+      },
+      "D4": {
+        "total_CP": 20822,
+        "total_CP_closed_completed": 19862,
+        "verified": 11201,
+        "unverified": 8661,
+        "verified_pct": 56.4,
+        "unverified_pct": 43.6
+      },
+      "D5": {
+        "total_CP": 22199,
+        "total_CP_closed_completed": 21135,
+        "verified": 12515,
+        "unverified": 8620,
+        "verified_pct": 59.2,
+        "unverified_pct": 40.8
+      },
+      "D6": {
+        "total_CP": 24201,
+        "total_CP_closed_completed": 23040,
+        "verified": 13127,
+        "unverified": 9913,
+        "verified_pct": 57.0,
+        "unverified_pct": 43.0
+      },
+      "D7": {
+        "total_CP": 21137,
+        "total_CP_closed_completed": 20010,
+        "verified": 9128,
+        "unverified": 10882,
+        "verified_pct": 45.6,
+        "unverified_pct": 54.4
+      }
+    }
+  },
+  "lt": {
+    "citywide": {
+      "total_closed": 26189,
+      "verified": 6251,
+      "unverified": 19938,
+      "verified_pct": 23.9,
+      "unverified_pct": 76.1,
+      "verified_by_year": {
+        "2003": 24,
+        "2004": 158,
+        "2005": 146,
+        "2006": 270,
+        "2007": 257,
+        "2008": 227,
+        "2009": 293,
+        "2010": 292,
+        "2011": 297,
+        "2012": 361,
+        "2013": 429,
+        "2014": 396,
+        "2015": 351,
+        "2016": 375,
+        "2017": 449,
+        "2018": 317,
+        "2019": 265,
+        "2020": 169,
+        "2021": 172,
+        "2022": 201,
+        "2023": 232,
+        "2024": 304,
+        "2025": 266
+      },
+      "unverified_by_year": {
+        "2003": 12,
+        "2004": 57,
+        "2005": 60,
+        "2006": 67,
+        "2007": 43,
+        "2008": 37,
+        "2009": 31,
+        "2010": 34,
+        "2011": 28,
+        "2012": 17,
+        "2013": 21,
+        "2014": 30,
+        "2015": 30,
+        "2016": 67,
+        "2017": 344,
+        "2018": 1892,
+        "2019": 2039,
+        "2020": 2028,
+        "2021": 2269,
+        "2022": 2824,
+        "2023": 2543,
+        "2024": 2574,
+        "2025": 2891
+      }
+    },
+    "districts": {
+      "D1": {
+        "total_closed": 3451,
+        "verified": 938,
+        "unverified": 2513,
+        "verified_pct": 27.2,
+        "unverified_pct": 72.8
+      },
+      "D2": {
+        "total_closed": 4105,
+        "verified": 1187,
+        "unverified": 2918,
+        "verified_pct": 28.9,
+        "unverified_pct": 71.1
+      },
+      "D3": {
+        "total_closed": 5208,
+        "verified": 1120,
+        "unverified": 4088,
+        "verified_pct": 21.5,
+        "unverified_pct": 78.5
+      },
+      "D4": {
+        "total_closed": 3082,
+        "verified": 795,
+        "unverified": 2287,
+        "verified_pct": 25.8,
+        "unverified_pct": 74.2
+      },
+      "D5": {
+        "total_closed": 3498,
+        "verified": 813,
+        "unverified": 2685,
+        "verified_pct": 23.2,
+        "unverified_pct": 76.8
+      },
+      "D6": {
+        "total_closed": 2808,
+        "verified": 589,
+        "unverified": 2219,
+        "verified_pct": 21.0,
+        "unverified_pct": 79.0
+      },
+      "D7": {
+        "total_closed": 4037,
+        "verified": 809,
+        "unverified": 3228,
+        "verified_pct": 20.0,
+        "unverified_pct": 80.0
+      }
+    }
+  },
+  "pre_post_citywide": {
+    "pre": {
+      "verified": 63445,
+      "unverified": 10661,
+      "unverified_pct": 14.4
+    },
+    "post": {
+      "verified": 30339,
+      "unverified": 62551,
+      "unverified_pct": 67.3
+    },
+    "pre_lt": {
+      "verified": 4325,
+      "unverified": 878,
+      "unverified_pct": 16.9
+    },
+    "post_lt": {
+      "verified": 1926,
+      "unverified": 19060,
+      "unverified_pct": 90.8
+    }
+  }
+}
