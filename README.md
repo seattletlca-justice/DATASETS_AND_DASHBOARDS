@@ -4,6 +4,14 @@
 
 ---
 
+## Quick links
+
+- Home: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html
+- Citywide: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/CITYWIDE%20KPI.html
+- Full list + embed snippet: [`QUICK_LINKS.md`](QUICK_LINKS.md)
+
+---
+
 ## What This Is
 
 STLCA is an independent, non-partisan data analytics and oversight project. It analyzes publicly available City of Seattle enforcement records — specifically complaint data from the Seattle Department of Construction and Inspections (SDCI) — to produce structured, verifiable assessments of how code compliance is documented, and where the public record cannot confirm that enforcement occurred.
