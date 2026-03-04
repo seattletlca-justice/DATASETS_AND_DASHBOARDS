@@ -1,1 +1,76 @@
+name: Deploy static content to GitHub Pages
 
+on:
+  push:
+    branches:
+      - main
+      - work
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare static site artifact
+        run: |
+          set -euxo pipefail
+          mkdir -p _site
+
+          # Publish only website assets (not .git/.github metadata) from repo root.
+          find . -maxdepth 1 -type f \( \
+            -name '*.html' -o \
+            -name '*.css' -o \
+            -name '*.js' -o \
+            -name '*.json' -o \
+            -name '*.txt' -o \
+            -name '*.csv' -o \
+            -name '*.pdf' -o \
+            -name '*.zip' -o \
+            -name '*.md' -o \
+            -name '.nojekyll' \
+          \) -exec cp -v {} _site/ \;
+
+          # Publish known static subdirectories when present.
+          for dir in DASHBOARDS traceability_rrio; do
+            if [ -d "$dir" ]; then
+              cp -R "$dir" _site/
+            fi
+          done
+
+          # Ensure GitHub Pages serves files as-is.
+          touch _site/.nojekyll
+
+          # Hard fail if primary entrypoint is missing.
+          test -f _site/index.html
+          test -f _site/STLCA_Home.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
