@@ -3,11 +3,11 @@
 Use the homepage link below to land on the main navigation page and click through all districts.
 
 ## One-link entry point
-- Home: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html
-- Base URL (redirects to Home): https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/
+- Home (recommended): https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/index.html
+- Direct Home file: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html
 
 ## Direct dashboard links
-- Citywide Audit: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/CITYWIDE%20KPI.html
+- Citywide Audit (stable URL): https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/citywide-kpi.html
 - District 1: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/District_1_Dossier.html
 - District 2: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/District_2_Dossier.html
 - District 3: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/District_3_Dossier.html
@@ -19,7 +19,7 @@ Use the homepage link below to land on the main navigation page and click throug
 ## Embed snippet
 ```html
 <iframe
-  src="https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html"
+  src="https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/index.html"
   title="STLCA Dashboards"
   width="100%"
   height="900"

@@ -6,8 +6,8 @@
 
 ## Quick links
 
-- Home: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html
-- Citywide: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/CITYWIDE%20KPI.html
+- Home (recommended): https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/index.html
+- Citywide (stable URL): https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/citywide-kpi.html
 - Full list + embed snippet: [`QUICK_LINKS.md`](QUICK_LINKS.md)
 
 ---
@@ -111,7 +111,7 @@ These findings are derived directly from the SDCI complaint records. They descri
 | File | Description |
 |---|---|
 | `STLCA_Home.html` | Homepage — entry point and index for all district and citywide dashboards |
-| `CITYWIDE KPI.html` | Citywide enforcement audit dashboard |
+| `CITYWIDE KPI.html` + `citywide-kpi.html` | Citywide enforcement audit dashboard (includes URL-safe alias) |
 | `District_1_Dossier.html` — `District_7_Dossier.html` | Per-district data dashboards: LLT counts, disparity metrics, trend charts, keyword analysis |
 | `D1_Accountability_Dossier.html` — `D7_Accountability_Dossier.html` | Narrative accountability documents with verbatim SDCI complaint case studies |
 | `STLCA_City_Auditor_Report_2026.html` | City auditor-style enforcement findings report |
