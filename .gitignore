@@ -2,6 +2,10 @@
 EXTR_*.csv
 EXTR_*.txt
 
+# Large analysis outputs (>50MB)
+ANALYSIS/KEYWORD_PIVOT.csv
+ANALYSIS/CITY_VP_PROOFS.csv
+
 # Annual complaint CSVs (large)
 Code_Complaints_and_Violations_*.csv
 
