@@ -1,0 +1,134 @@
+﻿REPORT STATS - 2026-02-27 02:50
+TOTAL KEYWORD-HIT ROWS (excl SDCI HQ): 150751
+SDCI HQ rows flagged: 126
+SHA PROPERTY rows flagged: 571
+
+HABITABILITY complaints: 50451
+EVICTION complaints:     5023
+DISPLACEMENT complaints: 13377
+RENT/NO-REPAIR complaints: 3049
+ADMIN CLOSED (SDCI deflected): 850
+NO VIOLATION FOUND: 4391
+REFERRED ELSEWHERE: 2378
+
+--- YEAR TRENDS (all categories) ---
+YEAR  HAB   EVIC  DISP  RENT  LEGAL_DEFLECT
+2003    112      3     34      2      0
+2004   1029     37    332      5      6
+2005    858     17    381     14      6
+2006   1298     31    465     20      8
+2007   1173     23    539     18      5
+2008   1396     35    348     12     11
+2009   1401     34    274     24      9
+2010   1457     34    251     18      6
+2011   1221     38    283      9      8
+2012   1358     20    321     15     10
+2013   1628     43    297      5      8
+2014   1812     30    398     17     10
+2015   2427    127    538     13    595
+2016   2492    196    520     85    598
+2017   2900    261    623    114    778
+2018   2294    327   1126    193    783
+2019   3709    251   1076    136    382
+2020   2784    299   1114     73    173
+2021   3332    343   1203    111    268
+2022   4584    692   1136    438    349
+2023   4347    796    903    498    599
+2024   4367    681    664    561    619
+2025   2472    705    551    668      7
+
+--- DISTRICT BREAKDOWN ---
+DIST  TOTAL   HAB    EVIC   DISP   RENT
+1   26629   9291    752   2036    410
+2   24233   8376    919   1850    374
+3   24946   8132    945   2444    627
+4   17921   6645    476   1633    333
+5   18415   5846    754   1550    369
+6   20158   6510    418   2262    355
+7   17072   5281    684   1466    552
+
+--- TOP 50 ADDRESSES (non-SHA, non-HQ) ---
+TOTAL  HAB   EVIC  DISP  RENT  ADDRESS
+  137    47    17     5     8  308 4TH AVE S
+  125    40     7     5     7  3621 33RD AVE S
+  105    32    10     0     7  800 SENECA ST
+   99    44     8     1     4  1102 8TH AVE
+   94    14     0     0     0  2000 3RD AVE
+   87    47     1     2     3  1727 SUMMIT AVE
+   79    24    11     1     2  9061 SEWARD PARK AVE S
+   71    43     4     2     4  430 12TH AVE E
+   68     5     9    16     1  1820 MINOR AVE
+   64    21     0     0     0  1621 17TH AVE
+   61    19     3     0     5  3642 33RD AVE S
+   61    24    11     2    12  212 ALASKAN WAY S
+   60    15    12     6     2  903 UNION ST
+   58    14     5     0     5  12740 30TH AVE NE
+   58    25     8     0     0  1110 8TH AVE
+   57    20     2     1     3  13000 LINDEN AVE N
+   57    18    17     3     0  14100 LINDEN AVE N
+   57    12     5     2     0  7319 31ST AVE SW
+   54    30    12     2     2  1902 2ND AVE
+   54    34     3     1     1  9434 DELRIDGE WAY SW
+   52    17     0     1     0  1103 NW MARKET ST
+   51    26     0     0     0  6968 24TH AVE SW
+   51    18     9     0     3  809 OLIVE WAY
+   50    26     1     5     1  823 MADISON ST
+   49    20     0     2     6  1823 TERRY AVE
+   49    17     3     0     0  915 E HARRISON ST
+   49     6     0     2     0  3005 1ST AVE
+   48    24    14     1     3  9400 RAINIER AVE S
+   46    28     4     0     1  800 JEFFERSON ST
+   46     8     0     1     0  1622 SUNSET AVE SW
+   45    20     0     2     3  1100 UNIVERSITY ST
+   44     7     8     4     1  4545 42ND AVE SW
+   44    10     9     2     1  4219 S OTHELLO ST
+   44     5     0     2     0  901 NW MARKET ST
+   44    13     4     2     0  1400 MADISON ST
+   44    17     5     6     6  1317 BOREN AVE
+   44    17     2     5     6  2911 2ND AVE
+   44    20     4     2     0  13751 32ND AVE NE
+   43    18     5    10     1  2224 2ND AVE
+   43    15     5     3     0  155 21ST AVE
+   42    16    11     6     2  2023 24TH AVE S
+   42    16     2     1     6  14002 LINDEN AVE N
+   41     9     9     1     2  913 S JACKSON ST
+   41     8     0     2     0  5109 S WILLOW ST
+   41    20     4     0     1  418 E LORETTA PL
+   41    18     3     3     7  420 PONTIUS AVE N
+   40    30     1     3     0  322 20TH AVE
+   40    15     2     2     0  1020 BELLEVUE CT E
+   39    15     3     3     3  510 BROADWAY
+   39     9     0     0     0  7009 GREENWOOD AVE N
+
+--- TOP SHA ADDRESSES ---
+   85  201 YESLER WAY
+   59  223 YESLER WAY
+   27  1414 E YESLER WAY
+   26  609 YESLER WAY
+   20  1714 E YESLER WAY
+   11  820 YESLER WAY
+   11  1801 E YESLER WAY
+   10  60 YESLER WAY
+    8  1425 E YESLER WAY
+    8  2012 E YESLER WAY
+    7  2014 E YESLER WAY
+    6  3004 E YESLER WAY
+    6  6457 MARSHALL AVE SW
+    5  6914 PARSHALL PL SW
+    5  2800 E YESLER WAY
+    5  2755 E YESLER WAY
+    5  2709 E YESLER WAY
+    5  89 YESLER WAY
+    4  1302 E YESLER WAY
+    4  6020 HIGH POINT DR SW
+
+--- CASE STUDY DATA ---
+9061 SEWARD PARK AVE S : total=89 hab=29 evic=12 disp=1 rent=2
+  Years: 2005:3, 2006:1, 2007:3, 2008:1, 2009:5, 2011:3, 2012:3, 2013:1, 2014:3, 2015:1, 2017:6, 2018:6, 2019:7, 2020:1, 2021:7, 2022:19, 2023:7, 2024:11, 2025:1
+1624 BOREN AVE : total=48 hab=22 evic=1 disp=1 rent=0
+  Years: 2004:2, 2005:1, 2006:1, 2009:1, 2011:1, 2015:4, 2016:4, 2017:1, 2018:3, 2019:1, 2020:5, 2021:7, 2022:4, 2023:7, 2024:2, 2025:4
+5812 46TH AVE S : total=23 hab=14 evic=0 disp=1 rent=0
+  Years: 2009:2, 2018:1, 2021:10, 2022:2, 2023:1, 2024:7
+9251 ASHWORTH AVE N : total=17 hab=4 evic=1 disp=3 rent=0
+  Years: 2007:1, 2009:1, 2016:2, 2018:2, 2022:3, 2024:8
+

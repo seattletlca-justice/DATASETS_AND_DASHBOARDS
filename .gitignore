@@ -1,0 +1,22 @@
+# King County Assessor data extracts (large files)
+EXTR_*.csv
+EXTR_*.txt
+
+# Annual complaint CSVs (large)
+Code_Complaints_and_Violations_*.csv
+
+# Lock files
+.~lock.*
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Node / misc
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Claude internal
+.claude/

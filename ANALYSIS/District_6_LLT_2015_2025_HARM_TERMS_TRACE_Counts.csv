@@ -1,0 +1,225 @@
+FileLabel,Category,Term,MatchRowsCount,PercentOfAllRows,PercentOfCategoryFlaggedRows
+District_6,HealthSafetyHabitability,no heat,73,1.4744496061401737,7.684210526315789
+District_6,HealthSafetyHabitability,lack of heat,1,0.020197939810139363,0.10526315789473684
+District_6,HealthSafetyHabitability,no hot water,42,0.8483134720258533,4.421052631578947
+District_6,HealthSafetyHabitability,lack of hot water,0,0.0,0.0
+District_6,HealthSafetyHabitability,no water,13,0.2625732175318118,1.368421052631579
+District_6,HealthSafetyHabitability,no running water,5,0.10098969905069682,0.5263157894736842
+District_6,HealthSafetyHabitability,no electricity,3,0.060593819430418104,0.3157894736842105
+District_6,HealthSafetyHabitability,no power,9,0.1817814582912543,0.9473684210526316
+District_6,HealthSafetyHabitability,power shut off,0,0.0,0.0
+District_6,HealthSafetyHabitability,power cut off,0,0.0,0.0
+District_6,HealthSafetyHabitability,no gas,0,0.0,0.0
+District_6,HealthSafetyHabitability,sewage,71,1.434053726519895,7.473684210526316
+District_6,HealthSafetyHabitability,sewer backup,2,0.04039587962027873,0.21052631578947367
+District_6,HealthSafetyHabitability,raw sewage,17,0.3433649767723692,1.789473684210526
+District_6,HealthSafetyHabitability,leak,241,4.867703494243587,25.36842105263158
+District_6,HealthSafetyHabitability,leaking,84,1.6966269440517066,8.842105263157894
+District_6,HealthSafetyHabitability,leaks,44,0.8887093516461321,4.631578947368421
+District_6,HealthSafetyHabitability,water damage,49,0.989699050696829,5.157894736842105
+District_6,HealthSafetyHabitability,flooding,23,0.4645526156332054,2.4210526315789473
+District_6,HealthSafetyHabitability,flooded,28,0.5655423146839023,2.9473684210526314
+District_6,HealthSafetyHabitability,roof leak,18,0.3635629165825086,1.8947368421052633
+District_6,HealthSafetyHabitability,ceiling leak,2,0.04039587962027873,0.21052631578947367
+District_6,HealthSafetyHabitability,mold,267,5.392849929307211,28.10526315789474
+District_6,HealthSafetyHabitability,mildew,9,0.1817814582912543,0.9473684210526316
+District_6,HealthSafetyHabitability,black mold,48,0.9695011108866897,5.052631578947368
+District_6,HealthSafetyHabitability,heavy mold,0,0.0,0.0
+District_6,HealthSafetyHabitability,toxic mold,2,0.04039587962027873,0.21052631578947367
+District_6,HealthSafetyHabitability,dampness,0,0.0,0.0
+District_6,HealthSafetyHabitability,moisture,20,0.4039587962027873,2.1052631578947367
+District_6,HealthSafetyHabitability,infestation,61,1.2320743284185012,6.421052631578947
+District_6,HealthSafetyHabitability,rats,53,1.0704908099373864,5.578947368421053
+District_6,HealthSafetyHabitability,rodent,38,0.7675217127852959,4.0
+District_6,HealthSafetyHabitability,mice,4,0.08079175924055745,0.42105263157894735
+District_6,HealthSafetyHabitability,cockroach,4,0.08079175924055745,0.42105263157894735
+District_6,HealthSafetyHabitability,roaches,15,0.30296909715209047,1.5789473684210527
+District_6,HealthSafetyHabitability,bedbug,7,0.14138557867097556,0.7368421052631579
+District_6,HealthSafetyHabitability,bed bug,2,0.04039587962027873,0.21052631578947367
+District_6,HealthSafetyHabitability,pest control,7,0.14138557867097556,0.7368421052631579
+District_6,HealthSafetyHabitability,vermin,2,0.04039587962027873,0.21052631578947367
+District_6,HealthSafetyHabitability,unsafe,56,1.1310846293678045,5.894736842105263
+District_6,HealthSafetyHabitability,uninhabitable,16,0.3231670369622298,1.6842105263157894
+District_6,HealthSafetyHabitability,unfit for occupancy,0,0.0,0.0
+District_6,HealthSafetyHabitability,hazard,112,2.262169258735609,11.789473684210526
+District_6,HealthSafetyHabitability,hazardous,32,0.6463340739244596,3.3684210526315788
+District_6,HealthSafetyHabitability,life safety,0,0.0,0.0
+District_6,HealthSafetyHabitability,structural,43,0.8685114118359927,4.526315789473685
+District_6,HealthSafetyHabitability,collapse,11,0.22217733791153302,1.1578947368421053
+District_6,HealthSafetyHabitability,falling ceiling,0,0.0,0.0
+District_6,HealthSafetyHabitability,ceiling falling,0,0.0,0.0
+District_6,HealthSafetyHabitability,cracked foundation,0,0.0,0.0
+District_6,HealthSafetyHabitability,foundation issues,0,0.0,0.0
+District_6,HealthSafetyHabitability,electrical hazard,0,0.0,0.0
+District_6,HealthSafetyHabitability,exposed wiring,8,0.1615835184811149,0.8421052631578947
+District_6,HealthSafetyHabitability,fire hazard,34,0.6867299535447384,3.578947368421052
+District_6,HealthSafetyHabitability,blocked exit,0,0.0,0.0
+District_6,HealthSafetyHabitability,no smoke detector,12,0.24237527772167242,1.263157894736842
+District_6,HealthSafetyHabitability,no smoke alarm,2,0.04039587962027873,0.21052631578947367
+District_6,HealthSafetyHabitability,no carbon monoxide,7,0.14138557867097556,0.7368421052631579
+District_6,HealthSafetyHabitability,co alarm,0,0.0,0.0
+District_6,HealthSafetyHabitability,ventilation problems,0,0.0,0.0
+District_6,HealthSafetyHabitability,no ventilation,2,0.04039587962027873,0.21052631578947367
+District_6,HealthSafetyHabitability,poor ventilation,0,0.0,0.0
+District_6,HealthSafetyHabitability,chemical exposure,0,0.0,0.0
+District_6,HealthSafetyHabitability,chemical smell,1,0.020197939810139363,0.10526315789473684
+District_6,HealthSafetyHabitability,fumes,9,0.1817814582912543,0.9473684210526316
+District_6,HealthSafetyHabitability,toxic fumes,1,0.020197939810139363,0.10526315789473684
+District_6,HealthSafetyHabitability,paint fumes,0,0.0,0.0
+District_6,HealthSafetyHabitability,pesticide,0,0.0,0.0
+District_6,HealthSafetyHabitability,asbestos,17,0.3433649767723692,1.789473684210526
+District_6,HealthSafetyHabitability,lead paint,9,0.1817814582912543,0.9473684210526316
+District_6,HealthSafetyHabitability,lead-based,1,0.020197939810139363,0.10526315789473684
+District_6,HealthSafetyHabitability,odor,19,0.38376085639264795,2.0
+District_6,HealthSafetyHabitability,odour,0,0.0,0.0
+District_6,HealthSafetyHabitability,strong smell,1,0.020197939810139363,0.10526315789473684
+District_6,HealthSafetyHabitability,no stove,4,0.08079175924055745,0.42105263157894735
+District_6,HealthSafetyHabitability,broken stove,1,0.020197939810139363,0.10526315789473684
+District_6,HealthSafetyHabitability,no refrigerator,0,0.0,0.0
+District_6,HealthSafetyHabitability,broken fridge,1,0.020197939810139363,0.10526315789473684
+District_6,HealthSafetyHabitability,broken window,10,0.20197939810139365,1.0526315789473684
+District_6,HealthSafetyHabitability,broken door,3,0.060593819430418104,0.3157894736842105
+District_6,HealthSafetyHabitability,no locking door,0,0.0,0.0
+District_6,HealthSafetyHabitability,insecure door,0,0.0,0.0
+District_6,HealthSafetyHabitability,garbage,58,1.171480508988083,6.105263157894736
+District_6,HealthSafetyHabitability,trash accumulation,0,0.0,0.0
+District_6,HealthSafetyHabitability,unsanitary,9,0.1817814582912543,0.9473684210526316
+District_6,HealthSafetyHabitability,unsanitary conditions,2,0.04039587962027873,0.21052631578947367
+District_6,HarassmentRetaliationDisplacement,harass,48,0.9695011108866897,3.9768019884009944
+District_6,HarassmentRetaliationDisplacement,intimidation,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,threaten,39,0.7877196525954353,3.2311516155758078
+District_6,HarassmentRetaliationDisplacement,retaliat,39,0.7877196525954353,3.2311516155758078
+District_6,HarassmentRetaliationDisplacement,bullying,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,coercion,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,coerced,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,forced to move,3,0.060593819430418104,0.24855012427506215
+District_6,HarassmentRetaliationDisplacement,forced out,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,being forced out,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,pressure to move,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,told to move out,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,told to leave,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,asked to vacate,2,0.04039587962027873,0.16570008285004142
+District_6,HarassmentRetaliationDisplacement,demanded we vacate,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,constructive eviction,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,making it unlivable,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,trying to push us out,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,lockout,5,0.10098969905069682,0.4142502071251036
+District_6,HarassmentRetaliationDisplacement,locked out,13,0.2625732175318118,1.0770505385252693
+District_6,HarassmentRetaliationDisplacement,changed the locks,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,changed locks,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,removed door,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,removed front door,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,shut off utilities,2,0.04039587962027873,0.16570008285004142
+District_6,HarassmentRetaliationDisplacement,shut off water,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,shut off power,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,shut off electricity,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,shut off gas,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,disconnected power,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,disconnected utilities,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,pota,237,4.78691173500303,19.63545981772991
+District_6,HarassmentRetaliationDisplacement,trao,539,10.886689557665118,44.656172328086164
+District_6,HarassmentRetaliationDisplacement,tenant relocation,355,7.170268632599475,29.411764705882355
+District_6,HarassmentRetaliationDisplacement,relocation assistance,32,0.6463340739244596,2.651201325600663
+District_6,HarassmentRetaliationDisplacement,relocation payment,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,relocation not offered,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,renoviction,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,renovation eviction,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,demolition has started,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,demolishing my unit,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,construction while occupied,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,working without permits,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,repairs without permits,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,unpermitted work,2,0.04039587962027873,0.16570008285004142
+District_6,HarassmentRetaliationDisplacement,unsafe construction,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,living in construction,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,renovation displacement,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,no alternative housing,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,no temporary housing,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,no hotel provided,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,not relocated,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,after i complained,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,because i complained,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,after filing complaint,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,after calling sdci,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,in retaliation for,1,0.020197939810139363,0.08285004142502071
+District_6,HarassmentRetaliationDisplacement,retaliating for,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,after reporting,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,after inspection,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,after i asked for repairs,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,because we organized,0,0.0,0.0
+District_6,HarassmentRetaliationDisplacement,because of tenant organizing,0,0.0,0.0
+District_6,RightsViolations,rent increase,290,5.857402544940416,36.1145703611457
+District_6,RightsViolations,rent raised,0,0.0,0.0
+District_6,RightsViolations,raised my rent,1,0.020197939810139363,0.12453300124533001
+District_6,RightsViolations,huge rent increase,0,0.0,0.0
+District_6,RightsViolations,excessive rent,0,0.0,0.0
+District_6,RightsViolations,illegal rent,4,0.08079175924055745,0.49813200498132004
+District_6,RightsViolations,unlawful rent,1,0.020197939810139363,0.12453300124533001
+District_6,RightsViolations,no notice of rent increase,0,0.0,0.0
+District_6,RightsViolations,rent increase without notice,0,0.0,0.0
+District_6,RightsViolations,without proper notice,20,0.4039587962027873,2.4906600249066
+District_6,RightsViolations,retroactive rent,0,0.0,0.0
+District_6,RightsViolations,back rent demanded,0,0.0,0.0
+District_6,RightsViolations,pay or vacate,12,0.24237527772167242,1.4943960149439601
+District_6,RightsViolations,3-day notice,0,0.0,0.0
+District_6,RightsViolations,3 day notice,26,0.5251464350636236,3.23785803237858
+District_6,RightsViolations,10-day notice,11,0.22217733791153302,1.36986301369863
+District_6,RightsViolations,10 day notice,13,0.2625732175318118,1.61892901618929
+District_6,RightsViolations,20-day notice,5,0.10098969905069682,0.62266500622665
+District_6,RightsViolations,20 day notice,7,0.14138557867097556,0.8717310087173101
+District_6,RightsViolations,notice to terminate,22,0.44435467582306604,2.73972602739726
+District_6,RightsViolations,notice to vacate,60,1.2118763886083619,7.4719800747198
+District_6,RightsViolations,vacate notice,20,0.4039587962027873,2.4906600249066
+District_6,RightsViolations,eviction notice,32,0.6463340739244596,3.9850560398505603
+District_6,RightsViolations,evicting us,0,0.0,0.0
+District_6,RightsViolations,unlawful detainer,0,0.0,0.0
+District_6,RightsViolations,illegal eviction,6,0.12118763886083621,0.7471980074719801
+District_6,RightsViolations,wrongful eviction,0,0.0,0.0
+District_6,RightsViolations,security deposit,81,1.6360331246212885,10.08717310087173
+District_6,RightsViolations,deposit not returned,2,0.04039587962027873,0.24906600249066002
+District_6,RightsViolations,kept my deposit,0,0.0,0.0
+District_6,RightsViolations,withholding deposit,0,0.0,0.0
+District_6,RightsViolations,illegal fees,0,0.0,0.0
+District_6,RightsViolations,unlawful fees,0,0.0,0.0
+District_6,RightsViolations,late fees,4,0.08079175924055745,0.49813200498132004
+District_6,RightsViolations,utility billing,6,0.12118763886083621,0.7471980074719801
+District_6,RightsViolations,charged for utilities,0,0.0,0.0
+District_6,RightsViolations,billed for water,0,0.0,0.0
+District_6,RightsViolations,billed for electricity,0,0.0,0.0
+District_6,RightsViolations,rent ledger,0,0.0,0.0
+District_6,RightsViolations,misapplied payments,0,0.0,0.0
+District_6,RightsViolations,overcharged rent,0,0.0,0.0
+District_6,RightsViolations,no written lease,0,0.0,0.0
+District_6,RightsViolations,lease not provided,0,0.0,0.0
+District_6,RightsViolations,lease violation by landlord,0,0.0,0.0
+District_6,RightsViolations,changed terms without notice,0,0.0,0.0
+District_6,RightsViolations,illegal entry,3,0.060593819430418104,0.37359900373599003
+District_6,RightsViolations,entered without notice,3,0.060593819430418104,0.37359900373599003
+District_6,RightsViolations,came in without notice,0,0.0,0.0
+District_6,RightsViolations,no 2 day notice,0,0.0,0.0
+District_6,RightsViolations,no 24 hour notice,0,0.0,0.0
+District_6,RightsViolations,privacy violation,0,0.0,0.0
+District_6,RightsViolations,unauthorized entry,2,0.04039587962027873,0.24906600249066002
+District_6,RightsViolations,discrimination,1,0.020197939810139363,0.12453300124533001
+District_6,RightsViolations,discriminated,0,0.0,0.0
+District_6,RightsViolations,because of my race,0,0.0,0.0
+District_6,RightsViolations,because i am disabled,0,0.0,0.0
+District_6,RightsViolations,because of disability,0,0.0,0.0
+District_6,RightsViolations,because of kids,0,0.0,0.0
+District_6,RightsViolations,because i have children,0,0.0,0.0
+District_6,RightsViolations,familial status,0,0.0,0.0
+District_6,RightsViolations,domestic violence survivor,0,0.0,0.0
+District_6,RightsViolations,dv survivor,0,0.0,0.0
+District_6,RightsViolations,victim of dv,0,0.0,0.0
+District_6,RightsViolations,tenant rights,136,2.7469198141789537,16.936488169364882
+District_6,RightsViolations,violated my rights,0,0.0,0.0
+District_6,RightsViolations,rights violation,0,0.0,0.0
+District_6,RightsViolations,housing code violation,1,0.020197939810139363,0.12453300124533001
+District_6,RightsViolations,code violation,32,0.6463340739244596,3.9850560398505603
+District_6,RightsViolations,rental registration,8,0.1615835184811149,0.9962640099626401
+District_6,RightsViolations,rrio,38,0.7675217127852959,4.732254047322541
+District_6,RightsViolations,just cause,39,0.7877196525954353,4.85678704856787
+District_6,RightsViolations,no just cause,2,0.04039587962027873,0.24906600249066002
+District_6,RightsViolations,just cause eviction,24,0.48475055544334483,2.9887920298879203
+District_6,RightsViolations,notice not compliant,0,0.0,0.0
+District_6,RightsViolations,improper notice,5,0.10098969905069682,0.62266500622665

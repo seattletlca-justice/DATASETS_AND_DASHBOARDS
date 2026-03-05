@@ -1,0 +1,38 @@
+STLCA Elevator Rescue Pipeline - Run Info
+Run timestamp: 20260131_025836
+
+Citywide input: data_raw\CITYWIDE_LLT_2015_2025_ENRICHED.csv
+Rescue input  : C:\Users\stlca\stlca_data\data_raw\ELEVATOR_RESCUE.csv
+Conveyance active input: C:\Users\stlca\stlca_data\data_raw\Conveyance_certificate_active_RecordList20260131 (1).csv
+Conveyance no-cert input: C:\Users\stlca\stlca_data\data_raw\Conveyance_operating_without_acertificate_ RecordList20260131.csv
+
+Detected columns:
+ - Citywide address: OriginalAddress1
+ - Citywide desc   : Description
+ - Citywide district: District
+ - Citywide complaint date: OpenDate
+
+Citywide rows: 43829
+Rescue rows  : 9863
+Active cert rows: 7610
+No-cert rows: 1620
+
+Rescue coverage (from rescue file):
+Earliest rescue date: 2019-12-12
+Latest rescue date  : 2026-01-30
+
+Counts:
+Elevator complaints (keyword): 1246
+Unique rescue addresses: 2527
+Unique active-cert addresses: 3552
+Unique no-cert addresses: 1011
+Elevator complaint rows at rescue addresses: 965
+Addresses with BOTH (complaint + rescue): 368
+Addresses with BOTH + no-cert record: 113
+
+Outputs written:
+C:\Users\stlca\stlca_data\data_clean\CITYWIDE_LLT_2015_2025_ENRICHED_FLAGGED_SFD_ELEVATOR_RESCUES.csv
+C:\Users\stlca\stlca_data\data_clean\ELEVATOR_RESCUE_MATCH__COMPLAINT_LEVEL__CITYWIDE_LLT_2015_2025_ENRICHED.csv
+C:\Users\stlca\stlca_data\data_clean\ELEVATOR_RESCUE_MATCH__BUILDINGS_ROLLUP__CITYWIDE_LLT_2015_2025_ENRICHED.csv
+C:\Users\stlca\stlca_data\data_clean\ELEVATOR_RESCUE_MATCH__TIMELINE__CITYWIDE_LLT_2015_2025_ENRICHED.csv
+C:\Users\stlca\stlca_data\data_clean\ELEVATOR_RESCUE_MATCH__TOP20_BY_DISTRICT__CITYWIDE_LLT_2015_2025_ENRICHED.csv

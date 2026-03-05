@@ -1,0 +1,120 @@
+﻿=============================================================
+STLCA RULEBOOK-COMPLIANT KPI RESULTS
+Source: CITYWIDE_ALL_20251231_ENRICHED_01272025
+Run: 2026-02-27 15:47
+=============================================================
+
+--- CORE COUNTS ---
+Total records:                          233543
+Inspection date recorded:               140979  (60.4%)
+NO inspection date recorded:            92564  (39.6%)
+Inspection result recorded:             140970  (60.4%)
+NO inspection result recorded:          92573  (39.6%)
+Marked Closed/Completed:                220909  (94.6%)
+Not marked Closed/Completed:            12634  (5.4%)
+
+--- CORE ACCOUNTABILITY KPIs (Rulebook 4.6 + 4.7) ---
+Closed/Completed WITHOUT recorded inspection result:  82479  (37.3% of closed)
+Closed/Completed WITHOUT recorded inspection date:    82470  (37.3% of closed)
+
+--- OPEN-TO-LAST-INSP DAYS (where date recorded) ---
+Sample size: 100000
+Median:  13 days
+75th pct: 44 days
+90th pct: 140 days
+
+--- RECORD TYPE BREAKDOWN ---
+  COMPLAINT                      177431
+  NOTICE OF VIOLATION            31409
+  CITATION                       20340
+  TENANT RELOCATION              4045
+  UNFIT BUILDING                 318
+
+--- RECORDTYPEDESC BREAKDOWN (top 20) ---
+  LAND USE                                           60996
+  WEEDS                                              45866
+  CONSTRUCTION                                       36801
+  LANDLORD/TENANT                                    17413
+  NOISE                                              13822
+  VACANT BUILDING                                    11946
+  EMERGENCY , LANDLORD/TENANT                        2776
+  EMERGENCY                                          2036
+  EMERGENCY , VACANT BUILDING                        1963
+  TREE                                               1926
+  SHORELINE                                          1285
+  CONSTRUCTION , TREE                                544
+  LAND USETREE ,                                     303
+  CONSTRUCTION , NOISE                               245
+  LAND USECONSTRUCTION ,                             241
+  CONSTRUCTION , EMERGENCY                           237
+  EMERGENCY , TREE                                   218
+  LAND USEWEEDS ,                                    155
+  CONSTRUCTION , ECA                                 131
+  LAND USENOISE ,                                    107
+
+--- STATUS BREAKDOWN (top 20) ---
+  COMPLETED                                201628
+  CLOSED                                   19196
+  UNDER INVESTIGATION                      7765
+  NOV ISSUED                               1487
+  INITIATED                                1194
+  OPEN DUPLICATE                           756
+  WARNING                                  342
+  CITATION ISSUED                          241
+  REFERRED TO LAW                          198
+  EO VACATE CLOSE ISSUED                   185
+  HAZARD CORRECTION ORDER ISSUED           110
+  ISSUED                                   103
+  COMPLIANCE ACHIEVED                      85
+  REVIEWS COMPLETED                        70
+  WITHDRAWN                                56
+  EO REPAIR RESTORE ISSUED                 46
+  REVIEWS IN PROCESS                       31
+  APPLICATION COMPLETED                    26
+  STOP WORK ISSUED                         23
+  AWAITING INFORMATION                     1
+
+--- LASTINSPRESULT BREAKDOWN (top 20) ---
+  COMPLETED                                97722
+  COMPLIANCE ACHIEVED                      39970
+  NO ACCESS/UNABLE TO OBSERVE              860
+  VACANT                                   629
+  NO VIOLATION                             431
+  CLOSED                                   392
+  ADMIN CLOSURE                            336
+  COMPLETED-VIRTUAL                        205
+  COMPLIANCE ACHIEVED-VIRTUAL              134
+  WITHDRAWN                                132
+  CLOSED WITH VIOLATION                    58
+  NOT VACANT                               32
+  SECURED WITH NO VIOLATIONS               25
+  NO STRUCTURE                             24
+  PASSED                                   15
+  UNABLE TO OBSERVE-VIRTUAL                3
+  PASS                                     1
+  OCCUPIED                                 1
+
+--- DISTRICT KPI TABLE ---
+DIST  TOTAL    CLOSED   CL-NO-RES  CL-NO-RES%  NO-INSP-DATE
+1       41466    39467      13092      33.2%         14572
+2       38165    35893      11465      31.9%         13177
+3       36759    34688      14369      41.4%         16080
+4       27498    26186       9625      36.8%         10715
+5       29573    28063       9709      34.6%         10894
+6       31829    30180      11219      37.2%         12550
+7       25583    24023      11653      48.5%         13004
+
+--- YEAR KPI TABLE (2015-2025) ---
+YEAR  TOTAL   CLOSED  CL-NO-RES  CL-NO-RES%  NO-INSP-DATE
+2015    9655    9548       1843      19.3%          1943
+2016    9890    9769       2241      22.9%          2351
+2017   10689   10466       2566      24.5%          2769
+2018   12814   12567       6952      55.3%          7136
+2019   14524   14157       7661      54.1%          7786
+2020   12425   12001       7569      63.1%          7790
+2021   12338   11882       7595      63.9%          7912
+2022   15413   14227      10585      74.4%         11592
+2023   16477   14462       9847      68.1%         11436
+2024   16395   13952       8157      58.5%         10111
+2025   17729   12861       8389      65.2%         12516
+

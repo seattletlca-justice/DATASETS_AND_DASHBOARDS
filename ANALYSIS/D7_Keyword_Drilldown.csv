@@ -1,0 +1,346 @@
+Category,Keyword,Hit_Count,Pct_of_D7
+Appliances,broken,605,2.36
+Appliances,no heat,340,1.33
+Appliances,heater,233,0.91
+Appliances,inoperable,161,0.63
+Appliances,toilet,139,0.54
+Appliances,laundry,120,0.47
+Appliances,washer,106,0.41
+Appliances,flooded,95,0.37
+Appliances,stove,90,0.35
+Appliances,refrigerator,72,0.28
+Appliances,dryer,70,0.27
+Appliances,washing machine,43,0.17
+Appliances,washer leaking,36,0.14
+Appliances,fridge,32,0.13
+Appliances,heater not working,21,0.08
+Appliances,washing machine out,17,0.07
+Appliances,no washer,14,0.05
+Appliances,microwave,11,0.04
+Appliances,living room heater,9,0.04
+Appliances,stove out,7,0.03
+Appliances,laundry facilities,6,0.02
+Appliances,toilet seat,4,0.02
+Appliances,unit gets flooded,2,0.01
+Appliances,microwave work orders,0,0.0
+Appliances,stoveneeds repair,0,0.0
+Appliances,toilet seat cover,0,0.0
+DISP,DEMO,564,2.2
+DISP,RELOCAT,564,2.2
+DISP,TRAO,399,1.56
+DISP,DEMOLITION,373,1.46
+DISP,TENANT RELOCATION,313,1.22
+DISP,DISPLACE,180,0.7
+DISP,REDEVELOP,82,0.32
+DISP,CHANGE OF USE,44,0.17
+DISP,CONVERSION,12,0.05
+DISP,CONSTRUCTION DISPLACE,7,0.03
+DISP,CASH FOR KEYS,0,0.0
+DISP,MASS VACATE,0,0.0
+DISP,VACATE ORDER,0,0.0
+EVIC,EVICTION,289,1.13
+EVIC,EVICT,278,1.09
+EVIC,WRIT,273,1.07
+EVIC,MOVE OUT,238,0.93
+EVIC,3 DAY,171,0.67
+EVIC,unauthorized entry,105,0.41
+EVIC,RETALIAT,94,0.37
+EVIC,PAY OR VACATE,71,0.28
+EVIC,VACATE NOTICE,46,0.18
+EVIC,10-DAY,43,0.17
+EVIC,locked out,42,0.16
+EVIC,JUST CAUSE,37,0.14
+EVIC,LOCKOUT,35,0.14
+EVIC,14-DAY,34,0.13
+EVIC,evicted,27,0.11
+EVIC,NOTICE TO TERMINATE,26,0.1
+EVIC,entered without notice,25,0.1
+EVIC,3-DAY,14,0.05
+EVIC,LEASE TERMINAT,14,0.05
+EVIC,NOTICE TO PAY OR VACATE,9,0.04
+EVIC,changed the locks,9,0.04
+EVIC,CHANGED LOCK,5,0.02
+EVIC,kicked out,5,0.02
+EVIC,forced out,5,0.02
+EVIC,SHERIFF,2,0.01
+EVIC,UNLAWFUL DETAINER,1,0.0
+EVIC,kicked me out,1,0.0
+Electrical,electrical,561,2.19
+Electrical,ELECTRICAL,561,2.19
+Electrical,fuse,315,1.23
+Electrical,power,257,1.0
+Electrical,no lights,143,0.56
+Electrical,wiring,133,0.52
+Electrical,WIRING,133,0.52
+Electrical,electrician,103,0.4
+Electrical,outlet,88,0.34
+Electrical,no power,87,0.34
+Electrical,breaker,51,0.2
+Electrical,light fixture,48,0.19
+Electrical,shock,13,0.05
+Electrical,lights in bathroom,0,0.0
+Fire_Safety,fire,786,3.07
+Fire_Safety,alarm,195,0.76
+Fire_Safety,SMOKE,128,0.5
+Fire_Safety,smoke,128,0.5
+Fire_Safety,FIRE HAZARD,102,0.4
+Fire_Safety,fire alarm,62,0.24
+Fire_Safety,detector,48,0.19
+Fire_Safety,CARBON MONOXIDE,19,0.07
+Fire_Safety,carbon monoxide,19,0.07
+Fire_Safety,faulty fire alarm,1,0.0
+HAB,LEAK,728,2.85
+HAB,NO WATER,676,2.64
+HAB,MOLD,659,2.58
+HAB,hazard,631,2.47
+HAB,ELECTRICAL,561,2.19
+HAB,ELEVATOR,430,1.68
+HAB,NO HEAT,340,1.33
+HAB,INFEST,340,1.33
+HAB,FLOOD,309,1.21
+HAB,LEAD,280,1.09
+HAB,dangerous,276,1.08
+HAB,PLUMBING,250,0.98
+HAB,HEATER,233,0.91
+HAB,RATS,195,0.76
+HAB,MICE,193,0.75
+HAB,STRUCTURAL,172,0.67
+HAB,NO HOT WATER,165,0.64
+HAB,BED BUG,162,0.63
+HAB,PEST,147,0.57
+HAB,WIRING,133,0.52
+HAB,SMOKE,128,0.5
+HAB,RODENT,113,0.44
+HAB,LIFT,103,0.4
+HAB,FIRE HAZARD,102,0.4
+HAB,SEWAGE,101,0.39
+HAB,COLLAPSE,89,0.35
+HAB,BROKEN WINDOW,67,0.26
+HAB,ASBESTOS,66,0.26
+HAB,COCKROACH,61,0.24
+HAB,UNINHABITABLE,58,0.23
+HAB,CONDemn,43,0.17
+HAB,MILDEW,35,0.14
+HAB,WATER SHUTOFF,25,0.1
+HAB,unsafe conditions,21,0.08
+HAB,CARBON MONOXIDE,19,0.07
+HAB,GAS SHUTOFF,13,0.05
+HAB,BROKEN DOOR,11,0.04
+HAB,need inspection asap,9,0.04
+HAB,POWER SHUTOFF,0,0.0
+LEGAL,NO VIOLATION,588,2.3
+LEGAL,CITATION,518,2.02
+LEGAL,COMPLETED,423,1.65
+LEGAL,CLOSED,329,1.29
+LEGAL,NOV,269,1.05
+LEGAL,REFERRED,109,0.43
+LEGAL,NO JURISDICTION,53,0.21
+LEGAL,NOTICE OF VIOLATION,3,0.01
+LEGAL,ADMIN CLOSED,3,0.01
+LEGAL,CASE CLOSED,2,0.01
+Mold,mold,659,2.58
+Mold,MOLD,659,2.58
+Mold,BLACK MOLD,99,0.39
+Mold,black mold,99,0.39
+Mold,mold issue,66,0.26
+Mold,MILDEW,35,0.14
+Mold,allergies,6,0.02
+Mold,breathing problems,4,0.02
+Mold,blisters,2,0.01
+Mold,child cannot sleep,1,0.0
+Mold,smell/mold,1,0.0
+Mold,cannot stay here,0,0.0
+PERMIT,PERMIT,3187,12.46
+PERMIT,NO PERMIT,1402,5.48
+PERMIT,WITHOUT PERMIT,695,2.72
+PERMIT,UNPERMITTED,184,0.72
+PERMIT,FINAL INSPECTION,112,0.44
+PERMIT,CODE COMPLIANCE,63,0.25
+PERMIT,ISSUED PERMIT,19,0.07
+PERMIT,INSPECTION FOR PERMIT,6,0.02
+PERMIT,PULLED PERMIT,2,0.01
+Pests,rat,1636,6.39
+Pests,ants,1236,4.83
+Pests,roaches,375,1.47
+Pests,infestation,260,1.02
+Pests,bug,203,0.79
+Pests,RATS,195,0.76
+Pests,MICE,193,0.75
+Pests,BED BUG,162,0.63
+Pests,bedbugs,158,0.62
+Pests,bed bugs,148,0.58
+Pests,pest,147,0.57
+Pests,RODENT,113,0.44
+Pests,COCKROACH,61,0.24
+Pests,cockroaches,46,0.18
+Pests,mouse,29,0.11
+Pests,attic,27,0.11
+Pests,pest control sent,14,0.05
+Pests,vermin,11,0.04
+Pests,silver fish,5,0.02
+Pests,silverfish,5,0.02
+Pests,hire an exterminator,5,0.02
+Pests,roach issue,4,0.02
+Pests,their responsibility to hire an exterminator,1,0.0
+Pests,problem not resolved,0,0.0
+Pests,animals in the attic,0,0.0
+Plumbing,leaking,917,3.58
+Plumbing,leak,728,2.85
+Plumbing,LEAK,728,2.85
+Plumbing,no water,676,2.64
+Plumbing,into apartment,332,1.3
+Plumbing,FLOOD,309,1.21
+Plumbing,flood,309,1.21
+Plumbing,drain,291,1.14
+Plumbing,hot water,278,1.09
+Plumbing,PLUMBING,250,0.98
+Plumbing,plumbing,250,0.98
+Plumbing,sink,224,0.88
+Plumbing,pipe,200,0.78
+Plumbing,back up,187,0.73
+Plumbing,no hot water,165,0.64
+Plumbing,shower,144,0.56
+Plumbing,toilet,139,0.54
+Plumbing,48 hours,126,0.49
+Plumbing,SEWAGE,101,0.39
+Plumbing,scheduled,80,0.31
+Plumbing,clog,47,0.18
+Plumbing,clogged,44,0.17
+Plumbing,water shut off,31,0.12
+Plumbing,ceiling leak,28,0.11
+Plumbing,from roof,27,0.11
+Plumbing,raw sewage,27,0.11
+Plumbing,pipe burst,23,0.09
+Plumbing,water off,22,0.09
+Plumbing,water pressure,20,0.08
+Plumbing,over 24 hours,19,0.07
+Plumbing,leaking from upstairs,11,0.04
+Plumbing,9am-5pm,10,0.04
+Plumbing,given notices,10,0.04
+Plumbing,water pouring,6,0.02
+Plumbing,burst pipe,5,0.02
+Plumbing,water outage,4,0.02
+Plumbing,without water,4,0.02
+Plumbing,water pressure low,4,0.02
+Plumbing,still no water,4,0.02
+Plumbing,exposed sewage,3,0.01
+Plumbing,smell is awful,3,0.01
+Plumbing,sewage outside,1,0.0
+Plumbing,upstairs leaking,1,0.0
+Plumbing,notice said,1,0.0
+Plumbing,water would be out,1,0.0
+Plumbing,sewer backup,1,0.0
+Plumbing,sewer system back up,0,0.0
+RENT,RENT INCREASE,471,1.84
+RENT,rent increase,471,1.84
+RENT,DEPOSIT,266,1.04
+RENT,illegal rent,67,0.26
+RENT,NOT FIXED,61,0.24
+RENT,ILLEGAL FEE,53,0.21
+RENT,LATE FEE,28,0.11
+RENT,RAISE RENT,22,0.09
+RENT,MOVE IN FEE,18,0.07
+RENT,MOVE-IN FEE,16,0.06
+RENT,REFUSE TO REPAIR,12,0.05
+RENT,PAYMENT PLAN,12,0.05
+RENT,WON'T FIX,10,0.04
+RENT,SHUTOFF NOTICE,2,0.01
+RENT,UTILITIES INCLUDED,2,0.01
+RENT,RENT RAISE,1,0.0
+RENT,UTILITY INCLUDED,1,0.0
+RENT,RENT DEMAND,1,0.0
+RENT,BILL UNPAID,0,0.0
+RENT,rent hike,0,0.0
+RENT,rent raised,0,0.0
+Security_Retaliation,security,198,0.77
+Security_Retaliation,car towed,3,0.01
+Security_Retaliation,towed in retaliation,2,0.01
+Security_Retaliation,no sticker announcing tow,0,0.0
+Structural,wall,1264,4.94
+Structural,floor,1029,4.02
+Structural,ceiling,425,1.66
+Structural,crack,192,0.75
+Structural,STRUCTURAL,172,0.67
+Structural,structural,172,0.67
+Structural,collapse,89,0.35
+Structural,COLLAPSE,89,0.35
+Structural,broken window,67,0.26
+Structural,cracked,52,0.2
+Structural,disappears,14,0.05
+Structural,cracks in the ceiling,13,0.05
+Structural,broken door,11,0.04
+Structural,sinkhole,7,0.03
+Structural,holes around the base,2,0.01
+Structural,ceiling is cracked,1,0.0
+Structural,concrete stairwell,0,0.0
+Structural,broomstick,0,0.0
+Structural,water goes under the building,0,0.0
+Structural,hollow ground,0,0.0
+Tenant_Rights,rights?,864,3.38
+Tenant_Rights,Section 8,505,1.97
+Tenant_Rights,rent increased,484,1.89
+Tenant_Rights,SHA,479,1.87
+Tenant_Rights,rent increase,471,1.84
+Tenant_Rights,POTA,304,1.19
+Tenant_Rights,eviction,289,1.13
+Tenant_Rights,tenant rights,264,1.03
+Tenant_Rights,vacate,243,0.95
+Tenant_Rights,14 day notice,220,0.86
+Tenant_Rights,what are my rights,213,0.83
+Tenant_Rights,promises,192,0.75
+Tenant_Rights,14-day notice,138,0.54
+Tenant_Rights,no response,132,0.52
+Tenant_Rights,unauthorized entry,105,0.41
+Tenant_Rights,notice to vacate,98,0.38
+Tenant_Rights,security deposit,95,0.37
+Tenant_Rights,3 Day Notice to Pay or Vacate,87,0.34
+Tenant_Rights,10day eviction notice,78,0.3
+Tenant_Rights,nothing has been done,76,0.3
+Tenant_Rights,L/T questions,71,0.28
+Tenant_Rights,pay or vacate,71,0.28
+Tenant_Rights,10 day eviction notice,69,0.27
+Tenant_Rights,retaliation,58,0.23
+Tenant_Rights,harassment,46,0.18
+Tenant_Rights,not doing anything,46,0.18
+Tenant_Rights,without permission,35,0.14
+Tenant_Rights,evicted,27,0.11
+Tenant_Rights,RENTAG,23,0.09
+Tenant_Rights,landlord/tenant,23,0.09
+Tenant_Rights,needs guidance,21,0.08
+Tenant_Rights,not communicating,17,0.07
+Tenant_Rights,no plan of repair,17,0.07
+Tenant_Rights,walked in,15,0.06
+Tenant_Rights,no response from management,14,0.05
+Tenant_Rights,refuses to repair,14,0.05
+Tenant_Rights,permission to enter,13,0.05
+Tenant_Rights,never did,13,0.05
+Tenant_Rights,Seattle Housing Authority,9,0.04
+Tenant_Rights,slow/no response,9,0.04
+Tenant_Rights,increased the rent,8,0.03
+Tenant_Rights,landlord yelling,8,0.03
+Tenant_Rights,subsidy,5,0.02
+Tenant_Rights,landlord increased,5,0.02
+Tenant_Rights,after knocking,3,0.01
+Tenant_Rights,past due rent,3,0.01
+Tenant_Rights,entered when not home,2,0.01
+Tenant_Rights,not returning my calls,2,0.01
+Tenant_Rights,help with past due rent,2,0.01
+Tenant_Rights,money order,1,0.0
+Tenant_Rights,waiting for 3 months,1,0.0
+Tenant_Rights,rent receipts,1,0.0
+Tenant_Rights,work orders unfulfilled,0,0.0
+Tenant_Rights,repairs being refused,0,0.0
+Tenant_Rights,avoiding contact,0,0.0
+Tenant_Rights,balance transfer,0,0.0
+Tenant_Rights,Sec 8,0,0.0
+Tenant_Rights,no response for 2 months,0,0.0
+Trash_Site,garbage,1269,4.96
+Trash_Site,junk,777,3.04
+Trash_Site,trash,638,2.49
+Trash_Site,weeds,616,2.41
+Trash_Site,debris,415,1.62
+Trash_Site,junk storage,409,1.6
+Trash_Site,overgrown vegetation,385,1.5
+Trash_Site,hoarding,48,0.19
+Trash_Site,trash being left outside,26,0.1
+Trash_Site,overflowing dumpsters,0,0.0
