@@ -1,4 +1,4 @@
-# STLCA: Seattle Tenant & Landlord Compliance Audit
+# STLCA: Seattle Tenant Landlord Compliance Authority
 
 **Live site:** https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html
 
@@ -79,7 +79,7 @@ This rule was derived from direct inspection of SDCI record type categories. An 
 | D4 (Northeast) | Rivera | 7,033 | 4,816 | 1,431 | 228 | 522 | 36 |
 | D5 (North) | Juarez | 7,595 | 5,296 | 1,552 | 187 | 526 | 34 |
 | D6 (Northwest) | Strauss | 6,634 | 4,371 | 1,234 | 185 | 817 | 27 |
-| D7 (Downtown/Kettle) | Moore | 8,094 | 6,513 | 1,051 | 98 | 410 | 22 |
+| D7 (Downtown/Kettle) | Kettle | 8,094 | 6,513 | 1,051 | 98 | 410 | 22 |
 
 ---
 
@@ -218,6 +218,6 @@ This script reads `CITYWIDE_ALL_20251231_ENRICHED_01272025.csv` and produces per
 
 ---
 
-*STLCA: Seattle Tenant & Landlord Compliance Audit*
+*STLCA: Seattle Tenant Landlord Compliance Authority*
 *Data current through December 31, 2025. Last updated March 2026.*
 *All source data is public record, available at data.seattle.gov.*
