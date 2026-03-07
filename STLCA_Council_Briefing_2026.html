@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>STLCA Council Briefing &mdash; March 2026</title>
+<style>
+:root{
+  --bg:#070b12;--panel:#0c1424;--panel2:#111827;
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --text:#ffffff;--muted:rgba(255,255,255,.82);--faint:rgba(255,255,255,.55);
+  --blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#22c55e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.75}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:52px;font-family:system-ui,sans-serif}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.5px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+
+.doc{max-width:860px;margin:0 auto;padding:52px 28px 80px}
+
+.letterhead{border-bottom:2px solid var(--border2);padding-bottom:28px;margin-bottom:36px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.lh-org{font-family:system-ui,sans-serif}
+.lh-org .name{font-size:24px;font-weight:900;letter-spacing:.5px;color:var(--text)}
+.lh-org .name span{color:var(--blue)}
+.lh-org .tagline{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:.3px;text-transform:uppercase}
+.lh-meta{text-align:right;font-family:system-ui,sans-serif;font-size:12px;color:var(--muted);line-height:2}
+.lh-meta strong{color:var(--text)}
+
+.to-block{background:var(--panel);border:1px solid var(--border2);border-radius:12px;padding:20px 24px;margin-bottom:32px;font-family:"Inter",system-ui,sans-serif;font-size:15px;line-height:1.8}
+.to-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:6px}
+
+h1{font-size:34px;font-weight:900;line-height:1.2;margin-bottom:14px;color:var(--text)}
+.doc-subtitle{font-size:16px;color:var(--muted);margin-bottom:32px;font-family:"Inter",system-ui,sans-serif;line-height:1.7;border-left:3px solid var(--blue);padding-left:14px}
+h2{font-size:18px;font-weight:800;margin:40px 0 14px;padding-top:32px;border-top:1px solid var(--border);font-family:"Inter",system-ui,sans-serif;color:var(--text);text-transform:uppercase;letter-spacing:1.2px}
+p{margin-bottom:16px;color:var(--text);font-size:16px;font-weight:400}
+
+.callout-blue{background:rgba(45,127,249,.08);border:1px solid rgba(45,127,249,.25);border-left:4px solid var(--blue);border-radius:10px;padding:18px 22px;margin:20px 0;font-family:system-ui,sans-serif}
+.callout-red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-left:4px solid var(--red);border-radius:10px;padding:18px 22px;margin:20px 0;font-family:system-ui,sans-serif}
+.callout-orange{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-left:4px solid var(--orange);border-radius:10px;padding:18px 22px;margin:20px 0;font-family:system-ui,sans-serif}
+.callout-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.callout-blue .callout-lbl{color:var(--blue)}
+.callout-red .callout-lbl{color:var(--red)}
+.callout-orange .callout-lbl{color:var(--orange)}
+
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0;font-family:system-ui,sans-serif}
+.metric{background:var(--panel);border:1px solid var(--border2);border-radius:12px;padding:18px 14px;text-align:center}
+.metric .m-val{font-size:34px;font-weight:900;line-height:1;margin-bottom:6px}
+.metric .m-lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;line-height:1.4;font-weight:700}
+
+.collapse-box{background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(245,158,11,.05));border:1px solid rgba(239,68,68,.3);border-radius:14px;padding:24px 26px;margin:24px 0;font-family:system-ui,sans-serif}
+.collapse-title{font-size:18px;font-weight:800;color:var(--red);margin-bottom:6px}
+.collapse-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+.collapse-row{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:flex-start}
+.collapse-row:last-child{border:none}
+.collapse-year{font-size:18px;font-weight:900;width:52px;flex-shrink:0;line-height:1.2}
+.collapse-text{font-size:15px;color:var(--text);line-height:1.6}
+.collapse-text strong{color:var(--orange)}
+
+.district-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0;font-family:system-ui,sans-serif;font-size:12px}
+.dg-cell{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:18px 14px}
+.dg-d{font-weight:700;color:var(--blue);margin-bottom:4px;font-size:14px}
+.dg-cm{font-size:11px;color:var(--muted);margin-bottom:8px}
+.dg-v{font-size:42px;font-weight:800;color:var(--text);line-height:1}
+.dg-sub{font-size:11px;color:var(--muted);margin-top:6px}
+
+.ord-box{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(239,68,68,.05));border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:24px 26px;margin:24px 0;font-family:system-ui,sans-serif}
+.ord-title{font-size:17px;font-weight:800;color:var(--orange);margin-bottom:4px}
+.ord-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+.ord-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px;color:var(--text);line-height:1.6}
+.ord-row:last-child{border:none}
+.ord-row .mark{font-weight:900;color:var(--orange);flex-shrink:0;width:20px}
+
+.ask-box{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(45,127,249,.05));border:1px solid rgba(34,197,94,.25);border-radius:14px;padding:24px 26px;margin:24px 0;font-family:system-ui,sans-serif}
+.ask-title{font-size:14px;font-weight:800;color:var(--green);margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px}
+.ask-item{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:16px}
+.ask-item:last-child{border:none}
+.ask-num{font-size:20px;font-weight:900;color:var(--green);flex-shrink:0;width:26px;line-height:1.2}
+.ask-text{color:var(--text);line-height:1.55}
+.ask-text strong{color:var(--green)}
+
+.tagline-block{background:var(--panel);border:1px solid var(--border2);border-radius:14px;padding:28px 30px;margin:32px 0;text-align:center;font-family:system-ui,sans-serif}
+.tagline-block .tl-main{font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px;line-height:1.3}
+.tagline-block .tl-sub{font-size:13px;color:var(--muted);line-height:1.6}
+
+.district-links{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-family:system-ui,sans-serif;margin:14px 0}
+.dl-link{display:block;background:var(--panel);border:1px solid var(--border2);border-radius:8px;padding:10px;text-align:center;font-size:12px;color:var(--blue);font-weight:600;text-decoration:none}
+.dl-link:hover{background:rgba(45,127,249,.1);text-decoration:none}
+.dl-d{font-size:14px;font-weight:800;display:block;margin-bottom:2px}
+.dl-n{font-size:10px;color:var(--muted)}
+
+.sig{border-top:1px solid var(--border2);margin-top:40px;padding-top:24px;font-family:system-ui,sans-serif;font-size:13px;color:var(--muted);line-height:1.8}
+.sig strong{color:var(--text)}
+footer{border-top:1px solid var(--border);padding:24px 28px;text-align:center;font-size:11px;color:var(--faint);font-family:system-ui,sans-serif;margin-top:32px}
+@media(max-width:700px){.metric-row,.district-grid,.district-links{grid-template-columns:repeat(2,1fr)}.letterhead{flex-direction:column}.lh-meta{text-align:left}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">STLCA &mdash; Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="CITYWIDE KPI.html">Citywide Audit</a>
+    <a href="#collapse">2018 Collapse</a>
+    <a href="#ordinance">Ord. 125054</a>
+    <a href="#ask">Our Ask</a>
+  </div>
+</nav>
+
+<div class="doc">
+
+<div class="letterhead">
+  <div class="lh-org">
+    <div class="name"><span>STLCA</span> &mdash; Seattle Tenant Landlord Compliance Authority</div>
+    <div class="tagline">Independent Data Oversight &bull; Seattle, WA</div>
+  </div>
+  <div class="lh-meta">
+    <strong>Date:</strong> March 2026<br>
+    <strong>Prepared for:</strong> Seattle City Council, All Districts<br>
+    <strong>Classification:</strong> Public Record Analysis<br>
+    <strong>Data through:</strong> December 31, 2025
+  </div>
+</div>
+
+<div class="to-block">
+  <div class="to-label">Delivered to</div>
+  <div style="color:var(--text);margin-bottom:4px">Seattle City Council &mdash; All Districts</div>
+  <div style="color:var(--muted);font-size:13px">Council President Joy Hollingsworth (D3) &bull; D1: Rob Saka &bull; D2: Eddie Lin &bull; D4: Maritza Rivera &bull; D5: Debora Juarez &bull; D6: Dan Strauss &bull; D7: Bob Kettle &bull; Pos. 8: Alexis Mercedes Rinck &bull; Pos. 9: Dionne Foster</div>
+</div>
+
+<h1>What SDCI Was Required to Tell You Every Year Since 2017 &mdash; and Never Did</h1>
+
+<p class="doc-subtitle">
+  The Seattle Tenant Landlord Compliance Authority analyzed 233,543 SDCI complaint records spanning 2003&ndash;2025.
+  Every number in this briefing is derived from SDCI&rsquo;s own public data and is independently replicable from the Seattle Open Data Portal.
+  These failures are not political &mdash; they are mathematical.
+</p>
+
+<h2>Who We Are</h2>
+
+<p>STLCA is an independent, non-partisan data oversight initiative. We analyze publicly available City of Seattle enforcement records to produce structured, verifiable assessments of how code compliance is documented, and where the public record cannot confirm that enforcement occurred.</p>
+
+<p>We are not a tenant advocacy organization. We do not represent any party in any proceeding. We present what the data shows, measured against itself and against the legal obligations of the agencies responsible for maintaining it. Our work is fully transparent and independently replicable.</p>
+
+<p>We are here as a partner and a resource. The failures documented in this briefing predate this Council. We are not assigning blame for a pattern that developed across multiple administrations. We are delivering verified evidence and offering to work with you toward solutions.</p>
+
+<h2 id="findings">The Core Finding</h2>
+
+<div class="callout-blue">
+  <div class="callout-lbl">What We Built</div>
+  <p style="margin:0;font-size:15px;line-height:1.7">We analyzed 233,543 SDCI enforcement records and produced the accountability report that Seattle Municipal Code <strong>Section 22.206.180</strong> required SDCI to deliver to this Council every year beginning June 15, 2017.<br><br><strong>That report was never filed. Not once in nine years.</strong><br><br>What follows is that report &mdash; built from SDCI&rsquo;s own data.</p>
+</div>
+
+<div class="metric-row">
+  <div class="metric">
+    <div class="m-val" style="color:var(--blue)">233,543</div>
+    <div class="m-lbl">Total SDCI complaint records<br>2003&ndash;2025</div>
+  </div>
+  <div class="metric">
+    <div class="m-val" style="color:var(--orange)">58,761</div>
+    <div class="m-lbl">Landlord-Tenant (LLT) records<br>all years</div>
+  </div>
+  <div class="metric">
+    <div class="m-val" style="color:var(--red)">59.8%</div>
+    <div class="m-lbl">Closed LLT cases with no documented inspection result</div>
+  </div>
+</div>
+
+<div class="metric-row">
+  <div class="metric">
+    <div class="m-val" style="color:var(--red)">62.3%</div>
+    <div class="m-lbl">LLT records with no inspection date recorded</div>
+  </div>
+  <div class="metric">
+    <div class="m-val" style="color:var(--orange)">5,936</div>
+    <div class="m-lbl">LLT cases still open &mdash; some for over 20 years</div>
+  </div>
+  <div class="metric">
+    <div class="m-val" style="color:var(--red)">48</div>
+    <div class="m-lbl">LLT cases ever formally referred to law in 20+ years</div>
+  </div>
+</div>
+
+<div class="callout-red">
+  <div class="callout-lbl">What These Numbers Mean</div>
+  <p style="margin:0;font-size:14px;line-height:1.65">When an SDCI complaint is closed with no inspection date and no inspection result, there is no documentation in the public record that any enforcement action occurred. &ldquo;Completed&rdquo; very often means no documented inspection. &ldquo;Closed&rdquo; very often means case abandoned. At 59.8% of all closed landlord-tenant cases, this is not a formatting issue. It is a systemic pattern.</p>
+</div>
+
+
+<h2 id="you-said-it">You Said It First</h2>
+
+<p>These findings did not come from outside critics. They came from the data. But the concerns the data documents have been raised by members of this Council for years. We are not here to surprise you. We are here to give you the arithmetic behind what you have already been saying.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;font-family:system-ui,sans-serif">
+
+  <div style="background:var(--panel);border:1px solid var(--border2);border-left:4px solid var(--orange);border-radius:10px;padding:18px 20px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--orange);margin-bottom:10px">Councilmember Bob Kettle &mdash; District 7</div>
+    <p style="font-size:14px;font-style:italic;color:var(--text);line-height:1.65;margin-bottom:10px">&ldquo;I just don&rsquo;t understand how [SDCI] got involved in tenant protections and housing code&hellip; it just doesn&rsquo;t seem like good governance.&rdquo;</p>
+    <div style="font-size:12px;color:var(--muted)">Councilmember Kettle is correct. Our data shows D7 has the highest closed-with-no-result rate in the city: <strong style="color:var(--red)">67.2%</strong> of LLT cases closed with no documented outcome &mdash; and LLT complaint volume in his district has grown <strong style="color:var(--red)">745%</strong> since 2015.</div>
+  </div>
+
+  <div style="background:var(--panel);border:1px solid var(--border2);border-left:4px solid var(--blue);border-radius:10px;padding:18px 20px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--blue);margin-bottom:10px">This Council &mdash; June 2016 (8-0 Vote)</div>
+    <p style="font-size:14px;font-style:italic;color:var(--text);line-height:1.65;margin-bottom:10px">&ldquo;The Director shall report annually to the City Council on the implementation of the rental housing inspection program&hellip;&rdquo;</p>
+    <div style="font-size:12px;color:var(--muted)">Ordinance 125054, passed unanimously. The Council required this report every year beginning June 15, 2017. It has never been filed. <strong style="color:var(--orange)">Nine years. Zero reports.</strong> STLCA built the report you were owed.</div>
+  </div>
+
+</div>
+
+<p>You were right. The governance structure is wrong. The data confirms it. What we are offering is the evidentiary foundation to act on what this Council has already recognized.</p>
+
+<h2 id="collapse">The 2018 Enforcement Collapse</h2>
+
+<p>The data does not show a gradual drift in enforcement quality. It shows a structural break. Using SDCI&rsquo;s own records, a clear before-and-after emerges at 2018.</p>
+
+<div class="collapse-box">
+  <div class="collapse-title">Inspection Evidence Stops Being Logged</div>
+  <div class="collapse-sub">LLT Violation Identification Rate by period &mdash; SDCI data, verified</div>
+
+  <div class="collapse-row">
+    <div class="collapse-year" style="color:var(--green)">2015&ndash;17</div>
+    <div class="collapse-text">Violation identification rate: <strong>30&ndash;35% of LLT complaints</strong>. Inspection evidence was being logged. The system was functioning at a basic bureaucratic level.</div>
+  </div>
+  <div class="collapse-row">
+    <div class="collapse-year" style="color:var(--red)">2018</div>
+    <div class="collapse-text"><strong>Rate drops to 13.3% in a single year.</strong> Missing inspection data nearly triples. This is not drift &mdash; this is policy. The transition from documented enforcement to labeled status begins here.</div>
+  </div>
+  <div class="collapse-row">
+    <div class="collapse-year" style="color:var(--red)">2019&ndash;22</div>
+    <div class="collapse-text">Rate stabilizes at 13&ndash;20%. The collapse hardens. Complaint volume continues rising. Enforcement documentation does not recover.</div>
+  </div>
+  <div class="collapse-row">
+    <div class="collapse-year" style="color:var(--red)">2025</div>
+    <div class="collapse-text"><strong>Rate falls to 7.4%.</strong> LLT complaints: 6,549 that year alone &mdash; up 224% from 2015. Violation identification: 486. Meanwhile, StatusCurrent (the status label &mdash; &ldquo;Completed,&rdquo; &ldquo;Closed,&rdquo; etc.) is filled in 100% of records, every year, all years.</div>
+  </div>
+</div>
+
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;margin:20px 0">
+  <div style="font-family:system-ui,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#f59e0b;margin-bottom:4px">Inspection Documentation Rate - LLT Complaints 2003-2025</div>
+  <div style="font-family:system-ui,sans-serif;font-size:11px;color:rgba(233,238,247,.45);margin-bottom:16px">% of landlord-tenant complaints with documented inspection result - SDCI data</div>
+  <canvas id="collapseChart" height="220"></canvas>
+</div>
+<script>
+(function(){
+  var years = ['2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+  var rates = [64.7,67.0,68.1,75.3,74.6,81.4,83.6,84.6,88.6,87.4,90.1,83.1,79.8,79.3,68.5,24.8,24.6,23.3,27.5,17.1,16.3,19.0,15.1];
+  var colors = rates.map(function(v,i){
+    if(i < 15) return 'rgba(16,185,129,0.75)';  // green pre-2018
+    if(i === 15) return 'rgba(239,68,68,1.0)';   // red 2018 cliff
+    return 'rgba(239,68,68,0.65)';               // red post-2018
+  });
+  var ctx = document.getElementById('collapseChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [{
+        label: '% with inspection result',
+        data: rates,
+        backgroundColor: colors,
+        borderRadius: 4,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx){ return ctx.parsed.y + '% with inspection result'; }
+          }
+        },
+        annotation: {}
+      },
+      scales: {
+        x: {
+          ticks: { color: 'rgba(233,238,247,.55)', font: { size: 11 } },
+          grid: { color: 'rgba(255,255,255,.04)' }
+        },
+        y: {
+          min: 0, max: 100,
+          ticks: { color: 'rgba(233,238,247,.55)', callback: function(v){ return v+'%'; }, font: { size: 11 } },
+          grid: { color: 'rgba(255,255,255,.06)' }
+        }
+      }
+    }
+  });
+})();
+</script>
+
+<p>The City has maintained the <em>appearance</em> of enforcement while the evidence of enforcement has disappeared. Status labels are always filled. Inspection evidence is not. This is the distinction between paper compliance and actual enforcement.</p>
+
+<h2>By Council District &mdash; LLT Record</h2>
+<p style="font-family:system-ui,sans-serif;font-size:13px;color:var(--muted);margin-bottom:10px">2015&ndash;2025 only. &ldquo;Closed / No Result&rdquo; = LLT cases closed with no documented inspection result. Note: 2,671 records (1.1%) could not be geocoded to a district and are excluded from district totals.</p>
+
+<div class="district-grid">
+  <div class="dg-cell"><div class="dg-d">D1 &mdash; Saka</div><div class="dg-cm">West Seattle / SODO</div><div class="dg-v">6,125</div><div class="dg-sub">LLT 2015-2025 &bull; 56.6% closed/no result</div></div>
+  <div class="dg-cell"><div class="dg-d">D2 &mdash; Lin</div><div class="dg-cm">Southeast Seattle</div><div class="dg-v">6,906</div><div class="dg-sub">LLT 2015-2025 &bull; 52.3% closed/no result</div></div>
+  <div class="dg-cell"><div class="dg-d">D3 &mdash; Hollingsworth</div><div class="dg-cm">Capitol Hill / CD</div><div class="dg-v">8,901</div><div class="dg-sub">LLT 2015-2025 &bull; 62.9% closed/no result</div></div>
+  <div class="dg-cell"><div class="dg-d">D4 &mdash; Rivera</div><div class="dg-cm">Northeast Seattle</div><div class="dg-v">5,461</div><div class="dg-sub">LLT 2015-2025 &bull; 57.0% closed/no result</div></div>
+  <div class="dg-cell"><div class="dg-d">D5 &mdash; Juarez</div><div class="dg-cm">North Seattle</div><div class="dg-v">5,970</div><div class="dg-sub">LLT 2015-2025 &bull; 58.8% closed/no result</div></div>
+  <div class="dg-cell"><div class="dg-d">D6 &mdash; Strauss</div><div class="dg-cm">Northwest Seattle</div><div class="dg-v">5,272</div><div class="dg-sub">LLT 2015-2025 &bull; 62.0% closed/no result</div></div>
+  <div class="dg-cell"><div class="dg-d" style="color:var(--red)">D7 &mdash; Kettle</div><div class="dg-cm">Downtown / Queen Anne</div><div class="dg-v" style="color:var(--red)">6,874</div><div class="dg-sub" style="color:var(--red)">LLT 2015-2025 &bull; 67.2% closed/no result &mdash; highest</div></div>
+  <div class="dg-cell" style="border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.05)"><div class="dg-d" style="color:var(--orange)">Citywide</div><div class="dg-cm">All 7 districts</div><div class="dg-v" style="color:var(--orange)">46,108</div><div class="dg-sub">LLT 2015-2025 &bull; 59.8% closed/no result</div></div>
+</div>
+
+<h2 id="ordinance">Ordinance 125054 &mdash; The Missing Reports</h2>
+
+<div class="ord-box">
+  <div class="ord-title">SMC 22.206.180 &mdash; Required Annual Reporting to Council</div>
+  <div class="ord-sub">Ordinance 125054 &bull; Passed 8-0, June 2016 &bull; Effective July 10, 2016 &bull; First report due: June 15, 2017</div>
+  <div class="ord-row"><div class="mark">&rarr;</div><div>The ordinance required the SDCI Director to report annually to City Council. Required elements: inquiry counts, inspections conducted, outcomes, rent increases delayed, refunds ordered, eviction cross-referencing, and budget allocations.</div></div>
+  <div class="ord-row"><div class="mark">&rarr;</div><div><strong style="color:var(--orange)">Zero reports were filed. Not one, in nine years.</strong> From 2017 through 2025, SDCI did not produce a single annual report to Council as required by this ordinance.</div></div>
+  <div class="ord-row"><div class="mark">&rarr;</div><div>When contacted, SDCI&rsquo;s RRIO Manager responded in writing: <em>&ldquo;We&rsquo;ve never prepared such a report&hellip; 22.206.180.J doesn&rsquo;t exist&hellip; makes a jump from I to K.&rdquo;</em> The signed ordinance is a public record and is available in this repository.</div></div>
+  <div class="ord-row"><div class="mark">&rarr;</div><div>The data to produce these reports existed and was publicly available throughout this period. The reports were not missing because the data did not exist. The reports were not produced.</div></div>
+</div>
+
+<h2>Financial Context</h2>
+
+<p>Seattle is operating under budget constraints that have required reductions across city services. SDCI&rsquo;s enforcement function &mdash; including the collection of fines, penalties, and citation revenue from documented violations &mdash; depends at every stage on whether violations are documented, pursued to resolution, and followed through to collection.</p>
+
+<p>When 59.8% of closed landlord-tenant cases carry no documented inspection result, the enforcement chain that leads to fine issuance, collection, and compliance is broken at its earliest step. The absence of documentation is not a neutral outcome. It forecloses everything downstream.</p>
+
+<p>STLCA does not assert a specific uncollected revenue figure. What the public record shows is that the documentation infrastructure required to pursue enforcement outcomes was absent in the majority of closed LLT cases across the entire 20-year record. The Council is positioned to direct SDCI to quantify what that has cost.</p>
+
+<h2>Councilmember Kettle &mdash; District 7 First</h2>
+
+<p>Councilmember Kettle has stated publicly that SDCI&rsquo;s dual role as permit-issuing agency and tenant-landlord enforcer raises serious governance concerns. Our data confirm that assessment. District 7 recorded the highest closed-with-no-result rate of any district in the city (67.2%), and the fastest LLT complaint volume growth (745% from 2015 to 2025).</p>
+
+<p>Councilmember Kettle is receiving the first district-specific STLCA dossier as a matter of jurisdictional respect and because his district is where the data is most acute. Dossiers for all other districts are complete and will follow sequentially.</p>
+
+<h2>STLCA&rsquo;s Role</h2>
+
+<p>No auditor has previously delivered this level of analysis to the Council from SDCI&rsquo;s own public data. STLCA has normalized, classified, and structured 20+ years of complaint records, cross-referenced against RRIO registration data, organized by council district, and documented against the legal obligations imposed by ordinances this Council passed.</p>
+
+<p>That work is now public, permanent, and available to every council member, every tenant, every journalist, and every policymaker who wants to understand what the SDCI enforcement record actually shows. We are here to continue that work in partnership with this Council.</p>
+
+<h2 id="ask">What We Are Asking For</h2>
+
+<div class="ask-box">
+  <div class="ask-title">What We Are Asking &mdash; 30-Day Response Window</div>
+  <div class="ask-item"><div class="ask-num">1</div><div class="ask-text"><strong>Fulfill the ordinance you already passed.</strong> This Council required annual SDCI reporting under SMC 22.206.180 with an 8-0 vote in 2016. We are asking the Council to direct SDCI to produce those reports &mdash; or provide a formal written explanation of why the obligation was not met for nine consecutive years. The law is already on the books. This is enforcement of your own ordinance.</div></div>
+  <div class="ask-item"><div class="ask-num">2</div><div class="ask-text"><strong>Request a briefing.</strong> STLCA is prepared to present to the full Council, individual district offices, or the relevant oversight committee. We will answer any question about our methodology, our data, or our findings. All of it is on the table.</div></div>
+  <div class="ask-item"><div class="ask-num">3</div><div class="ask-text"><strong>Direct SDCI to explain its documentation standards.</strong> Specifically: what constitutes a documented enforcement action under SDCI&rsquo;s own policies, and what accounts for the structural break in inspection documentation beginning in 2018?</div></div>
+  <div class="ask-item"><div class="ask-num">4</div><div class="ask-text"><strong>Consider what independent oversight of SDCI would look like.</strong> Seattle has an Office of Inspector General for SPD. The question of whether an agency that issues permits and enforces habitability for the same properties can self-report its own performance is a standard governance concern. STLCA is prepared to serve as a data partner and resource as the Council considers what independent oversight of SDCI should look like &mdash; and we can continue this work at no cost to the City.</div></div>
+</div>
+
+
+<h2>When the Numbers Become People</h2>
+
+<p>The percentages above represent real complaints from real tenants in real buildings. Three documented cases illustrate how administrative closure without inspection translates to outcomes in the physical world.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:18px 0;font-family:system-ui,sans-serif">
+
+  <div style="background:var(--panel2);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:14px 16px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--red);margin-bottom:6px">Fire / Enforcement Delay</div>
+    <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px">The Addison on 4th &mdash; D1</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px">SFD fire safety alert issued November 6, 2019. SDCI did not inspect for 29 days. A fire occurred January 7, 2020 &mdash; 62 days after the initial alert. Post-fire complaints disappeared from the public database.</div>
+    <a href="CASE_STUDY_INDEX.html" style="font-size:11px;color:var(--blue)">Full case study &rarr;</a>
+  </div>
+
+  <div style="background:var(--panel2);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:14px 16px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--red);margin-bottom:6px">COVID Moratorium / Mass Eviction</div>
+    <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px">Everspring Inn &mdash; D6</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px">August 18, 2020: 13 complaints filed in one day during the active COVID-19 moratorium. All 13 closed &ldquo;Admin Closure / Voluntary Compliance&rdquo; the same day &mdash; with no inspection. Elderly and disabled residents displaced to the street within 24 hours.</div>
+    <a href="CASE_STUDY_INDEX.html" style="font-size:11px;color:var(--blue)">Full case study &rarr;</a>
+  </div>
+
+  <div style="background:var(--panel2);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:14px 16px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--red);margin-bottom:6px">Reporting Obligation Denied in Writing</div>
+    <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px">Ordinance 125054 &mdash; Citywide</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px">When asked about the required annual reports, SDCI&rsquo;s RRIO Manager responded: <em>&ldquo;We&rsquo;ve never prepared such a report&hellip; 22.206.180.J doesn&rsquo;t exist.&rdquo;</em> The signed ordinance is a public record and is included in this repository.</div>
+    <a href="ORD 12/STLCA_CaseStudy_MissingReports.html" style="font-size:11px;color:var(--blue)">Full documentation &rarr;</a>
+  </div>
+
+</div>
+
+<p style="font-family:system-ui,sans-serif;font-size:13px;color:var(--muted)">Full case study documentation is available at: <a href="CASE_STUDY_INDEX.html">STLCA Case Study Index &rarr;</a> &nbsp;&bull;&nbsp; <a href="SDCI Complaint Record Verification Audit 2003%E2%80%932025.html">SDCI Verification Audit Dashboard (interactive) &rarr;</a></p>
+
+<div class="tagline-block">
+  <div class="tl-main">STLCA exists to make &ldquo;Completed&rdquo; and &ldquo;Closed&rdquo; mean something again.</div>
+  <div class="tl-sub">Seattle&rsquo;s enforcement failures are not political &mdash; they are mathematical.<br>Every number in this briefing is drawn directly from SDCI&rsquo;s own public records.</div>
+</div>
+
+<h2>Access the Full Data</h2>
+<p style="font-family:system-ui,sans-serif;font-size:13px;color:var(--muted);margin-bottom:12px">Per-district enforcement dashboards with complete LLT records, trend data, top properties, keyword analysis, and oldest open cases:</p>
+
+<div class="district-links">
+  <a class="dl-link" href="District_1_Dossier.html"><span class="dl-d">District 1</span><span class="dl-n">Saka &bull; West Seattle</span></a>
+  <a class="dl-link" href="District_2_Dossier.html"><span class="dl-d">District 2</span><span class="dl-n">Lin &bull; Southeast</span></a>
+  <a class="dl-link" href="District_3_Dossier.html"><span class="dl-d">District 3</span><span class="dl-n">Hollingsworth &bull; Capitol Hill</span></a>
+  <a class="dl-link" href="District_4_Dossier.html"><span class="dl-d">District 4</span><span class="dl-n">Rivera &bull; Northeast</span></a>
+  <a class="dl-link" href="District_5_Dossier.html"><span class="dl-d">District 5</span><span class="dl-n">Juarez &bull; North</span></a>
+  <a class="dl-link" href="District_6_Dossier.html"><span class="dl-d">District 6</span><span class="dl-n">Strauss &bull; Northwest</span></a>
+  <a class="dl-link" href="District_7_Dossier.html"><span class="dl-d">District 7</span><span class="dl-n">Kettle &bull; Downtown</span></a>
+  <a class="dl-link" href="CITYWIDE KPI.html"><span class="dl-d">Citywide</span><span class="dl-n">All Districts</span></a>
+</div>
+
+<p style="font-family:system-ui,sans-serif;font-size:13px;color:var(--muted);margin-top:10px">Full repository &mdash; source data, methodology, scripts, and case study index:<br><a href="https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/" target="_blank">seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS</a></p>
+
+<div class="sig">
+  <strong>Seattle Tenant Landlord Compliance Authority (STLCA)</strong><br>
+  A registered  &bull; Seattle, Washington<br>
+  Independent Oversight &bull; Verified Evidence &bull; Public Accountability<br>
+  <a href="STLCA_Home.html">stlca-justice.org</a> &bull; March 2026<br><br>
+  <span style="font-size:12px">All data in this briefing is derived from the Seattle Open Data Portal and is independently verifiable. STLCA is not affiliated with the City of Seattle, SDCI, or any City department. This briefing does not constitute legal advice and makes no legal conclusions about any individual, organization, or property. The findings reflect what is and is not documented in the public record.</span>
+</div>
+
+</div>
+
+<footer>
+  STLCA &mdash; Seattle Tenant Landlord Compliance Authority &bull; All data from SDCI Open Data Portal &bull; March 2026 &bull;
+  <a href="STLCA_Home.html">Home</a> &bull; <a href="CITYWIDE KPI.html">Citywide Audit</a>
+</footer>
+
+</body>
+</html>

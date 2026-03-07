@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>STLCA - Page Cards</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      /* transparent so this can sit on any background */
+      background: transparent;
+      color: #e8eaf0;
+      padding: 24px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .card-top {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card-label {
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #4a6a9a;
+      margin-bottom: 5px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+    .card-title a { color: #fff; text-decoration: none; }
+    .card-title a:hover { color: #5b8dee; }
+
+    .card-path {
+      font-family: Courier New, monospace;
+      font-size: 10px;
+      color: #4a6a9a;
+    }
+
+    .sections { display: flex; flex-direction: column; gap: 5px; }
+
+    .section-row {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 5px;
+      padding: 8px 10px;
+    }
+
+    .sr-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #c0cce0;
+      margin-bottom: 2px;
+    }
+
+    .sr-desc {
+      font-size: 10px;
+      color: #5a7090;
+      line-height: 1.45;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(26,122,26,0.25);
+      color: #5cb85c;
+      border: 1px solid rgba(92,184,92,0.25);
+      font-size: 8px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 8px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<div class="cards">
+
+  <!-- HOME -->
+  <div class="card">
+    <div class="card-top">
+      <div class="card-label">Primary Page</div>
+      <div class="card-title"><a href="STLCA_Home.html">STLCA Home</a> <span class="badge">Live</span></div>
+      <div class="card-path">STLCA_Home.html</div>
+    </div>
+    <div class="sections">
+      <div class="section-row">
+        <div class="sr-name">What STLCA Does</div>
+        <div class="sr-desc">Audit-grade analysis - public data only - no conclusions beyond the data</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Key Findings 2003-2025</div>
+        <div class="sr-desc">58,761 LLT cases - 62.3% no inspection date - district breakdown</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Methodology Summary</div>
+        <div class="sr-desc">LLT filter definition, data sources, reproducibility</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Council Briefing Link</div>
+        <div class="sr-desc">Direct nav to 2026 briefing document</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Structural Accountability Gap</div>
+        <div class="sr-desc">RRIO program gaps and Ord 125054 missing reports overview</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITYWIDE KPI -->
+  <div class="card">
+    <div class="card-top">
+      <div class="card-label">Interactive Dashboard</div>
+      <div class="card-title"><a href="CITYWIDE KPI.html">Citywide KPI Dashboard</a> <span class="badge">Live</span></div>
+      <div class="card-path">CITYWIDE KPI.html</div>
+    </div>
+    <div class="sections">
+      <div class="section-row">
+        <div class="sr-name">Top KPI Bar</div>
+        <div class="sr-desc">Total records - CP vs VI - % missing inspection - Closed/no result - Blank type - Emergency</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Complaints vs NOVs Over Time</div>
+        <div class="sr-desc">Annual trend - complaint volume vs violation issuance by year</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">NOV Conversion Rate by Year</div>
+        <div class="sr-desc">% VI per CP - how often complaints produce violations</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">NOV Rate by District</div>
+        <div class="sr-desc">D1-D7 ranked - filterable by time range</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">The Verification Gap</div>
+        <div class="sr-desc">Missing inspection by district, status, and open year</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Oldest Open Records (Top 25)</div>
+        <div class="sr-desc">Longest unresolved cases - oldest: 8,133 days (opened 2003)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COUNCIL BRIEFING -->
+  <div class="card">
+    <div class="card-top">
+      <div class="card-label">Council Briefing</div>
+      <div class="card-title"><a href="STLCA_Council_Briefing_2026.html">Council Briefing 2026</a> <span class="badge">Live</span></div>
+      <div class="card-path">STLCA_Council_Briefing_2026.html</div>
+    </div>
+    <div class="sections">
+      <div class="section-row">
+        <div class="sr-name">Citywide Enforcement Metrics</div>
+        <div class="sr-desc">58,761 LLT cases - 59.8% closed/no result - stat boxes</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">You Said It First</div>
+        <div class="sr-desc">D7 Kettle quote + 8-0 vote - Council's own words on accountability</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">By District - LLT 2015-2025</div>
+        <div class="sr-desc">D1: 6,125 - D2: 6,906 - D3: 8,901 - D4: 5,461 - D5: 5,970 - D6: 5,272 - D7: 6,874</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Ord 125054 - The Missing Reports</div>
+        <div class="sr-desc">Passed 8-0, June 2016 - zero reports in 9 years - written denial on record</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">The Four Asks</div>
+        <div class="sr-desc">1. Fulfill the ordinance - 2. Commission audit - 3. Briefing meeting - 4. Independent oversight</div>
+      </div>
+      <div class="section-row">
+        <div class="sr-name">Story Hooks</div>
+        <div class="sr-desc">Addison fire (D1) - Everspring evictions (D6) - Ord 125054 denial</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
