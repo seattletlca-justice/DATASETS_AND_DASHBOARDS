@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About STLCA — Seattle Tenant Landlord Compliance Authority</title>
+<meta name="description" content="STLCA is an independent data analytics organization analyzing Seattle's housing enforcement record using public SDCI complaint data.">
+<meta property="og:title" content="About STLCA — Seattle Tenant Landlord Compliance Authority">
+<meta property="og:description" content="Independent analysis of Seattle housing enforcement. 233,543 records. Built from city data.">
+<meta property="og:type" content="website">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0a0a0f;
+    --surface:rgba(255,255,255,.04);
+    --border:rgba(255,255,255,.08);
+    --text:#e9eef7;
+    --text-muted:#8090b0;
+    --blue:#2d7ff9;
+    --orange:#f59e0b;
+    --red:#ef4444;
+    --teal:#14b8a6;
+    --radius:18px;
+    --radius-lg:24px;
+  }
+  body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+  /* ── NAV ── */
+  nav{position:sticky;top:0;z-index:99;background:rgba(7,11,18,.95);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(12px)}
+  .nav-brand{font-size:13px;font-weight:700;letter-spacing:.3px;white-space:nowrap}.nav-brand span{color:var(--blue)}
+  .nav-links{display:flex;gap:4px;align-items:center}
+  .nav-links a{color:var(--text-muted);text-decoration:none;font-size:12px;font-weight:500;padding:5px 10px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
+  .nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+  .nav-links a.active{color:var(--blue);background:rgba(45,127,249,.12)}
+  .nav-links a.cta{color:#000;background:var(--orange);font-weight:700}
+  .nav-links a.cta:hover{background:#ffb11c}
+
+  /* ── LAYOUT ── */
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  .section{padding:60px 0}
+  .section+.section{border-top:1px solid var(--border)}
+
+  /* ── HERO ── */
+  .hero{padding:72px 0 52px;border-bottom:1px solid var(--border)}
+  .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+  .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:20px}
+  .hero h1 .accent{color:var(--blue)}
+  .hero-sub{font-size:1.05rem;color:var(--text-muted);max-width:620px;line-height:1.7}
+
+  /* ── CARDS ── */
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 32px}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .card h3{font-size:13px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+  .card p{font-size:0.9rem;color:var(--text-muted);line-height:1.7}
+
+  /* ── STAT ROW ── */
+  .stat-row{display:flex;flex-wrap:wrap;gap:16px;margin:32px 0}
+  .stat-box{flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;text-align:center}
+  .stat-num{font-size:2rem;font-weight:800;color:var(--blue);line-height:1}
+  .stat-num.orange{color:var(--orange)}
+  .stat-num.red{color:var(--red)}
+  .stat-label{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.4}
+
+  /* ── PRINCIPLE LIST ── */
+  .principle-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:24px}
+  .principle-list li{display:flex;gap:14px;align-items:flex-start}
+  .principle-num{width:28px;height:28px;border-radius:50%;background:rgba(45,127,249,.15);border:1px solid rgba(45,127,249,.3);color:var(--blue);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .principle-text{font-size:0.92rem;color:var(--text-muted);line-height:1.65}
+  .principle-text strong{color:var(--text)}
+
+  /* ── DIVIDER LABEL ── */
+  .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+  .section-title{font-size:1.6rem;font-weight:800;letter-spacing:-.5px;margin-bottom:16px}
+  .section-body{font-size:0.93rem;color:var(--text-muted);line-height:1.75;max-width:700px}
+  .section-body+.section-body{margin-top:12px}
+
+  /* ── DISCLAIMER ── */
+  .disclaimer{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:var(--radius);padding:20px 24px;margin-top:32px}
+  .disclaimer p{font-size:0.85rem;color:var(--text-muted);line-height:1.7}
+  .disclaimer strong{color:var(--orange)}
+
+  /* ── CONTACT ── */
+  .contact-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-align:center}
+  .contact-box h3{font-size:1.2rem;font-weight:700;margin-bottom:10px}
+  .contact-box p{color:var(--text-muted);font-size:0.9rem;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
+  .btn{display:inline-block;padding:10px 22px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:#1f6ee6}
+  .btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text-muted)}
+  .btn-secondary:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+
+  @media(max-width:600px){
+    .hero h1{font-size:1.8rem}
+    .nav-links a{display:none}
+    .nav-links a.cta{display:inline-block}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html">Case Studies</a>
+    <a href="STLCA_District_1.html">Districts</a>
+    <a href="STLCA_Methodology.html">Methodology</a>
+    <a href="STLCA_About.html" class="active">About</a>
+    <a href="STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">About STLCA</div>
+    <h1>Independent Analysis of<br><span class="accent">Seattle Housing Enforcement</span></h1>
+    <p class="hero-sub">
+      STLCA is an independent data analytics organization. We analyze the public record of Seattle's housing code enforcement system and report what the data shows — without modification, advocacy framing, or institutional affiliation.
+    </p>
+  </div>
+</header>
+
+<!-- WHAT WE DO -->
+<section class="section">
+  <div class="wrap">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title">By the Numbers</h2>
+    <p class="section-body">
+      Every figure on this site is derived directly from Seattle's public dataset. We do not estimate, project, or editorialize the numbers. If a record shows no inspection date, we report that. If a case has been open for 8,000 days, we report that. The data speaks; we present it.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">233,543</div><div class="stat-label">Total SDCI records analyzed<br>2003–2025</div></div>
+      <div class="stat-box"><div class="stat-num">58,761</div><div class="stat-label">Landlord-tenant<br>enforcement cases</div></div>
+      <div class="stat-box"><div class="stat-num orange">59.8%</div><div class="stat-label">Closed LLT cases with<br>no inspection result on record</div></div>
+      <div class="stat-box"><div class="stat-num red">5,936</div><div class="stat-label">Cases still open or<br>under investigation</div></div>
+    </div>
+
+    <div class="card-grid" style="margin-top:8px">
+      <div class="card">
+        <h3>Data Source</h3>
+        <p>All records are drawn from the Seattle Open Data Portal — the City's own published dataset of SDCI complaints, violations, and enforcement actions. We do not use private data, leaked documents, or unverified sources.</p>
+      </div>
+      <div class="card">
+        <h3>Analysis Method</h3>
+        <p>Landlord-tenant cases are identified using a documented classification rule applied uniformly across all 233,543 records. District assignments use the geocoded district field in the source data. Full methodology is published.</p>
+      </div>
+      <div class="card">
+        <h3>Independent Verification</h3>
+        <p>Every figure is independently reproducible using the same public dataset. We publish our classification rules and field definitions. Any researcher can verify or challenge our numbers using the same source.</p>
+      </div>
+      <div class="card">
+        <h3>No Affiliation</h3>
+        <p>STLCA has no affiliation with the City of Seattle, SDCI, any housing advocacy organization, landlord association, or political campaign. We do not accept funding that conditions our findings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE ARE NOT -->
+<section class="section">
+  <div class="wrap">
+    <p class="section-eyebrow">Our Position</p>
+    <h2 class="section-title">What STLCA Is — and Is Not</h2>
+
+    <ul class="principle-list">
+      <li>
+        <div class="principle-num">1</div>
+        <div class="principle-text"><strong>We are a data organization, not an advocacy group.</strong> We do not represent any party in any legal proceeding. We do not organize tenants, advise landlords, or lobby for specific legislation. Our role is to document what the public record contains and report it accurately.</div>
+      </li>
+      <li>
+        <div class="principle-num">2</div>
+        <div class="principle-text"><strong>We do not assume the data is error-free.</strong> Seattle's enforcement dataset contains miscoded records, duplicate entries, and cases that have been administratively altered over time. We report what the dataset shows and flag anomalies where we find them. Independent audit of the underlying data is part of what we recommend.</div>
+      </li>
+      <li>
+        <div class="principle-num">3</div>
+        <div class="principle-text"><strong>We do not make accusations.</strong> When we document that 59.8% of closed landlord-tenant cases have no recorded inspection result, we are describing the public record — not alleging misconduct by any individual. We present findings and leave conclusions to policymakers, auditors, and the public.</div>
+      </li>
+      <li>
+        <div class="principle-num">4</div>
+        <div class="principle-text"><strong>We are a resource for the City Council, not an adversary.</strong> Seattle's enforcement system serves hundreds of thousands of residents. Our analysis is designed to give Council and SDCI the independent data foundation they need to evaluate performance and make informed policy decisions.</div>
+      </li>
+      <li>
+        <div class="principle-num">5</div>
+        <div class="principle-text"><strong>We operate as a registered organization.</strong> STLCA holds a Washington State UBI number and City of Seattle business license. We present findings under our organizational name, not as individual complaint or advocacy.</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- THE OVERSIGHT GAP -->
+<section class="section">
+  <div class="wrap">
+    <p class="section-eyebrow">Why This Work Exists</p>
+    <h2 class="section-title">The Oversight Gap</h2>
+    <p class="section-body">
+      Seattle maintains independent oversight for several city functions. The Office of Inspector General reviews the Seattle Police Department. The City Auditor reviews financial management. The Ethics and Elections Commission investigates individual employee conduct.
+    </p>
+    <p class="section-body" style="margin-top:14px">
+      None of these bodies has the mandate to systematically review whether SDCI is properly documenting, inspecting, and closing housing enforcement complaints. The result is a gap in public accountability for one of the city's core tenant protection systems.
+    </p>
+    <p class="section-body" style="margin-top:14px">
+      Ordinance 125054, passed unanimously by the City Council in June 2016, required SDCI to report annually on enforcement outcomes beginning in 2017. As of March 2026, no such report has been produced — nine consecutive years. STLCA's citywide dashboard is the report SDCI was required to deliver. We built it from SDCI's own data.
+    </p>
+
+    <div class="disclaimer">
+      <p><strong>Disclaimer:</strong> The findings presented by STLCA are analytical in nature and derived from publicly available data. Nothing on this site constitutes legal advice. STLCA does not represent tenants, landlords, or any party in any proceeding. Data figures are accurate as of the dataset extract date (December 31, 2025). The public record is the authoritative source; STLCA's analysis is a structured presentation of that record.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section">
+  <div class="wrap">
+    <div class="contact-box">
+      <h3>Work With the Data</h3>
+      <p>STLCA will provide its full extracted dataset and methodology documentation to City Council offices, journalists, researchers, and policymakers upon request. All figures are independently reproducible from the Seattle Open Data Portal.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:4px">
+        <a href="STLCA_Methodology.html" class="btn btn-primary">View Full Methodology</a>
+        <a href="STLCA_Council_Briefing.html" class="btn btn-secondary">Council Briefing</a>
+        <a href="STLCA_Citywide_KPI.html" class="btn btn-secondary">Citywide Audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
