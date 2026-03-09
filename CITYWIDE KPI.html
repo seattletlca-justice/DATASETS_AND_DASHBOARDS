@@ -120,9 +120,28 @@
     .kpis{grid-template-columns:1fr}
     .topbar{padding:10px}
   }
+  nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+  .nav-brand{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.5px}
+  .nav-links{display:flex;gap:18px}
+  .nav-links a{font-size:12px;color:rgba(233,238,247,.65);text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:#e9eef7}
 </style>
 </head>
 <body>
+<nav>
+  <div class="nav-brand">STLCA &mdash; Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="District_1_Dossier.html">D1</a>
+    <a href="District_2_Dossier.html">D2</a>
+    <a href="District_3_Dossier.html">D3</a>
+    <a href="District_4_Dossier.html">D4</a>
+    <a href="District_5_Dossier.html">D5</a>
+    <a href="District_6_Dossier.html">D6</a>
+    <a href="District_7_Dossier.html">D7</a>
+    <a href="STLCA_About.html">About</a>
+  </div>
+</nav>
 <div class="wrap">
   <div class="topbar">
     <div>
@@ -603,6 +622,12 @@ initSelectors();
 timeRangeSel.addEventListener('change',updateAll);
 districtSel.addEventListener('change',updateAll);
 updateAll();
+</script>
+<script>
+  function sendHeight(){var h=document.body.scrollHeight||document.documentElement.scrollHeight;window.parent.postMessage({iframeHeight:h},'*');}
+  window.addEventListener('load',sendHeight);
+  window.addEventListener('resize',sendHeight);
+  setTimeout(sendHeight,500);setTimeout(sendHeight,1500);setTimeout(sendHeight,3000);
 </script>
 </body>
 </html>
