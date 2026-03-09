@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>STLCA Hostinger Embed Code</title>
+<style>
+  body { font-family: sans-serif; background: #111; color: #eee; padding: 40px; max-width: 800px; margin: auto; }
+  h1 { color: #f0c040; font-size: 1.4rem; margin-bottom: 8px; }
+  p { color: #aaa; font-size: 0.95rem; margin-bottom: 16px; }
+  textarea {
+    width: 100%;
+    height: 220px;
+    background: #1e1e1e;
+    color: #90ee90;
+    border: 2px solid #444;
+    border-radius: 6px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  button {
+    margin-top: 12px;
+    background: #f0c040;
+    color: #111;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover { background: #ffd966; }
+  .note { margin-top: 20px; color: #888; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<h1>STLCA Hostinger Embed Code</h1>
+<p>Copy the code below and paste it into Hostinger → Website Builder → Custom HTML block.</p>
+
+<textarea id="code" readonly>
+&lt;iframe id="stlca-frame" src="https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html" style="width:100%;border:none;display:block;min-height:2800px;" scrolling="no"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+  window.addEventListener('message', function(e) {
+    if (e.data &amp;&amp; e.data.iframeHeight) {
+      document.getElementById('stlca-frame').style.height = e.data.iframeHeight + 'px';
+    }
+  });
+&lt;/script&gt;
+</textarea>
+
+<br>
+<button onclick="copyCode()">Copy to Clipboard</button>
+
+<div class="note">
+  After pasting in Hostinger, save and publish. Wait ~2 minutes for GitHub Pages to update, then reload your site. The iframe will auto-resize to full page height — no more cutoff at the bottom.
+</div>
+
+<script>
+function copyCode() {
+  var raw = '<iframe id="stlca-frame" src="https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html" style="width:100%;border:none;display:block;min-height:2800px;" scrolling="no"></iframe>\n<script>\n  window.addEventListener(\'message\', function(e) {\n    if (e.data && e.data.iframeHeight) {\n      document.getElementById(\'stlca-frame\').style.height = e.data.iframeHeight + \'px\';\n    }\n  });\n<\/script>';
+  navigator.clipboard.writeText(raw).then(function() {
+    var btn = document.querySelector('button');
+    btn.textContent = 'Copied!';
+    setTimeout(function(){ btn.textContent = 'Copy to Clipboard'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
