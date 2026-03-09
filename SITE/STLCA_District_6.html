@@ -72,6 +72,13 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .kw-pct{font-size:13px;color:var(--muted);width:44px;text-align:right}
 footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-size:11px;color:rgba(233,238,247,.3);margin-top:32px}
 @media(max-width:768px){.kpi-strip{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.disparity{grid-template-columns:1fr;gap:8px}.disp-arrow{display:none}}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .d-switcher{background:rgba(7,11,18,.95);border-bottom:1px solid rgba(255,255,255,.06);padding:6px 20px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;position:sticky;top:52px;z-index:99;}
+  .d-switcher a{font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;text-decoration:none;color:rgba(233,238,247,.6);border:1px solid rgba(255,255,255,.1);transition:all .2s;}
+  .d-switcher a:hover{color:#e9eef7;border-color:rgba(255,255,255,.3);}
+  .d-switcher a.active{background:rgba(45,127,249,.2);color:#2d7ff9;border-color:rgba(45,127,249,.4);}
+  .d-switcher .sw-label{font-size:11px;color:rgba(233,238,247,.35);margin-right:4px;font-weight:600;}
 </style>
 </head>
 <body>
@@ -87,6 +94,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-
     <a href="STLCA_Council_Briefing.html" class="cta" target="_blank" rel="noopener">Council Briefing</a>
   </div>
 </nav>
+<div class="d-switcher"><span class="sw-label">Districts:</span><a href="STLCA_District_1.html">D1</a><a href="STLCA_District_2.html">D2</a><a href="STLCA_District_3.html">D3</a><a href="STLCA_District_4.html">D4</a><a href="STLCA_District_5.html">D5</a><a href="STLCA_District_6.html" class="active">D6</a><a href="STLCA_District_7.html">D7</a><a href="STLCA_Citywide_KPI.html" style="margin-left:8px">Citywide</a></div>
 <div class="wrap">
 
 <!-- HEADER -->
