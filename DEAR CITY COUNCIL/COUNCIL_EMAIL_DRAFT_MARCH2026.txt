@@ -1,0 +1,49 @@
+COUNCIL EMAIL DRAFT — STLCA March 2026
+========================================
+PURPOSE: Short "earn the open / earn the click" email. 3-4 sentences. Links to brief.
+FROM: Seattle Tenant Landlord Compliance Authority (stlca-justice.org)
+SEND VIA: Council contact forms or staff email addresses
+
+-----------------------------------------------------------------------
+SUBJECT: Housing Enforcement Data for Your District — STLCA Briefing
+
+Council Member [NAME],
+
+The Seattle Tenant Landlord Compliance Authority has compiled an independent
+analysis of 233,543 SDCI housing enforcement records (2003–2025). We found
+that 59.8% of landlord-tenant cases closed with no documented inspection
+result — and that Ordinance 125054, which required SDCI to report annually
+to Council beginning in 2017, has never been fulfilled in nine years.
+
+We have prepared a one-page briefing for your review, along with a full
+per-district dashboard showing the enforcement record for your constituents:
+
+  Council Briefing: [LINK TO STLCA_Council_Briefing_2026.html]
+  Your District's Data: [LINK TO District_X_Dossier.html]
+  Full Repository: https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/
+
+We are available to meet and present the data at your convenience.
+STLCA is not affiliated with the City of Seattle or SDCI.
+
+Seattle Tenant Landlord Compliance Authority
+stlca-justice.org | March 2026
+
+-----------------------------------------------------------------------
+CUSTOMIZE PER DISTRICT:
+  D1 Saka:           District_1_Dossier.html | 8,015 LLT cases | 56.6% closed/no result
+  D2 Lin:            District_2_Dossier.html | 9,353 LLT cases | 52.3% closed/no result
+  D3 Hollingsworth:  District_3_Dossier.html | 11,351 LLT cases | 62.9% closed/no result (President)
+  D4 Rivera:         District_4_Dossier.html | 7,033 LLT cases | 57.0% closed/no result
+  D5 Juarez:         District_5_Dossier.html | 7,595 LLT cases | 58.8% closed/no result
+  D6 Strauss:        District_6_Dossier.html | 6,634 LLT cases | 62.0% closed/no result
+  D7 Kettle:         District_7_Dossier.html | 8,094 LLT cases | 67.2% closed/no result
+  At-Large Rinck:    STLCA_Council_Briefing_2026.html (citywide figures)
+  At-Large Foster:   STLCA_Council_Briefing_2026.html (citywide figures)
+
+NOTES:
+- Use STLCA org name, NOT personal name
+- Redact personal email from any attached exhibits
+- 30-day response window before press briefing
+- Simultaneous notification to all 9 council offices preferred
+- Subject line variant for chair of Housing committee: 
+  "Housing Enforcement Documentation Gap — Data for Committee Review"
