@@ -1117,5 +1117,15 @@
   <a href="https://data.seattle.gov" target="_blank" rel="noopener">Seattle Open Data Portal</a>
 </footer>
 
+<script>
+  function sendHeight() {
+    var h = document.body.scrollHeight || document.documentElement.scrollHeight;
+    window.parent.postMessage({ iframeHeight: h }, '*');
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+</script>
 </body>
 </html>
