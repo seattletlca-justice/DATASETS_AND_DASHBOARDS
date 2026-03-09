@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>STLCA Report: The Certificate of Compliance Gap</title>
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
+  <meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
+  <meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+  <meta property="og:url" content="https://www.seattletlca.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      color: #111;
+      background: #fff;
+      line-height: 1.65;
+    }
+
+    /* ---- COVER / HEADER ---- */
+    .cover {
+      background: #0a1628;
+      color: #fff;
+      padding: 48px 56px 40px;
+      border-bottom: 6px solid #b00020;
+    }
+    .cover-org {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b0b8c8;
+      margin-bottom: 24px;
+    }
+    .cover-label {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #b00020;
+      margin-bottom: 10px;
+    }
+    .cover h1 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      max-width: 700px;
+    }
+    .cover-sub {
+      font-size: 15px;
+      color: #c0c8d8;
+      max-width: 680px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .cover-meta {
+      font-size: 12px;
+      color: #7080a0;
+      border-top: 1px solid #243050;
+      padding-top: 16px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta span { display: block; }
+    .cover-meta strong { color: #a0b0c8; }
+
+    /* ---- NAV BAR ---- */
+    .nav {
+      background: #1a1a2e;
+      padding: 10px 56px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav a {
+      color: #8090b0;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: .4px;
+    }
+    .nav a:hover { color: #fff; }
+    .nav .home { color: #c0c8d8; }
+
+    /* ---- BODY LAYOUT ---- */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px 60px;
+    }
+
+    /* ---- SECTION ---- */
+    .section {
+      padding: 36px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-num {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b00020;
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0a1628;
+      border-bottom: 2px solid #0a1628;
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 14px;
+      font-weight: bold;
+      color: #111;
+      margin: 18px 0 8px;
+    }
+    p {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #111;
+    }
+    ul {
+      margin: 0 0 12px 20px;
+    }
+    li {
+      margin-bottom: 4px;
+      font-size: 14px;
+      color: #111;
+    }
+
+    /* ---- KEY FINDINGS BAR ---- */
+    .findings-bar {
+      background: #f4f6fa;
+      border: 1px solid #c0c8d8;
+      border-left: 5px solid #0a1628;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .findings-bar h3 {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #0a1628;
+      margin: 0 0 12px;
+    }
+    .findings-bar ul { margin-left: 18px; }
+    .findings-bar li { font-size: 14px; color: #111; margin-bottom: 6px; }
+    .findings-bar strong { color: #b00020; }
+
+    /* ---- STAT GRID ---- */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 2px solid #0a1628;
+      margin: 24px 0;
+    }
+    .stat-cell {
+      padding: 20px 16px;
+      border-right: 1px solid #c0c8d8;
+      text-align: center;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-size: 40px;
+      font-weight: bold;
+      color: #b00020;
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .stat-num.dark { color: #0a1628; }
+    .stat-desc {
+      font-size: 12px;
+      color: #222;
+      line-height: 1.4;
+    }
+
+    /* ---- COMPARE TABLE ---- */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 2px solid #0a1628;
+      margin: 20px 0;
+    }
+    .compare-col {
+      padding: 0;
+    }
+    .compare-col:first-child {
+      border-right: 2px solid #0a1628;
+    }
+    .compare-head {
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .compare-head.green { background: #1a4d1a; }
+    .compare-head.red { background: #8b0000; }
+    .compare-source {
+      padding: 8px 16px;
+      font-size: 11px;
+      color: #444;
+      font-style: italic;
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+    }
+    .compare-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 16px;
+      border-bottom: 1px solid #eee;
+      font-size: 13px;
+    }
+    .compare-row:last-child { border-bottom: none; }
+    .compare-row .label { color: #111; }
+    .compare-row .val {
+      font-weight: bold;
+      font-size: 12px;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+    .val.green { color: #1a4d1a; }
+    .val.red { color: #8b0000; }
+    .val.gray { color: #888; }
+
+    /* ---- DATA TABLE ---- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 16px 0;
+    }
+    thead th {
+      background: #0a1628;
+      color: #fff;
+      padding: 9px 12px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: .3px;
+    }
+    tbody td {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      color: #111;
+    }
+    tbody tr:nth-child(even) td { background: #f6f7fa; }
+    tbody tr.flag td { background: #fff5f5; }
+    .td-red { color: #b00020; font-weight: bold; }
+    .td-green { color: #1a5c1a; font-weight: bold; }
+    .td-gray { color: #888; }
+
+    /* ---- CALLOUT BOX ---- */
+    .callout {
+      background: #0a1628;
+      color: #fff;
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-left: 6px solid #b00020;
+    }
+    .callout-label {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b00020;
+      margin-bottom: 8px;
+    }
+    .callout p {
+      font-size: 14px;
+      color: #dde4f0;
+      margin-bottom: 0;
+    }
+    .callout strong { color: #fff; }
+
+    /* ---- NUMBERED FINDINGS ---- */
+    .finding-list { margin: 16px 0; }
+    .finding-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid #ddd;
+      align-items: flex-start;
+    }
+    .finding-item:last-child { border-bottom: none; }
+    .finding-num {
+      font-size: 24px;
+      font-weight: bold;
+      color: #c0c8d8;
+      line-height: 1;
+      min-width: 32px;
+      padding-top: 2px;
+    }
+    .finding-item h4 {
+      font-size: 14px;
+      font-weight: bold;
+      color: #0a1628;
+      margin-bottom: 4px;
+    }
+    .finding-item p {
+      font-size: 13px;
+      color: #333;
+      margin: 0;
+    }
+
+    /* ---- FOOTER ---- */
+    .page-footer {
+      background: #f4f6fa;
+      border-top: 2px solid #0a1628;
+      padding: 16px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #444;
+    }
+    .page-footer .org { font-weight: bold; color: #0a1628; }
+
+    /* ---- SOURCES ---- */
+    .sources {
+      background: #f4f6fa;
+      border-top: 1px solid #ccc;
+      padding: 28px 48px;
+    }
+    .sources h3 {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #444;
+      margin: 0 0 10px;
+    }
+    .sources p {
+      font-size: 11px;
+      color: #444;
+      line-height: 1.7;
+      max-width: 900px;
+    }
+
+    @media(max-width:700px) {
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .cover, .nav, .page-wrap, .sources { padding-left: 20px; padding-right: 20px; }
+      .page-footer { flex-direction: column; gap: 4px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav style="background:#1a1a2e; padding:10px 28px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100;">
+  <div style="font-size:13px; font-weight:700; color:#2d7ff9;">STLCA — Seattle Tenant Landlord Compliance Authority</div>
+  <div style="display:flex; gap:18px; flex-wrap:wrap;">
+    <a href="https://www.seattletlca.com" style="color:#8090b0; text-decoration:none; font-size:12px;">Home</a>
+    <a href="STLCA_Citywide_KPI.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Citywide Audit</a>
+    <a href="STLCA_Council_Briefing.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Council Briefing</a>
+    <a href="STLCA_Methodology.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Methodology</a>
+    <a href="STLCA_Case_Studies.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Case Studies</a>
+  </div>
+</nav>
+
+<div class="cover">
+  <div class="cover-org">Seattle Tenant Landlord Compliance Authority - </div>
+  <div class="cover-label">Analytical Report - CS-005 - March 2026</div>
+  <h1>The Certificate of Compliance Gap</h1>
+  <p class="cover-sub">RRIO inspections flag smoke alarms and GFI outlets. Tenants at those same certified properties file complaints about mold, flooding, pests, and evictions. This report cross-references SDCI&rsquo;s own annual RRIO program data against the public complaint database to document the gap between what the checklist measures and what tenants experience.</p>
+  <div class="cover-meta">
+    <span><strong>Data Source:</strong> SDCI Complaints &amp; Violations dataset - 233,543 records, 2003&ndash;2025</span>
+    <span><strong>RRIO Data:</strong> Annual Reports 2017&ndash;2024 + Registration file 28,447 properties</span>
+    <span><strong>Matched Records:</strong> 11,544 addresses / 21,811 LLT complaints at certified properties</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- KEY FINDINGS -->
+  <div class="section">
+    <div class="section-num">Key Findings</div>
+    <h2>Summary of Findings</h2>
+    <div class="findings-bar">
+      <h3>This Report Finds:</h3>
+      <ul>
+        <li><strong>56,830</strong> complaints have been filed at RRIO-registered properties across all years on record.</li>
+        <li><strong>21,811</strong> of those are landlord-tenant complaints filed between 2017 and 2025 - after RRIO was fully operational.</li>
+        <li>Only <strong>18.1%</strong> of those LLT complaints at certified properties received a documented inspection.</li>
+        <li>RRIO&rsquo;s top annual inspection failure is smoke alarms. Tenants at the same properties report <strong>mold (1,451), pests (1,332), flooding (1,159)</strong> - at 10x the rate of smoke alarm complaints.</li>
+        <li>The civil warrant process available under RRIO has been used <strong>zero times</strong> in the history of the program.</li>
+        <li><strong>640 properties</strong> with 3+ violation records currently hold active RRIO certifications. Five of the eight properties with 20+ violations are certified and eligible to self-certify with private inspectors.</li>
+        <li>~59% of all RRIO inspections use private inspectors. SDCI receives <strong>no checklist data</strong> from those inspections - only a final Certificate of Compliance.</li>
+        <li>The annual reports required by <strong>Ordinance 125054</strong> - which would have surfaced this data every year since 2018 - were never filed.</li>
+      </ul>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <span class="stat-num">56,830</span>
+        <span class="stat-desc">Total complaints at<br>RRIO-registered properties<br>(all years)</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">21,811</span>
+        <span class="stat-desc">LLT complaints at<br>certified properties<br>2017&ndash;2025</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">18.1%</span>
+        <span class="stat-desc">LLT complaints at<br>certified properties that<br>received an inspection</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num dark">0</span>
+        <span class="stat-desc">Civil warrants used<br>in the history of<br>the RRIO program</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-num">Section 1 of 5</div>
+    <h2>What the RRIO Program Is and What It Reports</h2>
+    <p>The Rental Registration and Inspection Ordinance (RRIO) was adopted in 2012 and became operational in 2015. Every rental property in Seattle is required to register with the City and pass a periodic inspection every 5&ndash;10 years. The program's goal is to ensure rental housing meets basic maintenance and safety standards.</p>
+    <p>Each year, SDCI reports to the City Council on RRIO program performance under Ordinance 124011, Section 17, as amended by Ordinance 125343. These reports are submitted by the SDCI Director and administered by the RRIO Program Manager. The reports cover: number of properties registered, inspection volumes, pass and fail rates, top checklist failures, and fee revenue.</p>
+    <p>What the reports do not cover: what tenants at certified properties are complaining about after certification.</p>
+    <p>STLCA cross-referenced the RRIO registration file (28,447 active properties) against SDCI&rsquo;s public complaint database (233,543 records, 2003&ndash;2025). The matched dataset - 56,830 complaints at 11,544 registered addresses - reveals a systematic gap between what the RRIO checklist measures and what tenants experience in certified units.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-num">Section 2 of 5</div>
+    <h2>What RRIO Reports Finding vs. What Tenants Actually Reported</h2>
+    <p>Every RRIO annual report from 2017 through 2024 lists the same top inspection failures. Improperly installed electrical equipment (GFI outlets, service panels) ranks first every year. Missing or nonfunctional smoke alarms ranks second. The 2022 report notes that failing a smoke alarm item is &ldquo;usually a problem that is more significant than a missing or dead battery,&rdquo; and that inspectors bring spare batteries to inspections.</p>
+    <p>Below is what SDCI&rsquo;s inspection program identifies as the primary housing safety problems in Seattle alongside what tenants at those same registered, certified properties reported as complaints between 2017 and 2025.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-head green">RRIO Annual Reports: Top Inspection Failures</div>
+        <div class="compare-source">Source: SDCI Annual Reports 2017&ndash;2024, filed under Ord. 124011 / Ord. 125343</div>
+        <div class="compare-row"><span class="label">Electrical (GFI / panel / wiring)</span><span class="val green">#1 every year</span></div>
+        <div class="compare-row"><span class="label">Smoke alarms missing or non-functional</span><span class="val green">#2 every year</span></div>
+        <div class="compare-row"><span class="label">CO alarm missing or non-functional</span><span class="val green">#3 most years</span></div>
+        <div class="compare-row"><span class="label">Heating equipment defective</span><span class="val green">Top 10</span></div>
+        <div class="compare-row"><span class="label">Plumbing leaks (under-sink)</span><span class="val green">Top 10</span></div>
+        <div class="compare-row"><span class="label">Pest evidence</span><span class="val green">Mentioned 2018+</span></div>
+        <div class="compare-row"><span class="label">Mold / flooding / sewage</span><span class="val gray">Not listed</span></div>
+        <div class="compare-row"><span class="label">Eviction / displacement</span><span class="val gray">Not listed</span></div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-head red">Tenant Complaint Database: What Was Actually Reported</div>
+        <div class="compare-source">Source: STLCA cross-reference - 21,811 LLT complaints at 11,544 matched RRIO addresses, 2017&ndash;2025</div>
+        <div class="compare-row"><span class="label">Mold / mildew</span><span class="val red">1,451 complaints</span></div>
+        <div class="compare-row"><span class="label">Eviction / displacement</span><span class="val red">1,390 complaints</span></div>
+        <div class="compare-row"><span class="label">Pests (rats, roaches, bed bugs)</span><span class="val red">1,332 complaints</span></div>
+        <div class="compare-row"><span class="label">Flooding / water damage / sewage</span><span class="val red">1,159 complaints</span></div>
+        <div class="compare-row"><span class="label">Plumbing</span><span class="val red">925 complaints</span></div>
+        <div class="compare-row"><span class="label">Electrical</span><span class="val red">609 complaints</span></div>
+        <div class="compare-row"><span class="label">No heat</span><span class="val red">605 complaints</span></div>
+        <div class="compare-row"><span class="label">Smoke / CO alarms</span><span class="val red">142 complaints</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Finding</div>
+      <p>Tenants at RRIO-certified properties filed <strong>1,451 mold complaints, 1,332 pest complaints, and 1,159 flooding and sewage complaints</strong> between 2017 and 2025. The issue RRIO inspectors flag most often - smoke alarms - generated just <strong>142 tenant complaints</strong> at those same properties over the same period. The RRIO checklist and the complaint database are measuring different problems. The checklist measures minimum safety items on a scheduled inspection day. The complaint database records what tenants live with every day after the inspector leaves.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-num">Section 3 of 5</div>
+    <h2>Year-by-Year: RRIO Program Data vs. Complaint Inspection Rates at Certified Properties</h2>
+    <p>The table below places SDCI&rsquo;s self-reported RRIO program figures alongside STLCA&rsquo;s analysis of what happened to landlord-tenant complaints filed at those same registered properties each year. RRIO measures proactive checklist inspections on a scheduled 5&ndash;10 year cycle. The right columns measure whether tenant complaints triggered any documented field response. These are two separate data streams that have never been formally compared in any published report.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>RRIO: Properties Inspected</th>
+          <th>RRIO: % of Registered</th>
+          <th>Civil Warrants Used</th>
+          <th>LLT Complaints at RRIO Properties</th>
+          <th>Complaints Resulting in Inspection</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2017</td><td>3,166</td><td class="td-green">10.5%</td><td>0</td><td>919</td><td class="td-green">69.5%</td>
+        </tr>
+        <tr class="flag">
+          <td>2018</td><td>2,848</td><td>9.0%</td><td>0</td><td>1,598</td><td class="td-red">24.0%</td>
+        </tr>
+        <tr class="flag">
+          <td>2019</td><td>3,409</td><td class="td-green">10.1%</td><td>0</td><td>1,871</td><td class="td-red">23.6%</td>
+        </tr>
+        <tr class="flag">
+          <td>2020</td><td>1,038</td><td class="td-red">&lt;4% (COVID)</td><td>0</td><td>1,700</td><td class="td-red">17.6%</td>
+        </tr>
+        <tr class="flag">
+          <td>2021</td><td>~1,800</td><td class="td-red">~7%</td><td>0</td><td>1,922</td><td class="td-red">17.3%</td>
+        </tr>
+        <tr class="flag">
+          <td>2022</td><td>1,939</td><td class="td-red">7.3%</td><td>0</td><td>2,912</td><td class="td-red">11.1%</td>
+        </tr>
+        <tr class="flag">
+          <td>2023</td><td class="td-gray">-</td><td class="td-gray">-</td><td>0</td><td>3,302</td><td class="td-red">13.6%</td>
+        </tr>
+        <tr class="flag">
+          <td>2024</td><td>4,037</td><td class="td-green">14.5%</td><td>0</td><td>3,575</td><td class="td-red">15.2%</td>
+        </tr>
+        <tr class="flag">
+          <td>2025</td><td class="td-gray">-</td><td class="td-gray">-</td><td>0</td><td>4,012</td><td class="td-red">13.2%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:#555;margin-top:-6px">Shaded rows indicate years in which fewer than 25% of LLT complaints at registered properties received a documented inspection. RRIO figures from SDCI Annual Reports (Ord. 124011 / Ord. 125343). Complaint inspection rates from STLCA analysis of SDCI complaint database matched to current RRIO registration file.</p>
+
+    <p>In 2017, 69.5% of landlord-tenant complaints at registered properties received a documented inspection. In 2018 - the same year the broader SDCI enforcement collapse began - that rate dropped to 24%. It has not recovered. In 2025, with LLT complaint volume at a record 4,012 at registered properties, only 13.2% received an inspection.</p>
+    <p>Meanwhile, RRIO&rsquo;s proactive inspection program improved from 7.3% of properties inspected in 2022 to 14.5% in 2024. More certificates issued. Less response to the tenants living in certified units. The two programs moved in opposite directions while the reports that would have caught this went unfiled.</p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-num">Section 4 of 5</div>
+    <h2>The Accountability Gap and Its Connection to Ordinance 125054</h2>
+    <p>RRIO and the SDCI complaint program operate in parallel. RRIO issues certificates on a scheduled cycle using a standardized checklist. The complaint program receives tenant reports and is supposed to trigger field inspections. Neither program produces a formal comparison of what certified properties generate in subsequent complaints. No published RRIO report has ever asked whether tenants at certified properties are still calling - or what they are calling about.</p>
+    <p>The answer, from SDCI&rsquo;s own complaint database: yes, they are calling. In growing numbers every year. About mold, pests, flooding, evictions, and no heat - not smoke alarms.</p>
+
+    <div class="callout">
+      <div class="callout-label">Connection to Ordinance 125054</div>
+      <p>Ordinance 125054, passed 8-0 by this Council in June 2016, required SDCI to report annually on tenant inquiries, inspections conducted, rent increases delayed, refunds ordered, and eviction cross-references. <strong>That report - had it been filed beginning June 15, 2017 - would have surfaced the complaint inspection collapse in 2018, the first year it appeared.</strong> Nine consecutive reports were not filed. Nine years of this divergence between what RRIO certifies and what tenants experience afterward went unreported to the body that passed both laws. This report provides, for the first time, the cross-reference Ordinance 125054 required.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-num">Section 5 of 5</div>
+    <h2>Findings</h2>
+    <div class="finding-list">
+      <div class="finding-item">
+        <div class="finding-num">1</div>
+        <div>
+          <h4>A Certificate of Compliance Does Not Reflect Post-Certification Conditions</h4>
+          <p>56,830 complaints were filed at RRIO-registered properties across all record years. 21,811 were landlord-tenant complaints filed between 2017 and 2025, after properties were certified. The certificate reflects one inspection day. The complaint database records what tenants live with after the inspector leaves.</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">2</div>
+        <div>
+          <h4>The RRIO Checklist Does Not Measure What Tenants at Certified Properties Actually Experience</h4>
+          <p>Tenants at certified properties filed 1,451 mold complaints, 1,332 pest complaints, and 1,159 flooding and sewage complaints between 2017 and 2025. Smoke and CO alarms - the top RRIO inspection failure every year - generated just 142 tenant complaints at those same properties. The checklist and the complaint database measure different realities.</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">3</div>
+        <div>
+          <h4>Complaint Inspection Rates at Certified Properties Collapsed and Never Recovered</h4>
+          <p>In 2017, 69.5% of LLT complaints at registered properties received a documented inspection. By 2025, that rate was 13.2%. This collapse occurred while RRIO&rsquo;s proactive inspection rate improved. More certifications issued, less response to complaints from tenants in certified units.</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">4</div>
+        <div>
+          <h4>The Civil Warrant Process Has Never Been Used in the History of the Program</h4>
+          <p>Every RRIO annual report from 2017 through 2024 contains the same statement: the civil warrant process has not been used. This enforcement tool, designed for property owners who refuse access or compliance, has never been deployed across 28,447 registered properties over nine years of program operation.</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-num">5</div>
+        <div>
+          <h4>The Annual Reports Required by Ordinance 125054 Would Have Caught This in 2018</h4>
+          <p>Ordinance 125054 required SDCI to cross-reference habitability enforcement against its own inspection history and report annually to the City Council beginning June 15, 2017. That report would have captured the complaint inspection rate collapse in the first year it occurred. Nine consecutive reports were not filed. This report is the analysis the Council was owed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <div class="section-num">Section 6 of 6</div>
+    <h2>Chronic Violators with Active RRIO Certifications and the Private Inspector Blind Spot</h2>
+
+    <h3>Chronic Violator Properties Holding Active Certificates</h3>
+    <p>STLCA cross-referenced the RRIO registration file against properties with documented violation records in SDCI's complaint database. The table below shows how many properties with repeated violation histories currently hold active RRIO certifications. The more violations a property has accumulated, the more likely it is to still be certified.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Violation Threshold</th>
+          <th>Properties Meeting Threshold</th>
+          <th>Currently RRIO-Registered Active</th>
+          <th>% Holding Active Certificate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>3 or more violation records</td><td>2,506</td><td>640</td><td class="td-red">25.5%</td></tr>
+        <tr><td>5 or more violation records</td><td>718</td><td>193</td><td class="td-red">26.9%</td></tr>
+        <tr><td>10 or more violation records</td><td>92</td><td>27</td><td class="td-red">29.3%</td></tr>
+        <tr><td>20 or more violation records</td><td>8</td><td>5</td><td class="td-red">62.5%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:#555;margin-top:-6px">Violation records = VI-type records in SDCI complaint database, 2003&ndash;2025. RRIO active registration status from Rental_Property_Registration_20260105.csv (28,447 active registrations as of January 2026).</p>
+
+    <h3>Top Chronic Violator Properties with Active RRIO Certifications</h3>
+    <p>Among the 193 properties with 5 or more documented violation records that currently hold active RRIO certifications, the following rank among the highest by violation count. Every one of these properties is eligible to use a private inspector to obtain its certificate. SDCI receives no detailed checklist data from those private inspections.</p>
+
+    <table>
+      <thead>
+        <tr><th>Address</th><th>District</th><th>Violation Records</th><th>RRIO Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1400 HUBBELL PL</td><td>D3</td><td class="td-red">29</td><td>Active</td></tr>
+        <tr><td>430 12TH AVE E</td><td>D3</td><td class="td-red">28</td><td>Active</td></tr>
+        <tr><td>1308 12TH AVE S</td><td>D2</td><td class="td-red">20</td><td>Active</td></tr>
+        <tr><td>308 4TH AVE S - The Addison on 4th</td><td>D2</td><td class="td-red">19</td><td>Active</td></tr>
+        <tr><td>5913 RAINIER AVE S</td><td>D2</td><td class="td-red">16</td><td>Active</td></tr>
+        <tr><td>915 E HARRISON ST</td><td>D3</td><td class="td-red">15</td><td>Active</td></tr>
+        <tr><td>448 NE RAVENNA BLVD</td><td>D6</td><td class="td-red">14</td><td>Active</td></tr>
+        <tr><td>3621 33RD AVE S</td><td>D2</td><td class="td-red">13</td><td>Active</td></tr>
+        <tr><td>4547 19TH AVE NE</td><td>D4</td><td class="td-red">13</td><td>Active</td></tr>
+        <tr><td>5033 BROOKLYN AVE NE</td><td>D4</td><td class="td-red">12</td><td>Active</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:#555;margin-top:-6px">308 4th Ave S (The Addison on 4th) is the subject of a separate STLCA case study documenting 133 SFD elevator rescues, a 2020 fire following a 29-day SDCI inspection delay, and post-fire complaints that disappeared from the public database. <a href="STLCA_Case_Studies.html" style="color:#0a1628">See STLCA Case Study Index.</a></p>
+
+    <h3>The Pre-RRIO Enforcement Window: Who Was Supposed to Get Priority Inspection</h3>
+    <p>Ordinance 124011 required that properties with two or more notices of violation or one or more emergency orders leading to enforced compliance or a court order in the two years before RRIO adoption be inspected by SDCI in the program's first year (2015). The 2017 RRIO annual report stated 38 properties met this criterion.</p>
+    <p>STLCA's analysis of SDCI's own complaint database identifies <strong>617 properties</strong> with two or more violation records in the 2012&ndash;2014 window. Of those, <strong>152 currently hold active RRIO registrations</strong>. The gap between SDCI's reported 38 and our 617 reflects a definitional threshold set so narrowly - only enforcement actions resulting in court orders qualified - that the vast majority of pre-RRIO problem properties were eligible to self-certify with private inspectors from the start of the program.</p>
+
+    <div class="callout">
+      <div class="callout-label">SDCI Acknowledged This in Writing to the City Council - 2017</div>
+      <p><strong>&ldquo;Under the RRIO ordinance, SDCI does not receive substantive inspection results from private inspectors; rather, SDCI only sees Certificates of Compliance that state a property passed a RRIO inspection. SDCI does not know if problems were initially found, how many inspections were required before a property passed, or if there are maintenance issues in the inspected units that may extend to the rest of the property.&rdquo;</strong></p>
+      <p style="margin-top:12px;color:#b0b8c8">Source: RRIO Annual Report, March 2018 (CF_320708), filed by the SDCI Director. In 2017, approximately 59% of all RRIO inspections were completed by private inspectors (1,880 of 3,166 total). SDCI received detailed checklist data from zero of those inspections. Every property on the list above is eligible to use a private inspector for its renewal certification. When they do, SDCI sees only the final passing certificate - not how many attempts it took, not what conditions were found, not whether problems extend to other units.</p>
+    </div>
+
+    <h3>The Current Rule and What It Permits</h3>
+    <p>Under the current framework, there is no automatic trigger requiring city inspection for properties above any violation threshold. Accumulating violation records does not disqualify a property from using a private inspector. A property with 19 documented violations - like 308 4th Ave S - can hire a private inspector, pass a checklist, receive a Certificate of Compliance, and SDCI will see nothing about what was found in that process.</p>
+    <p>Ordinance 125343 (2017) required private inspectors to submit checklists for failed inspections. That change was adopted. But properties that ultimately pass - however many attempts it takes - still generate no mandatory detailed reporting to SDCI. The passing certificate is the only document the City receives.</p>
+    <p><strong>193 properties with 5 or more documented violations are currently certified under this system.</strong> The City cannot tell you how they passed, who inspected them, or what conditions exist in units beyond the scope of the inspection.</p>
+
+    <h3>The RRIO Checklist and the Housing Maintenance and Building Code</h3>
+    <p>The RRIO inspection checklist covers a defined subset of conditions enumerated in the RRIO program rules. It does not cover all requirements of Seattle's Housing and Building Maintenance Code (SMC 22.200 et seq.). A property can receive a Certificate of Compliance under RRIO while conditions exist that may constitute violations under the HMBC but are not items on the RRIO checklist.</p>
+    <p>The practical consequence is that the Certificate of Compliance reflects the scope of the RRIO checklist, not the full scope of housing code requirements. Tenants reviewing a property's RRIO registration status receive no indication of which code provisions were and were not examined. If conditions outside the RRIO checklist scope exist, a tenant's avenue for reporting them is the complaint process - the reactive mechanism the RRIO program was intended to supplement with proactive inspection.</p>
+
+    <div class="callout">
+      <div class="callout-label">Scope Note: RRIO Certificate and Housing Code Compliance</div>
+      <p>A Certificate of RRIO Compliance documents that a property passed an inspection against the RRIO checklist items on the date of inspection. The RRIO checklist does not cover all requirements of the Seattle Housing and Building Maintenance Code (SMC 22.200). A property holding an active RRIO certificate may have conditions present that fall outside the RRIO inspection scope. The certificate does not represent a determination of full HMBC compliance.</p>
+    </div>
+
+    <h3>Reinspection Scheduling: Documented Protocol</h3>
+    <p>STLCA reviewed written communications from the SDCI RRIO Program Manager describing the reinspection process at a multi-unit property under active RRIO enforcement. The following statement was provided by the RRIO Program Manager in a written response dated May 27, 2025:</p>
+
+    <div class="callout">
+      <div class="callout-label">SDCI RRIO Program Manager, Written Communication, May 27, 2025</div>
+      <p><strong>"We are in communication with the property management with the expectation that they will continue to report progress and call us out to confirm repairs and pass more units."</strong></p>
+    </div>
+
+    <p>The statement describes a reinspection model in which the property owner or management initiates contact with SDCI when corrections are ready for verification. The RRIO ordinance and program rules do not specify a mandatory deadline by which reinspection must be requested or completed after initial findings. STLCA found no provision in the program rules for automatic suspension of RRIO registration status while a correction period is open.</p>
+    <p>The documented characteristics of this process are:</p>
+    <ul style="margin:12px 0 12px 24px;line-height:2">
+      <li>Reinspection is initiated by the property owner or management, not by SDCI on a set schedule.</li>
+      <li>No mandatory deadline exists for requesting reinspection after correction notices are issued.</li>
+      <li>RRIO registration status is not automatically suspended during an open correction period.</li>
+      <li>Conditions outside the RRIO checklist scope are not assessed during RRIO reinspection.</li>
+    </ul>
+    <p>STLCA notes that the RRIO annual reports reviewed (2017-2024) do not report statistics on reinspection frequency, time elapsed between initial findings and reinspection, or correction resolution rates. These metrics are not part of the program's current public reporting.</p>
+  </div>
+
+</div><!-- end page-wrap -->
+
+<div class="sources">
+  <h3>Sources and Methodology</h3>
+  <p>RRIO program statistics from SDCI Annual Reports filed under Ordinance 124011, Section 17, as amended by Ordinance 125343: CF_320336 (June 2017, Jun 2016&ndash;May 2017 period), CF_320708 (March 2018, 2017 calendar year), CF_321192 (2018), CF_321754 (2019), CF_322081 (2020), CF_323418 (2024); 2022 report via Publicola (March 2023). All reports signed by the SDCI Director; contact listed as RRIO Program Manager, SDCI Code Compliance. Complaint data from City of Seattle Complaints and Violations Built Environment dataset (Seattle Open Data Portal), 233,543 records, 2003&ndash;2025. RRIO registration data: Rental_Property_Registration_20260105.csv, 28,447 active registrations. Cross-reference: address normalization applied to OriginalAddress1 field; 11,544 unique complaint addresses matched to RRIO registration file representing 56,830 total complaints. LLT filter per STLCA methodology: RecordTypeDesc null/blank, or contains "Emergency" or "LandLord/Tenant." Keyword analysis on Description field, Python regex, 21,811 matched LLT records (2017&ndash;2025). Inspection rate: presence of non-null LastInspDate on closed/completed records. Civil warrant status from RRIO annual reports; zero usage confirmed across all available years 2017&ndash;2024. No individual tenant names or private residential addresses disclosed. All findings from aggregate analysis of public records.</p>
+</div>
+
+<div class="page-footer">
+  <span class="org">Seattle Tenant Landlord Compliance Authority (STLCA) - </span>
+  <span>CS-005 - The Certificate of Compliance Gap - March 2026 - Page 1 of 1</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>District 1 Enforcement Dashboard &mdash; Rob Saka</title>
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
+<meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
+<meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+<meta property="og:url" content="https://www.seattletlca.com">
+<meta name="twitter:card" content="summary_large_image">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+:root{--bg:#070b12;--panel:#0c1424;--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#10b981;--purple:#a855f7;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.55)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.55}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1160px;margin:0 auto;padding:32px 20px}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.5px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.nav-links a.cta{color:#000;background:var(--orange);}
+.nav-links a.cta:hover{background:#ffb11c;}
+.hdr{background:linear-gradient(135deg,rgba(45,127,249,.12),rgba(245,158,11,.06));border:1px solid rgba(45,127,249,.2);border-radius:20px;padding:36px 36px 28px;margin-bottom:24px}
+.hdr-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.badge{background:rgba(45,127,249,.15);border:1px solid rgba(45,127,249,.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--blue);font-weight:600}
+.badge.orange{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.3);color:var(--orange)}
+.hdr h1{font-size:30px;font-weight:800;margin-bottom:8px}
+.hdr .sub{font-size:12px;color:var(--muted);line-height:1.6}
+.sec-lbl{font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px 16px}
+.kpi .lbl{font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.kpi .val{font-size:36px;font-weight:800;line-height:1}
+.kpi .note{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+.val.blue{color:var(--blue)}.val.orange{color:var(--orange)}.val.red{color:var(--red)}.val.green{color:var(--green)}.val.purple{color:var(--purple)}
+.disparity{background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(245,158,11,.06));border:1px solid rgba(239,68,68,.25);border-radius:16px;padding:24px 28px;margin-bottom:20px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:16px}
+.disp-box{text-align:center}
+.disp-box .d-lbl{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.disp-box .d-val{font-size:36px;font-weight:900;line-height:1}
+.disp-box .d-sub{font-size:11px;color:var(--muted);margin-top:6px}
+.disp-arrow{font-size:28px;color:var(--orange);text-align:center;font-weight:900}
+.disp-pct{text-align:center}
+.disp-pct .d-lbl{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.disp-pct .d-val{font-size:28px;font-weight:900;color:var(--orange);line-height:1}
+.disp-pct .d-sub{font-size:11px;color:var(--muted);margin-top:6px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px 20px;margin-bottom:20px}
+.panel h2{font-size:18px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead tr{border-bottom:1px solid rgba(255,255,255,.12)}
+th{padding:8px 10px;text-align:left;font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+td{padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;font-size:15px}
+tr:hover td{background:rgba(255,255,255,.02)}
+.rec-link{font-family:monospace;font-size:11px}
+.addr{color:var(--text);font-weight:500}
+.cnt{font-weight:700;color:var(--blue);text-align:right;width:90px}
+.cmp-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:15px}
+.cmp-lbl{color:var(--muted)}.cmp-val{font-weight:700}
+.higher{color:var(--red)}.lower{color:var(--green)}.neutral{color:var(--text)}
+.chart-wrap{height:230px;position:relative}
+.kw-group{margin-bottom:20px}
+.kw-group-hdr{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.08)}
+.kw-row{display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.kw-lbl{flex:1;font-size:15px;color:var(--text)}
+.kw-cnt{font-size:15px;font-weight:700;width:60px;text-align:right}
+.kw-bar-wrap{width:180px}
+.kw-bar{height:8px;border-radius:4px;min-width:2px}
+.kw-pct{font-size:13px;color:var(--muted);width:44px;text-align:right}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-size:11px;color:rgba(233,238,247,.3);margin-top:32px}
+@media(max-width:768px){.kpi-strip{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.disparity{grid-template-columns:1fr;gap:8px}.disp-arrow{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="https://www.seattletlca.com">Home</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html">Case Studies</a>
+    <a href="STLCA_District_1.html">Districts</a>
+    <a href="STLCA_Methodology.html">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-badges">
+    <span class="badge">District 1</span>
+    <span class="badge">Council Member &mdash; Rob Saka</span>
+    <span class="badge orange">West Seattle, South Park, Georgetown, SODO, Delridge</span>
+    <span class="badge">SDCI Records 2003&ndash;2025</span>
+  </div>
+  <h1>SDCI Enforcement Accountability Dashboard &mdash; District 1</h1>
+  <p class="sub">Source: CITYWIDE_ALL_20251231_ENRICHED_01272025 &bull; Seattle Department of Construction and Inspections open complaint records &bull; LLT Rule: RecordTypeDesc blank, contains &ldquo;Emergency,&rdquo; or contains &ldquo;LandLord/Tenant&rdquo; &bull; All figures computed directly from SDCI open data. 2,671 records citywide (1.1%) had no district geocode and are excluded from district counts.</p>
+</div>
+
+<!-- DOSSIER BANNER -->
+<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:14px;padding:14px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+  <div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--orange);margin-bottom:4px">Accountability Dossier Available</div>
+    <div style="font-size:12px;color:var(--muted)">Read the written narrative — case studies from real SDCI records, building patterns, and enforcement findings for District 1</div>
+  </div>
+  <a href="STLCA_District_1.html" style="background:var(--orange);color:#000;font-weight:700;font-size:12px;padding:8px 18px;border-radius:8px;white-space:nowrap;text-decoration:none">Read D1 Dossier &rarr;</a>
+</div>
+
+<!-- ALL RECORDS STRIP -->
+<div class="sec-lbl">All Record Types &mdash; District 1 (Every complaint category, all years)</div>
+<div class="kpi-strip">
+  <div class="kpi"><div class="lbl" style="font-size:14px;font-weight:700">Total Records &mdash; All Complaint Types</div><div class="val blue" style="font-size:48px">41,466</div><div class="note" style="font-size:12px">All categories combined &bull; 2003&ndash;2025</div></div>
+  <div class="kpi"><div class="lbl">Complaints Filed</div><div class="val blue">30,636</div><div class="note">73.9% of all D1 records</div></div>
+  <div class="kpi"><div class="lbl">Notices of Violation</div><div class="val orange">6,002</div><div class="note">NOV rate: 19.6% of all complaints</div></div>
+  <div class="kpi"><div class="lbl">Missing Inspection Date</div><div class="val orange">14,572</div><div class="note">35.1% of all records &mdash; all types</div></div>
+</div>
+
+<!-- DISPARITY PANEL -->
+<div class="disparity" id="disparity">
+  <div class="disp-box">
+    <div class="d-lbl">All Complaint Types</div>
+    <div class="d-val" style="color:var(--blue)">41,466</div>
+    <div class="d-sub">Total D1 records<br>all categories, all years</div>
+  </div>
+  <div class="disp-arrow">&rarr;</div>
+  <div class="disp-box">
+    <div class="d-lbl">Apply LLT Filter</div>
+    <div class="d-val" style="color:var(--orange)">8,015</div>
+    <div class="d-sub">Landlord&ndash;Tenant records only<br>blank + Emergency + L/T type</div>
+  </div>
+  <div class="disp-arrow">&rarr;</div>
+  <div class="disp-pct">
+    <div class="d-lbl">D1 LLT Share</div>
+    <div class="d-val" style="color:#10b981">19.3%</div>
+    <div class="d-sub">of all D1 records are LLT<br>citywide avg: 25.2% &bull; <span style="color:var(--green)">below avg</span></div>
+  </div>
+</div>
+
+<!-- LLT STRIP -->
+<div class="sec-lbl" id="llt">Landlord-Tenant (LLT) Records Only &mdash; At a Glance, All Years &mdash; District 1</div>
+<div class="kpi-strip">
+  <div class="kpi"><div class="lbl">LLT Total Records</div><div class="val blue">8,015</div><div class="note">Blank + Emergency + LandLord/Tenant &bull; 2003&ndash;2025</div></div>
+  <div class="kpi"><div class="lbl">LLT - No Inspection Date or Result</div><div class="val lower">59.0%</div><div class="note">4,730 of 8,015 LLT records have no inspection date or documented result &bull; citywide 62.3%</div></div>
+  <div class="kpi"><div class="lbl">LLT Closed / No Result</div><div class="val green">56.6%</div><div class="note">4,063 of 7,182 closed LLT cases &bull; citywide 59.8%</div></div>
+  <div class="kpi"><div class="lbl">LLT NOV Rate</div><div class="val blue">35.6%</div><div class="note">1,900 NOVs per 5,341 complaints &bull; citywide 27.2%</div></div>
+</div>
+<!-- REFERRED TO LAW CALLOUT -->
+<div style="background:rgba(239,68,68,.09);border:1px solid rgba(239,68,68,.35);border-radius:14px;padding:16px 22px;margin-bottom:20px">
+  <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#ef4444;margin-bottom:6px">SDCI Citywide: Cases Referred to Law</div>
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
+    <span style="font-size:40px;font-weight:900;color:#ef4444;line-height:1">48</span>
+    <span style="font-size:14px;color:rgba(233,238,247,.75)">LLT cases ever referred to law &mdash; out of 58,761 LLT records (2003&ndash;2025)</span>
+  </div>
+  <div style="font-size:12px;color:rgba(233,238,247,.5)">&ldquo;Referred to Law&rdquo; is SDCI&rsquo;s own StatusCurrent field designation. 198 total records across all categories were ever referred to law out of 233,543 total records. Source: SDCI open data.</div>
+</div>
+
+<!-- LLT BREAKDOWN + COMPARISON -->
+<div class="grid-2">
+  <div class="panel">
+    <h2>Landlord-Tenant (LLT) &mdash; At a Glance, All Years</h2>
+    <p style="font-size:12px;color:rgba(233,238,247,.55);margin-bottom:10px">The top-line total is the sum of all record sub-types shown in this table.</p>
+    <table>
+      <thead><tr><th>Category</th><th>Count</th><th>% of LLT</th></tr></thead>
+      <tbody>
+        <tr style="background:rgba(45,127,249,.07);border-bottom:2px solid rgba(45,127,249,.2)"><td><strong style="color:var(--blue)">Total LLT Records (sum of all below)</strong></td><td><strong style="color:var(--blue)">8,015</strong></td><td>100%</td></tr>
+        <tr><td>Complaints (CP)</td><td>5,341</td><td>66.6%</td></tr>
+        <tr><td>Notices of Violation (NOV)</td><td>1,900</td><td>23.7%</td></tr>
+        <tr><td>Citations (CI)</td><td>187</td><td>2.3%</td></tr>
+        <tr><td>Tenant Relocation Orders (TR)</td><td>510</td><td>6.4%</td></tr>
+        <tr><td>Unfit Building Orders (UB)</td><td>77</td><td>1.0%</td></tr>
+        <tr style="border-top:1px solid rgba(255,255,255,.1)"><td>No Inspection Date</td><td>4,730</td><td>59.0%</td></tr>
+        <tr><td>Closed / No Inspection Result</td><td>4,063</td><td>56.6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <h2>District 1 vs Citywide &mdash; LLT Accountability</h2>
+    <div class="cmp-row"><span class="cmp-lbl">LLT Total Records</span><span class="cmp-val neutral">8,015 &bull; citywide 58,761</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT Complaints</span><span class="cmp-val neutral">5,341 &bull; citywide 41,653</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT NOVs Issued</span><span class="cmp-val neutral">1,900 &bull; citywide 11,341</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT NOV Rate</span><span class="cmp-val higher">35.6% vs 27.2% citywide</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">No Inspection Date</span><span class="cmp-val lower">59.0% vs 62.3% citywide</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">Closed / No Result</span><span class="cmp-val green">56.6% vs 59.8% citywide</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">Tenant Relocation Orders</span><span class="cmp-val neutral">510 in D1</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">Unfit Building Orders</span><span class="cmp-val neutral">77 in D1</span></div>
+    <div class="cmp-row"><span class="cmp-lbl">LLT Annual Filings (year-by-year count) <span style="font-size:11px;font-style:italic;font-weight:400">-- 241 cases in 2015; 780 cases in 2025</span></span><span class="cmp-val orange">241 &rarr; 780 (+224%)</span></div>
+  </div>
+</div>
+
+<!-- LLT TREND CHART + ALL RECORDS TREND -->
+<div class="grid-2">
+  <div class="panel">
+    <h2>LLT Records by Year &mdash; District 1 (Landlord&ndash;Tenant Only)</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:12px">Showing LLT-filtered records 2015&ndash;2025 only. Source: D1_LLT_Smart_Analysis.csv</p>
+    <div class="chart-wrap" id="chart_llt_trend"></div>
+  </div>
+  <div class="panel">
+    <h2>All Complaints vs NOVs by Year &mdash; District 1</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:12px">All complaint types. NOV rate measures enforcement response across all categories.</p>
+    <div class="chart-wrap" id="chart_all_trend"></div>
+  </div>
+</div>
+
+<!-- KEYWORD ANALYSIS -->
+<div class="panel" id="keywords">
+  <h2>What Tenants Are Reporting &mdash; District 1 LLT Complaint Issues (8,015 records)</h2>
+  <p style="font-size:11px;color:var(--muted);margin-bottom:18px">Complaint descriptions analyzed using spaCy lemmatization + rapidfuzz fuzzy matching across 19 issue categories. One complaint may match multiple categories. Percentages are of all LLT complaints in this district. Source: D1_LLT_Smart_Analysis.csv</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div class='kw-group'><div class='kw-group-hdr' style='color:#ef4444'>Habitability Conditions</div><div class='kw-row'><span class='kw-lbl'>Habitability (all conditions)</span><span class='kw-cnt' style='color:#ef4444'>3,095</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:154px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>38.6%</span></div><div class='kw-row'><span class='kw-lbl'>No Heat / Heating Failure</span><span class='kw-cnt' style='color:#ef4444'>428</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:21px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>5.3%</span></div><div class='kw-row'><span class='kw-lbl'>No Hot Water</span><span class='kw-cnt' style='color:#ef4444'>181</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:9px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>2.3%</span></div><div class='kw-row'><span class='kw-lbl'>Plumbing & Water Failure</span><span class='kw-cnt' style='color:#ef4444'>1,836</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:91px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>22.9%</span></div><div class='kw-row'><span class='kw-lbl'>Mold & Moisture Damage</span><span class='kw-cnt' style='color:#ef4444'>739</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:36px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>9.2%</span></div><div class='kw-row'><span class='kw-lbl'>Pest Infestation</span><span class='kw-cnt' style='color:#ef4444'>1,766</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:88px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>22.0%</span></div><div class='kw-row'><span class='kw-lbl'>Structural Defects</span><span class='kw-cnt' style='color:#ef4444'>1,381</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:68px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>17.2%</span></div><div class='kw-row'><span class='kw-lbl'>Appliances & Equipment</span><span class='kw-cnt' style='color:#ef4444'>1,149</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:57px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>14.3%</span></div><div class='kw-row'><span class='kw-lbl'>Electrical Hazards</span><span class='kw-cnt' style='color:#ef4444'>875</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:43px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>10.9%</span></div><div class='kw-row'><span class='kw-lbl'>Fire / Smoke / CO Safety</span><span class='kw-cnt' style='color:#ef4444'>442</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:22px;background:#ef4444;opacity:.75'></div></div><span class='kw-pct'>5.5%</span></div></div><div class='kw-group'><div class='kw-group-hdr' style='color:#f59e0b'>Eviction & Displacement</div><div class='kw-row'><span class='kw-lbl'>Eviction / Notice</span><span class='kw-cnt' style='color:#f59e0b'>1,122</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:55px;background:#f59e0b;opacity:.75'></div></div><span class='kw-pct'>14.0%</span></div><div class='kw-row'><span class='kw-lbl'>Displacement / Relocation</span><span class='kw-cnt' style='color:#f59e0b'>1,379</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:68px;background:#f59e0b;opacity:.75'></div></div><span class='kw-pct'>17.2%</span></div><div class='kw-row'><span class='kw-lbl'>Tenant Rights & Access</span><span class='kw-cnt' style='color:#f59e0b'>2,744</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:136px;background:#f59e0b;opacity:.75'></div></div><span class='kw-pct'>34.2%</span></div></div><div class='kw-group'><div class='kw-group-hdr' style='color:#a855f7'>Financial Abuse & Retaliation</div><div class='kw-row'><span class='kw-lbl'>Rent Issues & Overcharging</span><span class='kw-cnt' style='color:#a855f7'>637</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:31px;background:#a855f7;opacity:.75'></div></div><span class='kw-pct'>7.9%</span></div><div class='kw-row'><span class='kw-lbl'>Gas / Utility Shutoff</span><span class='kw-cnt' style='color:#a855f7'>79</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:3px;background:#a855f7;opacity:.75'></div></div><span class='kw-pct'>1.0%</span></div><div class='kw-row'><span class='kw-lbl'>Retaliation & Security</span><span class='kw-cnt' style='color:#a855f7'>243</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:12px;background:#a855f7;opacity:.75'></div></div><span class='kw-pct'>3.0%</span></div></div><div class='kw-group'><div class='kw-group-hdr' style='color:#2d7ff9'>Permit & Legal</div><div style="font-size:11px;color:rgba(233,238,247,.45);font-style:italic;margin-top:6px;padding:0 4px">Note: these counts reflect complaint descriptions mentioning permit or legal terms -- not SDCI's official "Referred to Law" enforcement status. Only 48 LLT cases citywide were formally referred to law in 20+ years of records.</div><div class='kw-row'><span class='kw-lbl'>Permit / Code Compliance</span><span class='kw-cnt' style='color:#2d7ff9'>479</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:23px;background:#2d7ff9;opacity:.75'></div></div><span class='kw-pct'>6.0%</span></div><div class='kw-row'><span class='kw-lbl'>Tenants Mentioning Legal/Court Terms</span><span class='kw-cnt' style='color:#2d7ff9'>604</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:30px;background:#2d7ff9;opacity:.75'></div></div><span class='kw-pct'>7.5%</span></div><div class='kw-row'><span class='kw-lbl'>Trash & Site Conditions</span><span class='kw-cnt' style='color:#2d7ff9'>578</span><div class='kw-bar-wrap'><div class='kw-bar' style='width:28px;background:#2d7ff9;opacity:.75'></div></div><span class='kw-pct'>7.2%</span></div></div>
+  </div>
+</div>
+
+<!-- TOP PROPERTIES -->
+<div class="panel" id="properties">
+  <h2>Top LLT Complaint Properties &mdash; District 1 (All Years 2003&ndash;2025)</h2>
+  <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Addresses with the highest LLT complaint counts in SDCI records. These are the properties with the most documented tenant-landlord enforcement activity in the district.</p>
+  <table>
+    <thead><tr><th>LLT Complaints</th><th>Address</th><th>SDCI Records</th></tr></thead>
+    <tbody><tr><td class='cnt'>81</td><td class='addr'>201 YESLER WAY, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=201%20YESLER%20WAY&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr><tr><td class='cnt'>57</td><td class='addr'>212 ALASKAN WAY S, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=212%20ALASKAN%20WAY%20S&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr><tr><td class='cnt'>57</td><td class='addr'>4545 42ND AVE SW, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=4545%2042ND%20AVE%20SW&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr><tr><td class='cnt'>57</td><td class='addr'>223 YESLER WAY, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=223%20YESLER%20WAY&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr><tr><td class='cnt'>50</td><td class='addr'>9434 DELRIDGE WAY SW, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=9434%20DELRIDGE%20WAY%20SW&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr><tr><td class='cnt'>40</td><td class='addr'>3021 SW BRADFORD ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=3021%20SW%20BRADFORD%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr><tr><td class='cnt'>28</td><td class='addr'>4040 26TH AVE SW, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=4040%2026TH%20AVE%20SW&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr><tr><td class='cnt'>28</td><td class='addr'>65 S WASHINGTON ST, Seattle WA</td><td><a href='https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=65%20S%20WASHINGTON%20ST&city=Seattle&state=WA' target='_blank' rel='noopener' style='font-size:11px'>Search SDCI &rarr;</a></td></tr></tbody>
+  </table>
+</div>
+
+<!-- OLDEST OPEN CASES -->
+<div class="panel" id="oldest">
+  <h2>Oldest Open LLT Cases &mdash; District 1</h2>
+  <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Landlord-Tenant cases only (blank RecordTypeDesc, Emergency, or LandLord/Tenant). Record numbers link directly to the SDCI public portal. These LLT cases have been open the longest with no documented resolution. <br><br><strong>Note on category labels:</strong> SDCI record categories (Blank, Construction, Emergency, etc.) reflect SDCI's own classification at intake, not the underlying complaint content. Due to how SDCI categorizes records, tenant-related complaints -- habitability, utilities, access, illegal eviction -- may appear under Blank, Construction, or other non-LLT categories. This table applies the LLT filter rule (blank + Emergency + LandLord/Tenant type), but a full picture of tenant impact at any address would require manually reviewing each case in the SDCI services portal. The pattern of recurrence and the absence of resolution is itself the documented finding.</p>
+  <table>
+    <thead><tr><th>Open Date</th><th>Record Number</th><th>Status</th><th>Category</th><th>Address</th></tr></thead>
+    <tbody><tr><td>2007-12-28</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1014520-VI' target='_blank' rel='noopener'>1014520-VI</a></td><td style='font-size:11px;color:var(--muted)'>NOV Issued</td><td>Blank/LLT</td><td class='addr'>500 S RIVER ST</td></tr><tr><td>2008-05-07</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1015763-UB' target='_blank' rel='noopener'>1015763-UB</a></td><td style='font-size:11px;color:var(--muted)'>Initiated</td><td>Blank/LLT</td><td class='addr'>1653 EDGEWOOD AVE SW</td></tr><tr><td>2008-07-17</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1016651-TR' target='_blank' rel='noopener'>1016651-TR</a></td><td style='font-size:11px;color:var(--muted)'>Initiated</td><td>Blank/LLT</td><td class='addr'>1313 CALIFORNIA AVE SW</td></tr><tr><td>2008-10-27</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1017732-VI' target='_blank' rel='noopener'>1017732-VI</a></td><td style='font-size:11px;color:var(--muted)'>Referred to Law</td><td>Blank/LLT</td><td class='addr'>9057 9TH AVE SW</td></tr><tr><td>2008-11-04</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1017789-VI' target='_blank' rel='noopener'>1017789-VI</a></td><td style='font-size:11px;color:var(--muted)'>NOV Issued</td><td>Blank/LLT</td><td class='addr'>1218 ALKI AVE SW</td></tr><tr><td>2010-10-19</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1024117-VI' target='_blank' rel='noopener'>1024117-VI</a></td><td style='font-size:11px;color:var(--muted)'>Warning</td><td>Blank/LLT</td><td class='addr'>7140 18TH AVE SW</td></tr><tr><td>2011-04-19</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1025239-TR' target='_blank' rel='noopener'>1025239-TR</a></td><td style='font-size:11px;color:var(--muted)'>Initiated</td><td>Blank/LLT</td><td class='addr'>7560 CALIFORNIA AVE SW</td></tr><tr><td>2012-11-14</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1028607-TR' target='_blank' rel='noopener'>1028607-TR</a></td><td style='font-size:11px;color:var(--muted)'>Initiated</td><td>Blank/LLT</td><td class='addr'>5424 DELRIDGE WAY SW</td></tr><tr><td>2014-05-05</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1031888-VI' target='_blank' rel='noopener'>1031888-VI</a></td><td style='font-size:11px;color:var(--muted)'>NOV Issued</td><td>Blank/LLT</td><td class='addr'>9103 8TH AVE S</td></tr><tr><td>2014-10-31</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1033303-VI' target='_blank' rel='noopener'>1033303-VI</a></td><td style='font-size:11px;color:var(--muted)'>Hazard Correction Order Issued</td><td>Construction , Emergency</td><td class='addr'>1313 SUNSET AVE SW</td></tr><tr><td>2014-11-10</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1033357-VI' target='_blank' rel='noopener'>1033357-VI</a></td><td style='font-size:11px;color:var(--muted)'>NOV Issued</td><td>Blank/LLT</td><td class='addr'>2611 45TH AVE SW</td></tr><tr><td>2015-03-17</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1034209-VI' target='_blank' rel='noopener'>1034209-VI</a></td><td style='font-size:11px;color:var(--muted)'>NOV Issued</td><td>Blank/LLT</td><td class='addr'>215 2ND AVE S</td></tr><tr><td>2015-05-01</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1034564-VI' target='_blank' rel='noopener'>1034564-VI</a></td><td style='font-size:11px;color:var(--muted)'>NOV Issued</td><td>Blank/LLT</td><td class='addr'>5930 34TH AVE SW</td></tr><tr><td>2015-06-04</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1034787-TR' target='_blank' rel='noopener'>1034787-TR</a></td><td style='font-size:11px;color:var(--muted)'>Reviews Completed</td><td>Blank/LLT</td><td class='addr'>2626 ALKI AVE SW</td></tr><tr><td>2015-06-24</td><td><a class='rec-link' href='https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1034930-VI' target='_blank' rel='noopener'>1034930-VI</a></td><td style='font-size:11px;color:var(--muted)'>Initiated</td><td>Blank/LLT</td><td class='addr'>2810 ALKI AVE SW</td></tr></tbody>
+  </table>
+</div>
+
+</div>
+<footer>STLCA &mdash; Seattle Tenant Landlord Compliance Authority &bull; All data from SDCI Open Data Portal &bull; <a href="STLCA_Home.html">Home</a> &bull; <a href="STLCA_Citywide_KPI.html">Citywide Audit</a></footer>
+
+<script>
+const LAY=()=>({height:220,margin:{l:48,r:12,t:8,b:40},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'rgba(233,238,247,.75)',size:10},xaxis:{gridcolor:'rgba(255,255,255,.05)',tickfont:{size:9}},yaxis:{gridcolor:'rgba(255,255,255,.05)',tickfont:{size:9}},legend:{orientation:'h',x:0,y:1.15,font:{size:10}}});
+const CFG={responsive:true,displayModeBar:false};
+
+// LLT trend chart
+Plotly.newPlot('chart_llt_trend',[{
+  x:["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+  y:[241, 237, 350, 457, 513, 555, 653, 882, 766, 691, 780],
+  name:'LLT Records',
+  type:'bar',
+  marker:{color:'rgba(239,68,68,.7)'}
+}],LAY(),CFG);
+
+// All records trend
+Plotly.newPlot('chart_all_trend',[
+  {x:[2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],y:[113, 875, 803, 864, 983, 1078, 996, 894, 867, 936, 880, 1065, 1381, 1435, 1443, 1592, 1877, 1717, 1806, 2287, 2243, 2119, 2382],name:'All Complaints',type:'scatter',mode:'lines+markers',line:{color:'#2d7ff9',width:2},marker:{size:4}},
+  {x:[2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],y:[25, 394, 301, 436, 401, 331, 249, 198, 213, 269, 225, 257, 345, 244, 349, 258, 265, 178, 187, 209, 244, 242, 182],name:'NOVs',type:'scatter',mode:'lines+markers',line:{color:'#f59e0b',width:2},marker:{size:4}}
+],LAY(),CFG);
+</script>
+</body>
+</html>

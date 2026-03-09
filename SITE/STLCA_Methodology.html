@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Data Methodology - STLCA</title>
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
+<meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
+<meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+<meta property="og:url" content="https://www.seattletlca.com">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#070b12;--panel:#0c1424;--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#10b981;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.55)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Georgia',serif;font-size:15px;line-height:1.8}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);font-family:'Inter',system-ui,sans-serif;letter-spacing:.5px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;transition:color .2s}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.nav-links a.cta{color:#000;background:var(--orange);}
+.nav-links a.cta:hover{background:#ffb11c;}
+.hdr{border-left:4px solid var(--blue);padding:0 0 0 24px;margin-bottom:40px}
+.hdr .kicker{font-family:'Inter',system-ui,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:10px}
+.hdr h1{font-size:32px;font-weight:400;line-height:1.25;margin-bottom:12px}
+.hdr .byline{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
+h2{font-size:20px;font-weight:400;margin:40px 0 12px;border-bottom:1px solid var(--border);padding-bottom:10px}
+h3{font-size:15px;font-weight:700;font-family:'Inter',system-ui,sans-serif;margin:24px 0 8px;color:var(--orange)}
+p{margin-bottom:16px;color:var(--text)}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:20px 0}
+.mono{font-family:'Courier New',Courier,monospace;font-size:13px;color:rgba(233,238,247,.8);background:rgba(255,255,255,.04);padding:2px 6px;border-radius:3px}
+.code-block{font-family:'Courier New',Courier,monospace;font-size:12px;color:rgba(233,238,247,.8);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin:12px 0;white-space:pre-wrap;line-height:1.6}
+.note{background:rgba(45,127,249,.06);border-left:3px solid rgba(45,127,249,.4);padding:12px 16px;margin:16px 0;font-size:13px;color:rgba(233,238,247,.8);border-radius:0 8px 8px 0;font-family:'Inter',system-ui,sans-serif}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-family:'Inter',system-ui,sans-serif;font-size:13px}
+th{text-align:left;padding:8px 12px;background:rgba(255,255,255,.05);color:var(--muted);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text)}
+tr:last-child td{border-bottom:none}
+.toc{margin:0 0 32px 0;padding:0;list-style:none}
+.toc li{margin-bottom:6px}
+.toc a{font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--blue)}
+.toc .toc-num{color:var(--muted);font-size:11px;margin-right:8px}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-size:11px;color:rgba(233,238,247,.3);font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="https://www.seattletlca.com">Home</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html">Case Studies</a>
+    <a href="STLCA_District_1.html">Districts</a>
+    <a href="STLCA_Methodology.html">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="kicker">Technical Reference</div>
+  <h1>Data Methodology</h1>
+  <p class="byline">Seattle Tenant Landlord Compliance Authority (STLCA) - March 2026 &bull; This document describes the data sources, filtering rules, record counts, and analytical methods used across all STLCA reports and dashboards. &bull; 2,671 citywide SDCI complaint records (1.1% of 233,543 total) could not be assigned to a council district in the source data.</p>
+</div>
+
+<ul class="toc">
+  <li><span class="toc-num">1.</span><a href="#sources">Primary Data Sources</a></li>
+  <li><span class="toc-num">2.</span><a href="#records">Record Counts and District Assignment</a></li>
+  <li><span class="toc-num">3.</span><a href="#llt">Landlord/Tenant (LLT) Filter Definition</a></li>
+  <li><span class="toc-num">4.</span><a href="#metrics">Verified Accountability Metrics</a></li>
+  <li><span class="toc-num">5.</span><a href="#keyword">Keyword Analysis Methodology</a></li>
+  <li><span class="toc-num">6.</span><a href="#rrio">RRIO Cross-Reference Methodology</a></li>
+  <li><span class="toc-num">7.</span><a href="#limitations">Limitations and Exclusions</a></li>
+  <li><span class="toc-num">8.</span><a href="#reproducibility">Reproducibility and File References</a></li>
+</ul>
+
+<h2 id="sources">1. Primary Data Sources</h2>
+
+<h3>SDCI Complaint and Citation Database (Primary)</h3>
+<p>The primary data source for all STLCA analysis is the SDCI complaint and citation export file <span class="mono">CITYWIDE_ALL_20251231_ENRICHED_01272025.csv</span>. This file was obtained from SDCI public data exports covering records through December 31, 2025. The file contains 233,543 complaint and citation records spanning 2003 through 2025.</p>
+<div class="note">This file is 112MB. The raw line count of the source CSV is 235,216 because some complaint description fields contain embedded newline characters. The true record count, validated by parsing with proper CSV quoting rules, is 233,543.</div>
+
+<h3>SDCI Record Portal Export (Supplemental)</h3>
+<p>For property-level case studies, supplemental data was obtained from the SDCI public portal record list export (<span class="mono">RecordList20260207.csv</span>). This export provides record-level text fields including complaint descriptions, resolution notes, and status details.</p>
+
+<h3>RRIO Registration Database</h3>
+<p>The file <span class="mono">Rental_Property_Registration_20251110.csv</span> contains 28,273 RRIO registration records as of November 2025. Used for cross-reference analysis only; does not affect LLT complaint counts.</p>
+
+<h3>King County Parcel Data</h3>
+<p>King County assessor parcel data was used to enrich address-level analysis with ownership and parcel information where applicable.</p>
+
+<h2 id="records">2. Record Counts and District Assignment</h2>
+
+<table>
+  <tr><th>Category</th><th>Count</th><th>Notes</th></tr>
+  <tr><td>Total records in primary dataset</td><td>233,543</td><td>All complaint and citation types, all years</td></tr>
+  <tr><td>Records with district assigned</td><td>230,872</td><td>Districts 1 through 7</td></tr>
+  <tr><td>Records with NO district assigned</td><td>2,671</td><td>No geocode in SDCI source data; 1.1% of total</td></tr>
+  <tr><td>LLT records (all years)</td><td>58,761</td><td>Using LLT filter defined in Section 3</td></tr>
+  <tr><td>LLT records (2015-2025)</td><td>46,108</td><td>Open date 2015-01-01 through 2025-12-31</td></tr>
+</table>
+
+<h3>District Breakdown</h3>
+<table>
+  <tr><th>District</th><th>All Records</th><th>LLT (All Years)</th><th>LLT (2015-2025)</th></tr>
+  <tr><td>District 1</td><td>41,466</td><td>8,015</td><td>6,125</td></tr>
+  <tr><td>District 2</td><td>38,165</td><td>9,353</td><td>6,906</td></tr>
+  <tr><td>District 3</td><td>36,759</td><td>11,351</td><td>8,901</td></tr>
+  <tr><td>District 4</td><td>27,498</td><td>7,033</td><td>5,461</td></tr>
+  <tr><td>District 5</td><td>29,573</td><td>7,595</td><td>5,970</td></tr>
+  <tr><td>District 6</td><td>31,829</td><td>6,634</td><td>5,272</td></tr>
+  <tr><td>District 7</td><td>25,583</td><td>8,094</td><td>6,874</td></tr>
+  <tr><td>No district assigned</td><td>2,671</td><td>included in citywide</td><td>-</td></tr>
+</table>
+<div class="note">The 2,671 unassigned records are included in citywide totals but excluded from all per-district calculations. This limitation is present in the SDCI source data.</div>
+
+<div class="note" style="margin-top:24px; background:rgba(245,158,11,.08); border-left-color:var(--orange);">
+  <strong>Data quality note:</strong> The dataset contains records that appear to be miscoded or misclassified—including a 2004 relocation payment to the Seattle Public Library (2411 24th Ave E) that appears in the enforcement database as an open case. This is not an isolated error. It confirms that the raw data requires independent verification before it can be treated as authoritative. STLCA's analysis reports what the dataset contains; we do not assume the dataset is error-free. This further underscores the need for the independent audit recommended in our briefing.
+</div>
+
+<h2 id="llt">3. Landlord/Tenant (LLT) Filter Definition</h2>
+
+<h3>Filter Rule</h3>
+<p>A record is classified as a Landlord/Tenant (LLT) complaint if its <span class="mono">RecordTypeDesc</span> field meets any of the following three conditions:</p>
+<div class="code-block">RecordTypeDesc IS NULL (empty or blank)
+OR RecordTypeDesc contains "Emergency"
+OR RecordTypeDesc contains "LandLord/Tenant"</div>
+
+<p>This three-condition rule was developed through iterative review of the SDCI dataset structure. The blank RecordTypeDesc condition is included because a substantial share of LLT complaints carry no record type designation but share complaint description patterns, inspector assignment patterns, and resolution patterns with explicitly labeled LandLord/Tenant records.</p>
+
+<h3>Why Not "Contains LandLord" Only</h3>
+<p>A narrower rule using only records where RecordTypeDesc contains "LandLord" produces approximately 3,299 records for District 7 instead of the correct 8,094, an undercount of approximately 60%. This narrow rule is not used in any current STLCA analysis.</p>
+
+<h3>What LLT Does Not Include</h3>
+<p>The LLT filter excludes commercial property complaints, construction and permit violations unrelated to residential occupancy, zoning complaints, and records with explicit non-residential record type designations.</p>
+
+<h2 id="metrics">4. Verified Accountability Metrics</h2>
+
+<p>The following metrics are computed directly from the primary dataset using the LLT filter defined in Section 3.</p>
+
+<div class="panel">
+<table>
+  <tr><th>Metric</th><th>Value</th><th>Basis</th></tr>
+  <tr><td>LLT cases with no inspection date and no documented result</td><td>62.3%</td><td>36,633 records have neither field populated. An additional 9 records have a date but no result. Combined: 62.4% (36,642) have no documented outcome.</td></tr>
+  <tr><td>Closed LLT cases with no inspection result</td><td>59.8%</td><td>Status = closed/completed AND inspection result blank</td></tr>
+  <tr><td>Still-open LLT cases</td><td>5,936</td><td>Status field indicates open/active</td></tr>
+  <tr><td>Oldest open case</td><td>8,133 days</td><td>2411 24th Ave E, opened November 2003</td></tr>
+  <tr><td>Median open case age</td><td>852 days</td><td>Among currently open LLT cases</td></tr>
+</table>
+</div>
+
+<h3>District-Level Closed/No Inspection Result Rates</h3>
+<table>
+  <tr><th>District</th><th>Rate</th></tr>
+  <tr><td>District 1</td><td>56.6%</td></tr>
+  <tr><td>District 2</td><td>52.3%</td></tr>
+  <tr><td>District 3</td><td>62.9%</td></tr>
+  <tr><td>District 4</td><td>57.0%</td></tr>
+  <tr><td>District 5</td><td>58.8%</td></tr>
+  <tr><td>District 6</td><td>62.0%</td></tr>
+  <tr><td>District 7</td><td>67.2%</td></tr>
+  <tr><td>Citywide</td><td>59.8%</td></tr>
+</table>
+
+<h2 id="keyword">5. Keyword Analysis Methodology</h2>
+
+<p>The keyword analysis tags each LLT complaint record with one or more of 19 issue categories based on the text of the complaint description field. Each description is processed using spaCy lemmatization (normalizing word forms to root form) combined with rapidfuzz fuzzy matching at a similarity threshold of 85, capturing misspellings and OCR artifacts.</p>
+
+<table>
+  <tr><th>Tag</th><th>Description</th></tr>
+  <tr><td><span class="mono">No_Heat</span></td><td>Absence of adequate heating</td></tr>
+  <tr><td><span class="mono">No_Hot_Water</span></td><td>Absence of hot water supply</td></tr>
+  <tr><td><span class="mono">Gas_Shutoff</span></td><td>Gas service interruption or shutoff</td></tr>
+  <tr><td><span class="mono">HAB</span></td><td>General habitability conditions</td></tr>
+  <tr><td><span class="mono">EVIC</span></td><td>Eviction notices, pay-or-vacate, unlawful detainer</td></tr>
+  <tr><td><span class="mono">DISP</span></td><td>Displacement, relocation, loss of housing</td></tr>
+  <tr><td><span class="mono">RENT</span></td><td>Rent increases, overcharges, deposit withholding</td></tr>
+  <tr><td><span class="mono">PERMIT</span></td><td>Permit violations, unlicensed work</td></tr>
+  <tr><td><span class="mono">LEGAL</span></td><td>Legal process, court orders, rights violations</td></tr>
+  <tr><td><span class="mono">Plumbing</span></td><td>Plumbing failures, leaks, drain blockages</td></tr>
+  <tr><td><span class="mono">Mold</span></td><td>Mold, moisture, dampness</td></tr>
+  <tr><td><span class="mono">Pests</span></td><td>Insect or rodent infestation</td></tr>
+  <tr><td><span class="mono">Appliances</span></td><td>Appliance failure or non-provision</td></tr>
+  <tr><td><span class="mono">Electrical</span></td><td>Electrical hazards, outages, wiring deficiencies</td></tr>
+  <tr><td><span class="mono">Fire_Safety</span></td><td>Fire alarms, sprinklers, egress, fire hazards</td></tr>
+  <tr><td><span class="mono">Structural</span></td><td>Structural deficiencies (ceiling, floor, wall, foundation)</td></tr>
+  <tr><td><span class="mono">Trash_Site</span></td><td>Refuse accumulation, site maintenance failures</td></tr>
+  <tr><td><span class="mono">Tenant_Rights</span></td><td>Notice requirements, access, discrimination, retaliation</td></tr>
+  <tr><td><span class="mono">Security_Retaliation</span></td><td>Security failures, locks, lighting; landlord retaliation</td></tr>
+</table>
+
+<h2 id="rrio">6. RRIO Cross-Reference Methodology</h2>
+
+<p>All unique complaint addresses were extracted, normalized, and matched against the RRIO registration database using address string comparison.</p>
+
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Unique complaint addresses</td><td>69,002</td></tr>
+  <tr><td>Addresses found in RRIO</td><td>12,059 (17.5%)</td></tr>
+  <tr><td>Addresses not found in RRIO</td><td>56,943 (82.5%)</td></tr>
+  <tr><td>Active registrations (of matches)</td><td>9,293</td></tr>
+  <tr><td>Expired registrations (of matches)</td><td>2,658</td></tr>
+</table>
+
+<div class="note">The 82.5% non-match rate is expected. The SDCI complaint database includes single-family homes (largely exempt from RRIO), commercial properties, Seattle Housing Authority properties (HUD-exempt), condominiums, and owner-occupied units. The RRIO program applies primarily to rental properties in buildings of two or more units. Cross-reference results should be interpreted in this context.</div>
+
+<h2 id="limitations">7. Limitations and Exclusions</h2>
+
+<p>The SDCI complaint database records the filing and administrative disposition of complaints. It does not record: whether an inspection physically occurred if no inspection date was entered; whether conditions were resolved informally; the outcome of administrative closures (including "Voluntary Compliance"); tenant complaints not filed with SDCI; or the current physical condition of any property.</p>
+
+<p>When this analysis states that a record has "no inspection result" or "no inspection date," this refers to the absence of that field in the dataset. The record does not establish with certainty whether no inspection occurred; it establishes that no inspection was documented. STLCA does not distinguish between undocumented inspections and inspections that did not occur.</p>
+
+<p>2,671 records (1.1%) carry no district assignment in the source data and are excluded from all per-district calculations but included in citywide totals. This exclusion is noted in every report presenting district-level data.</p>
+
+<h2 id="reproducibility">8. Reproducibility and File References</h2>
+
+<table>
+  <tr><th>File</th><th>Description</th></tr>
+  <tr><td><span class="mono">CITYWIDE_ALL_20251231_ENRICHED_01272025.csv</span></td><td>Primary SDCI complaint database - 233,543 records</td></tr>
+  <tr><td><span class="mono">CITYWIDE_ALL_20251231_ENRICHED_01272025__PLUS_RECORDLIST_TEXT.csv</span></td><td>Same 233,543 rows with supplemental text columns (all-caps headers)</td></tr>
+  <tr><td><span class="mono">Rental_Property_Registration_20251110.csv</span></td><td>RRIO registration database - 28,273 rows</td></tr>
+  <tr><td><span class="mono">SCRIPTS/d7_keyword_analysis.py</span></td><td>District 7 keyword analysis</td></tr>
+  <tr><td><span class="mono">SCRIPTS/all_districts_keyword_analysis.py</span></td><td>All 7 districts + unassigned in one pass</td></tr>
+  <tr><td><span class="mono">PROPERTY_RRIO_CROSSREF.csv</span></td><td>RRIO cross-reference output - 69,002 rows</td></tr>
+</table>
+
+<div class="note" style="margin-top:24px">All STLCA reports citing "58,761 LLT cases" or "233,543 total records" derive these numbers from direct computation against <span class="mono">CITYWIDE_ALL_20251231_ENRICHED_01272025.csv</span> using the LLT filter defined in Section 3. Pre-built or snapshot files on external drives are not used as authoritative sources for published counts.</div>
+
+</div>
+<footer>STLCA - Seattle Tenant Landlord Compliance Authority &bull; Data Methodology Reference &bull; March 2026 &bull; <a href="STLCA_Home.html">Home</a> &bull; <a href="STLCA_Citywide_KPI.html">Citywide KPI</a> &bull; <a href="STLCA_Council_Briefing.html">Council Briefing</a></footer>
+</body>
+</html>

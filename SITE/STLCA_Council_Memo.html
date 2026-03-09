@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>STLCA Council Memorandum | March 2026</title>
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
+<meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
+<meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+<meta property="og:url" content="https://www.seattletlca.com">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14px;
+    line-height: 1.70;
+    color: #111;
+    background: #fff;
+    padding: 0 0 60px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 48px 60px;
+  }
+
+  /* ---- MEMO HEADER ---- */
+  .memo-header {
+    border-top: 3px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 18px 0 14px;
+    margin-bottom: 28px;
+  }
+
+  .org-name {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: #333;
+  }
+
+  .memo-fields {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 5px 12px;
+    font-size: 13px;
+  }
+
+  .memo-fields .label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: .5px;
+    padding-top: 1px;
+    color: #555;
+  }
+
+  .memo-fields .value {
+    color: #111;
+  }
+
+  /* ---- TYPOGRAPHY ---- */
+  h2 {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+    margin: 32px 0 14px;
+  }
+
+  h3 {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 20px 0 8px;
+  }
+
+  p {
+    margin-bottom: 12px;
+  }
+
+  ul, ol {
+    margin: 8px 0 14px 22px;
+  }
+
+  li {
+    margin-bottom: 7px;
+  }
+
+  /* ---- DATA CALLOUTS ---- */
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  .metric-box {
+    border: 1px solid #ccc;
+    padding: 12px 14px;
+    background: #f9f9f9;
+  }
+
+  .metric-box .num {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: system-ui, sans-serif;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .metric-box .lbl {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.5;
+  }
+
+  /* ---- CASE EXAMPLES ---- */
+  .case-block {
+    border-left: 3px solid #000;
+    padding: 10px 14px 10px 16px;
+    margin: 14px 0;
+    background: #f9f9f9;
+  }
+
+  .case-block .case-title {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .case-block .case-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: #666;
+    margin-bottom: 6px;
+  }
+
+  .case-block p {
+    margin-bottom: 0;
+    font-size: 13px;
+    color: #222;
+  }
+
+  /* ---- RECOMMENDATION LIST ---- */
+  .rec-list {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: rec;
+  }
+
+  .rec-list li {
+    counter-increment: rec;
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 8px;
+    align-items: start;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .rec-list li::before {
+    content: counter(rec);
+    font-weight: bold;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    background: #000;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .rec-list li strong {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 13px;
+  }
+
+  /* ---- METHODOLOGICAL NOTE ---- */
+  .method-note {
+    border: 1px solid #ccc;
+    padding: 14px 16px;
+    background: #f9f9f9;
+    font-size: 12px;
+    line-height: 1.65;
+    color: #333;
+    margin-top: 10px;
+  }
+
+  .method-note p { margin-bottom: 8px; }
+  .method-note p:last-child { margin-bottom: 0; }
+
+  /* ---- SIGNATURE BLOCK ---- */
+  .sig-block {
+    border-top: 1px solid #000;
+    margin-top: 36px;
+    padding-top: 16px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.7;
+  }
+
+  .sig-block strong { color: #000; font-size: 13px; }
+
+  /* ---- LINKS ---- */
+  .links-bar {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #333;
+  }
+
+  .links-bar a {
+    color: #0047b3;
+    text-decoration: underline;
+    margin-right: 14px;
+  }
+
+  /* ---- PRINT ---- */
+  @media print {
+    body { font-size: 12px; }
+    .page { padding: 20px 0; }
+    .metric-box { background: #fff; }
+    .case-block { background: #fff; }
+    .method-note { background: #fff; }
+    .links-bar a { color: #000; }
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 28px 20px 48px; }
+    .metric-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav style="background:#1a1a2e; padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:52px; position:sticky; top:0; z-index:100;">
+  <div style="font-size:13px; font-weight:700; color:#2d7ff9;">STLCA — Seattle Tenant Landlord Compliance Authority</div>
+  <div style="display:flex; gap:18px; flex-wrap:wrap;">
+    <a href="https://www.seattletlca.com" style="color:#8090b0; text-decoration:none; font-size:12px;">Home</a>
+    <a href="STLCA_Citywide_KPI.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Case Studies</a>
+    <a href="STLCA_District_1.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Districts</a>
+    <a href="STLCA_Methodology.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" style="color:#000; background:#f59e0b; text-decoration:none; font-size:12px; padding:6px 14px; border-radius:6px; font-weight:700;">Council Briefing</a>
+  </div>
+</nav>
+<div class="page">
+
+  <!-- MEMO HEADER -->
+  <div class="memo-header">
+    <div class="org-name">Seattle Tenant Landlord Compliance Authority (STLCA)</div>
+    <div class="memo-fields">
+      <span class="label">To:</span>
+      <span class="value">Seattle City Council</span>
+
+      <span class="label">From:</span>
+      <span class="value">Seattle Tenant Landlord Compliance Authority (STLCA)</span>
+
+      <span class="label">Date:</span>
+      <span class="value">March 2026</span>
+
+      <span class="label">Re:</span>
+      <span class="value">Housing Enforcement Documentation Analysis, 2003&ndash;2025 &mdash; Findings, Evidence, and Recommended Actions</span>
+    </div>
+  </div>
+
+
+  <!-- PURPOSE -->
+  <h2>Purpose</h2>
+
+  <p>
+    This memorandum presents the core findings from STLCA&rsquo;s independent analysis of Seattle Department of Construction &amp; Inspections (SDCI) housing enforcement records. The analysis covers 233,543 complaint and enforcement records from 2003 through 2025, sourced from the Seattle Open Data Portal.
+  </p>
+
+  <p>
+    The purpose is narrow and measurable: to document what the public record shows about complaint handling, inspection documentation, case resolution, and compliance with a legally required annual reporting obligation. All figures cited here are drawn directly from the City&rsquo;s own published dataset and are independently verifiable.
+  </p>
+
+
+  <!-- AT A GLANCE -->
+  <h2>At a Glance</h2>
+
+  <div class="metric-row">
+    <div class="metric-box">
+      <div class="num">233,543</div>
+      <div class="lbl">Total SDCI enforcement records reviewed<br>2003&ndash;2025</div>
+    </div>
+    <div class="metric-box">
+      <div class="num">58,761</div>
+      <div class="lbl">Landlord-tenant&ndash;related cases identified in the dataset</div>
+    </div>
+    <div class="metric-box">
+      <div class="num">59.8%</div>
+      <div class="lbl">Closed or completed landlord-tenant cases with no recorded inspection result in the public dataset</div>
+    </div>
+    <div class="metric-box">
+      <div class="num">5,936</div>
+      <div class="lbl">Cases that remain open or unresolved in the current dataset</div>
+    </div>
+  </div>
+
+  <p style="font-size:12px;color:#555;margin-top:-6px">
+    Note: 2,671 records (1.1% of the total dataset) could not be assigned to a council district in the SDCI source data and are not reflected in any per-district figures in this memorandum.
+  </p>
+
+
+  <!-- CORE FINDINGS -->
+  <h2>Core Findings</h2>
+
+  <h3>1. Most landlord-tenant cases close without a documented inspection result.</h3>
+  <p>
+    59.8% of closed or completed landlord-tenant cases in the dataset contain no recorded inspection result (<code>LastInspResult</code> field is blank). This is the central accountability gap presented in this briefing. The rate varies by district: District 7 (Downtown) = 67.2%; District 3 (Capitol Hill) = 62.9%; District 1 (West Seattle) = 56.6%. No district falls below 52%.
+  </p>
+
+  <h3>2. Inspection dates are missing in the majority of landlord-tenant cases.</h3>
+  <p>
+    62.3% of landlord-tenant cases in the dataset contain no inspection date (<code>LastInspDate</code> field is blank). A missing field does not prove no inspection occurred. It does establish that the public enforcement record does not document that event in the field designated to capture it.
+  </p>
+
+  <h3>3. Thousands of cases remain unresolved, some for many years.</h3>
+  <p>
+    5,936 landlord-tenant cases remain open or unresolved in the current dataset. <strong>Data quality note:</strong> The oldest record in the dataset (November 2003) is a relocation payment to the Seattle Public Library—proof that the raw data itself is corrupted and requires independent audit to verify what is and isn't a real enforcement case. The median age of currently open cases is 852 days.
+  </p>
+
+  <h3>4. A legally required annual reporting obligation has not been fulfilled.</h3>
+  <p>
+    Ordinance 125054, passed unanimously 8-0 by City Council in June 2016, required SDCI to report annually to Council beginning June 15, 2017. The required elements include inquiry counts, inspection results, outcomes, and eviction cross-references. Nine reporting cycles have passed. No reports produced under this obligation appear in the public record reviewed for this briefing. When directly asked, SDCI&rsquo;s RRIO Manager stated in writing: <em>&ldquo;We&rsquo;ve never prepared such a report&hellip; 22.206.180.J doesn&rsquo;t exist.&rdquo;</em> The signed ordinance is a public record and is included in the full documentation package.
+  </p>
+
+
+  <!-- ILLUSTRATIVE CASES -->
+  <h2>Illustrative Examples</h2>
+
+  <p>The percentages above represent individual cases. The following three examples document how the broader pattern appears in specific buildings and obligations.</p>
+
+  <div class="case-block">
+    <div class="case-tag">Fire Safety / Enforcement Delay &mdash; District 7</div>
+    <div class="case-title">The Addison on 4th &mdash; 308 4th Ave S</div>
+    <p>
+      A Seattle Fire Department safety alert was issued November 6, 2019. SDCI did not conduct an inspection for 29 days (December 5). A Notice of Violation was issued December 13. A fire occurred January 7, 2020 &mdash; 62 days after the initial alert. The public enforcement record shows no financial penalties. Post-fire complaints filed against the same property subsequently disappeared from the public database.
+    </p>
+  </div>
+
+  <div class="case-block">
+    <div class="case-tag">Illegal Evictions During COVID Moratorium &mdash; District 6</div>
+    <div class="case-title">Everspring Inn &mdash; 8201 Aurora Ave N</div>
+    <p>
+      On August 18, 2020, 13 complaints were filed in a single day documenting mass displacement of elderly, disabled, and low-income tenants during the active COVID-19 eviction moratorium. All 13 cases were administratively closed &ldquo;Voluntary Compliance&rdquo; within days. The public record documents no inspections associated with any of those closures. Tenants were displaced to the street within 24 hours.
+    </p>
+  </div>
+
+  <div class="case-block">
+    <div class="case-tag">Reporting Obligation Denied in Writing &mdash; Citywide</div>
+    <div class="case-title">Ordinance 125054 &mdash; Nine Missing Annual Reports</div>
+    <p>
+      When STLCA inquired about the annual reports required by Ord. 125054, SDCI&rsquo;s RRIO Manager responded: <em>&ldquo;We&rsquo;ve never prepared such a report&hellip; 22.206.180.J doesn&rsquo;t exist&hellip; makes a jump from I to K.&rdquo;</em> The signed ordinance includes Section J and is publicly available. Council was entitled to receive this report every year beginning in 2017.
+    </p>
+  </div>
+
+
+  <!-- RECOMMENDED ACTIONS -->
+  <h2>Recommended Actions</h2>
+
+  <p>
+    This memorandum does not ask Council to adopt a conclusion unsupported by the data. It asks Council to act on measurable deficiencies in documentation, oversight, and statutory compliance.
+  </p>
+
+  <ol class="rec-list">
+    <li>
+      <div>
+        <strong>Direct a formal performance audit of SDCI housing enforcement practice.</strong>
+        Review case closure methodology, inspection documentation standards, handling of cases that remain open for multi-year periods, and consistency between reported outcomes and operational claims.
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Require completion of overdue annual accountability reports.</strong>
+        Direct SDCI to produce the annual reports required by Ordinance 125054 for each year since 2017, and establish an enforcement mechanism to ensure ongoing compliance.
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Establish an independent oversight and review mechanism.</strong>
+        Create a formal process for reviewing housing enforcement outcomes independent of the department&rsquo;s own internal reporting. This is the reporting framework Ord. 125054 was meant to produce.
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Require cross-referencing of eviction activity against active habitability complaints.</strong>
+        A tenant should not receive an eviction notice while unresolved habitability complaints remain active against the same property. The current dataset does not document this cross-check occurring.
+      </div>
+    </li>
+  </ol>
+
+
+  <!-- METHODOLOGICAL NOTE -->
+  <h2>Methodological Note</h2>
+
+  <div class="method-note">
+    <p><strong>Source dataset:</strong> City of Seattle Open Data Portal, Code Complaints and Violations dataset, extracted December 31, 2025. Total records: 233,543.</p>
+    <p><strong>Landlord-tenant classification:</strong> Cases classified as landlord-tenant related where <code>RecordTypeDesc</code> was null/blank, contained &ldquo;Emergency,&rdquo; or contained &ldquo;LandLord/Tenant.&rdquo; Total LLT records: 58,761.</p>
+    <p><strong>&ldquo;Closed with no inspection result&rdquo;:</strong> Cases where <code>StatusCurrent</code> = Closed or Completed and <code>LastInspResult</code> is blank in the public extract.</p>
+    <p><strong>District counts:</strong> 2,671 records (1.1%) could not be geocoded to a district in the SDCI source data. These are included in all citywide totals but excluded from individual district counts.</p>
+    <p>Full methodology, field definitions, source data, and analysis scripts are available in the STLCA public repository.</p>
+  </div>
+
+
+  <!-- LINKS -->
+  <div class="links-bar">
+    <strong>Supporting materials:</strong><br>
+    <a href="STLCA_Council_Briefing.html">Full Council Briefing (web, interactive)</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit Dashboard</a>
+    <a href="STLCA_Methodology.html">Methodology</a>
+    <a href="STLCA_Case_Studies.html">Case Study Index</a>
+    <a href="https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/" target="_blank">GitHub Repository</a>
+  </div>
+
+
+  <!-- SIGNATURE -->
+  <div class="sig-block">
+    <strong>Seattle Tenant Landlord Compliance Authority (STLCA)</strong><br>
+    Independent Data Analysis &bull; Public Accountability &bull; Seattle, Washington<br>
+    March 2026<br><br>
+    <span style="font-size:11px;color:#555">All data in this memorandum is derived from the Seattle Open Data Portal and is independently verifiable. STLCA is not affiliated with the City of Seattle, SDCI, or any City department. This memorandum does not constitute legal advice and makes no legal conclusions about any individual, organization, or property. Findings reflect what is and is not documented in the public record.</span>
+  </div>
+
+</div>
+</body>
+</html>

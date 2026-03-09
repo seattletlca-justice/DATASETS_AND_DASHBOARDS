@@ -1,0 +1,1129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>STLCA | Seattle Tenant Landlord Compliance Authority</title>
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
+<meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
+<meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+<meta property="og:url" content="https://www.seattletlca.com">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --bg:#070b12;
+    --panel:#0c1424;
+    --panel-soft:rgba(255,255,255,.04);
+    --border:rgba(255,255,255,.08);
+    --text:#e9eef7;
+    --muted:rgba(233,238,247,.68);
+    --muted-soft:rgba(233,238,247,.45);
+    --blue:#2d7ff9;
+    --orange:#f59e0b;
+    --red:#ef4444;
+    --green:#22c55e;
+    --shadow:0 14px 36px rgba(0,0,0,.32);
+    --radius:18px;
+    --radius-lg:24px;
+    --max:1120px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+  }
+
+  body{
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(1100px 700px at 20% -10%, rgba(45,127,249,.18), transparent 58%),
+      radial-gradient(900px 580px at 88% 10%, rgba(245,158,11,.10), transparent 52%);
+    background-attachment:fixed;
+    color:var(--text);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  a{color:inherit}
+
+  .wrap{
+    width:min(100%, var(--max));
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    width:100%;
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 24px;
+    background:rgba(7,11,18,.95);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+
+  .nav-brand{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.3px;
+    white-space:nowrap;
+  }
+
+  .nav-brand span{color:var(--blue)}
+
+  .nav-links{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .nav-links a{
+    text-decoration:none;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:700;
+    padding:7px 13px;
+    border-radius:999px;
+    transition:.18s ease;
+  }
+
+  .nav-links a:hover{
+    color:var(--text);
+    background:rgba(255,255,255,.07);
+  }
+
+  .nav-links a.active{
+    color:var(--blue);
+    background:rgba(45,127,249,.12);
+  }
+
+  .nav-links a.cta{
+    color:#000;
+    background:var(--orange);
+  }
+
+  .nav-links a.cta:hover{
+    background:#ffb11c;
+  }
+
+  .hero{
+    padding:78px 0 42px;
+  }
+
+  .hero-badge{
+    display:inline-block;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.1px;
+    color:var(--blue);
+    border:1px solid rgba(45,127,249,.30);
+    background:rgba(45,127,249,.10);
+    border-radius:999px;
+    padding:6px 16px;
+    margin-bottom:22px;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:22px;
+    align-items:start;
+  }
+
+  .hero-copy h1{
+    font-size:clamp(32px,5vw,52px);
+    line-height:1.08;
+    letter-spacing:-.8px;
+    font-weight:850;
+    margin-bottom:18px;
+  }
+
+  .hero-copy h1 .accent{color:var(--blue)}
+
+  .hero-copy p{
+    max-width:700px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.72;
+    margin-bottom:26px;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-block;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:800;
+    border-radius:12px;
+    padding:13px 24px;
+    transition:.2s ease;
+    border:1px solid transparent;
+  }
+
+  .btn-primary{
+    background:var(--blue);
+    color:#fff;
+  }
+
+  .btn-primary:hover{
+    background:#1f6ee6;
+    transform:translateY(-1px);
+  }
+
+  .btn-secondary{
+    color:var(--text);
+    background:rgba(255,255,255,.05);
+    border-color:rgba(255,255,255,.12);
+  }
+
+  .btn-secondary:hover{
+    background:rgba(255,255,255,.08);
+  }
+
+  .hero-note{
+    background:linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:24px 24px 22px;
+    box-shadow:var(--shadow);
+  }
+
+  .hero-note .eyebrow{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.9px;
+    color:var(--muted-soft);
+    font-weight:800;
+    margin-bottom:12px;
+  }
+
+  .hero-note .big{
+    font-size:54px;
+    line-height:1;
+    font-weight:900;
+    color:var(--red);
+    letter-spacing:-1px;
+    margin-bottom:10px;
+  }
+
+  .hero-note h2{
+    font-size:19px;
+    line-height:1.35;
+    font-weight:800;
+    margin-bottom:12px;
+  }
+
+  .hero-note p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  .section{
+    padding:26px 0 34px;
+  }
+
+  .section-header{
+    margin-bottom:22px;
+  }
+
+  .section-header h2{
+    font-size:24px;
+    font-weight:830;
+    letter-spacing:-.3px;
+    margin-bottom:9px;
+  }
+
+  .section-header p{
+    max-width:740px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.7;
+  }
+
+  .supporting-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+
+  .card{
+    background:linear-gradient(160deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+
+  .stat-card{
+    padding:22px 20px 18px;
+  }
+
+  .stat-card .num{
+    font-size:34px;
+    line-height:1;
+    font-weight:880;
+    letter-spacing:-.7px;
+    margin-bottom:8px;
+  }
+
+  .num.blue{color:var(--blue)}
+  .num.orange{color:var(--orange)}
+  .num.red{color:var(--red)}
+
+  .stat-card .lbl{
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.55;
+    min-height:56px;
+  }
+
+  .stat-card .src{
+    margin-top:10px;
+    font-size:10px;
+    color:var(--muted-soft);
+    line-height:1.5;
+  }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+
+  .copy-card{
+    padding:24px 24px 22px;
+  }
+
+  .copy-card h3{
+    font-size:16px;
+    font-weight:800;
+    margin-bottom:12px;
+  }
+
+  .copy-card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.72;
+    margin-bottom:10px;
+  }
+
+  .principles{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:14px;
+  }
+
+  .principle{
+    padding:20px 18px 18px;
+  }
+
+  .principle h4{
+    font-size:14px;
+    font-weight:800;
+    margin-bottom:8px;
+  }
+
+  .principle p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.65;
+  }
+
+  .findings-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:16px;
+  }
+
+  .finding-list{
+    padding:26px 24px;
+  }
+
+  .finding-list h3,
+  .district-card h3,
+  .case-card h3,
+  .method-card h3,
+  .ask-card h3{
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.75px;
+    text-transform:uppercase;
+    color:var(--muted-soft);
+    margin-bottom:16px;
+  }
+
+  .finding-item{
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+
+  .finding-item:last-child{border-bottom:none;padding-bottom:0}
+
+  .finding-item strong{
+    display:block;
+    font-size:17px;
+    line-height:1.35;
+    margin-bottom:6px;
+  }
+
+  .finding-item p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.68;
+  }
+
+  .district-card{
+    padding:26px 22px 22px;
+  }
+
+  .district-card p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.65;
+    margin-bottom:14px;
+  }
+
+  .district-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+  }
+
+  .dist-tile{
+    background:rgba(0,0,0,.22);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:12px 10px 10px;
+    text-align:center;
+  }
+
+  .dist-tile .d-num{
+    font-size:17px;
+    font-weight:900;
+    color:var(--blue);
+    margin-bottom:3px;
+  }
+
+  .dist-tile .d-name{
+    font-size:10px;
+    color:var(--muted-soft);
+    margin-bottom:6px;
+  }
+
+  .dist-tile .d-stat{
+    font-size:11px;
+    font-weight:800;
+    color:var(--orange);
+    margin-bottom:9px;
+  }
+
+  .dist-btns{
+    display:flex;
+    gap:5px;
+    justify-content:center;
+  }
+
+  .dist-btns a{
+    flex:1;
+    text-decoration:none;
+    font-size:10px;
+    font-weight:800;
+    padding:5px 4px;
+    border-radius:8px;
+    transition:.18s ease;
+  }
+
+  .dist-btns .db{
+    color:var(--blue);
+    background:rgba(45,127,249,.12);
+    border:1px solid rgba(45,127,249,.22);
+  }
+
+  .dist-btns .do{
+    color:var(--orange);
+    background:rgba(245,158,11,.10);
+    border:1px solid rgba(245,158,11,.22);
+  }
+
+  .district-callout{
+    margin-top:14px;
+    padding:12px 13px;
+    border-radius:12px;
+    background:rgba(239,68,68,.07);
+    border:1px solid rgba(239,68,68,.16);
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.6;
+  }
+
+  .district-callout strong{
+    display:block;
+    color:var(--red);
+    margin-bottom:4px;
+  }
+
+  .case-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+
+  .case-card{
+    padding:24px 22px 20px;
+  }
+
+  .case-kicker{
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    margin-bottom:12px;
+  }
+
+  .case-kicker.red{color:var(--red)}
+  .case-kicker.orange{color:var(--orange)}
+  .case-kicker.blue{color:var(--blue)}
+
+  .case-title{
+    font-size:18px;
+    font-weight:850;
+    margin-bottom:10px;
+  }
+
+  .case-card p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.68;
+  }
+
+  .method-card{
+    padding:24px 24px 22px;
+    background:rgba(45,127,249,.06);
+    border:1px solid rgba(45,127,249,.20);
+  }
+
+  .method-card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.72;
+    margin-bottom:10px;
+  }
+
+  .method-card strong{color:var(--text)}
+
+  .ask-wrap{
+    padding:0;
+  }
+
+  .ask-card{
+    padding:34px 30px 30px;
+    background:linear-gradient(135deg, rgba(45,127,249,.10), rgba(245,158,11,.06));
+    border:1px solid rgba(45,127,249,.20);
+  }
+
+  .ask-card > p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.72;
+    max-width:760px;
+    margin-bottom:20px;
+  }
+
+  .ask-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-bottom:18px;
+  }
+
+  .ask-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    padding:16px 16px 15px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:rgba(0,0,0,.20);
+  }
+
+  .ask-num{
+    width:24px;
+    height:24px;
+    flex:0 0 24px;
+    border-radius:50%;
+    background:var(--blue);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:900;
+  }
+
+  .ask-text strong{
+    display:block;
+    font-size:13px;
+    margin-bottom:4px;
+  }
+
+  .ask-text{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.62;
+  }
+
+  .benefit-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:18px 0 24px;
+    padding:18px;
+    border-radius:14px;
+    background:rgba(34,197,94,.05);
+    border:1px solid rgba(34,197,94,.18);
+  }
+
+  .benefit{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.62;
+  }
+
+  .benefit strong{
+    display:block;
+    color:var(--text);
+    margin-bottom:4px;
+  }
+
+  footer{
+    width:100%;
+    margin-top:24px;
+    border-top:1px solid var(--border);
+    padding:28px 24px 40px;
+    text-align:center;
+    color:var(--muted-soft);
+    font-size:11px;
+    line-height:1.75;
+  }
+
+  footer a{
+    text-decoration:none;
+    color:rgba(233,238,247,.60);
+  }
+
+  footer a:hover{color:var(--text)}
+
+  @media (max-width: 1024px){
+    .hero-grid,
+    .findings-grid,
+    .two-col{
+      grid-template-columns:1fr;
+    }
+
+    .supporting-stats,
+    .case-grid,
+    .principles,
+    .ask-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+
+  @media (max-width: 760px){
+    nav{
+      height:auto;
+      padding:12px 16px;
+      align-items:flex-start;
+      gap:10px;
+      flex-direction:column;
+    }
+
+    .wrap{padding:0 16px}
+
+    .supporting-stats,
+    .case-grid,
+    .principles,
+    .ask-grid,
+    .benefit-grid{
+      grid-template-columns:1fr;
+    }
+
+    .district-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero{
+      padding-top:42px;
+    }
+
+    .hero-note .big{
+      font-size:44px;
+    }
+
+    .hero-copy p{
+      font-size:15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="https://www.seattletlca.com">Home</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html">Case Studies</a>
+    <a href="STLCA_District_1.html">Districts</a>
+    <a href="STLCA_Methodology.html">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-badge">Independent Public Data Analysis</div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Seattle's housing enforcement record,<br><span class="accent">measured against its own data.</span></h1>
+
+        <p>
+          A tenant files a complaint. Mold. No heat. Unsafe wiring. An eviction notice during a habitability dispute.
+          The City opens a case.
+          In nearly 6 out of 10 of those cases, the public record does not document what happened next.
+        </p>
+
+        <p>
+          STLCA analyzed <strong>233,543 Seattle Department of Construction &amp; Inspections enforcement records</strong>
+          spanning 2003-2025 to measure how complaints move through the system, how cases are closed,
+          and what the public record actually documents.
+        </p>
+
+        <div class="hero-actions">
+          <a href="STLCA_Citywide_KPI.html" class="btn btn-primary">View Citywide Audit</a>
+          <a href="#findings" class="btn btn-secondary">Read the Findings</a>
+        </div>
+      </div>
+
+      <aside class="hero-note">
+        <div class="eyebrow">Primary Accountability Metric</div>
+        <div class="big">59.8%</div>
+        <h2>of landlord-tenant cases are marked Closed or Completed with no recorded inspection result in the public dataset.</h2>
+        <p>
+          That does not prove an inspection did not occur.
+          It does mean the public enforcement record contains no structured outcome documenting one.
+        </p>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>By the Numbers</h2>
+      <p>
+        The public record shows a measurable gap between cases the City marks finished and cases the dataset fully documents.
+      </p>
+    </div>
+
+    <div class="supporting-stats">
+      <div class="card stat-card">
+        <div class="num blue">233,543</div>
+        <div class="lbl">Total SDCI complaint and enforcement records analyzed<br>2003-2025</div>
+        <div class="src">Source dataset: City of Seattle Open Data Portal</div>
+      </div>
+
+      <div class="card stat-card">
+        <div class="num blue">58,761</div>
+        <div class="lbl">Landlord-tenant enforcement cases identified in the dataset</div>
+        <div class="src">Based on STLCA classification rule</div>
+      </div>
+
+      <div class="card stat-card">
+        <div class="num orange">62.3%</div>
+        <div class="lbl">Of landlord-tenant cases contain no inspection date in the public record</div>
+        <div class="src">LastInspDate field blank</div>
+      </div>
+
+      <div class="card stat-card">
+        <div class="num red">5,936</div>
+        <div class="lbl">Cases remain open or unresolved, including records that have remained open for years</div>
+        <div class="src">Open / unresolved records in dataset</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNCIL BRIEFING BANNER -->
+<section class="section" style="padding-bottom:0">
+  <div class="wrap">
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,.10),rgba(239,68,68,.06));border:1px solid rgba(245,158,11,.30);border-radius:var(--radius-lg);padding:30px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px">
+      <div>
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--orange);margin-bottom:8px">Now Available &mdash; March 2026</div>
+        <div style="font-size:20px;font-weight:850;color:var(--text);margin-bottom:8px;line-height:1.3">STLCA Council Briefing &mdash; Delivered to Seattle City Council</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.65;max-width:580px">
+          The enforcement accountability report SDCI was required to deliver to Council every year since 2017 &mdash; and never filed. We built it. 233,543 records. Nine years of missing data.
+        </div>
+      </div>
+      <a href="STLCA_Council_Briefing.html" style="background:var(--orange);color:#000;font-weight:800;font-size:13px;padding:13px 24px;border-radius:12px;white-space:nowrap;text-decoration:none;flex-shrink:0">Read the Briefing &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="findings">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>What the Data Shows</h2>
+      <p>
+        Across the full dataset, the public enforcement record reveals several measurable gaps.
+      </p>
+    </div>
+
+    <div class="findings-grid">
+      <div class="card finding-list">
+        <h3>Citywide Findings</h3>
+
+        <div class="finding-item">
+          <strong>A majority of landlord-tenant cases close without a documented inspection result in the dataset.</strong>
+          <p>
+            This is the central STLCA accountability metric: cases the system treats as finished while the public extract
+            contains no structured inspection outcome.
+          </p>
+        </div>
+
+        <div class="finding-item">
+          <strong>Many cases contain no recorded inspection date.</strong>
+          <p>
+            A blank inspection date does not prove no inspection occurred. It shows the public record does not document one
+            in the structured field used for that purpose.
+          </p>
+        </div>
+
+        <div class="finding-item">
+          <strong>Thousands of cases remain open long after the original complaint.</strong>
+          <p>
+            These records show that case age and case status remain important parts of the citywide enforcement picture.
+          </p>
+        </div>
+      </div>
+
+      <div class="card district-card" id="districts">
+        <h3>By Council District</h3>
+        <p>
+          Explore how the same pattern appears across Seattle council districts.
+          Figures shown below reflect the share of landlord-tenant cases closed with no recorded inspection result.
+        </p>
+
+        <div class="district-grid">
+          <div class="dist-tile">
+            <div class="d-num">D1</div>
+            <div class="d-name">Saka</div>
+            <div class="d-stat">56.6%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_District_1.html">Dashboard</a>
+              <a class="do" href="STLCA_District_1.html">Dossier</a>
+            </div>
+          </div>
+
+          <div class="dist-tile">
+            <div class="d-num">D2</div>
+            <div class="d-name">Lin</div>
+            <div class="d-stat">52.3%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_District_2.html">Dashboard</a>
+              <a class="do" href="STLCA_District_2.html">Dossier</a>
+            </div>
+          </div>
+
+          <div class="dist-tile">
+            <div class="d-num">D3</div>
+            <div class="d-name">Hollingsworth</div>
+            <div class="d-stat">62.9%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_District_3.html">Dashboard</a>
+              <a class="do" href="STLCA_District_3.html">Dossier</a>
+            </div>
+          </div>
+
+          <div class="dist-tile">
+            <div class="d-num">D4</div>
+            <div class="d-name">Rivera</div>
+            <div class="d-stat">57.0%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_District_4.html">Dashboard</a>
+              <a class="do" href="STLCA_District_4.html">Dossier</a>
+            </div>
+          </div>
+
+          <div class="dist-tile">
+            <div class="d-num">D5</div>
+            <div class="d-name">Juarez</div>
+            <div class="d-stat">58.8%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_District_5.html">Dashboard</a>
+              <a class="do" href="STLCA_District_5.html">Dossier</a>
+            </div>
+          </div>
+
+          <div class="dist-tile">
+            <div class="d-num">D6</div>
+            <div class="d-name">Strauss</div>
+            <div class="d-stat">62.0%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_District_6.html">Dashboard</a>
+              <a class="do" href="STLCA_District_6.html">Dossier</a>
+            </div>
+          </div>
+
+          <div class="dist-tile">
+            <div class="d-num">D7</div>
+            <div class="d-name">Kettle</div>
+            <div class="d-stat">67.2%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_District_7.html">Dashboard</a>
+              <a class="do" href="STLCA_District_7.html">Dossier</a>
+            </div>
+          </div>
+
+          <div class="dist-tile">
+            <div class="d-num">CW</div>
+            <div class="d-name">Citywide</div>
+            <div class="d-stat">59.8%</div>
+            <div class="dist-btns">
+              <a class="db" href="STLCA_Citywide_KPI.html" style="flex:unset;width:100%">Citywide Audit</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="district-callout">
+          <strong>Oversight Gap</strong>
+          Seattle has no independent oversight body for housing code enforcement comparable to the oversight structures used for some other city functions.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cases">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>What This Looks Like in Real Buildings</h2>
+      <p>
+        Citywide percentages reflect individual cases. These examples show how the documented pattern appears in specific properties and reporting obligations.
+      </p>
+    </div>
+
+    <div class="case-grid">
+      <article class="card case-card">
+        <div class="case-kicker red">Fire Safety - District 7</div>
+        <div class="case-title">The Addison on 4th</div>
+        <p>
+          A Seattle Fire Department alert regarding safety issues was issued November 6, 2019.
+          The first recorded SDCI inspection occurred December 5.
+          A Notice of Violation followed December 13.
+          A fire occurred January 7, 2020.
+          The public enforcement record shows no financial penalties.
+        </p>
+        <a href="STLCA_Case_Studies.html#cs002" style="font-size:12px;color:var(--red);text-decoration:none;font-weight:600">Case study index &rarr;</a>
+      </article>
+
+      <article class="card case-card">
+        <div class="case-kicker orange">Illegal Evictions - District 6</div>
+        <div class="case-title">Everspring Inn</div>
+        <p>
+          During the COVID-19 eviction moratorium, 13 complaints were filed in a single day documenting mass displacement of tenants.
+          All 13 cases were administratively closed within days.
+          The public record documents no inspections associated with those closures.
+        </p>
+        <a href="STLCA_Case_Studies.html#cs003" style="font-size:12px;color:var(--orange);text-decoration:none;font-weight:600">Case study index &rarr;</a>
+      </article>
+
+      <article class="card case-card">
+        <div class="case-kicker blue">Legislative Compliance - Citywide</div>
+        <div class="case-title">Ordinance 125054</div>
+        <p>
+          In 2016, Seattle City Council passed legislation requiring annual housing enforcement accountability reports.
+          Nine reporting cycles have passed.
+          No reports appear in the public record.
+        </p>
+        <a href="STLCA_CaseStudy_Ord125054.html" style="font-size:12px;color:var(--blue);text-decoration:none;font-weight:600">Full case study &rarr;</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="methodology">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>How the Data Was Analyzed</h2>
+      <p>
+        The homepage provides a summary. Full rulebook, field definitions, and source documentation should live on the methodology page.
+      </p>
+    </div>
+
+    <div class="card method-card">
+      <h3>Methodology Summary</h3>
+      <p>
+        <strong>Source dataset:</strong> City of Seattle Open Data Portal, Code Complaints and Violations dataset.
+        Extracted December 31, 2025. Total records analyzed: <strong>233,543</strong>.
+      </p>
+      <p>
+        <strong>Landlord-tenant classification:</strong> Cases were classified as landlord-tenant related when the record type included
+        Emergency, Landlord/Tenant, or a blank RecordTypeDesc associated with complaint records.
+        This produced <strong>58,761 landlord-tenant cases</strong> in the dataset.
+      </p>
+      <p>
+        <strong>Key metric definition:</strong> "Closed with no inspection result" refers to cases where
+        StatusCurrent = Closed or Completed and LastInspResult is blank.
+        This measures the gap between cases the system marks finished and cases where the public extract records a structured inspection outcome.
+      </p>
+      <p>
+        <a href="#" style="color:var(--blue);text-decoration:none;font-weight:800">View Full Methodology</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap ask-wrap">
+    <div class="card ask-card">
+      <h3>What STLCA Is Asking City Council to Do</h3>
+      <p>
+        Seattle maintains independent oversight bodies for several city functions.
+        No equivalent independent review mechanism exists for housing code enforcement.
+        STLCA recommends four steps.
+      </p>
+
+      <div class="ask-grid">
+        <div class="ask-item">
+          <div class="ask-num">1</div>
+          <div class="ask-text">
+            <strong>Direct a formal performance audit of SDCI housing enforcement</strong>
+            An independent audit could examine case closure practices, inspection documentation standards, and enforcement tracking.
+          </div>
+        </div>
+
+        <div class="ask-item">
+          <div class="ask-num">2</div>
+          <div class="ask-text">
+            <strong>Require completion of the annual enforcement accountability reports</strong>
+            Ordinance 125054 requires yearly reporting on housing enforcement activity. Those reports should be produced and made public.
+          </div>
+        </div>
+
+        <div class="ask-item">
+          <div class="ask-num">3</div>
+          <div class="ask-text">
+            <strong>Establish an independent oversight mechanism for housing enforcement</strong>
+            A review process would allow constituents and policymakers to examine enforcement outcomes independently of the department’s own reporting.
+          </div>
+        </div>
+
+        <div class="ask-item">
+          <div class="ask-num">4</div>
+          <div class="ask-text">
+            <strong>Cross-reference eviction filings with open housing complaints</strong>
+            Tenants should not receive eviction notices while unresolved habitability complaints remain active against the same property.
+          </div>
+        </div>
+      </div>
+
+      <div class="benefit-grid">
+        <div class="benefit">
+          <strong>For Tenants</strong>
+          Complaints should result in documented inspections and verified outcomes.
+        </div>
+        <div class="benefit">
+          <strong>For Landlords</strong>
+          Consistent enforcement helps ensure compliant owners are not undercut by those who ignore housing codes.
+        </div>
+        <div class="benefit">
+          <strong>For Policymakers</strong>
+          Reliable enforcement data is necessary for sound policy and budget decisions.
+        </div>
+        <div class="benefit">
+          <strong>For the City</strong>
+          A transparent enforcement record strengthens public trust in housing oversight.
+        </div>
+      </div>
+
+      <a href="STLCA_Citywide_KPI.html" class="btn btn-primary">View Full Audit Data</a>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>About STLCA</h2>
+      <p>STLCA is an independent public-data analysis platform examining how Seattle documents housing code enforcement.</p>
+    </div>
+    <div class="two-col">
+      <div class="card copy-card">
+        <h3>What We Measure</h3>
+        <p>We analyze enforcement records published through the City of Seattle Open Data Portal and measure what those records show about complaint handling, inspections, and case closure patterns.</p>
+        <p>STLCA does not claim more than the data can support. If a field is missing, we report that the field is missing. If a case is marked closed, we measure how the record documents that closure.</p>
+      </div>
+      <div class="card copy-card">
+        <h3>Why This Matters</h3>
+        <p>Housing enforcement is not just about whether complaints are filed. It is also about whether the public record clearly documents inspections, outcomes, and closure decisions.</p>
+        <p>A public oversight system has to be measurable. This site is designed to make that record visible.</p>
+      </div>
+    </div>
+    <div class="principles">
+      <div class="card principle">
+        <h4>Transparency</h4>
+        <p>Every metric is tied directly to the public dataset and clearly defined.</p>
+      </div>
+      <div class="card principle">
+        <h4>Replicability</h4>
+        <p>Anyone with access to the same public records can reproduce the analysis.</p>
+      </div>
+      <div class="card principle">
+        <h4>Precision</h4>
+        <p>STLCA reports what the record shows, and distinguishes that from what the record cannot establish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Seattle Tenant Landlord Compliance Authority (STLCA) |
+  Independent public-data analysis, not legal representation<br>
+  All figures on this site are derived from publicly available City of Seattle enforcement records |
+  Analysis current as of December 31, 2025<br><br>
+
+  <a href="STLCA_Council_Briefing.html">Council Briefing</a> |
+  <a href="STLCA_Citywide_KPI.html">Citywide Audit</a> |
+  <a href="#">Methodology</a> |
+  <a href="https://github.com/seattletlca-justice/DATASETS_AND_DASHBOARDS" target="_blank" rel="noopener">GitHub Repository</a> |
+  <a href="https://data.seattle.gov" target="_blank" rel="noopener">Seattle Open Data Portal</a>
+</footer>
+
+</body>
+</html>

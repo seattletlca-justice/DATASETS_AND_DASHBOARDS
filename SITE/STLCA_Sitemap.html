@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>STLCA - Site Index</title>
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
+  <meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
+  <meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+  <meta property="og:url" content="https://www.seattletlca.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      color: #e8eaf0;
+      background: #0a1628;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ---- HEADER ---- */
+    .header {
+      padding: 36px 48px 28px;
+      border-bottom: 4px solid #b00020;
+    }
+    .header-org { font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #6a7a94; margin-bottom: 8px; }
+    .header h1 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .header-sub { font-size: 13px; color: #8090aa; }
+
+    /* ---- LAYOUT ---- */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
+
+    /* ---- SECTION LABELS ---- */
+    .sec-label {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #6a7a94;
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sec-label:first-of-type { margin-top: 0; }
+
+    /* ---- FEATURE CARDS (Home, KPI, Dashboards) ---- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 4px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .feature-card.full-width {
+      grid-column: 1 / -1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .card-path {
+      font-family: Courier New, monospace;
+      font-size: 11px;
+      color: #6a7a94;
+      margin-bottom: 14px;
+    }
+    .card-path a { color: #5b8dee; text-decoration: none; }
+    .card-path a:hover { text-decoration: underline; }
+    .card-desc {
+      font-size: 13px;
+      color: #a0aec0;
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+
+    /* sections inside a card */
+    .card-sections { display: flex; flex-direction: column; gap: 6px; }
+    .card-section {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+    .cs-name {
+      font-size: 12px;
+      font-weight: bold;
+      color: #c8d4e8;
+      margin-bottom: 2px;
+    }
+    .cs-desc {
+      font-size: 11px;
+      color: #6a7a94;
+      line-height: 1.5;
+    }
+
+    .badge-live {
+      display: inline-block;
+      background: rgba(26,122,26,0.25);
+      color: #5cb85c;
+      border: 1px solid rgba(92,184,92,0.3);
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .badge-working {
+      display: inline-block;
+      background: rgba(176,112,0,0.2);
+      color: #d4a017;
+      border: 1px solid rgba(212,160,23,0.3);
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .badge-old {
+      display: inline-block;
+      background: rgba(150,150,150,0.1);
+      color: #666;
+      border: 1px solid rgba(150,150,150,0.2);
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ---- SIMPLE LIST CARDS ---- */
+    .list-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      backdrop-filter: blur(4px);
+    }
+    .list-card-title {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #4a5a74;
+      margin-bottom: 12px;
+    }
+    .link-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .link-row:last-child { border-bottom: none; }
+    .link-row a { font-size: 13px; color: #5b8dee; text-decoration: none; font-weight: 600; white-space: nowrap; }
+    .link-row a:hover { text-decoration: underline; color: #b00020; }
+    .link-row .lr-path { font-family: Courier New, monospace; font-size: 11px; color: #4a5a74; flex: 1; }
+    .link-row .lr-desc { font-size: 12px; color: #6a7a94; }
+
+    /* ---- FOOTER ---- */
+    .footer { border-top: 1px solid rgba(255,255,255,0.08); color: #4a5a74; font-size: 11px; padding: 18px 48px; text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-org">Seattle Tenant Landlord Compliance Authority</div>
+  <h1>Site Index - All Pages and Documents</h1>
+  <div class="header-sub">Complete reference for all published pages, reports, dashboards, and source materials - March 2026</div>
+</div>
+
+<div class="wrap">
+
+  <!-- PRIMARY PAGES - FEATURE CARDS -->
+  <div class="sec-label">Primary Published Pages</div>
+  <div class="feature-grid">
+
+    <!-- HOME -->
+    <div class="feature-card">
+      <div class="card-title"><a href="STLCA_Home.html" style="color:#fff;text-decoration:none">STLCA Home</a> <span class="badge-live">Live</span></div>
+      <div class="card-path"><a href="STLCA_Home.html">STLCA_Home.html</a></div>
+      <div class="card-desc">Organization overview, methodology summary, citywide key findings, and navigation hub. Neutral independent oversight framing.</div>
+      <div class="card-sections">
+        <div class="card-section">
+          <div class="cs-name">What STLCA Does</div>
+          <div class="cs-desc">Audit-grade analysis - Public data only - No conclusions beyond the data</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">Key Findings - 2003 to 2025 Citywide</div>
+          <div class="cs-desc">LLT enforcement record - 58,761 LLT cases - 62.3% no inspection date - By council district</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">Methodology Summary</div>
+          <div class="cs-desc">LLT filter definition, data sources, reproducibility notes</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">Council Briefing Link</div>
+          <div class="cs-desc">Direct link to 2026 Council Briefing document</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">A Structural Gap in Accountability</div>
+          <div class="cs-desc">Overview of RRIO program gaps and Ord 125054 missing reports</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CITYWIDE KPI -->
+    <div class="feature-card">
+      <div class="card-title"><a href="STLCA_Citywide_KPI.html" style="color:#fff;text-decoration:none">Citywide KPI Dashboard</a> <span class="badge-live">Live</span></div>
+      <div class="card-path"><a href="STLCA_Citywide_KPI.html">STLCA_Citywide_KPI.html</a></div>
+      <div class="card-desc">Interactive dashboard. Filter by district and time range. Powered by the 233,543-record SDCI complaint dataset.</div>
+      <div class="card-sections">
+        <div class="card-section">
+          <div class="cs-name">Top KPI Bar</div>
+          <div class="cs-desc">Total records - CP vs VI count - % missing inspection - Closed/no result - Blank RecordType - Emergency records</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">Complaints vs NOVs Over Time</div>
+          <div class="cs-desc">Annual trend chart - complaint volume vs notice of violation issuance</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">NOV Conversion Rate by Year</div>
+          <div class="cs-desc">% VI per CP - how often complaints result in violations each year</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">NOV Rate by District</div>
+          <div class="cs-desc">Ranked highest to lowest - D1 through D7 comparison</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">The Verification Gap</div>
+          <div class="cs-desc">Missing inspection rate by district - Missing by status - By open year trend</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">Oldest Open Records (Top 25)</div>
+          <div class="cs-desc">Longest-running unresolved cases - oldest: 8,133 days open (2003)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COUNCIL BRIEFING -->
+    <div class="feature-card">
+      <div class="card-title"><a href="STLCA_Council_Briefing.html" style="color:#fff;text-decoration:none">Council Briefing 2026</a> <span class="badge-live">Live</span></div>
+      <div class="card-path"><a href="STLCA_Council_Briefing.html">STLCA_Council_Briefing.html</a></div>
+      <div class="card-desc">Full briefing document for all 7 Seattle City Council members. Framed as the report SDCI owed Council for 9 years. Ordinance-requirement-mapped table, Amendment 6 / CM Herbold attribution, verbatim Section 9 text, enforcement collapse chart, case study story hooks.</div>
+      <div class="card-sections">
+        <div class="card-section">
+          <div class="cs-name">Ordinance 125054 Report Table (7 rows)</div>
+          <div class="cs-desc">Each ordinance requirement mapped to Available / Not in data - what STLCA found for each required element</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">D7 Kettle Quote + 2018 Collapse</div>
+          <div class="cs-desc">"You Said It First" - Council's own words on enforcement accountability</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">By Council District - LLT Record (2015-2025)</div>
+          <div class="cs-desc">D1: 6,125 - D2: 6,906 - D3: 8,901 - D4: 5,461 - D5: 5,970 - D6: 5,272 - D7: 6,874</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">Ordinance 125054 - The Missing Reports</div>
+          <div class="cs-desc">SMC 22.206.180 - passed 8-0 June 2016 - zero reports filed in 9 years - written denial on record</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">The Four Asks</div>
+          <div class="cs-desc">1. Fulfill the ordinance you passed - 2. Commission audit - 3. Briefing meeting - 4. Consider independent oversight</div>
+        </div>
+        <div class="card-section">
+          <div class="cs-name">Story Hooks - Case Studies</div>
+          <div class="cs-desc">Addison fire (D1) - Everspring illegal evictions (D6) - Ord 125054 denial</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LANDLORD REGISTER -->
+    <div class="feature-card">
+      <div class="card-title"><a href="STLCA_Landlord_Register.html" style="color:#fff;text-decoration:none">Landlord Accountability Register</a> <span class="badge-live">Live</span></div>
+      <div class="card-path"><a href="STLCA_Landlord_Register.html">STLCA_Landlord_Register.html</a></div>
+      <div class="card-desc">Interactive searchable register of top properties ranked by complaint volume. RRIO status, ownership, NOV history, known case flags.</div>
+      <div class="card-sections">
+        <div class="card-section"><div class="cs-name">Complaint Volume Ranking</div><div class="cs-desc">Top properties citywide - total complaints, complaints in last 90 days, open count</div></div>
+        <div class="card-section"><div class="cs-name">RRIO Registration Status</div><div class="cs-desc">Active/expired cert - registration number - expiration date per property</div></div>
+        <div class="card-section"><div class="cs-name">Ownership and NOV History</div><div class="cs-desc">King County ownership, LLC flags, prior owner, NOV count, known case links</div></div>
+      </div>
+    </div>
+
+  </div><!-- end feature-grid -->
+
+  <!-- DASHBOARDS - EXPANDED -->
+  <div class="sec-label">Dashboards</div>
+  <div class="list-card">
+    <div class="list-card-title">All Dashboard Files</div>
+    <div class="link-row">
+      <span style="color:#667">Closure Integrity Audit (archive)</span>
+      <span class="lr-path">DASHBOARDS/STLCA_Closure_Integrity_Audit.html</span>
+      <span class="badge-live">Live</span>
+      <span class="lr-desc">File upload dashboard - analyze any CSV - closure verification by status, district, date, record type</span>
+    </div>
+    <div class="link-row">
+      <span style="color:#667">Dashboard Index v1 (archive)</span>
+      <span class="lr-path">DASHBOARDS/index.html</span>
+      <span class="badge-working">Working</span>
+      <span class="lr-desc">Original index</span>
+    </div>
+    <div class="link-row">
+      <span style="color:#667">Dashboard Index v2 (archive)</span>
+      <span class="lr-path">DASHBOARDS/INDEXv2.html</span>
+      <span class="badge-working">Working</span>
+      <span class="lr-desc"></span>
+    </div>
+    <div class="link-row">
+      <span style="color:#667">Dashboard Index v3 (archive)</span>
+      <span class="lr-path">DASHBOARDS/INDEXv3.html</span>
+      <span class="badge-working">Working</span>
+      <span class="lr-desc"></span>
+    </div>
+    <div class="link-row">
+      <span style="color:#667">Dashboard Index v4 (archive)</span>
+      <span class="lr-path">DASHBOARDS/INDEXv4.html</span>
+      <span class="badge-working">Working</span>
+      <span class="lr-desc"></span>
+    </div>
+    <div class="link-row">
+      <span style="color:#667">Verification Audit Dashboard (archive)</span>
+      <span class="lr-path">DASHBOARDS/SDCI Complaint Record Verification Audit 2003-2025.html</span>
+      <span class="badge-working">Working</span>
+      <span class="lr-desc">Early version - see root-level report for current build</span>
+    </div>
+    <div class="link-row">
+      <span style="color:#667">Verification Audit (GPT v1) (archive)</span>
+      <span class="lr-path">DASHBOARDS/SDCI Complaint Record Verification Audit 2003-2025_gptv1.html</span>
+      <span class="badge-old">Draft</span>
+      <span class="lr-desc"></span>
+    </div>
+  </div>
+
+  <!-- REPORTS AND CASE STUDIES -->
+  <div class="sec-label">Reports and Case Studies</div>
+  <div class="list-card">
+    <div class="list-card-title">Published Reports</div>
+    <div class="link-row">
+      <a href="STLCA_RRIO_False_Compliance.html">RRIO False Compliance Loop</a>
+      <span class="lr-path">STLCA_RRIO_False_Compliance.html</span>
+      <span class="badge-live">Live</span>
+      <span class="lr-desc">SVG false compliance loop diagram - 81,872 private inspector records - 59.8% enforcement collapse chart - 6 finding cards on structural enforcement gaps</span>
+    </div>
+    <div class="link-row">
+      <a href="STLCA_RRIO_Gap.html">RRIO Compliance Gap Report (CS-005)</a>
+      <span class="lr-path">STLCA_RRIO_Gap.html</span>
+      <span class="badge-live">Live</span>
+      <span class="lr-desc">6 sections - 18.1% inspection rate at certified properties - chronic violators - private inspector blind spot - HMBC gap - reinspection protocol</span>
+    </div>
+    <div class="link-row">
+      <a href="STLCA_CaseStudy_Ord125054.html">Ord 125054 - The Missing Reports (CS-001)</a>
+      <span class="lr-path">STLCA_CaseStudy_Ord125054.html</span>
+      <span class="badge-live">Live</span>
+      <span class="lr-desc">Zero annual reports in 9 years - signed ordinance - written denial - 55-page email chain</span>
+    </div>
+    <div class="link-row">
+      <span style="color:#667">SDCI Complaint Record Verification Audit (not deployed)</span>
+      <span class="lr-path">SDCI Complaint Record Verification Audit 2003-2025.html</span>
+      <span class="badge-live">Live</span>
+      <span class="lr-desc">48.3% unverified closures D3 - 43.8% citywide - pre/post 2018: 14.4% vs 71.1%</span>
+    </div>
+    <div class="link-row">
+      <a href="STLCA_Case_Studies.html">Case Study Index</a>
+      <span class="lr-path">STLCA_Case_Studies.html</span>
+      <span class="badge-live">Live</span>
+      <span class="lr-desc">All case studies with findings, document inventory, personnel documented - Addison, Everspring, Gallery Belltown, Hiawatha, Olivian, Larkspur, Lowell Emerson</span>
+    </div>
+  </div>
+
+  <!-- DISTRICT DOSSIERS -->
+  <div class="sec-label">District Accountability Dossiers</div>
+  <div class="list-card">
+    <div class="list-card-title">Current Build (Correct LLT Numbers)</div>
+    <div class="link-row"><a href="STLCA_District_1.html">District 1 - Rob Saka</a><span class="lr-path">STLCA_District_1.html</span><span class="badge-live">Live</span><span class="lr-desc">West Seattle / SODO - 6,125 LLT 2015-2025 - 56.6% closed/no result</span></div>
+    <div class="link-row"><a href="STLCA_District_2.html">District 2 - Eddie Lin</a><span class="lr-path">STLCA_District_2.html</span><span class="badge-live">Live</span><span class="lr-desc">Southeast Seattle - 6,906 LLT 2015-2025 - 52.3% closed/no result</span></div>
+    <div class="link-row"><a href="STLCA_District_3.html">District 3 - Joy Hollingsworth</a><span class="lr-path">STLCA_District_3.html</span><span class="badge-live">Live</span><span class="lr-desc">Capitol Hill / Central District - 8,901 LLT 2015-2025 - 62.9% closed/no result</span></div>
+    <div class="link-row"><a href="STLCA_District_4.html">District 4 - Maritza Rivera</a><span class="lr-path">STLCA_District_4.html</span><span class="badge-live">Live</span><span class="lr-desc">Northeast Seattle - 5,461 LLT 2015-2025 - 57.0% closed/no result</span></div>
+    <div class="link-row"><a href="STLCA_District_5.html">District 5 - Debora Juarez</a><span class="lr-path">STLCA_District_5.html</span><span class="badge-live">Live</span><span class="lr-desc">North Seattle - 5,970 LLT 2015-2025 - 58.8% closed/no result</span></div>
+    <div class="link-row"><a href="STLCA_District_6.html">District 6 - Dan Strauss</a><span class="lr-path">STLCA_District_6.html</span><span class="badge-live">Live</span><span class="lr-desc">Northwest Seattle - 5,272 LLT 2015-2025 - 62.0% closed/no result</span></div>
+    <div class="link-row"><a href="STLCA_District_7.html">District 7 - Bob Kettle</a><span class="lr-path">STLCA_District_7.html</span><span class="badge-live">Live</span><span class="lr-desc">Downtown / Queen Anne - 6,874 LLT 2015-2025 - 67.2% closed/no result (highest)</span></div>
+  </div>
+  <div class="list-card">
+    <div class="list-card-title">Legacy Build - Superseded (Narrow LLT Filter - Counts Understated)</div>
+    <div class="link-row"><a href="STLCA_District_1.html">District 1 (Legacy)</a><span class="lr-path">STLCA_District_1.html</span><span class="badge-old">Superseded</span></div>
+    <div class="link-row"><a href="STLCA_District_2.html">District 2 (Legacy)</a><span class="lr-path">STLCA_District_2.html</span><span class="badge-old">Superseded</span></div>
+    <div class="link-row"><a href="STLCA_District_3.html">District 3 (Legacy)</a><span class="lr-path">STLCA_District_3.html</span><span class="badge-old">Superseded</span></div>
+    <div class="link-row"><a href="STLCA_District_4.html">District 4 (Legacy)</a><span class="lr-path">STLCA_District_4.html</span><span class="badge-old">Superseded</span></div>
+    <div class="link-row"><a href="STLCA_District_5.html">District 5 (Legacy)</a><span class="lr-path">STLCA_District_5.html</span><span class="badge-old">Superseded</span></div>
+    <div class="link-row"><a href="STLCA_District_6.html">District 6 (Legacy)</a><span class="lr-path">STLCA_District_6.html</span><span class="badge-old">Superseded</span></div>
+    <div class="link-row"><a href="STLCA_District_7.html">District 7 (Legacy)</a><span class="lr-path">STLCA_District_7.html</span><span class="badge-old">Superseded</span></div>
+  </div>
+
+  <!-- SOURCE DOCUMENTS -->
+  <div class="sec-label">Source Documents and Evidence Files</div>
+  <div class="list-card">
+    <div class="list-card-title">RRIO and Ordinance Documents (ORD 12)</div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">Signed Ordinance 125054</span><span class="lr-path">ORD 12/Signed Ord 125054.pdf</span><span class="lr-desc">8-0 vote June 2016 - annual reporting requirement SMC 22.206.180</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">SDCI Denial - Exhibit A</span><span class="lr-path">ORD 12/006346-24CP.png</span><span class="lr-desc">SDCI RRIO Program Manager written denial of ordinance obligation</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">Full Email Chain (55 pages)</span><span class="lr-path">ORD 12/Gmail - 1110 8th Ave 006346-24CP.pdf</span><span class="lr-desc">Complete record of Ord 125054 inquiry and response</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">RRIO Annual Report - June 2017</span><span class="lr-path">ORD 12/CF_320336.pdf</span><span class="lr-desc">Jun 2016-May 2017 - 29,181 properties, 3,616 inspections</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">RRIO Annual Report - March 2018</span><span class="lr-path">ORD 12/CF_320708.pdf</span><span class="lr-desc">2017 data - 3,166 inspections - contains private inspector blind spot quote</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">RRIO Annual Reports - 2018/2019/2020/2024</span><span class="lr-path">ORD 12/CF_321192, CF_321754, CF_322081, CF_323418.pdf</span><span class="lr-desc">All report civil warrant process "has not been used" in every year reviewed</span></div>
+  </div>
+  <div class="list-card">
+    <div class="list-card-title">Gmail Evidence Threads</div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">RRIO Inspections Follow-Up (15 messages)</span><span class="lr-path">Gmail - Follow-Up on Status of 100% RRIO Inspections - Lowell Emerson.pdf</span><span class="lr-desc">RRIO Program Manager on reinspection protocol (May 2025) + Ord 125054 denial (Mar 2025)</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">RRIO Accountability Request Thread</span><span class="lr-path">Gmail - Request for Accountability in RRIO Enforcement - Re Lowell Emerson.pdf</span><span class="lr-desc">Oct 2024 - SDCI Senior RRIO Inspector on enforcement practices and HMBC scope</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">Open Duplicate Records Thread</span><span class="lr-path">Gmail - open duplicate records.pdf</span><span class="lr-desc">Records 000537/538-23CP mislinked to unrelated parent - closures without inspection documented - 85 violations found after tenant intervention May 2023</span></div>
+  </div>
+  <div class="list-card">
+    <div class="list-card-title">Case Study Source Documents</div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">Addison on 4th - Case Study</span><span class="lr-path">Addison/Case-Study-The-Addison-on-4th.pdf</span><span class="lr-desc">308 4th Ave S - 133 elevator rescues - 136+ complaints - fire Jan 7, 2020</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">Addison - Fire Tragedy Analysis</span><span class="lr-path">Addison/The-Addison-Fire-Tragedy-Institutional-Negligence-and-Cover-Up.pdf</span><span class="lr-desc">29-day SDCI delay preceding fire - post-fire complaint disappearance</span></div>
+    <div class="link-row"><span style="color:#c8d4e8;font-size:13px;font-weight:600">Everspring Inn - Case Study</span><span class="lr-path">Everspring/Case-Study-Everspring-Inn-Illegal-Evictions-Life-Safety-Neglect-and-Data-Manipulation.pdf</span><span class="lr-desc">Aug 18, 2020 - mass illegal evictions during COVID moratorium - 13 complaints closed same day without investigation</span></div>
+  </div>
+
+  <!-- HEAT MAPS -->
+  <div class="sec-label">Heat Maps</div>
+  <div class="list-card">
+    <div class="list-card-title">STLCA / THE CASE</div>
+    <div class="link-row"><span style="color:#667">All Complaints (not deployed)</span><span class="lr-path">STLCA/THE CASE/All_Complaints_HeatMap.html</span><span class="badge-live">Live</span></div>
+    <div class="link-row"><span style="color:#667">Habitability Issues (not deployed)</span><span class="lr-path">STLCA/THE CASE/Habitability_Issues_HeatMap.html</span><span class="badge-live">Live</span></div>
+    <div class="link-row"><span style="color:#667">Illegal Evictions (not deployed)</span><span class="lr-path">STLCA/THE CASE/Illegal_Evictions_HeatMap.html</span><span class="badge-live">Live</span></div>
+    <div class="link-row"><span style="color:#667">Premature Closures (not deployed)</span><span class="lr-path">STLCA/THE CASE/Premature_Closures_HeatMap (4).html</span><span class="badge-live">Live</span></div>
+    <div class="link-row"><span style="color:#667">Repeat Landlord Offenders (not deployed)</span><span class="lr-path">STLCA/THE CASE/Repeat_Landlord_Offenders_HeatMap.html</span><span class="badge-live">Live</span></div>
+    <div class="link-row"><span style="color:#667">D1 Complaints (not deployed)</span><span class="lr-path">STLCA/THE CASE/D1_Complaint_HeatMap.html</span><span class="badge-live">Live</span></div>
+  </div>
+
+  <!-- OUTREACH AND UTILITIES -->
+  <div class="sec-label">Outreach and Utilities</div>
+  <div class="list-card">
+    <div class="list-card-title">Other Files</div>
+    <div class="link-row"><span style="color:#667">Dear City Council - Formal Letter (not deployed)</span><span class="lr-path">DEAR CITY COUNCIL/SeattleCityCouncilmembers.html</span><span class="badge-live">Live</span><span class="lr-desc">Formal letter to all 7 Council members from STLCA</span></div>
+    <div class="link-row"><a href="STLCA_Methodology.html">Methodology</a><span class="lr-path">STLCA_Methodology.html</span><span class="badge-live">Live</span><span class="lr-desc">Full methodology documentation</span></div>
+    <div class="link-row"><span style="color:#667">Push Utility (not deployed)</span><span class="lr-path">stlca_push.html</span><span class="badge-working">Internal</span><span class="lr-desc">Deployment utility</span></div>
+    <div class="link-row"><span style="color:#667">Grok Outputs - Enforcement Data (not deployed)</span><span class="lr-path">GROK OUTPUTS/ENFORCEMENT DATA.html</span><span class="badge-old">Validate</span><span class="lr-desc">Grok XAI analysis - Structural/Elevator/Pest counts significantly understated vs primary dataset</span></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Seattle Tenant Landlord Compliance Authority (STLCA) - Site Index - March 2026 - All findings from analysis of public records
+</div>
+
+</body>
+</html>

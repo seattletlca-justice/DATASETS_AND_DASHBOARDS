@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How RRIO Produces False Compliance - STLCA</title>
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
+<meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
+<meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+<meta property="og:url" content="https://www.seattletlca.com">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#070b12;--panel:#0c1424;--panel2:#111827;--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#10b981;--border:rgba(255,255,255,.08);--text:#ffffff;--muted:rgba(255,255,255,.78)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.75}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.5px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted)}
+.wrap{max-width:960px;margin:0 auto;padding:52px 28px 80px}
+.hdr{border-left:4px solid var(--red);padding:0 0 0 24px;margin-bottom:48px}
+.hdr .kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--red);margin-bottom:10px}
+.hdr h1{font-size:36px;font-weight:900;line-height:1.15;margin-bottom:14px}
+.hdr .sub{font-size:16px;color:var(--muted);line-height:1.65;max-width:720px}
+
+/* LOOP DIAGRAM */
+.loop-section{margin:48px 0}
+.loop-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:24px}
+.loop-wrap{position:relative;width:100%;max-width:720px;margin:0 auto}
+.loop-svg{width:100%;height:auto}
+
+/* FINDINGS */
+.findings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:48px 0}
+.finding-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;position:relative;overflow:hidden}
+.finding-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red)}
+.finding-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin-bottom:8px}
+.finding-title{font-size:17px;font-weight:800;margin-bottom:10px;line-height:1.25}
+.finding-body{font-size:14px;color:var(--muted);line-height:1.65}
+.finding-body strong{color:var(--text)}
+
+/* CHART SECTION */
+.chart-section{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px;margin:48px 0}
+.chart-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--orange);margin-bottom:6px}
+.chart-title{font-size:20px;font-weight:800;margin-bottom:6px}
+.chart-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.chart-img{width:100%;border-radius:8px;display:block}
+
+/* CALLOUT */
+.callout{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(245,158,11,.06));border:1px solid rgba(239,68,68,.35);border-radius:14px;padding:26px 28px;margin:48px 0}
+.callout-hed{font-size:22px;font-weight:900;color:var(--red);margin-bottom:12px;line-height:1.2}
+.callout-body{font-size:16px;color:var(--text);line-height:1.7}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0}
+.stat{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:20px 16px;text-align:center}
+.stat .val{font-size:38px;font-weight:900;line-height:1;margin-bottom:6px}
+.stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;line-height:1.4;font-weight:700}
+
+h2{font-size:22px;font-weight:800;margin:52px 0 16px;padding-top:36px;border-top:1px solid var(--border);text-transform:uppercase;letter-spacing:.8px}
+p{margin-bottom:16px;color:var(--text)}
+footer{border-top:1px solid var(--border);padding:24px 28px;text-align:center;font-size:11px;color:rgba(255,255,255,.4);margin-top:32px}
+@media(max-width:680px){.findings-grid,.stat-row{grid-template-columns:1fr}.hdr h1{font-size:26px}}
+</style>
+</head>
+<body>
+<nav style="background:#1a1a2e; padding:10px 28px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100;">
+  <div style="font-size:13px; font-weight:700; color:#2d7ff9;">STLCA — Seattle Tenant Landlord Compliance Authority</div>
+  <div style="display:flex; gap:18px; flex-wrap:wrap;">
+    <a href="https://www.seattletlca.com" style="color:#8090b0; text-decoration:none; font-size:12px;">Home</a>
+    <a href="STLCA_Citywide_KPI.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Citywide Audit</a>
+    <a href="STLCA_Council_Briefing.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Council Briefing</a>
+    <a href="STLCA_Methodology.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Methodology</a>
+    <a href="STLCA_Case_Studies.html" style="color:#8090b0; text-decoration:none; font-size:12px;">Case Studies</a>
+  </div>
+</nav>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="kicker">RRIO Program Analysis - March 2026</div>
+  <h1>How RRIO Produces<br>False Compliance</h1>
+  <p class="sub">The Rental Registration and Inspection Ordinance is publicly described as proactive enforcement. The public record documents a different function: a certification mechanism that signals compliance to City Council while conditions on the ground remain unresolved. This is not a series of isolated failures. It is the system operating as structured.</p>
+</div>
+
+<!-- LOOP DIAGRAM -->
+<div class="loop-section">
+  <div class="loop-title">The False Compliance Loop</div>
+  <div class="loop-wrap">
+    <svg class="loop-svg" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="720" height="420" fill="none"/>
+
+      <!-- Center label -->
+      <text x="360" y="196" text-anchor="middle" fill="rgba(239,68,68,.18)" font-size="72" font-weight="900" font-family="Inter,system-ui,sans-serif">LOOP</text>
+      <text x="360" y="240" text-anchor="middle" fill="rgba(239,68,68,.18)" font-size="22" font-weight="700" font-family="Inter,system-ui,sans-serif">NEVER BREAKS</text>
+
+      <!-- Circle path for arrows -->
+      <!-- Nodes at: top=360,60 | right=620,210 | bottom-right=500,370 | bottom-left=220,370 | left=100,210 -->
+
+      <!-- Arrows (curved arcs between nodes) -->
+      <!-- Top to Right -->
+      <path d="M 420,75 Q 570,80 600,170" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2.5" marker-end="url(#arr)"/>
+      <!-- Right to Bottom-right -->
+      <path d="M 615,260 Q 600,340 530,358" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2.5" marker-end="url(#arr)"/>
+      <!-- Bottom-right to Bottom-left -->
+      <path d="M 455,378 Q 360,400 285,378" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2.5" marker-end="url(#arr)"/>
+      <!-- Bottom-left to Left -->
+      <path d="M 192,358 Q 120,340 108,260" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2.5" marker-end="url(#arr)"/>
+      <!-- Left to Top -->
+      <path d="M 108,165 Q 120,80 295,68" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2.5" marker-end="url(#arr)"/>
+
+      <!-- Arrow marker -->
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="rgba(239,68,68,.8)"/>
+        </marker>
+      </defs>
+
+      <!-- NODE 1 - Top: Landlord Self-Certifies -->
+      <rect x="240" y="32" width="240" height="52" rx="10" fill="#0c1424" stroke="rgba(245,158,11,.5)" stroke-width="1.5"/>
+      <text x="360" y="53" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700" font-family="Inter,system-ui,sans-serif" letter-spacing="0.5">STEP 1</text>
+      <text x="360" y="71" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700" font-family="Inter,system-ui,sans-serif">Landlord Self-Certifies Compliance</text>
+
+      <!-- NODE 2 - Right: RRIO Certifies -->
+      <rect x="572" y="182" width="140" height="56" rx="10" fill="#0c1424" stroke="rgba(239,68,68,.5)" stroke-width="1.5"/>
+      <text x="642" y="202" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700" font-family="Inter,system-ui,sans-serif" letter-spacing="0.5">STEP 2</text>
+      <text x="642" y="219" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" font-family="Inter,system-ui,sans-serif">RRIO Certificate</text>
+      <text x="642" y="233" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" font-family="Inter,system-ui,sans-serif">Issued</text>
+
+      <!-- NODE 3 - Bottom right: Tenant Complains -->
+      <rect x="432" y="352" width="160" height="52" rx="10" fill="#0c1424" stroke="rgba(239,68,68,.5)" stroke-width="1.5"/>
+      <text x="512" y="371" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700" font-family="Inter,system-ui,sans-serif" letter-spacing="0.5">STEP 3</text>
+      <text x="512" y="389" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" font-family="Inter,system-ui,sans-serif">Tenant Files Complaint</text>
+
+      <!-- NODE 4 - Bottom left: Closed No Inspection -->
+      <rect x="126" y="352" width="160" height="52" rx="10" fill="#0c1424" stroke="rgba(239,68,68,.5)" stroke-width="1.5"/>
+      <text x="206" y="371" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700" font-family="Inter,system-ui,sans-serif" letter-spacing="0.5">STEP 4</text>
+      <text x="206" y="389" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" font-family="Inter,system-ui,sans-serif">Closed - No Inspection</text>
+
+      <!-- NODE 5 - Left: No Consequence -->
+      <rect x="6" y="182" width="140" height="56" rx="10" fill="#0c1424" stroke="rgba(239,68,68,.5)" stroke-width="1.5"/>
+      <text x="76" y="202" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700" font-family="Inter,system-ui,sans-serif" letter-spacing="0.5">STEP 5</text>
+      <text x="76" y="219" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" font-family="Inter,system-ui,sans-serif">No Consequence</text>
+      <text x="76" y="233" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" font-family="Inter,system-ui,sans-serif">for Landlord</text>
+
+      <!-- Center note -->
+      <text x="360" y="268" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="12" font-family="Inter,system-ui,sans-serif">Repeat indefinitely.</text>
+      <text x="360" y="284" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="12" font-family="Inter,system-ui,sans-serif">Conditions unchanged.</text>
+    </svg>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stat-row">
+  <div class="stat">
+    <div class="val" style="color:var(--red)">84.9%</div>
+    <div class="lbl">LLT Complaints Missing Inspection Documentation - 2025</div>
+  </div>
+  <div class="stat">
+    <div class="val" style="color:var(--orange)">81,872</div>
+    <div class="lbl">RRIO Records Using Private Inspector Paid by Landlord</div>
+  </div>
+  <div class="stat">
+    <div class="val" style="color:var(--red)">59.8%</div>
+    <div class="lbl">Closed LLT Cases with No Documented Inspection Result - Citywide</div>
+  </div>
+</div>
+
+<!-- ENFORCEMENT COLLAPSE CHART -->
+<div class="chart-section">
+  <div class="chart-label">Enforcement Documentation Collapse</div>
+  <div class="chart-title">Inspection Documentation Rate - LLT Complaints 2003-2025</div>
+  <div class="chart-sub">Peak: 90.1% of LLT complaints had documented inspection results in 2013. By 2018 the rate collapsed to 24.8%. By 2025: 15.1%. Complaint volume rose 361% over the same period. The StatusCurrent field - the administrative label - remained 100% complete every year. The evidence of enforcement did not.</div>
+  <img class="chart-img" src="SDCI_ENFORCEMENT_COLLAPSE.png" alt="SDCI Enforcement Documentation Collapse 2003-2025 - inspection result rate by year"/>
+</div>
+
+<!-- 6 FINDINGS -->
+<h2>Six Documented Structural Failures</h2>
+
+<div class="findings-grid">
+  <div class="finding-card">
+    <div class="finding-num">Finding 1</div>
+    <div class="finding-title">Certification Divorced from Habitability</div>
+    <div class="finding-body">RRIO certificates are issued to properties with active Notices of Violation and unresolved complaints. <strong>Compliance status is determined by landlord self-reporting.</strong> No independent unit-level inspection is required prior to certification. The certificate signals compliance to Council and the public; the complaint record documents conditions that never changed.</div>
+  </div>
+  <div class="finding-card">
+    <div class="finding-num">Finding 2</div>
+    <div class="finding-title">Inspection Data Structurally Incomplete</div>
+    <div class="finding-body">Critical data fields - last inspection date, inspection type, inspection outcome - are missing, blank, or inconsistently populated. <strong>62.3% of all LLT cases have no inspection date recorded.</strong> Without these fields, performance reporting is impossible and Council oversight operates without reliable information.</div>
+  </div>
+  <div class="finding-card">
+    <div class="finding-num">Finding 3</div>
+    <div class="finding-title">Complaints Closed Without Verification</div>
+    <div class="finding-body">High-priority habitability complaints - loss of hot water, flooding, fire hazards - are documented as closed "withdrawn," "no contact," or "no violation found" while conditions persisted. <strong>Inspectors accepted landlord representations without independent verification.</strong> Tenant confirmation was not obtained before closure.</div>
+  </div>
+  <div class="finding-card">
+    <div class="finding-num">Finding 4</div>
+    <div class="finding-title">Timelines Unenforced, Fines Uncollected</div>
+    <div class="finding-body">Notices of Violation routinely exceed statutory compliance deadlines without fine escalation or referral to stronger enforcement tools. <strong>Millions of dollars in assessed penalties remain uncollected.</strong> The result is a documented incentive structure where delay carries no cost and noncompliance is functionally risk-free.</div>
+  </div>
+  <div class="finding-card">
+    <div class="finding-num">Finding 5</div>
+    <div class="finding-title">Reported Performance Misleads</div>
+    <div class="finding-body">SDCI reporting emphasizes "properties inspected" rather than "units inspected." In large multifamily buildings, only a fraction of units are examined. <strong>When measured at the unit level, inspection coverage drops to a negligible percentage</strong> of the rental housing stock - undermining public and Council confidence in reported outcomes.</div>
+  </div>
+  <div class="finding-card">
+    <div class="finding-num">Finding 6</div>
+    <div class="finding-title">Private Inspector Conflict of Interest</div>
+    <div class="finding-body">RRIO allows landlords to hire private inspectors they pay directly. <strong>81,872 RRIO records involve private inspector use.</strong> The RRIO checklist is also documented as narrower in scope than the full Housing Maintenance and Building Code - meaning a property can pass RRIO while failing the broader habitability standard tenants are legally entitled to.</div>
+  </div>
+</div>
+
+<!-- CALLOUT -->
+<div class="callout">
+  <div class="callout-hed">The system produces the outcome it was structured to produce.</div>
+  <div class="callout-body">StatusCurrent - the administrative label - is 100% complete in SDCI records every year, all years. It always says "Completed" or "Closed." The inspection fields that would document whether anyone actually looked at anything are blank in 62% of cases. The label functions. The enforcement does not. This distinction is the entire case.</div>
+</div>
+
+<p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:40px">Source: SDCI complaint database CITYWIDE_ALL_20251231_ENRICHED_01272025 (233,543 records). RRIO analysis: RRIO_PROPERTY_TIMELINE_CLEAN.csv. All metrics computed directly from primary datasets using consistent LLT filter definition. Methodology: <a href="STLCA_Methodology.html">STLCA_Methodology.html</a>. Full RRIO compliance gap analysis: <a href="STLCA_RRIO_Gap.html">STLCA_RRIO_Gap.html</a>.</p>
+
+</div>
+<footer>STLCA - Seattle Tenant Landlord Compliance Authority &bull; March 2026 &bull; <a href="STLCA_Home.html">Home</a> &bull; <a href="STLCA_RRIO_Gap.html">RRIO Report</a> &bull; <a href="STLCA_Council_Briefing.html">Council Briefing</a> &bull; <a href="STLCA_Methodology.html">Methodology</a></footer>
+</body>
+</html>
