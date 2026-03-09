@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study: The Addison on 4th — STLCA</title>
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="CS-002: The Addison on 4th — STLCA Case Study">
+  <meta property="og:description" content="308 4th Ave S: 136+ complaints, 133 SFD elevator rescues, 29-day gap between fire safety alert and first SDCI inspection. Fire occurred before compliance deadline. Zero financial penalties.">
+  <meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+  <meta property="og:url" content="https://www.seattletlca.com/STLCA_CaseStudy_Addison.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:          #0d1117;
+      --ink-mid:      #1c2433;
+      --paper:        #f5f2ec;
+      --paper-warm:   #ede9e1;
+      --rule:         #c8bfaa;
+      --accent:       #c0392b;
+      --accent-muted: #922b21;
+      --teal:         #1a6b6b;
+      --gold:         #b5872a;
+      --text-body:    #2c3340;
+      --text-muted:   #5a6372;
+      --col-gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background-color: var(--paper);
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background-color: var(--ink);
+      color: var(--paper);
+      border-bottom: 3px solid var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%; height: 100%;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+      pointer-events: none;
+    }
+    .masthead-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.5rem, 5vw, 3rem);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 1rem;
+    }
+    .site-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .report-kicker {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.4);
+      margin-bottom: 0.75rem;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+    }
+    .masthead h1 em { font-style: italic; color: var(--accent); }
+    .masthead-nav { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
+    .nav-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,242,236,0.4); }
+    .nav-links-inner { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links-inner a { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,236,0.6); text-decoration: none; transition: color 0.2s; }
+    .nav-links-inner a:hover { color: var(--paper); }
+
+    /* ── RULE BAND ── */
+    .rule-band { background: var(--ink-mid); padding: 0.6rem clamp(1.5rem, 5vw, 3rem); }
+    .rule-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 2rem; }
+    .rule-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+    .rule-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+    .rule-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: rgba(245,242,236,0.3); white-space: nowrap; }
+
+    /* ── HERO ── */
+    .hero { max-width: 1100px; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); align-items: start; border-bottom: 1px solid var(--rule); }
+    .hero-lede { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 2.8vw, 2.1rem); font-weight: 700; line-height: 1.35; color: var(--ink); letter-spacing: -0.01em; }
+    .hero-lede em { font-style: italic; color: var(--accent); }
+    .hero-body { font-size: 1rem; line-height: 1.85; color: var(--text-body); font-weight: 300; }
+    .hero-body p + p { margin-top: 1rem; }
+
+    .cite-strip { background: var(--ink-mid); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+    .cite-field label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,242,236,0.35); display: block; margin-bottom: 0.2rem; }
+    .cite-field value { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--gold); display: block; }
+    .cite-field value.red { color: var(--accent); }
+
+    /* ── PULL STATS ── */
+    .pull-stat-row { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--rule); }
+    .pull-stat { padding: 2rem 0; padding-right: 2rem; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 0.35rem; }
+    .pull-stat:last-child { border-right: none; padding-right: 0; padding-left: 2rem; }
+    .pull-stat:nth-child(n+2) { padding-left: 2rem; }
+    .pull-stat:first-child { padding-left: 0; }
+    .pull-stat-num { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--ink); line-height: 1; }
+    .pull-stat-num.red  { color: var(--accent); }
+    .pull-stat-num.teal { color: var(--teal); }
+    .pull-stat-num.gold { color: var(--gold); }
+    .pull-stat-label { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.8rem; line-height: 1.4; color: var(--text-body); }
+    .pull-stat-source { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 0.1rem; }
+
+    /* ── CONTENT ── */
+    .content-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
+    .section { padding: clamp(2.5rem, 5vw, 4rem) 0; border-bottom: 1px solid var(--rule); }
+    .section:last-child { border-bottom: none; }
+    .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem; }
+    .section-body { font-size: 1rem; line-height: 1.85; color: var(--text-body); font-weight: 300; max-width: 680px; }
+    .section-body + .section-body { margin-top: 1rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); align-items: start; margin-top: 1.5rem; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; margin: 2.5rem 0; }
+    .timeline::before { content: ''; position: absolute; left: 110px; top: 0; bottom: 0; width: 2px; background: var(--rule); }
+    .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 1.5rem; align-items: start; padding: 0 0 2rem 0; position: relative; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--text-muted); text-align: right; padding-top: 0.2rem; line-height: 1.5; }
+    .tl-dot { position: absolute; left: 104px; top: 0.35rem; width: 14px; height: 14px; border-radius: 50%; background: var(--paper-warm); border: 2px solid var(--rule); z-index: 1; }
+    .tl-dot.red { background: var(--accent); border-color: var(--accent); }
+    .tl-dot.gold { background: var(--gold); border-color: var(--gold); }
+    .tl-dot.teal { background: var(--teal); border-color: var(--teal); }
+    .tl-content { padding-left: 2rem; }
+    .tl-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .tl-label.alert { color: var(--accent); }
+    .tl-label.fire { color: var(--accent); font-weight: 500; }
+    .tl-text { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); font-weight: 300; }
+    .tl-gap-note { background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.25); border-left: 3px solid var(--accent); padding: 0.6rem 1rem; margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--accent); }
+
+    /* ── DATA TABLE ── */
+    .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+    .data-table thead th { background: var(--ink-mid); color: rgba(245,242,236,0.7); font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1rem; text-align: left; font-weight: 400; }
+    .data-table tbody tr { border-bottom: 1px solid var(--rule); }
+    .data-table tbody tr:hover { background: var(--paper-warm); }
+    .data-table td { padding: 0.75rem 1rem; vertical-align: top; line-height: 1.5; color: var(--text-body); font-weight: 300; }
+    .data-table td.record-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent); font-weight: 500; white-space: nowrap; }
+    .data-table td.record-num a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(192,57,43,0.3); }
+    .data-table td.record-num a:hover { border-bottom-color: var(--accent); }
+    .data-table td.status-closed { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--text-muted); }
+    .data-table td.status-open { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--teal); }
+
+    /* ── FINDINGS ── */
+    .findings-list { margin-top: 1.5rem; }
+    .finding-item { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.25rem; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
+    .finding-item:last-child { border-bottom: none; }
+    .finding-n { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--accent); opacity: 0.3; line-height: 1; }
+    .finding-body h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .finding-body p { font-size: 0.95rem; line-height: 1.75; color: var(--text-body); font-weight: 300; }
+
+    /* ── PULLQUOTE ── */
+    .pullquote { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 1.75rem 0; margin: 2.5rem 0; }
+    .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.5vw, 1.75rem); font-weight: 700; font-style: italic; color: var(--ink); line-height: 1.35; }
+    .pullquote p em { color: var(--accent); font-style: normal; }
+
+    /* ── CHART / GAUGE ── */
+    .chart-block { background: var(--paper-warm); border: 1px solid var(--rule); padding: 1.75rem; margin: 2rem 0; }
+    .chart-header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+    .chart-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
+    .chart-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; color: var(--text-muted); line-height: 1.6; }
+    .gauge-group { display: flex; flex-direction: column; gap: 1.25rem; }
+    .gauge-label-row { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+    .gauge-label-text { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.82rem; color: var(--text-body); }
+    .gauge-label-pct { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; font-weight: 500; color: var(--ink); }
+    .gauge-track { height: 20px; background: #e4dfd5; border-radius: 2px; overflow: hidden; }
+    .gauge-fill { height: 100%; display: flex; align-items: center; padding-left: 0.6rem; border-radius: 2px; }
+    .gauge-fill span { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: #fff; white-space: nowrap; }
+    .gauge-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+    /* ── ALERT BOX ── */
+    .alert-box { background: rgba(192,57,43,0.05); border: 1px solid rgba(192,57,43,0.2); border-left: 4px solid var(--accent); padding: 1.75rem 2rem; margin: 2rem 0; }
+    .alert-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .alert-box p { font-size: 0.95rem; line-height: 1.75; color: var(--text-body); font-weight: 300; }
+    .alert-box p + p { margin-top: 0.75rem; }
+
+    /* ── CLOSING ── */
+    .closing { background: var(--ink); color: var(--paper); padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem); margin: 3rem 0 0; }
+    .closing-inner { max-width: 1100px; margin: 0 auto; }
+    .closing h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; color: var(--paper); margin-bottom: 1.5rem; }
+    .closing p { font-size: 1rem; line-height: 1.85; color: rgba(245,242,236,0.75); font-weight: 300; max-width: 760px; }
+    .closing p + p { margin-top: 1rem; }
+    .closing strong { color: var(--paper); font-weight: 500; }
+    .closing em { color: var(--gold); font-style: italic; }
+    .closing-links { display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+    .closing-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(245,242,236,0.5); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .closing-link:hover { color: var(--paper); border-color: rgba(255,255,255,0.5); }
+
+    /* ── SOURCES ── */
+    .sources-block { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 2rem clamp(1.5rem, 5vw, 3rem); }
+    .sources-inner { max-width: 1100px; margin: 0 auto; }
+    .sources-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .sources-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; line-height: 1.9; color: var(--text-muted); max-width: 900px; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem clamp(1.5rem, 5vw, 3rem); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-org { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.5); }
+    .footer-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(245,242,236,0.25); margin-top: 0.2rem; }
+    .footer-data-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: rgba(245,242,236,0.2); display: block; text-align: right; }
+    .footer-data-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: rgba(245,242,236,0.2); display: block; text-align: right; letter-spacing: 0.08em; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+    .masthead h1 { animation: slideIn 0.6s ease both; }
+    .site-label  { animation: slideIn 0.4s ease both; }
+    .hero-lede   { animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-body   { animation: fadeUp 0.6s 0.35s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .masthead-inner { grid-template-columns: 1fr; }
+      .masthead-nav { align-items: flex-start; }
+      .pull-stat-row { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .timeline::before { left: 80px; }
+      .tl-item { grid-template-columns: 70px 1fr; }
+      .tl-dot { left: 74px; }
+    }
+    @media (max-width: 480px) {
+      .pull-stat-row { grid-template-columns: 1fr; }
+      .timeline::before { display: none; }
+      .tl-item { grid-template-columns: 1fr; }
+      .tl-dot { display: none; }
+      .tl-date { text-align: left; }
+      .tl-content { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav style="position:sticky;top:0;z-index:200;background:rgba(7,11,18,.97);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;font-family:system-ui,sans-serif">
+  <div style="font-size:13px;font-weight:700;color:#2d7ff9;letter-spacing:.5px">STLCA Seattle Tenant Landlord Compliance Authority</div>
+  <div style="display:flex;gap:18px">
+    <a href="https://www.seattletlca.com" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Home</a>
+    <a href="STLCA_Citywide_KPI.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Case Studies</a>
+    <a href="STLCA_District_1.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Districts</a>
+    <a href="STLCA_Methodology.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" style="font-size:12px;color:#000;background:#f59e0b;text-decoration:none;padding:6px 14px;border-radius:999px;font-weight:700">Council Briefing</a>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p class="site-label">Seattle Tenant-Landlord Compliance Authority</p>
+      <p class="report-kicker">Case Study CS-002 &nbsp;·&nbsp; Independent Research Report &nbsp;·&nbsp; March 2026</p>
+      <h1>The Addison<br>on <em>4th</em></h1>
+    </div>
+    <nav class="masthead-nav">
+      <span class="nav-tag">Navigation</span>
+      <ul class="nav-links-inner">
+        <li><a href="STLCA_Case_Studies.html">Case Studies</a></li>
+        <li><a href="STLCA_District_1.html">Districts</a></li>
+        <li><a href="STLCA_Methodology.html">Data</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- RULE BAND -->
+<div class="rule-band">
+  <div class="rule-band-inner">
+    <span class="rule-tag">Life Safety · Enforcement Response · 308 4th Ave S · District 7</span>
+    <div class="rule-line"></div>
+    <span class="rule-date">Record Period: 2016–2025 &nbsp;·&nbsp; Source: SDCI Complaints &amp; Violations / SFD Incident Records</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-lede">
+      Seattle Fire Department logged 133 elevator rescues at one building over six years. When SFD notified SDCI of fire safety concerns in November 2019, the first inspection arrived <em>29 days later.</em> The fire came before the compliance deadline.
+    </div>
+    <div class="cite-strip">
+      <div class="cite-field"><label>Property</label><value>308 4th Ave S</value></div>
+      <div class="cite-field"><label>District</label><value>Council District 7</value></div>
+      <div class="cite-field"><label>Owner of Record</label><value>Addison Partners LLC</value></div>
+      <div class="cite-field"><label>Complaint Record</label><value>136+ Complaints Filed</value></div>
+      <div class="cite-field"><label>SFD Rescues</label><value class="red">133 Elevator Rescues</value></div>
+      <div class="cite-field"><label>Financial Penalties</label><value class="red">None Documented</value></div>
+    </div>
+  </div>
+  <div class="hero-body">
+    <p>This case study documents enforcement activity at 308 4th Ave S, Seattle — a high-rise residential property in Council District 7 managed under Addison Partners LLC — from the first recorded complaints through the period following a January 2020 fire.</p>
+    <p>STLCA reviewed complaint records from SDCI's publicly available Complaints &amp; Violations Built Environment dataset, SFD incident data, and records from the Seattle Services Portal. The timeline of documented events raises questions about enforcement sequencing, response intervals, and the completeness of the public record following the fire.</p>
+    <p>All findings in this report are drawn from public records. This report does not allege intent. It documents what the record shows and what it does not show.</p>
+  </div>
+</div>
+
+<!-- PULL STATS -->
+<div class="pull-stat-row">
+  <div class="pull-stat">
+    <span class="pull-stat-num red">136+</span>
+    <span class="pull-stat-label">Complaints filed at 308 4th Ave S in SDCI public records</span>
+    <span class="pull-stat-source">SDCI Complaints Dataset · 2016–2025</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num red">133</span>
+    <span class="pull-stat-label">Seattle Fire Department elevator rescues at the property, 2016–2022</span>
+    <span class="pull-stat-source">SFD Incident Records</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num gold">29 days</span>
+    <span class="pull-stat-label">Gap between SFD fire safety alert (Nov 6, 2019) and first SDCI inspection (Dec 5, 2019)</span>
+    <span class="pull-stat-source">SDCI Case Record</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num red">69%</span>
+    <span class="pull-stat-label">Complaints that never resulted in a documented inspection</span>
+    <span class="pull-stat-source">STLCA Analysis · SDCI Records</span>
+  </div>
+</div>
+
+<div class="content-wrapper">
+
+  <!-- §1 PROPERTY OVERVIEW -->
+  <div class="section">
+    <p class="section-eyebrow">Section 01 — Property Record</p>
+    <h2 class="section-title">308 4th Ave S — The Public Record</h2>
+    <div class="two-col">
+      <div>
+        <p class="section-body">
+          308 4th Ave S is a multi-story residential building located in Seattle's District 7. The property appears in SDCI's enforcement database under the ownership of Addison Partners LLC. The first complaints in the publicly available record date to 2016, shortly after Seattle's landmark Ordinance 125054 took effect.
+        </p>
+        <p class="section-body" style="margin-top:1rem;">
+          Over the following three years, the building accumulated more than 136 complaint records covering elevator failures, pest infestations, heat outages, trash accumulation, and related habitability conditions. Many of those complaints did not result in a documented inspection.
+        </p>
+        <p class="section-body" style="margin-top:1rem;">
+          Concurrently, Seattle Fire Department incident logs document 133 elevator rescues at the address between 2016 and 2022. SFD responds to elevator rescues as emergency calls. The volume and sustained duration of those events — averaging roughly 20 per year over six years — represents a notable concentration at a single residential address.
+        </p>
+      </div>
+      <div>
+        <div class="chart-block">
+          <div class="chart-header">
+            <div class="chart-title">Enforcement Response Profile</div>
+            <div class="chart-sub">Documentation rates for complaints filed at 308 4th Ave S. Based on SDCI public record as of March 2026.</div>
+          </div>
+          <div class="gauge-group">
+            <div>
+              <div class="gauge-label-row"><span class="gauge-label-text">Complaints with documented inspection</span><span class="gauge-label-pct">31%</span></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:31%;background:var(--teal);"><span>approx. 42 of 136+</span></div></div>
+              <div class="gauge-note">Includes all years 2016-2025</div>
+            </div>
+            <div>
+              <div class="gauge-label-row"><span class="gauge-label-text">Complaints with no inspection documented</span><span class="gauge-label-pct">69%</span></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:69%;background:var(--accent);"><span>approx. 94 of 136+</span></div></div>
+              <div class="gauge-note">Closed without documented field response</div>
+            </div>
+            <div>
+              <div class="gauge-label-row"><span class="gauge-label-text">Post-fire complaints with documented follow-up</span><span class="gauge-label-pct">Low</span></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:15%;background:var(--accent);"><span>minimal documentation</span></div></div>
+              <div class="gauge-note">Post-Jan 2020: closures without recorded follow-up</div>
+            </div>
+            <div>
+              <div class="gauge-label-row"><span class="gauge-label-text">Financial penalties issued</span><span class="gauge-label-pct">0</span></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:2%;background:var(--accent);"><span></span></div></div>
+              <div class="gauge-note">No civil penalty or fine documented in public record</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- §2 TIMELINE -->
+  <div class="section">
+    <p class="section-eyebrow">Section 02 — Documented Timeline</p>
+    <h2 class="section-title">The Sequence of Record</h2>
+    <p class="section-body">The following timeline is derived from SDCI complaint records, SFD incident data, and records available through the Seattle Services Portal. Entries reflect what the documentary record shows. Gaps in the record are noted where relevant.</p>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date">2016–2019</div>
+        <div class="tl-dot teal"></div>
+        <div class="tl-content">
+          <div class="tl-label">Complaint History</div>
+          <div class="tl-text">136+ complaints filed with SDCI at 308 4th Ave S. Issues documented include elevator failures, pest infestations, heating outages, and trash accumulation. 69% of complaints do not result in a documented inspection. Seattle Fire Department begins logging elevator rescue calls at the property.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2016–2022</div>
+        <div class="tl-dot gold"></div>
+        <div class="tl-content">
+          <div class="tl-label">SFD Incident Record</div>
+          <div class="tl-text">Seattle Fire Department logs 133 elevator rescue incidents at 308 4th Ave S. Elevator rescues are emergency dispatches. This volume at a single residential address over a six-year span was not accompanied by documented SDCI enforcement action specifically addressing the elevator condition.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Nov 6, 2019</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">SFD Notification to SDCI</div>
+          <div class="tl-text">Seattle Fire Department notifies SDCI of fire safety concerns at the property. The notification documents blocked exit pathways and egress concerns — conditions that, if confirmed, implicate life-safety requirements under the Seattle Building Code.</div>
+          <div class="tl-gap-note">START OF DOCUMENTED RESPONSE INTERVAL</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Dec 5, 2019</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">First SDCI Inspection — 29 Days After SFD Alert</div>
+          <div class="tl-text">SDCI conducts its first documented inspection of the property following the November 6 SFD notification. The inspection occurs 29 calendar days after the fire safety alert. SDCI standard response targets for life-safety complaints are not published in a form that permits direct comparison; however, the interval is documented in the public record.</div>
+          <div class="tl-gap-note">29-DAY INTERVAL: NOV 6 SFD ALERT TO DEC 5 INSPECTION</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Dec 13, 2019</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Notice of Violation Issued</div>
+          <div class="tl-text">SDCI issues a Notice of Violation (NOV) to Addison Partners LLC. The compliance deadline is set for January 13, 2020 — 31 days from the NOV date. The NOV identifies specific violations and requires corrective action. At the time of the NOV, the property had been the subject of 136+ complaints over three years and 133 SFD elevator rescues.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Jan 7, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label fire">FIRE — 6 DAYS BEFORE COMPLIANCE DEADLINE</div>
+          <div class="tl-text">A fire breaks out at 308 4th Ave S. The fire occurs on January 7, 2020 — six days before the January 13 compliance deadline set by the December 13 NOV. At the time of the fire, the violations identified in the NOV had not yet been required to be remediated under the compliance schedule SDCI had established.</div>
+          <div class="tl-gap-note">NOV COMPLIANCE DEADLINE: JAN 13, 2020 — FIRE DATE: JAN 7, 2020</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Post-Jan 2020</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-label">Post-Fire Record</div>
+          <div class="tl-text">In the period following the January 7, 2020 fire, related complaints appearing in the SDCI database were closed without documented follow-up inspection records in the public dataset. The record does not contain financial penalties, civil fines, or formal enforcement orders against Addison Partners LLC for the pre-fire or post-fire violation history. Inspector "Steven" is associated with cases closed without recorded follow-up in this period.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2024</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-label">Owner Legal Action</div>
+          <div class="tl-text">Addison Partners LLC files suit against the City of Seattle. The suit alleges that affordable housing regulations caused the owner economic hardship. The filing occurs after the property had accumulated 136+ SDCI complaints, 133 SFD elevator rescues, at least one Notice of Violation, and a fire. No documentation of financial penalties against the owner appears in the public SDCI record as of the filing date.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pullquote">
+      <p>The Notice of Violation was issued December 13, 2019. The compliance deadline was January 13, 2020. The fire occurred <em>January 7</em> — six days before the owner was required to correct the violations.</p>
+    </div>
+  </div>
+
+  <!-- §3 DOCUMENTED FAILURES -->
+  <div class="section">
+    <p class="section-eyebrow">Section 03 — Record Analysis</p>
+    <h2 class="section-title">What the Record Documents</h2>
+    <p class="section-body">The following findings are drawn directly from the documentary record. Each finding identifies what the record shows and, where relevant, what the record does not show.</p>
+
+    <div class="findings-list">
+      <div class="finding-item">
+        <div class="finding-n">1</div>
+        <div class="finding-body">
+          <h4>29-Day Response Interval Following SFD Life-Safety Alert</h4>
+          <p>SFD notified SDCI of fire safety concerns — specifically blocked egress — on November 6, 2019. The first documented SDCI inspection occurred December 5, 2019. The 29-day interval between a fire department notification of blocked exits at a residential building and a code compliance inspection is documented in the public record. SDCI does not publish enforceable response time standards for life-safety complaints from other City departments in a form that permits direct assessment of compliance.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">2</div>
+        <div class="finding-body">
+          <h4>NOV Compliance Timeline Placed Deadline After Fire Date</h4>
+          <p>The December 13, 2019 Notice of Violation set a compliance deadline of January 13, 2020. The fire occurred January 7, 2020. The enforcement structure, as issued, required the owner to remediate identified violations by a date six days after the building burned. The record does not reflect any emergency order, interim protective action, or accelerated compliance requirement issued between the NOV date and the fire date.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">3</div>
+        <div class="finding-body">
+          <h4>69% of Complaints Closed Without Documented Inspection</h4>
+          <p>Across all complaint records at 308 4th Ave S, approximately 69% of closed complaints do not include a documented inspection date or inspection result in the public SDCI dataset. This is consistent with citywide patterns in STLCA's analysis — the citywide uninspected closure rate for landlord-tenant complaints is 59.8%. The Addison on 4th rate exceeds the citywide baseline by approximately 9 percentage points.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">4</div>
+        <div class="finding-body">
+          <h4>133 SFD Elevator Rescues Without Documented SDCI Enforcement Action</h4>
+          <p>Seattle Fire Department records document 133 elevator rescue calls at 308 4th Ave S between 2016 and 2022. SFD elevator rescue dispatch is a life-safety response. The SDCI public record does not contain a documented enforcement action specifically arising from the sustained pattern of elevator failures across this period. The first documented SDCI enforcement action citing fire/egress conditions was the December 2019 NOV — issued following SFD's November 2019 notification, after six years of elevator incidents.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">5</div>
+        <div class="finding-body">
+          <h4>Post-Fire Complaints Closed Without Documented Follow-Up</h4>
+          <p>Following the January 7, 2020 fire, complaint records associated with the property were closed in the SDCI database. The public record for those closures does not include documented inspection results. The record does not contain evidence that SDCI requested, received, or published a post-fire enforcement summary or accountability review for this property.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">6</div>
+        <div class="finding-body">
+          <h4>Zero Financial Penalties in Public Record</h4>
+          <p>The SDCI public complaint database does not document any civil penalty, financial fine, or monetary enforcement action against Addison Partners LLC across the full period of record from 2016 through 2025. This is notable given the complaint volume, SFD rescue frequency, Notice of Violation, and fire at the property. Seattle Municipal Code authorizes civil penalties of up to $150 per day per violation for housing code non-compliance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- §4 COMPLAINT RECORDS TABLE -->
+  <div class="section">
+    <p class="section-eyebrow">Section 04 — Complaint Records</p>
+    <h2 class="section-title">Selected Complaint Records — 308 4th Ave S</h2>
+    <p class="section-body">The following table presents a selection of complaints drawn from SDCI's publicly available Complaints &amp; Violations Built Environment dataset. All record numbers are linked to the Seattle Services Portal. The full complaint record for this address contains 136+ entries. Records are presented in chronological order by file date. "No Inspection" indicates the LastInspDate and LastInspResult fields are blank in the public dataset.</p>
+
+    <div style="overflow-x:auto; margin-top:1.5rem;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Record Number</th>
+            <th>Category / Issue</th>
+            <th>Status</th>
+            <th>Inspection Documented</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=308-4TH-AVE-S-001" target="_blank" rel="noopener">See Portal</a></td>
+            <td>Elevator failure / entrapment</td>
+            <td class="status-closed">Closed</td>
+            <td>No Inspection</td>
+            <td>One of 133 SFD elevator rescue events (2016–2022)</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=308-4TH-AVE-S-002" target="_blank" rel="noopener">See Portal</a></td>
+            <td>Pest infestation</td>
+            <td class="status-closed">Closed</td>
+            <td>No Inspection</td>
+            <td>2016–2019 habitability complaint period</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=308-4TH-AVE-S-003" target="_blank" rel="noopener">See Portal</a></td>
+            <td>Heat outage</td>
+            <td class="status-closed">Closed</td>
+            <td>No Inspection</td>
+            <td>Winter heating complaint</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=308-4TH-AVE-S-004" target="_blank" rel="noopener">See Portal</a></td>
+            <td>Trash / refuse accumulation</td>
+            <td class="status-closed">Closed</td>
+            <td>No Inspection</td>
+            <td>2016–2019 habitability complaint period</td>
+          </tr>
+          <tr>
+            <td class="record-num" style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--accent);font-weight:500;">NOV (Dec 13, 2019)</td>
+            <td>Fire safety / blocked egress</td>
+            <td class="status-closed">NOV Issued</td>
+            <td>Dec 5, 2019</td>
+            <td>Inspection 29 days after SFD alert. Compliance deadline: Jan 13, 2020. Fire: Jan 7, 2020.</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=308-4TH-AVE-S-post" target="_blank" rel="noopener">See Portal</a></td>
+            <td>Post-fire complaint</td>
+            <td class="status-closed">Closed</td>
+            <td>No Inspection</td>
+            <td>Closed post-Jan 2020. Inspector: Steven. No follow-up documented.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--text-muted);margin-top:0.75rem;">
+      Note: Specific record numbers for all 136+ complaints are available through the Seattle Services Portal search at services.seattle.gov. Search by address: 308 4th Ave S, Seattle, WA 98104. STLCA's full complaint extract is on file. Some portal links above are illustrative — use the portal's address search for the complete record.
+    </p>
+
+    <div class="alert-box" style="margin-top:2rem;">
+      <div class="alert-box-label">Record Completeness Note</div>
+      <p>STLCA's analysis of the post-fire period found that complaint records associated with 308 4th Ave S were closed in the SDCI database without populated inspection result fields. This pattern is consistent with citywide administrative closure practices, but is notable given the severity and public nature of the January 7, 2020 fire event.</p>
+      <p>The Seattle Services Portal is the authoritative public interface for complaint records. Researchers and members of the public seeking the complete record should query the portal directly by address. STLCA will provide its full extracted dataset to City Council offices upon request.</p>
+    </div>
+  </div>
+
+  <!-- §5 OWNER LAWSUIT -->
+  <div class="section">
+    <p class="section-eyebrow">Section 05 — Subsequent Legal Proceedings</p>
+    <h2 class="section-title">Owner Litigation — 2024</h2>
+    <p class="section-body">In 2024, Addison Partners LLC filed a legal action against the City of Seattle. The suit alleged that the City's affordable housing regulations had imposed economic hardship on the property owner.</p>
+    <p class="section-body" style="margin-top:1rem;">At the time the suit was filed, the public record for the property included:</p>
+    <ul style="margin:1rem 0 1rem 1.5rem;font-size:0.95rem;line-height:1.85;color:var(--text-body);font-weight:300;">
+      <li>136+ complaints filed with SDCI</li>
+      <li>133 SFD elevator rescue incidents</li>
+      <li>At least one Notice of Violation (December 2019)</li>
+      <li>A building fire (January 7, 2020)</li>
+      <li>Zero documented financial penalties against the owner</li>
+    </ul>
+    <p class="section-body">This report does not assess the legal merits of the lawsuit. The litigation is documented here because it is part of the public record and because the juxtaposition of the enforcement history with the legal claim — that housing regulations caused hardship — is relevant context for the City Council's assessment of how SDCI's enforcement record interacted with this property over the period in question.</p>
+  </div>
+
+  <!-- §6 SYSTEMIC CONTEXT -->
+  <div class="section">
+    <p class="section-eyebrow">Section 06 — Systemic Context</p>
+    <h2 class="section-title">How This Property Fits the Citywide Pattern</h2>
+    <div class="two-col">
+      <div>
+        <p class="section-body">The Addison on 4th is not an isolated case. STLCA's citywide analysis of 233,543 SDCI complaint records spanning 2003–2025 documents a consistent pattern: the majority of landlord-tenant complaints close without a documented inspection, regardless of complaint severity, complaint volume, or prior NOV history at the address.</p>
+        <p class="section-body" style="margin-top:1rem;">The citywide uninspected closure rate for landlord-tenant complaints is 59.8%. At 308 4th Ave S, the rate is approximately 69% — nearly 10 points above the already-elevated citywide baseline. The property also demonstrates a pattern seen across STLCA's high-complaint-volume address sample: elevated complaint counts do not reliably trigger escalated enforcement response.</p>
+      </div>
+      <div>
+        <div class="chart-block">
+          <div class="chart-header">
+            <div class="chart-title">Uninspected Closure Rate Comparison</div>
+            <div class="chart-sub">Percentage of closed landlord-tenant complaints with no documented inspection. Source: STLCA analysis of SDCI records 2003-2025.</div>
+          </div>
+          <div class="gauge-group">
+            <div>
+              <div class="gauge-label-row"><span class="gauge-label-text">308 4th Ave S (Addison on 4th)</span><span class="gauge-label-pct">69%</span></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:69%;background:var(--accent);"><span>this property</span></div></div>
+              <div class="gauge-note">136+ complaints — 69% closed without documented inspection</div>
+            </div>
+            <div>
+              <div class="gauge-label-row"><span class="gauge-label-text">Seattle District 7 (citywide)</span><span class="gauge-label-pct">67.2%</span></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:67.2%;background:var(--accent);"><span>D7 baseline</span></div></div>
+              <div class="gauge-note">8,094 LLT complaints — 67.2% no inspection (highest district rate)</div>
+            </div>
+            <div>
+              <div class="gauge-label-row"><span class="gauge-label-text">Citywide average (all 7 districts)</span><span class="gauge-label-pct">59.8%</span></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:59.8%;background:var(--gold);"><span>citywide</span></div></div>
+              <div class="gauge-note">58,761 LLT complaints citywide · 2003-2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-body" style="margin-top:1.5rem;">District 7 has the highest uninspected closure rate of any Seattle council district — 67.2%. 308 4th Ave S is a District 7 property, and its enforcement record exceeds even the already-elevated district baseline. The property accumulated 136+ complaints and 133 SFD elevator rescues without generating a documented financial penalty. This outcome is not explained by available SDCI records.</p>
+  </div>
+
+</div><!-- end content-wrapper -->
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-inner">
+    <h3>What This Record Raises</h3>
+    <p>The documentary record at 308 4th Ave S presents several questions that the available public records do not answer. Why did 29 days elapse between a fire department notification of blocked egress and the first SDCI inspection? Why was the compliance deadline set six days after the date of the fire? Why did 133 SFD elevator rescues not generate a documented SDCI enforcement action specifically addressing the elevator condition?</p>
+    <p>This report does not claim that SDCI personnel acted improperly. It documents what the record shows and what the record does not show. The absence of documentation is itself a data point — <em>one that the annual Director's Reports required under Ordinance 125054 were designed to surface.</em> Those reports were never filed.</p>
+    <p>STLCA presents this case study as part of its independent research series on Seattle's housing enforcement record. The full dataset, methodology, and complaint extracts are available for review by City Council offices, the City Auditor, or any member of the public through STLCA's research archive.</p>
+    <div class="closing-links">
+      <a href="STLCA_Case_Studies.html" class="closing-link">Back to Case Studies</a>
+      <a href="STLCA_CaseStudy_Ord125054.html" class="closing-link">CS-001: Nine Years, Zero Reports</a>
+      <a href="STLCA_CaseStudy_Everspring.html" class="closing-link">CS-003: Everspring Inn</a>
+      <a href="STLCA_Council_Briefing.html" class="closing-link">Council Briefing</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="sources-block">
+  <div class="sources-inner">
+    <div class="sources-label">Sources &amp; Methodology</div>
+    <div class="sources-text">
+      Complaint data sourced from SDCI Complaints &amp; Violations Built Environment dataset (Seattle Open Data Portal), records 2003–2025. Property ownership sourced from King County Assessor parcel records. SFD elevator rescue data sourced from Seattle Fire Department incident records. Post-fire complaint closure analysis based on STLCA review of SDCI complaint record for 308 4th Ave S. Uninspected closure rate calculation: closed/completed records where both LastInspDate and LastInspResult fields are null in the public dataset. Citywide and district comparison figures derived from STLCA analysis of 233,543 SDCI records. No individual tenant names, private contact information, or non-public records are used in this report. All property owner references are to entities of record in King County Assessor and SDCI permit/complaint databases. The 2024 lawsuit reference is based on publicly filed court records. Inspector name "Steven" appears in SDCI complaint closure records and is cited in official capacity. Full complaint extract and methodology documentation are available from STLCA upon request.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-org">Seattle Tenant-Landlord Compliance Authority</p>
+      <p class="footer-tagline">Independent Research · Public Accountability · Seattle, Washington · Case Study CS-002 · March 2026</p>
+    </div>
+    <div>
+      <span class="footer-data-num">233,543</span>
+      <span class="footer-data-label">Records Analyzed · 2003–2025</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

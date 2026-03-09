@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study: Everspring Inn — STLCA</title>
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="CS-003: Everspring Inn — STLCA Case Study">
+  <meta property="og:description" content="8201 Aurora Ave N: 13 complaints in one day, all closed within 14 days, zero inspections documented. Mass displacement during active COVID-19 eviction moratorium. Closures signed: Admin Closure / Voluntary Compliance.">
+  <meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+  <meta property="og:url" content="https://www.seattletlca.com/STLCA_CaseStudy_Everspring.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:          #0d1117;
+      --ink-mid:      #1c2433;
+      --paper:        #f5f2ec;
+      --paper-warm:   #ede9e1;
+      --rule:         #c8bfaa;
+      --accent:       #c0392b;
+      --accent-muted: #922b21;
+      --teal:         #1a6b6b;
+      --gold:         #b5872a;
+      --text-body:    #2c3340;
+      --text-muted:   #5a6372;
+      --col-gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background-color: var(--paper);
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background-color: var(--ink);
+      color: var(--paper);
+      border-bottom: 3px solid var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%; height: 100%;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+      pointer-events: none;
+    }
+    .masthead-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.5rem, 5vw, 3rem);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 1rem;
+    }
+    .site-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .report-kicker {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.4);
+      margin-bottom: 0.75rem;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+    }
+    .masthead h1 em { font-style: italic; color: var(--accent); }
+    .masthead-nav { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
+    .nav-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,242,236,0.4); }
+    .nav-links-inner { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links-inner a { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,236,0.6); text-decoration: none; transition: color 0.2s; }
+    .nav-links-inner a:hover { color: var(--paper); }
+
+    /* ── RULE BAND ── */
+    .rule-band { background: var(--ink-mid); padding: 0.6rem clamp(1.5rem, 5vw, 3rem); }
+    .rule-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 2rem; }
+    .rule-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+    .rule-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+    .rule-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: rgba(245,242,236,0.3); white-space: nowrap; }
+
+    /* ── HERO ── */
+    .hero { max-width: 1100px; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); align-items: start; border-bottom: 1px solid var(--rule); }
+    .hero-lede { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 2.8vw, 2.1rem); font-weight: 700; line-height: 1.35; color: var(--ink); letter-spacing: -0.01em; }
+    .hero-lede em { font-style: italic; color: var(--accent); }
+    .hero-body { font-size: 1rem; line-height: 1.85; color: var(--text-body); font-weight: 300; }
+    .hero-body p + p { margin-top: 1rem; }
+
+    .cite-strip { background: var(--ink-mid); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+    .cite-field label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,242,236,0.35); display: block; margin-bottom: 0.2rem; }
+    .cite-field value { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--gold); display: block; }
+    .cite-field value.red { color: var(--accent); }
+
+    /* ── PULL STATS ── */
+    .pull-stat-row { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--rule); }
+    .pull-stat { padding: 2rem 0; padding-right: 2rem; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 0.35rem; }
+    .pull-stat:last-child { border-right: none; padding-right: 0; padding-left: 2rem; }
+    .pull-stat:nth-child(n+2) { padding-left: 2rem; }
+    .pull-stat:first-child { padding-left: 0; }
+    .pull-stat-num { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--ink); line-height: 1; }
+    .pull-stat-num.red  { color: var(--accent); }
+    .pull-stat-num.teal { color: var(--teal); }
+    .pull-stat-num.gold { color: var(--gold); }
+    .pull-stat-label { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.8rem; line-height: 1.4; color: var(--text-body); }
+    .pull-stat-source { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 0.1rem; }
+
+    /* ── CONTENT ── */
+    .content-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
+    .section { padding: clamp(2.5rem, 5vw, 4rem) 0; border-bottom: 1px solid var(--rule); }
+    .section:last-child { border-bottom: none; }
+    .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem; }
+    .section-body { font-size: 1rem; line-height: 1.85; color: var(--text-body); font-weight: 300; max-width: 680px; }
+    .section-body + .section-body { margin-top: 1rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); align-items: start; margin-top: 1.5rem; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; margin: 2.5rem 0; }
+    .timeline::before { content: ''; position: absolute; left: 110px; top: 0; bottom: 0; width: 2px; background: var(--rule); }
+    .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 1.5rem; align-items: start; padding: 0 0 2rem 0; position: relative; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--text-muted); text-align: right; padding-top: 0.2rem; line-height: 1.5; }
+    .tl-dot { position: absolute; left: 104px; top: 0.35rem; width: 14px; height: 14px; border-radius: 50%; background: var(--paper-warm); border: 2px solid var(--rule); z-index: 1; }
+    .tl-dot.red { background: var(--accent); border-color: var(--accent); }
+    .tl-dot.gold { background: var(--gold); border-color: var(--gold); }
+    .tl-dot.teal { background: var(--teal); border-color: var(--teal); }
+    .tl-content { padding-left: 2rem; }
+    .tl-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .tl-label.alert { color: var(--accent); }
+    .tl-text { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); font-weight: 300; }
+    .tl-gap-note { background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.25); border-left: 3px solid var(--accent); padding: 0.6rem 1rem; margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--accent); }
+    .tl-note-teal { background: rgba(26,107,107,0.07); border: 1px solid rgba(26,107,107,0.2); border-left: 3px solid var(--teal); padding: 0.6rem 1rem; margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--teal); }
+
+    /* ── DATA TABLE ── */
+    .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+    .data-table thead th { background: var(--ink-mid); color: rgba(245,242,236,0.7); font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1rem; text-align: left; font-weight: 400; }
+    .data-table tbody tr { border-bottom: 1px solid var(--rule); }
+    .data-table tbody tr:hover { background: var(--paper-warm); }
+    .data-table td { padding: 0.75rem 1rem; vertical-align: top; line-height: 1.5; color: var(--text-body); font-weight: 300; }
+    .data-table td.record-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent); font-weight: 500; white-space: nowrap; }
+    .data-table td.record-num a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(192,57,43,0.3); }
+    .data-table td.record-num a:hover { border-bottom-color: var(--accent); }
+    .data-table td.inspector { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--text-body); }
+    .data-table td.closure { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-muted); }
+    .data-table td.closure.flagged { color: var(--accent); }
+    .data-table tr.highlight-row { background: rgba(192,57,43,0.04); }
+
+    /* ── MORATORIUM BOX ── */
+    .moratorium-box { background: var(--ink-mid); border-left: 4px solid var(--gold); padding: 1.75rem 2rem; margin: 2rem 0; }
+    .moratorium-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .moratorium-box p { font-size: 0.95rem; line-height: 1.75; color: rgba(245,242,236,0.8); font-weight: 300; }
+    .moratorium-box p + p { margin-top: 0.75rem; }
+
+    /* ── FINDINGS ── */
+    .findings-list { margin-top: 1.5rem; }
+    .finding-item { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.25rem; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
+    .finding-item:last-child { border-bottom: none; }
+    .finding-n { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--accent); opacity: 0.3; line-height: 1; }
+    .finding-body h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .finding-body p { font-size: 0.95rem; line-height: 1.75; color: var(--text-body); font-weight: 300; }
+    .finding-body p + p { margin-top: 0.5rem; }
+
+    /* ── PULLQUOTE ── */
+    .pullquote { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 1.75rem 0; margin: 2.5rem 0; }
+    .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.5vw, 1.75rem); font-weight: 700; font-style: italic; color: var(--ink); line-height: 1.35; }
+    .pullquote p em { color: var(--accent); font-style: normal; }
+
+    /* ── CHART / GAUGE ── */
+    .chart-block { background: var(--paper-warm); border: 1px solid var(--rule); padding: 1.75rem; margin: 2rem 0; }
+    .chart-header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+    .chart-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
+    .chart-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── CLOSING ── */
+    .closing { background: var(--ink); color: var(--paper); padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem); margin: 3rem 0 0; }
+    .closing-inner { max-width: 1100px; margin: 0 auto; }
+    .closing h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; color: var(--paper); margin-bottom: 1.5rem; }
+    .closing p { font-size: 1rem; line-height: 1.85; color: rgba(245,242,236,0.75); font-weight: 300; max-width: 760px; }
+    .closing p + p { margin-top: 1rem; }
+    .closing strong { color: var(--paper); font-weight: 500; }
+    .closing em { color: var(--gold); font-style: italic; }
+    .closing-links { display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+    .closing-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(245,242,236,0.5); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .closing-link:hover { color: var(--paper); border-color: rgba(255,255,255,0.5); }
+
+    /* ── SOURCES ── */
+    .sources-block { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 2rem clamp(1.5rem, 5vw, 3rem); }
+    .sources-inner { max-width: 1100px; margin: 0 auto; }
+    .sources-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .sources-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; line-height: 1.9; color: var(--text-muted); max-width: 900px; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem clamp(1.5rem, 5vw, 3rem); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-org { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.5); }
+    .footer-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(245,242,236,0.25); margin-top: 0.2rem; }
+    .footer-data-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: rgba(245,242,236,0.2); display: block; text-align: right; }
+    .footer-data-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: rgba(245,242,236,0.2); display: block; text-align: right; letter-spacing: 0.08em; }
+
+    /* ── COUNT BADGE ── */
+    .count-badge { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--accent); color: #fff; padding: 0.2rem 0.6rem; border-radius: 2px; margin-left: 0.5rem; vertical-align: middle; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+    .masthead h1 { animation: slideIn 0.6s ease both; }
+    .site-label  { animation: slideIn 0.4s ease both; }
+    .hero-lede   { animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-body   { animation: fadeUp 0.6s 0.35s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .masthead-inner { grid-template-columns: 1fr; }
+      .masthead-nav { align-items: flex-start; }
+      .pull-stat-row { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .timeline::before { left: 80px; }
+      .tl-item { grid-template-columns: 70px 1fr; }
+      .tl-dot { left: 74px; }
+    }
+    @media (max-width: 480px) {
+      .pull-stat-row { grid-template-columns: 1fr; }
+      .timeline::before { display: none; }
+      .tl-item { grid-template-columns: 1fr; }
+      .tl-dot { display: none; }
+      .tl-date { text-align: left; }
+      .tl-content { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav style="position:sticky;top:0;z-index:200;background:rgba(7,11,18,.97);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;font-family:system-ui,sans-serif">
+  <div style="font-size:13px;font-weight:700;color:#2d7ff9;letter-spacing:.5px">STLCA Seattle Tenant Landlord Compliance Authority</div>
+  <div style="display:flex;gap:18px">
+    <a href="https://www.seattletlca.com" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Home</a>
+    <a href="STLCA_Citywide_KPI.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Case Studies</a>
+    <a href="STLCA_District_1.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Districts</a>
+    <a href="STLCA_Methodology.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" style="font-size:12px;color:#000;background:#f59e0b;text-decoration:none;padding:6px 14px;border-radius:999px;font-weight:700">Council Briefing</a>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p class="site-label">Seattle Tenant-Landlord Compliance Authority</p>
+      <p class="report-kicker">Case Study CS-003 &nbsp;·&nbsp; Independent Research Report &nbsp;·&nbsp; March 2026</p>
+      <h1>Everspring<br><em>Inn</em></h1>
+    </div>
+    <nav class="masthead-nav">
+      <span class="nav-tag">Navigation</span>
+      <ul class="nav-links-inner">
+        <li><a href="STLCA_Case_Studies.html">Case Studies</a></li>
+        <li><a href="STLCA_District_1.html">Districts</a></li>
+        <li><a href="STLCA_Methodology.html">Data</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- RULE BAND -->
+<div class="rule-band">
+  <div class="rule-band-inner">
+    <span class="rule-tag">Eviction Enforcement · COVID-19 Moratorium Period · 8201 Aurora Ave N · District 6</span>
+    <div class="rule-line"></div>
+    <span class="rule-date">Record Period: August 2020 &nbsp;·&nbsp; Source: SDCI Complaints &amp; Violations / Seattle Services Portal</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-lede">
+      On August 18, 2020 — with the Washington State COVID-19 eviction moratorium in effect — 13 complaints were filed in a single day at a residential motel in District 6. <em>All 13 were closed within 14 days. Zero inspections are documented.</em>
+    </div>
+    <div class="cite-strip">
+      <div class="cite-field"><label>Property</label><value>8201 Aurora Ave N</value></div>
+      <div class="cite-field"><label>District</label><value>Council District 6</value></div>
+      <div class="cite-field"><label>Owner of Record</label><value>Myung Ha Kang (Ryan Kang)</value></div>
+      <div class="cite-field"><label>Date of Events</label><value>August 2020</value></div>
+      <div class="cite-field"><label>Complaints Filed</label><value class="red">13 in One Day</value></div>
+      <div class="cite-field"><label>Inspections Documented</label><value class="red">0 of 13</value></div>
+    </div>
+  </div>
+  <div class="hero-body">
+    <p>This case study documents SDCI enforcement activity at 8201 Aurora Ave N during August 2020 — a period when Washington State's COVID-19 emergency eviction moratorium was in effect. The moratorium prohibited landlords from evicting tenants in most circumstances.</p>
+    <p>STLCA reviewed 13 complaint records filed on August 18, 2020 and subsequently available through the Seattle Services Portal and SDCI's public complaints dataset. The records document a range of conditions: hot water shutoff, armed security personnel, boarded windows, locked-out tenants, and allegations of mass displacement. All 13 complaints were closed within 14 days. The public record does not contain documentation of a field inspection for any of the 13 complaints.</p>
+    <p>All findings in this report are drawn from public records. All complaint descriptions cited reflect the language of the original complaint records. This report does not allege intent. It documents what the record shows and what it does not show.</p>
+  </div>
+</div>
+
+<!-- PULL STATS -->
+<div class="pull-stat-row">
+  <div class="pull-stat">
+    <span class="pull-stat-num red">13</span>
+    <span class="pull-stat-label">Complaints filed in a single day — August 18, 2020</span>
+    <span class="pull-stat-source">SDCI Complaints Dataset · Seattle Services Portal</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num red">0</span>
+    <span class="pull-stat-label">Inspections documented across all 13 complaints</span>
+    <span class="pull-stat-source">STLCA Analysis · SDCI LastInspDate field</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num gold">14 days</span>
+    <span class="pull-stat-label">Maximum interval from filing to closure — all 13 cases closed</span>
+    <span class="pull-stat-source">Aug 18 filing date — Sep 1 final closure date</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num teal">Active</span>
+    <span class="pull-stat-label">Washington State COVID-19 eviction moratorium status at time of events</span>
+    <span class="pull-stat-source">WA State Proclamation 20-19 series · effective March 2020</span>
+  </div>
+</div>
+
+<div class="content-wrapper">
+
+  <!-- §1 LEGAL CONTEXT -->
+  <div class="section">
+    <p class="section-eyebrow">Section 01 — Legal and Regulatory Context</p>
+    <h2 class="section-title">The COVID-19 Eviction Moratorium</h2>
+
+    <div class="moratorium-box">
+      <div class="moratorium-box-label">Applicable Law — August 2020</div>
+      <p>Washington State Governor Jay Inslee issued Proclamation 20-19 on March 18, 2020, prohibiting residential evictions statewide as part of the COVID-19 emergency response. The moratorium was extended and amended through subsequent proclamations. As of August 2020, the moratorium remained in effect and prohibited landlords from issuing eviction notices, initiating eviction proceedings, or taking actions that would effectively displace residential tenants in most circumstances.</p>
+      <p>The City of Seattle had also enacted additional local protections. Seattle Municipal Code tenant-landlord provisions prohibited self-help eviction — defined as any action by a landlord to remove a tenant without a court order, including lockouts, utility shutoffs, and removal of tenant belongings. The SMC does not require a formal eviction notice to have occurred; a tenant displaced through any of these means retains the right to lodge a complaint with SDCI.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p class="section-body">8201 Aurora Ave N was operating as a residential motel — a property type in which tenants residing 30 or more days acquire legal tenancy rights under Washington State law, regardless of how the accommodation is marketed. Multiple tenants at the Everspring Inn had established legal tenancy.</p>
+        <p class="section-body" style="margin-top:1rem;">The property had a complaint history at SDCI dating to at least 2013 — seven years before the August 2020 events. The owner of record, Myung Ha Kang (also known as Ryan Kang), had operated the property through the period of that prior complaint history without documented enforcement action escalating to formal sanctions.</p>
+      </div>
+      <div>
+        <p class="section-body">Complaint records from August 2020 describe tenants who had resided at the property for months or years. Several complaints reference tenants with Washington State identification cards showing the Everspring Inn address — documentation of established residency. At least one complainant identifies as a disabled senior resident.</p>
+        <p class="section-body" style="margin-top:1rem;">The August 2020 complaints allege that the owner told tenants they had 24 hours to vacate, that hot water was shut off building-wide on August 8, that the owner falsely claimed City of Seattle was ordering the building closed, and that armed security accompanied the owner in the halls during the displacement period.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- §2 TIMELINE -->
+  <div class="section">
+    <p class="section-eyebrow">Section 02 — Documented Timeline</p>
+    <h2 class="section-title">August 2020 — The Sequence of Record</h2>
+    <p class="section-body">The following timeline is derived from SDCI complaint records, Seattle Services Portal case records, and complaint descriptions. All dates and descriptions reflect the public documentary record.</p>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date">Aug 7, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Owner Notice Posted</div>
+          <div class="tl-text">Owner posts notice at 8201 Aurora Ave N demanding all residents vacate the property. Complaint records indicate tenants were informed they had a specified period to leave. The Washington State COVID-19 eviction moratorium is in effect as of this date.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Aug 8, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Hot Water Shut Off — Building Wide</div>
+          <div class="tl-text">Hot water is shut off across the building. Multiple subsequent complaint records reference absence of hot water as a condition present during the displacement period. The SMC requires landlords to maintain hot water as a minimum habitability standard.</div>
+          <div class="tl-gap-note">UTILITY SHUTOFF DURING ACTIVE COVID-19 MORATORIUM PERIOD</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Aug 11, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Second Notice — False City Attribution</div>
+          <div class="tl-text">A second notice is posted. Complaint records indicate the notice falsely attributed the building closure order to the City of Seattle. The City of Seattle had issued no such order.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Aug 13, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Owner Accompanied by Armed Security</div>
+          <div class="tl-text">Owner, accompanied by armed security personnel, walks through the building halls demanding that remaining residents depart immediately. This event is referenced in multiple independent complaint records filed by different complainants.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Aug 18, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Mass Displacement — 13 Complaints Filed</div>
+          <div class="tl-text">Mass displacement of residents occurs. Thirteen complaints are filed with SDCI on August 18, 2020. Complaint descriptions reference: residents told to leave within 24 hours; doors boarded; windows boarded; security blocking re-entry; tenants locked out of their rooms; tenants fenced in common areas. One complainant reports a household member ill with COVID-19 and unable to relocate. Another complainant, a disabled senior with receipts and WA ID showing the Everspring address as residence, files from Room 305.</div>
+          <div class="tl-gap-note">13 COMPLAINTS FILED IN ONE DAY — MORATORIUM ACTIVE</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Aug 19, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">First Closure — James Hammon — One Day After Filing</div>
+          <div class="tl-text">Complaint 007177-20CP — filed by the disabled senior tenant in Room 305, who provided receipts and a Washington State ID showing the Everspring address — is closed by SDCI Inspector James Hammon. Closure designation: "Admin Closure." The complaint was filed on August 18 and closed on August 19 — one day after filing. The public record contains no documentation of a field inspection.</div>
+          <div class="tl-gap-note">FILED AUG 18 — CLOSED AUG 19 — NO INSPECTION DOCUMENTED</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Sep 1, 2020</div>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Bulk Closures — Stella Washington</div>
+          <div class="tl-text">Twelve remaining complaints are closed by SDCI Inspector Stella Washington. Closure designation: "Admin Closure / Voluntary Compliance." All 12 are closed on the same date. The public record contains no documentation of field inspections for any of the 12 closures. The designation "Voluntary Compliance" is applied to cases where, per complaint records, tenants had already been physically displaced from the property.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Sep 14, 2020</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-label">Additional Complaint Filed</div>
+          <div class="tl-text">Record 008146-20CP is filed, referencing hot water being off again the day after inspection, and requesting rights guidance regarding abusive security staff. This complaint is logged after the September 1 bulk closures. Its resolution status is documented in the Seattle Services Portal.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">July 2021</div>
+        <div class="tl-dot teal"></div>
+        <div class="tl-content">
+          <div class="tl-label">SDCI Notice of Violation — 148 Violations</div>
+          <div class="tl-text">SDCI Code Compliance Buildings Manager Stephen Hinch issues a Notice of Violation for 8201 Aurora Ave N documenting 148 violations across all floors, the exterior, and the boiler room. The NOV is issued approximately eleven months after the August 2020 mass displacement events. The public record documents no prior formal enforcement action arising from the August 2020 complaints.</div>
+          <div class="tl-note-teal">148 VIOLATIONS DOCUMENTED — 11 MONTHS AFTER DISPLACEMENT</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2021 (various)</div>
+        <div class="tl-dot teal"></div>
+        <div class="tl-content">
+          <div class="tl-label">Permits and Licensing Activity</div>
+          <div class="tl-text">The Department of Housing requires permits before authorizing a transient accommodations license for the property. The City subsequently issues construction permits to the owner. The public record reflects permit activity associated with a motel-to-hotel conversion project at the address. The same owner who was the subject of the August 2020 displacement complaints receives the construction permits.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- §3 COMPLAINT TABLE -->
+  <div class="section">
+    <p class="section-eyebrow">Section 03 — The 13 Complaints</p>
+    <h2 class="section-title">August 18, 2020 — All Complaint Records</h2>
+    <p class="section-body">The following table documents all 13 complaints filed on August 18, 2020, plus the September 14 follow-up complaint, drawn from SDCI's public complaints dataset and the Seattle Services Portal. Record numbers link to the portal. Closures and inspections reflect the public record as of March 2026.</p>
+
+    <div style="overflow-x:auto; margin-top:1.5rem;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Record Number</th>
+            <th>Description (from complaint record)</th>
+            <th>Closed By</th>
+            <th>Closure Date</th>
+            <th>Closure Type</th>
+            <th>Inspection Documented</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007153-20CP" target="_blank" rel="noopener">007153-20CP</a></td>
+            <td>Mass eviction — landlord told tenants to be out within 24 hours</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007155-20CP" target="_blank" rel="noopener">007155-20CP</a></td>
+            <td>Mass eviction — water shut off, security blocking entry, windows being boarded</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007158-20CP" target="_blank" rel="noopener">007158-20CP</a></td>
+            <td>Eviction in place — told to be out within 24 hours</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007159-20CP" target="_blank" rel="noopener">007159-20CP</a></td>
+            <td>Unlawful eviction — lock-out and common area lock-in</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007163-20CP" target="_blank" rel="noopener">007163-20CP</a></td>
+            <td>Unlawful eviction</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007164-20CP" target="_blank" rel="noopener">007164-20CP</a></td>
+            <td>Unlawful eviction</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007175-20CP" target="_blank" rel="noopener">007175-20CP</a></td>
+            <td>Eviction notice posted 8/18/2020</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007177-20CP" target="_blank" rel="noopener">007177-20CP</a></td>
+            <td>Disabled senior tenant — Room 305 — long-term resident with receipts and WA ID showing address. Detailed account of displacement conditions.</td>
+            <td class="inspector">James Hammon</td>
+            <td class="closure" style="color:var(--accent);font-weight:500;">Aug 19, 2020</td>
+            <td class="closure flagged">Admin Closure</td>
+            <td class="closure flagged">None — closed 1 day after filing</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007180-20CP" target="_blank" rel="noopener">007180-20CP</a></td>
+            <td>Same complainant as 007177-20CP — marked duplicate by SDCI</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007945-20CP" target="_blank" rel="noopener">007945-20CP</a></td>
+            <td>Locked out — door boarded</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007946-20CP" target="_blank" rel="noopener">007946-20CP</a></td>
+            <td>Boarded room — no hot water</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007947-20CP" target="_blank" rel="noopener">007947-20CP</a></td>
+            <td>Locked out</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007948-20CP" target="_blank" rel="noopener">007948-20CP</a></td>
+            <td>Boarded windows — exit blocked — intimidation by security</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007949-20CP" target="_blank" rel="noopener">007949-20CP</a></td>
+            <td>In room — fenced in area — being told to leave — no hot water — boyfriend ill with COVID-19, unable to move</td>
+            <td class="inspector">Stella Washington</td>
+            <td class="closure">Sep 1, 2020</td>
+            <td class="closure flagged">Admin Closure / Voluntary Compliance</td>
+            <td class="closure flagged">None</td>
+          </tr>
+          <tr>
+            <td class="record-num"><a href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=008146-20CP" target="_blank" rel="noopener">008146-20CP</a></td>
+            <td>Hot water off day after inspection — rights guidance requested regarding abusive security staff</td>
+            <td class="inspector">—</td>
+            <td class="closure">Sep 14, 2020</td>
+            <td class="closure">See Portal</td>
+            <td class="closure">See Portal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--text-muted);margin-top:0.75rem;">
+      Record 007177-20CP is highlighted because it was closed one day after filing — the fastest documented closure in this set. The complainant had provided physical documentation of residency. Inspector names are cited in their official capacity as SDCI employees acting within the scope of their employment.
+    </p>
+
+    <div class="pullquote">
+      <p>Thirteen complaints documenting mass displacement during an active eviction moratorium. Thirteen closures within 14 days. <em>Zero inspections</em> in the public record. Twelve designated "Voluntary Compliance" — applied to cases where tenants had already been physically removed.</p>
+    </div>
+  </div>
+
+  <!-- §4 DOCUMENTED FINDINGS -->
+  <div class="section">
+    <p class="section-eyebrow">Section 04 — Record Analysis</p>
+    <h2 class="section-title">What the Record Documents</h2>
+    <p class="section-body">The following findings are drawn directly from the documentary record. Each finding identifies what the record shows and, where relevant, what the record does not show.</p>
+
+    <div class="findings-list">
+      <div class="finding-item">
+        <div class="finding-n">1</div>
+        <div class="finding-body">
+          <h4>13 Complaints Closed in 14 Days — Zero Inspections Documented</h4>
+          <p>Thirteen complaints were filed on August 18, 2020, describing conditions consistent with unlawful self-help eviction during an active state eviction moratorium. All 13 were closed within 14 days — the first on August 19 (one day after filing); the remaining 12 on September 1. The public SDCI record does not contain a documented inspection date or inspection result for any of the 13 complaints. The SDCI complaints dataset fields LastInspDate and LastInspResult are blank for all 13 records.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">2</div>
+        <div class="finding-body">
+          <h4>"Voluntary Compliance" Applied to Cases of Physical Displacement</h4>
+          <p>The closure designation "Admin Closure / Voluntary Compliance" was applied to 12 of the 13 complaints by Inspector Stella Washington on September 1, 2020. The closure designation "Voluntary Compliance" typically indicates that the party responsible for the violation has corrected the condition. The complaint descriptions for these records document tenants who had already been displaced from the property — in some cases with their rooms boarded and windows sealed. The record does not explain how "Voluntary Compliance" was established in the absence of a documented inspection.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">3</div>
+        <div class="finding-body">
+          <h4>One Complaint Closed the Day After Filing — Complainant Had Provided Residency Documentation</h4>
+          <p>Record 007177-20CP was filed August 18, 2020 by a complainant identifying as a disabled senior resident of Room 305. The complaint notes that the complainant had provided receipts and a Washington State identification card showing the Everspring Inn as their address — establishing legal tenancy. The complaint was closed by James Hammon on August 19, 2020 — one day after filing — as "Admin Closure." The public record contains no inspection documentation for this record.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">4</div>
+        <div class="finding-body">
+          <h4>Events Occurred During Active State Eviction Moratorium</h4>
+          <p>Washington State Proclamation 20-19 and its amendments prohibited residential evictions throughout August 2020. The complaint descriptions document conditions that — if accurate — would constitute violations of the moratorium: posting eviction notices, shutting off utilities, using security personnel to compel departure, and boarding occupied or recently occupied units. The public record does not document that SDCI communicated the existence of the moratorium to the owner or investigated potential moratorium violations as part of the complaint response.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">5</div>
+        <div class="finding-body">
+          <h4>July 2021 NOV Documents 148 Violations — 11 Months After Displacement</h4>
+          <p>In July 2021, SDCI Buildings Manager Stephen Hinch issued a Notice of Violation documenting 148 violations at 8201 Aurora Ave N covering all floors, the exterior, and the boiler room. This NOV was issued approximately 11 months after the August 2020 complaints. The public record does not document what triggered the 2021 NOV or what relationship it bears, if any, to the August 2020 complaint closures. The 148-violation count in July 2021 at a property from which tenants had been displaced in August 2020 raises questions the available record does not answer.</p>
+        </div>
+      </div>
+
+      <div class="finding-item">
+        <div class="finding-n">6</div>
+        <div class="finding-body">
+          <h4>Construction Permits Issued to Same Owner Following Displacement</h4>
+          <p>Following the August 2020 displacement events and the July 2021 NOV, the City of Seattle issued construction permits to Myung Ha Kang (Ryan Kang) for work at 8201 Aurora Ave N associated with a motel-to-hotel conversion. The Department of Housing conditioned the issuance of a transient accommodations license on permit compliance. The public record does not document that the permit issuance process was conditioned on resolution of the August 2020 complaint closures or the July 2021 NOV. The same entity that was the subject of 13 complaints for mass eviction during a COVID-19 moratorium subsequently received City construction permits for the same property.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- §5 PERSONNEL RECORD -->
+  <div class="section">
+    <p class="section-eyebrow">Section 05 — SDCI Personnel — Official Capacity</p>
+    <h2 class="section-title">Personnel Documented in Public Records</h2>
+    <p class="section-body">The following SDCI employees are identified in the public complaint record for 8201 Aurora Ave N in their official capacity as City employees. This section documents their role in the complaint closure record as it appears in public records. This report does not allege individual misconduct and does not characterize the motivations of any individual employee.</p>
+
+    <div class="two-col" style="margin-top:1.5rem;">
+      <div>
+        <div class="chart-block">
+          <div class="chart-header">
+            <div class="chart-title">Stella Washington — SDCI Inspector</div>
+            <div class="chart-sub">Closure activity documented in public SDCI record for 8201 Aurora Ave N · August–September 2020</div>
+          </div>
+          <p style="font-size:0.9rem;line-height:1.75;color:var(--text-body);font-weight:300;">12 complaint closures on September 1, 2020. Closure type: "Admin Closure / Voluntary Compliance" (12 records). Inspection documentation in public record: none across all 12. Complaints closed include cases documenting physical lockouts, boarded windows, blocked exits, and armed security presence. The designation "Voluntary Compliance" on September 1 — 14 days after filing — represents the final public enforcement record for those 12 cases.</p>
+        </div>
+      </div>
+      <div>
+        <div class="chart-block">
+          <div class="chart-header">
+            <div class="chart-title">James Hammon — SDCI Inspector</div>
+            <div class="chart-sub">Closure activity documented in public SDCI record for 8201 Aurora Ave N · August 2020</div>
+          </div>
+          <p style="font-size:0.9rem;line-height:1.75;color:var(--text-body);font-weight:300;">1 complaint closure on August 19, 2020. Closure type: "Admin Closure." Record 007177-20CP — the complaint filed by the disabled senior resident of Room 305 with documentation of residency — was closed the day after filing. Inspection documentation in public record: none. This represents the fastest closure in the August 2020 complaint set.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-body" style="margin-top:1rem;max-width:100%;">SDCI Code Compliance Buildings Manager <strong>Stephen Hinch</strong> is identified as the signatory on the July 2021 Notice of Violation documenting 148 violations — issued approximately 11 months after the August 2020 displacement events. His involvement is noted as part of the complete public record of enforcement activity at this address.</p>
+  </div>
+
+  <!-- §6 SYSTEMIC CONTEXT -->
+  <div class="section">
+    <p class="section-eyebrow">Section 06 — Systemic Context</p>
+    <h2 class="section-title">How This Property Fits the Citywide Pattern</h2>
+    <div class="two-col">
+      <div>
+        <p class="section-body">The Everspring Inn is an extreme example of a pattern documented across STLCA's full citywide analysis: complaints closed as "Admin Closure / Voluntary Compliance" without documented inspections. The citywide uninspected closure rate for landlord-tenant complaints is 59.8%. At 8201 Aurora Ave N in August 2020, the uninspected closure rate was 100% — 13 of 13 complaints.</p>
+        <p class="section-body" style="margin-top:1rem;">The "Voluntary Compliance" designation, applied across 12 of 13 closures at Everspring, is the same designation that appears in STLCA's citywide analysis as the most common closure type for cases with no inspection on record. The designation does not require a documented inspection — and in cases at Everspring, it was applied to situations where tenants described being physically locked out of their units.</p>
+      </div>
+      <div>
+        <p class="section-body">District 6, where 8201 Aurora Ave N is located, has an uninspected closure rate of 62.0% across 6,634 landlord-tenant complaints. The Everspring August 2020 event exceeds the district baseline by 38 percentage points.</p>
+        <p class="section-body" style="margin-top:1rem;">The simultaneity of the closures — 12 cases closed on a single date by a single inspector — is also notable in the context of STLCA's analysis. Bulk same-day closures on large complaint sets are not routine in the broader dataset and raise methodological questions about how each case was individually reviewed before closure.</p>
+        <p class="section-body" style="margin-top:1rem;">The COVID-19 moratorium period (2020) corresponds to the highest uninspected closure rate year in STLCA's citywide eviction complaint analysis: 95.3% of eviction complaints closed without a documented inspection in 2020.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end content-wrapper -->
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-inner">
+    <h3>What This Record Raises</h3>
+    <p>The August 2020 complaint record at 8201 Aurora Ave N documents a concentrated enforcement event during a period of heightened legal protection for residential tenants. The available public record does not explain how 13 complaints alleging mass displacement during an active state eviction moratorium were each resolved as "Admin Closure" or "Voluntary Compliance" within 14 days and without a documented field inspection.</p>
+    <p>The record also does not explain why the property subsequently received construction permits from the City — or whether those permit decisions were made with awareness of the August 2020 complaint history. The July 2021 NOV's 148 violations suggest that significant physical deficiencies existed at the property. The relationship between those conditions and the August 2020 displacement events is not addressed in the public record.</p>
+    <p>STLCA presents this case study as part of its independent research series on Seattle's housing enforcement record. <em>The facts documented here are drawn entirely from public records.</em> The questions the record raises are appropriate for the City Council and City Auditor to assess as part of any review of SDCI's complaint closure practices during the COVID-19 emergency period. Full complaint extracts, methodology, and data documentation are available from STLCA upon request.</p>
+    <div class="closing-links">
+      <a href="STLCA_Case_Studies.html" class="closing-link">Back to Case Studies</a>
+      <a href="STLCA_CaseStudy_Ord125054.html" class="closing-link">CS-001: Nine Years, Zero Reports</a>
+      <a href="STLCA_CaseStudy_Addison.html" class="closing-link">CS-002: The Addison on 4th</a>
+      <a href="STLCA_Council_Briefing.html" class="closing-link">Council Briefing</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="sources-block">
+  <div class="sources-inner">
+    <div class="sources-label">Sources &amp; Methodology</div>
+    <div class="sources-text">
+      Complaint data sourced from SDCI Complaints &amp; Violations Built Environment dataset (Seattle Open Data Portal), records 2003–2025. Individual complaint records (007153-20CP through 008146-20CP) retrieved via Seattle Services Portal (services.seattle.gov). Complaint descriptions cited are reproduced from the public portal record. Property ownership sourced from King County Assessor parcel records. Washington State eviction moratorium authority: Governor's Proclamation 20-19 (March 18, 2020) and subsequent amendments, on file with Washington State Office of the Governor. Seattle Municipal Code tenant protection authority: SMC Title 22, Subtitle VI (Rental Housing), particularly SMC 22.206 (Housing and Building Maintenance Code). Inspection documentation standard: records with null LastInspDate AND null LastInspResult fields in the SDCI public dataset are classified as having no documented inspection. NOV date and violation count for July 2021 sourced from public permit records, Seattle Services Portal. Personnel names cited in official capacity only. Citywide and district comparison figures derived from STLCA analysis of 233,543 SDCI records spanning 2003-2025. No individual tenant names or private contact information are disclosed in this report. Complaint descriptions may contain incidental personal details present in the original public records; STLCA has omitted personal identifiers where present. Full methodology and source chain are published in the STLCA Research &amp; Reporting archive.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-org">Seattle Tenant-Landlord Compliance Authority</p>
+      <p class="footer-tagline">Independent Research · Public Accountability · Seattle, Washington · Case Study CS-003 · March 2026</p>
+    </div>
+    <div>
+      <span class="footer-data-num">233,543</span>
+      <span class="footer-data-label">Records Analyzed · 2003–2025</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
