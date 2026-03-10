@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — STLCA</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#070b12;--panel:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--blue:#2d7ff9;--muted:rgba(233,238,247,.45);--text:#e9eef7}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+  .nav-brand{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.5px}
+  .nav-links{display:flex;gap:18px}
+  .nav-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a.active{color:var(--blue)}
+
+  /* HERO */
+  .hero{padding:64px 24px 48px;text-align:center;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(45,127,249,.04) 0%,transparent 100%)}
+  .hero-eye{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+  .hero h1{font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.15;margin-bottom:12px;letter-spacing:-.5px}
+  .hero h1 span{color:var(--blue)}
+  .hero p{font-size:15px;color:var(--muted);max-width:540px;margin:0 auto;line-height:1.7}
+
+  /* LAYOUT */
+  .layout{max-width:1000px;margin:0 auto;padding:56px 24px;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start;flex:1}
+
+  /* FORM */
+  .form-section h2{font-size:20px;font-weight:700;margin-bottom:8px}
+  .form-section .desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px;padding:16px;background:rgba(45,127,249,.06);border-left:3px solid rgba(45,127,249,.4);border-radius:0 6px 6px 0}
+  .field{margin-bottom:20px}
+  .field label{display:block;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .field input,.field textarea,.field select{
+    width:100%;background:rgba(255,255,255,.04);
+    border:1px solid var(--border);border-radius:8px;
+    padding:13px 16px;color:var(--text);font-size:14px;
+    font-family:inherit;outline:none;
+    transition:border-color .2s,background .2s;
+  }
+  .field input:focus,.field textarea:focus{border-color:rgba(45,127,249,.5);background:rgba(45,127,249,.04)}
+  .field textarea{resize:vertical;min-height:130px;line-height:1.6}
+  .field select option{background:#0d1420;color:var(--text)}
+  .submit-btn{
+    width:100%;background:var(--blue);color:#fff;border:none;
+    border-radius:8px;padding:15px;font-size:15px;font-weight:700;
+    cursor:pointer;letter-spacing:.3px;transition:background .2s,transform .1s;
+  }
+  .submit-btn:hover{background:#1f6ee6}
+  .submit-btn:active{transform:scale(.99)}
+  .form-legal{font-size:11px;color:rgba(233,238,247,.3);margin-top:14px;line-height:1.6}
+  .success-msg{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:8px;padding:16px;font-size:14px;color:#4ade80;margin-top:16px;text-align:center}
+
+  /* SIDEBAR */
+  .sidebar{display:flex;flex-direction:column;gap:20px}
+  .info-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px}
+  .info-card h3{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  .info-card p{font-size:13px;color:var(--muted);line-height:1.7}
+  .info-card p+p{margin-top:10px}
+  .stat-row{display:flex;gap:12px;margin-top:16px}
+  .stat-box{flex:1;background:rgba(45,127,249,.06);border:1px solid rgba(45,127,249,.12);border-radius:8px;padding:14px;text-align:center}
+  .stat-num{font-size:22px;font-weight:800;color:var(--blue);display:block;line-height:1}
+  .stat-lbl{font-size:10px;color:var(--muted);display:block;margin-top:4px;line-height:1.4}
+  .link-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:4px}
+  .link-list a{font-size:13px;color:var(--muted);text-decoration:none;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:6px;display:block;transition:background .2s,color .2s}
+  .link-list a:hover{background:rgba(255,255,255,.06);color:var(--text)}
+  .link-list a span{color:var(--blue);float:right}
+
+  /* FOOTER */
+  footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:0}
+  .footer-main{max-width:1200px;margin:0 auto;padding:40px 24px 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start}
+  .footer-brand{display:flex;flex-direction:column;gap:8px}
+  .footer-logo{display:flex;align-items:center;gap:12px}
+  .footer-logo-icon{display:flex;align-items:flex-end;gap:2px}
+  .footer-logo-icon span{display:block;background:var(--blue);border-radius:1px 1px 0 0;opacity:.8}
+  .footer-logo-text{font-size:14px;font-weight:800;color:var(--text)}
+  .footer-tagline{font-size:11px;color:var(--muted);line-height:1.5}
+  .footer-tagline strong{color:rgba(233,238,247,.7)}
+  .footer-nav h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .footer-nav ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .footer-nav a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .footer-nav a:hover{color:var(--text)}
+  .footer-actions{display:flex;flex-direction:column;gap:10px}
+  .footer-actions h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .btn-outline{display:block;border:1px solid rgba(45,127,249,.35);color:var(--blue);padding:10px 16px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;text-align:center;transition:background .2s,border-color .2s}
+  .btn-outline:hover{background:rgba(45,127,249,.1);border-color:var(--blue)}
+  .footer-bottom{border-top:1px solid var(--border);padding:16px 24px;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .footer-bottom p{font-size:11px;color:rgba(233,238,247,.2)}
+  .footer-bottom-links{display:flex;gap:16px}
+  .footer-bottom-links a{font-size:11px;color:rgba(233,238,247,.2);text-decoration:none}
+  .footer-bottom-links a:hover{color:var(--muted)}
+
+  @media(max-width:768px){
+    .layout{grid-template-columns:1fr}
+    .footer-main{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">STLCA Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="https://www.seattletlca.com">Home</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html">Case Studies</a>
+    <a href="STLCA_District_1.html">Districts</a>
+    <a href="STLCA_About.html">About</a>
+    <a href="STLCA_Contact.html" class="active">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eye">Seattle Tenant Landlord Compliance Authority</div>
+  <h1>Get in <span>Touch</span></h1>
+  <p>Questions about our research, data, or methodology? Use the form below. For urgent housing issues, contact SDCI directly.</p>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+  <!-- FORM -->
+  <div class="form-section">
+    <h2>Send Us a Message</h2>
+    <p class="desc">For general questions about STLCA's research, data, or publications, you may contact us using this form. Please do not submit complaints, requests for legal advice, or time-sensitive case information — we cannot respond to those.</p>
+
+    <form id="contactForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST">
+      <div class="field">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Full name" required/>
+      </div>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required/>
+      </div>
+      <div class="field">
+        <label for="topic">Topic</label>
+        <select id="topic" name="topic">
+          <option value="">Select a topic...</option>
+          <option value="data">Data or methodology question</option>
+          <option value="research">Research inquiry</option>
+          <option value="media">Media or press inquiry</option>
+          <option value="partnership">Partnership or collaboration</option>
+          <option value="council">Council or government inquiry</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Submit Message</button>
+      <p class="form-legal">This form is for general inquiries only. STLCA does not provide legal advice, tenant representation, or case management services. For housing complaints, use the SDCI portal directly.</p>
+      <div class="success-msg" id="successMsg">Thank you — your message has been received. We'll respond as soon as possible.</div>
+    </form>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="info-card">
+      <h3>About This Site</h3>
+      <p>STLCA is an independent data analysis organization. This website presents analysis of publicly available SDCI enforcement records — 233,543 code compliance records spanning 2003–2025.</p>
+      <p>STLCA is not a government agency. It does not accept complaints, provide legal advice, or represent individual tenants or landlords.</p>
+      <div class="stat-row">
+        <div class="stat-box">
+          <span class="stat-num">233K</span>
+          <span class="stat-lbl">SDCI records analyzed</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">59.8%</span>
+          <span class="stat-lbl">Closed w/o inspection</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>Need Immediate Help?</h3>
+      <p>STLCA cannot assist with active housing issues. If you need help now, use these resources:</p>
+      <ul class="link-list" style="margin-top:14px">
+        <li><a href="https://www.seattle.gov/sdci/about-us/contact-us">File a complaint with SDCI <span>→</span></a></li>
+        <li><a href="https://www.seattle.gov/sdci/codes/rental-registration">Check RRIO Registration <span>→</span></a></li>
+        <li><a href="https://www.seattle.gov/mayor/housing">Seattle Office of Housing <span>→</span></a></li>
+        <li><a href="https://tenantsunion.org">Tenants Union of WA <span>→</span></a></li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>Explore Our Data</h3>
+      <ul class="link-list">
+        <li><a href="STLCA_Citywide_KPI.html">Citywide KPI Dashboard <span>→</span></a></li>
+        <li><a href="STLCA_Case_Studies.html">Case Studies <span>→</span></a></li>
+        <li><a href="STLCA_Methodology.html">Methodology <span>→</span></a></li>
+        <li><a href="STLCA_About.html">About STLCA <span>→</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <span style="width:5px;height:14px"></span>
+          <span style="width:6px;height:20px"></span>
+          <span style="width:5px;height:26px"></span>
+          <span style="width:8px;height:34px"></span>
+          <span style="width:5px;height:22px"></span>
+          <span style="width:6px;height:16px"></span>
+          <span style="width:5px;height:12px"></span>
+        </div>
+        <div class="footer-logo-text">STLCA</div>
+      </div>
+      <p class="footer-tagline">
+        <strong>Seattle Tenant Landlord Compliance Authority</strong><br>
+        Independent Oversight &nbsp;|&nbsp; Verified Evidence &nbsp;|&nbsp; Public Accountability
+      </p>
+    </div>
+    <div class="footer-nav">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="https://www.seattletlca.com">Home</a></li>
+        <li><a href="STLCA_Citywide_KPI.html">Data &amp; Dashboards</a></li>
+        <li><a href="STLCA_Case_Studies.html">Research &amp; Reporting</a></li>
+        <li><a href="STLCA_Methodology.html">Methodology</a></li>
+        <li><a href="STLCA_About.html">About Us</a></li>
+        <li><a href="STLCA_Contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-actions">
+      <h4>Take Action</h4>
+      <a href="https://services.seattle.gov/portal/Initialize.aspx?App=CC" class="btn-outline">Is Your Property Compliant?</a>
+      <a href="https://www.seattle.gov/sdci/about-us/contact-us" class="btn-outline">File a Complaint w/SDCI</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Seattle Tenant Landlord Compliance Authority. Public data analysis. Not legal representation.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Policy</a>
+      <a href="STLCA_Methodology.html">Research Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = this;
+  var btn = form.querySelector('.submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(r){
+    if(r.ok){
+      form.reset();
+      document.getElementById('successMsg').style.display = 'block';
+      btn.textContent = 'Sent!';
+    } else {
+      btn.textContent = 'Submit Message';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  }).catch(function(){
+    btn.textContent = 'Submit Message';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  });
+});
+</script>
+</body>
+</html>
