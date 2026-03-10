@@ -16,24 +16,17 @@
   .nav-links a{font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.5px;transition:.15s}
   .nav-links a:hover{background:rgba(255,255,255,.10)}
   .nav-links a.cta{background:var(--orange);color:#000}
-  .wrap{width:min(100%,680px);margin:0 auto;padding:0 24px}
-  .page{padding:90px 0 60px;text-align:center}
-  .badge{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);border:1px solid rgba(45,127,249,.30);background:rgba(45,127,249,.10);border-radius:999px;padding:5px 16px;margin-bottom:22px}
-  h1{font-size:clamp(24px,4vw,38px);font-weight:850;letter-spacing:-.4px;margin-bottom:16px}
-  .sub{color:var(--muted);font-size:15px;line-height:1.8;max-width:520px;margin:0 auto 40px}
-  .box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:18px;padding:36px 40px;text-align:left;margin-bottom:16px}
-  .box h2{font-size:15px;font-weight:800;margin-bottom:10px}
-  .box p{color:var(--muted);font-size:13px;line-height:1.8}
-  .form-row{display:flex;flex-direction:column;gap:10px;margin-top:18px}
-  .form-row input,.form-row textarea{width:100%;background:rgba(0,0,0,.30);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color .2s;resize:vertical}
-  .form-row input:focus,.form-row textarea:focus{border-color:rgba(45,127,249,.50)}
-  .form-row input::placeholder,.form-row textarea::placeholder{color:var(--muted2)}
-  .submit-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;transition:opacity .2s;margin-top:4px}
-  .submit-btn:hover{opacity:.88}
-  .divider{text-align:center;color:var(--muted2);font-size:12px;margin:28px 0 20px}
-  .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-  .btn{display:inline-block;font-size:13px;font-weight:800;border-radius:12px;padding:12px 24px;transition:.2s;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text)}
-  .btn:hover{background:rgba(255,255,255,.09)}
+  .wrap{width:min(100%,600px);margin:0 auto;padding:0 24px}
+  .page{padding:90px 0 80px;text-align:center}
+  h1{font-size:clamp(22px,4vw,34px);font-weight:850;letter-spacing:-.4px;margin-bottom:12px}
+  .sub{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:36px}
+  form{display:flex;flex-direction:column;gap:12px;text-align:left}
+  input,textarea{width:100%;background:rgba(0,0,0,.30);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:13px 16px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color .2s;resize:vertical}
+  input:focus,textarea:focus{border-color:rgba(45,127,249,.50)}
+  input::placeholder,textarea::placeholder{color:var(--muted2)}
+  button{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;transition:opacity .2s}
+  button:hover{opacity:.88}
+  #confirm{display:none;margin-top:14px;color:#22c55e;font-size:13px;font-weight:700;text-align:center}
   footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted2);font-size:11px;line-height:1.8;margin-top:40px}
   footer a{color:rgba(233,238,247,.5)}
   footer a:hover{color:var(--text)}
@@ -53,40 +46,24 @@
 
 <div class="wrap">
   <div class="page">
-    <div class="badge">Case Studies — Coming Soon</div>
-    <h1>Property Case Files</h1>
-    <p class="sub">
-      STLCA maintains documented case files on specific Seattle properties.
-      Full case studies are being finalized and will be published here.
-      To request a specific property, submit your information below.
-    </p>
+    <h1>Case Studies — Coming Soon</h1>
+    <p class="sub">Property case files are being finalized and will be published here.<br>Request a specific property below and we will follow up.</p>
 
-    <div class="box">
-      <h2>Request a Property Case File</h2>
-      <p>Enter the property address you're interested in and we'll get back to you. Requests from researchers, journalists, legal representatives, and city council offices are prioritized.</p>
-      <form class="form-row" onsubmit="handleSubmit(event)">
-        <input type="text" placeholder="Property address (e.g. 308 4th Ave S)" required/>
-        <input type="email" placeholder="Your email address" required/>
-        <textarea rows="3" placeholder="Any additional context (optional)"></textarea>
-        <button type="submit" class="submit-btn">Submit Request</button>
-      </form>
-      <p id="confirm" style="display:none;margin-top:14px;color:#22c55e;font-size:13px;font-weight:700">Request received. We'll follow up via email.</p>
-    </div>
-
-    <div class="divider">— or explore the full dataset —</div>
-
-    <div class="actions">
-      <a href="STLCA_Citywide_KPI.html" class="btn">Citywide Audit</a>
-      <a href="STLCA_District_1.html" class="btn">District Reports</a>
-      <a href="STLCA_Council_Briefing.html" class="btn">Council Briefing</a>
-    </div>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your name" required/>
+      <input type="email" placeholder="Your email" required/>
+      <input type="text" placeholder="Property address you are requesting" required/>
+      <textarea rows="4" placeholder="Additional context (optional) — Note: This form is for research and oversight purposes only. Submissions are not legal filings and do not create an attorney-client relationship. STLCA is an independent data analysis organization."></textarea>
+      <button type="submit">Submit Request</button>
+    </form>
+    <p id="confirm">Request received. We will follow up via email.</p>
   </div>
 </div>
 
 <footer>
   Seattle Tenant Landlord Compliance Authority (STLCA) |
   Independent public-data analysis, not legal representation<br>
-  All figures derived from publicly available City of Seattle enforcement records<br><br>
+  All figures derived from publicly available City of Seattle enforcement records | Analysis current as of December 31, 2025<br><br>
   <a href="STLCA_Council_Briefing.html">Council Briefing</a> |
   <a href="STLCA_Citywide_KPI.html">Citywide Audit</a> |
   <a href="STLCA_Methodology.html">Methodology</a>
