@@ -1,0 +1,24 @@
+# STLCA — Public web root protection
+# Blocks access to all private repo folders and files
+
+Options -Indexes
+
+RewriteEngine On
+
+# Block .git directory entirely
+RewriteRule ^\.git(/.*)?$ - [F,L]
+
+# Block private repo directories
+RewriteCond %{REQUEST_URI} ^/(SCRIPTS|DATA|ANALYSIS|CHANGES_AND_QUESTIONS|ARCHIVE|notebooks|output|grok_pulls|RANKINGS|DISTRICTS_COLAB|STLCA_ARCHIVE|ORD\ 12|Addison|Everspring|LAKE\ WASHINGTON\ APTS|LUNDE|GROK\ OUTPUTS|CLAUDE\ ORGANIZE|DEAR\ CITY\ COUNCIL|THE\ CASE\ CASE\ STUDYS|PERMIT\ RECORDS\ ACCESS\ AND\ NAVIGATION|VERIFIED_PIPELINE|CORRECTED)(/.*)?$ [NC]
+RewriteRule ^ - [F,L]
+
+# Block private file types everywhere outside SITE/
+RewriteCond %{REQUEST_URI} !^/SITE/
+RewriteRule \.(py|csv|xlsx|xls|docx|doc|ps1|jsonl|sh|bat|env|sql|db|pkl|ipynb)$ - [F,L]
+
+# Block root-level text/data files (not in SITE/)
+RewriteCond %{REQUEST_URI} !^/SITE/
+RewriteRule ^[^/]+\.(txt|csv|py|xlsx|docx|json|jsonl|pdf|ps1)$ - [F,L]
+
+# Serve index.html at root
+DirectoryIndex index.html
