@@ -1,0 +1,801 @@
+{
+  "1": [
+    {
+      "addr": "1218 ALKI AVE SW",
+      "slug": "1218_ALKI_AVE_SW",
+      "count": 2
+    },
+    {
+      "addr": "1313 CALIFORNIA AVE SW",
+      "slug": "1313_CALIFORNIA_AVE_SW",
+      "count": 3
+    },
+    {
+      "addr": "1313 SUNSET AVE SW",
+      "slug": "1313_SUNSET_AVE_SW",
+      "count": 10
+    },
+    {
+      "addr": "1653 EDGEWOOD AVE SW",
+      "slug": "1653_EDGEWOOD_AVE_SW",
+      "count": 6
+    },
+    {
+      "addr": "201 YESLER WAY, Seattle WA",
+      "slug": "201_YESLER_WAY_SEATTLE_WA",
+      "count": 100
+    },
+    {
+      "addr": "212 ALASKAN WAY S, Seattle WA",
+      "slug": "212_ALASKAN_WAY_S_SEATTLE_WA",
+      "count": 66
+    },
+    {
+      "addr": "215 2ND AVE S",
+      "slug": "215_2ND_AVE_S",
+      "count": 6
+    },
+    {
+      "addr": "223 YESLER WAY, Seattle WA",
+      "slug": "223_YESLER_WAY_SEATTLE_WA",
+      "count": 68
+    },
+    {
+      "addr": "2611 45TH AVE SW",
+      "slug": "2611_45TH_AVE_SW",
+      "count": 3
+    },
+    {
+      "addr": "2626 ALKI AVE SW",
+      "slug": "2626_ALKI_AVE_SW",
+      "count": 2
+    },
+    {
+      "addr": "2810 ALKI AVE SW",
+      "slug": "2810_ALKI_AVE_SW",
+      "count": 4
+    },
+    {
+      "addr": "3021 SW BRADFORD ST, Seattle WA",
+      "slug": "3021_SW_BRADFORD_ST_SEATTLE_WA",
+      "count": 42
+    },
+    {
+      "addr": "4040 26TH AVE SW, Seattle WA",
+      "slug": "4040_26TH_AVE_SW_SEATTLE_WA",
+      "count": 39
+    },
+    {
+      "addr": "4545 42ND AVE SW, Seattle WA",
+      "slug": "4545_42ND_AVE_SW_SEATTLE_WA",
+      "count": 71
+    },
+    {
+      "addr": "500 S RIVER ST",
+      "slug": "500_S_RIVER_ST",
+      "count": 4
+    },
+    {
+      "addr": "5424 DELRIDGE WAY SW",
+      "slug": "5424_DELRIDGE_WAY_SW",
+      "count": 4
+    },
+    {
+      "addr": "5930 34TH AVE SW",
+      "slug": "5930_34TH_AVE_SW",
+      "count": 22
+    },
+    {
+      "addr": "65 S WASHINGTON ST, Seattle WA",
+      "slug": "65_S_WASHINGTON_ST_SEATTLE_WA",
+      "count": 35
+    },
+    {
+      "addr": "7140 18TH AVE SW",
+      "slug": "7140_18TH_AVE_SW",
+      "count": 3
+    },
+    {
+      "addr": "7560 CALIFORNIA AVE SW",
+      "slug": "7560_CALIFORNIA_AVE_SW",
+      "count": 3
+    },
+    {
+      "addr": "9057 9TH AVE SW",
+      "slug": "9057_9TH_AVE_SW",
+      "count": 10
+    },
+    {
+      "addr": "9103 8TH AVE S",
+      "slug": "9103_8TH_AVE_S",
+      "count": 49
+    },
+    {
+      "addr": "9434 DELRIDGE WAY SW, Seattle WA",
+      "slug": "9434_DELRIDGE_WAY_SW_SEATTLE_WA",
+      "count": 60
+    }
+  ],
+  "2": [
+    {
+      "addr": "1203 JAMES ST, Seattle WA",
+      "slug": "1203_JAMES_ST_SEATTLE_WA",
+      "count": 48
+    },
+    {
+      "addr": "1308 12TH AVE S, Seattle WA",
+      "slug": "1308_12TH_AVE_S_SEATTLE_WA",
+      "count": 38
+    },
+    {
+      "addr": "1722 13TH AVE S",
+      "slug": "1722_13TH_AVE_S",
+      "count": 1
+    },
+    {
+      "addr": "2921 S AUSTIN ST",
+      "slug": "2921_S_AUSTIN_ST",
+      "count": 15
+    },
+    {
+      "addr": "308 4TH AVE S",
+      "slug": "308_4TH_AVE_S",
+      "count": 162
+    },
+    {
+      "addr": "308 4TH AVE S, Seattle WA",
+      "slug": "308_4TH_AVE_S_SEATTLE_WA",
+      "count": 162
+    },
+    {
+      "addr": "3208 CLAREMONT AVE S",
+      "slug": "3208_CLAREMONT_AVE_S",
+      "count": 8
+    },
+    {
+      "addr": "3621 33RD AVE S, Seattle WA",
+      "slug": "3621_33RD_AVE_S_SEATTLE_WA",
+      "count": 161
+    },
+    {
+      "addr": "3642 33RD AVE S, Seattle WA",
+      "slug": "3642_33RD_AVE_S_SEATTLE_WA",
+      "count": 72
+    },
+    {
+      "addr": "3714 S HOLLY ST",
+      "slug": "3714_S_HOLLY_ST",
+      "count": 10
+    },
+    {
+      "addr": "4222 37TH AVE S",
+      "slug": "4222_37TH_AVE_S",
+      "count": 18
+    },
+    {
+      "addr": "5614 RAINIER AVE S",
+      "slug": "5614_RAINIER_AVE_S",
+      "count": 3
+    },
+    {
+      "addr": "5913 RAINIER AVE S",
+      "slug": "5913_RAINIER_AVE_S",
+      "count": 38
+    },
+    {
+      "addr": "6514 S NORFOLK ST",
+      "slug": "6514_S_NORFOLK_ST",
+      "count": 3
+    },
+    {
+      "addr": "705 S WELLER ST",
+      "slug": "705_S_WELLER_ST",
+      "count": 11
+    },
+    {
+      "addr": "710 6TH AVE S",
+      "slug": "710_6TH_AVE_S",
+      "count": 3
+    },
+    {
+      "addr": "800 JEFFERSON ST, Seattle WA",
+      "slug": "800_JEFFERSON_ST_SEATTLE_WA",
+      "count": 58
+    },
+    {
+      "addr": "8801 36TH AVE S",
+      "slug": "8801_36TH_AVE_S",
+      "count": 29
+    },
+    {
+      "addr": "9007 A 46TH AVE S",
+      "slug": "9007_A_46TH_AVE_S",
+      "count": 2
+    },
+    {
+      "addr": "9061 SEWARD PARK AVE S, Seattle WA",
+      "slug": "9061_SEWARD_PARK_AVE_S_SEATTLE_WA",
+      "count": 106
+    },
+    {
+      "addr": "913 S JACKSON ST, Seattle WA",
+      "slug": "913_S_JACKSON_ST_SEATTLE_WA",
+      "count": 55
+    },
+    {
+      "addr": "9759 ARROWSMITH AVE S",
+      "slug": "9759_ARROWSMITH_AVE_S",
+      "count": 5
+    },
+    {
+      "addr": "9833 RAINIER AVE S",
+      "slug": "9833_RAINIER_AVE_S",
+      "count": 11
+    }
+  ],
+  "3": [
+    {
+      "addr": "126 27TH AVE E",
+      "slug": "126_27TH_AVE_E",
+      "count": 6
+    },
+    {
+      "addr": "1317 BOREN AVE, Seattle WA",
+      "slug": "1317_BOREN_AVE_SEATTLE_WA",
+      "count": 50
+    },
+    {
+      "addr": "1400 MADISON ST, Seattle WA",
+      "slug": "1400_MADISON_ST_SEATTLE_WA",
+      "count": 54
+    },
+    {
+      "addr": "1520 11TH AVE",
+      "slug": "1520_11TH_AVE",
+      "count": 3
+    },
+    {
+      "addr": "155 21ST AVE, Seattle WA",
+      "slug": "155_21ST_AVE_SEATTLE_WA",
+      "count": 46
+    },
+    {
+      "addr": "1727 SUMMIT AVE, Seattle WA",
+      "slug": "1727_SUMMIT_AVE_SEATTLE_WA",
+      "count": 98
+    },
+    {
+      "addr": "1737 BELMONT AVE",
+      "slug": "1737_BELMONT_AVE",
+      "count": 17
+    },
+    {
+      "addr": "1820 E UNION ST",
+      "slug": "1820_E_UNION_ST",
+      "count": 5
+    },
+    {
+      "addr": "1906 24TH AVE S",
+      "slug": "1906_24TH_AVE_S",
+      "count": 13
+    },
+    {
+      "addr": "1909 25TH AVE S",
+      "slug": "1909_25TH_AVE_S",
+      "count": 14
+    },
+    {
+      "addr": "2411 24TH AVE E",
+      "slug": "2411_24TH_AVE_E",
+      "count": 1
+    },
+    {
+      "addr": "2415 S HOLGATE ST",
+      "slug": "2415_S_HOLGATE_ST",
+      "count": 17
+    },
+    {
+      "addr": "2423 S HOLGATE ST",
+      "slug": "2423_S_HOLGATE_ST",
+      "count": 8
+    },
+    {
+      "addr": "3014 E HOWELL ST",
+      "slug": "3014_E_HOWELL_ST",
+      "count": 21
+    },
+    {
+      "addr": "3016 E HOWELL ST",
+      "slug": "3016_E_HOWELL_ST",
+      "count": 25
+    },
+    {
+      "addr": "316 27TH AVE",
+      "slug": "316_27TH_AVE",
+      "count": 22
+    },
+    {
+      "addr": "355 15TH AVE",
+      "slug": "355_15TH_AVE",
+      "count": 31
+    },
+    {
+      "addr": "418 E LORETTA PL, Seattle WA",
+      "slug": "418_E_LORETTA_PL_SEATTLE_WA",
+      "count": 47
+    },
+    {
+      "addr": "430 12TH AVE E, Seattle WA",
+      "slug": "430_12TH_AVE_E_SEATTLE_WA",
+      "count": 79
+    },
+    {
+      "addr": "513 31ST AVE",
+      "slug": "513_31ST_AVE",
+      "count": 8
+    },
+    {
+      "addr": "534 26TH AVE S",
+      "slug": "534_26TH_AVE_S",
+      "count": 17
+    },
+    {
+      "addr": "903 UNION ST, Seattle WA",
+      "slug": "903_UNION_ST_SEATTLE_WA",
+      "count": 65
+    },
+    {
+      "addr": "915 E HARRISON ST, Seattle WA",
+      "slug": "915_E_HARRISON_ST_SEATTLE_WA",
+      "count": 59
+    }
+  ],
+  "4": [
+    {
+      "addr": "1006 N 39TH ST",
+      "slug": "1006_N_39TH_ST",
+      "count": 4
+    },
+    {
+      "addr": "1616 N 36TH ST",
+      "slug": "1616_N_36TH_ST",
+      "count": 1
+    },
+    {
+      "addr": "3000 NE 85TH ST",
+      "slug": "3000_NE_85TH_ST",
+      "count": 17
+    },
+    {
+      "addr": "4033 7TH AVE NE",
+      "slug": "4033_7TH_AVE_NE",
+      "count": 2
+    },
+    {
+      "addr": "4126 12TH AVE NE, Seattle WA",
+      "slug": "4126_12TH_AVE_NE_SEATTLE_WA",
+      "count": 38
+    },
+    {
+      "addr": "4238 12TH AVE NE, Seattle WA",
+      "slug": "4238_12TH_AVE_NE_SEATTLE_WA",
+      "count": 29
+    },
+    {
+      "addr": "4532 20TH AVE NE",
+      "slug": "4532_20TH_AVE_NE",
+      "count": 3
+    },
+    {
+      "addr": "4547 19TH AVE NE, Seattle WA",
+      "slug": "4547_19TH_AVE_NE_SEATTLE_WA",
+      "count": 46
+    },
+    {
+      "addr": "4730 UNIVERSITY WAY NE, Seattle WA",
+      "slug": "4730_UNIVERSITY_WAY_NE_SEATTLE_WA",
+      "count": 36
+    },
+    {
+      "addr": "4750 15TH AVE NE, Seattle WA",
+      "slug": "4750_15TH_AVE_NE_SEATTLE_WA",
+      "count": 32
+    },
+    {
+      "addr": "4754 19TH AVE NE",
+      "slug": "4754_19TH_AVE_NE",
+      "count": 34
+    },
+    {
+      "addr": "5014 15TH AVE NE",
+      "slug": "5014_15TH_AVE_NE",
+      "count": 25
+    },
+    {
+      "addr": "5033 BROOKLYN AVE NE, Seattle WA",
+      "slug": "5033_BROOKLYN_AVE_NE_SEATTLE_WA",
+      "count": 28
+    },
+    {
+      "addr": "5204 12TH AVE NE",
+      "slug": "5204_12TH_AVE_NE",
+      "count": 3
+    },
+    {
+      "addr": "6338 14TH AVE NE",
+      "slug": "6338_14TH_AVE_NE",
+      "count": 3
+    },
+    {
+      "addr": "6514 15TH AVE NE",
+      "slug": "6514_15TH_AVE_NE",
+      "count": 18
+    },
+    {
+      "addr": "6515 16TH AVE NE",
+      "slug": "6515_16TH_AVE_NE",
+      "count": 30
+    },
+    {
+      "addr": "6620 ROOSEVELT WAY NE, Seattle WA",
+      "slug": "6620_ROOSEVELT_WAY_NE_SEATTLE_WA",
+      "count": 39
+    },
+    {
+      "addr": "7101 62ND AVE NE, Seattle WA",
+      "slug": "7101_62ND_AVE_NE_SEATTLE_WA",
+      "count": 38
+    },
+    {
+      "addr": "8540 23RD AVE NE",
+      "slug": "8540_23RD_AVE_NE",
+      "count": 9
+    }
+  ],
+  "5": [
+    {
+      "addr": "10110 4TH AVE NW",
+      "slug": "10110_4TH_AVE_NW",
+      "count": 2
+    },
+    {
+      "addr": "10112 4TH AVE NW",
+      "slug": "10112_4TH_AVE_NW",
+      "count": 3
+    },
+    {
+      "addr": "1030 NE 125TH ST",
+      "slug": "1030_NE_125TH_ST",
+      "count": 14
+    },
+    {
+      "addr": "10329 WALLINGFORD AVE N",
+      "slug": "10329_WALLINGFORD_AVE_N",
+      "count": 4
+    },
+    {
+      "addr": "10540 GREENWOOD AVE N",
+      "slug": "10540_GREENWOOD_AVE_N",
+      "count": 18
+    },
+    {
+      "addr": "11004 14TH AVE NE",
+      "slug": "11004_14TH_AVE_NE",
+      "count": 8
+    },
+    {
+      "addr": "11038 LAKE CITY WAY NE",
+      "slug": "11038_LAKE_CITY_WAY_NE",
+      "count": 37
+    },
+    {
+      "addr": "11038 LAKE CITY WAY NE, Seattle WA",
+      "slug": "11038_LAKE_CITY_WAY_NE_SEATTLE_WA",
+      "count": 37
+    },
+    {
+      "addr": "11743 5TH AVE NE",
+      "slug": "11743_5TH_AVE_NE",
+      "count": 6
+    },
+    {
+      "addr": "12557 35TH AVE NE",
+      "slug": "12557_35TH_AVE_NE",
+      "count": 2
+    },
+    {
+      "addr": "12740 30TH AVE NE, Seattle WA",
+      "slug": "12740_30TH_AVE_NE_SEATTLE_WA",
+      "count": 83
+    },
+    {
+      "addr": "13000 LINDEN AVE N, Seattle WA",
+      "slug": "13000_LINDEN_AVE_N_SEATTLE_WA",
+      "count": 72
+    },
+    {
+      "addr": "13280 LINDEN AVE N, Seattle WA",
+      "slug": "13280_LINDEN_AVE_N_SEATTLE_WA",
+      "count": 41
+    },
+    {
+      "addr": "13751 32ND AVE NE, Seattle WA",
+      "slug": "13751_32ND_AVE_NE_SEATTLE_WA",
+      "count": 46
+    },
+    {
+      "addr": "14002 LINDEN AVE N, Seattle WA",
+      "slug": "14002_LINDEN_AVE_N_SEATTLE_WA",
+      "count": 56
+    },
+    {
+      "addr": "14033 32ND AVE NE",
+      "slug": "14033_32ND_AVE_NE",
+      "count": 19
+    },
+    {
+      "addr": "14092 23RD PL NE",
+      "slug": "14092_23RD_PL_NE",
+      "count": 13
+    },
+    {
+      "addr": "14100 LINDEN AVE N, Seattle WA",
+      "slug": "14100_LINDEN_AVE_N_SEATTLE_WA",
+      "count": 73
+    },
+    {
+      "addr": "2350 N 115TH ST",
+      "slug": "2350_N_115TH_ST",
+      "count": 14
+    },
+    {
+      "addr": "747 N 135TH ST, Seattle WA",
+      "slug": "747_N_135TH_ST_SEATTLE_WA",
+      "count": 55
+    },
+    {
+      "addr": "8515 11TH AVE NW",
+      "slug": "8515_11TH_AVE_NW",
+      "count": 3
+    },
+    {
+      "addr": "8516 1ST AVE NE",
+      "slug": "8516_1ST_AVE_NE",
+      "count": 2
+    },
+    {
+      "addr": "9530 AURORA AVE N",
+      "slug": "9530_AURORA_AVE_N",
+      "count": 8
+    }
+  ],
+  "6": [
+    {
+      "addr": "105 N 40TH ST",
+      "slug": "105_N_40TH_ST",
+      "count": 8
+    },
+    {
+      "addr": "1515 NW 52ND ST",
+      "slug": "1515_NW_52ND_ST",
+      "count": 10
+    },
+    {
+      "addr": "1544 NW 52ND ST",
+      "slug": "1544_NW_52ND_ST",
+      "count": 7
+    },
+    {
+      "addr": "1545 NW MARKET ST, Seattle WA",
+      "slug": "1545_NW_MARKET_ST_SEATTLE_WA",
+      "count": 30
+    },
+    {
+      "addr": "1547 NW 63RD ST",
+      "slug": "1547_NW_63RD_ST",
+      "count": 3
+    },
+    {
+      "addr": "1701 NW 56TH ST, Seattle WA",
+      "slug": "1701_NW_56TH_ST_SEATTLE_WA",
+      "count": 27
+    },
+    {
+      "addr": "1733 NW 61ST ST",
+      "slug": "1733_NW_61ST_ST",
+      "count": 2
+    },
+    {
+      "addr": "200 N 85TH ST",
+      "slug": "200_N_85TH_ST",
+      "count": 3
+    },
+    {
+      "addr": "2035 NW 63RD ST, Seattle WA",
+      "slug": "2035_NW_63RD_ST_SEATTLE_WA",
+      "count": 28
+    },
+    {
+      "addr": "2233 NW 58TH ST, Seattle WA",
+      "slug": "2233_NW_58TH_ST_SEATTLE_WA",
+      "count": 35
+    },
+    {
+      "addr": "2359 N 62ND ST",
+      "slug": "2359_N_62ND_ST",
+      "count": 14
+    },
+    {
+      "addr": "3047 30th AVE W",
+      "slug": "3047_30TH_AVE_W",
+      "count": 15
+    },
+    {
+      "addr": "3412 34TH AVE W",
+      "slug": "3412_34TH_AVE_W",
+      "count": 15
+    },
+    {
+      "addr": "3613 EVANSTON AVE N",
+      "slug": "3613_EVANSTON_AVE_N",
+      "count": 7
+    },
+    {
+      "addr": "4051 GILMAN AVE W",
+      "slug": "4051_GILMAN_AVE_W",
+      "count": 4
+    },
+    {
+      "addr": "414 NE RAVENNA BLVD, Seattle WA",
+      "slug": "414_NE_RAVENNA_BLVD_SEATTLE_WA",
+      "count": 33
+    },
+    {
+      "addr": "4339 29TH AVE W",
+      "slug": "4339_29TH_AVE_W",
+      "count": 29
+    },
+    {
+      "addr": "505 NE 70TH ST, Seattle WA",
+      "slug": "505_NE_70TH_ST_SEATTLE_WA",
+      "count": 29
+    },
+    {
+      "addr": "618 NW 58TH ST, Seattle WA",
+      "slug": "618_NW_58TH_ST_SEATTLE_WA",
+      "count": 45
+    },
+    {
+      "addr": "6900 EAST GREEN LAKE WAY N, Seattle WA",
+      "slug": "6900_EAST_GREEN_LAKE_WAY_N_SEATTLE_WA",
+      "count": 34
+    },
+    {
+      "addr": "7510 15TH AVE NW",
+      "slug": "7510_15TH_AVE_NW",
+      "count": 2
+    },
+    {
+      "addr": "7708 GREENWOOD AVE N",
+      "slug": "7708_GREENWOOD_AVE_N",
+      "count": 21
+    }
+  ],
+  "7": [
+    {
+      "addr": "104 1ST AVE N",
+      "slug": "104_1ST_AVE_N",
+      "count": 1
+    },
+    {
+      "addr": "1102 8TH AVE, Seattle WA",
+      "slug": "1102_8TH_AVE_SEATTLE_WA",
+      "count": 120
+    },
+    {
+      "addr": "1110 8TH AVE, Seattle WA",
+      "slug": "1110_8TH_AVE_SEATTLE_WA",
+      "count": 72
+    },
+    {
+      "addr": "1501 2ND AVE",
+      "slug": "1501_2ND_AVE",
+      "count": 13
+    },
+    {
+      "addr": "1518 5TH AVE N",
+      "slug": "1518_5TH_AVE_N",
+      "count": 8
+    },
+    {
+      "addr": "1820 MINOR AVE, Seattle WA",
+      "slug": "1820_MINOR_AVE_SEATTLE_WA",
+      "count": 83
+    },
+    {
+      "addr": "1823 TERRY AVE, Seattle WA",
+      "slug": "1823_TERRY_AVE_SEATTLE_WA",
+      "count": 58
+    },
+    {
+      "addr": "1902 2ND AVE, Seattle WA",
+      "slug": "1902_2ND_AVE_SEATTLE_WA",
+      "count": 62
+    },
+    {
+      "addr": "1920 1ST AVE",
+      "slug": "1920_1ST_AVE",
+      "count": 13
+    },
+    {
+      "addr": "2216 11TH AVE W",
+      "slug": "2216_11TH_AVE_W",
+      "count": 3
+    },
+    {
+      "addr": "2423 5TH AVE W",
+      "slug": "2423_5TH_AVE_W",
+      "count": 4
+    },
+    {
+      "addr": "2505 AURORA AVE N",
+      "slug": "2505_AURORA_AVE_N",
+      "count": 11
+    },
+    {
+      "addr": "2834 15TH AVE W",
+      "slug": "2834_15TH_AVE_W",
+      "count": 17
+    },
+    {
+      "addr": "3039 HUMES PL W",
+      "slug": "3039_HUMES_PL_W",
+      "count": 21
+    },
+    {
+      "addr": "304 BELL ST",
+      "slug": "304_BELL_ST",
+      "count": 13
+    },
+    {
+      "addr": "3402 15TH AVE W",
+      "slug": "3402_15TH_AVE_W",
+      "count": 27
+    },
+    {
+      "addr": "420 BLANCHARD ST",
+      "slug": "420_BLANCHARD_ST",
+      "count": 37
+    },
+    {
+      "addr": "524 5TH AVE W",
+      "slug": "524_5TH_AVE_W",
+      "count": 25
+    },
+    {
+      "addr": "526 W MERCER ST",
+      "slug": "526_W_MERCER_ST",
+      "count": 2
+    },
+    {
+      "addr": "700 5TH AVE, Seattle WA",
+      "slug": "700_5TH_AVE_SEATTLE_WA",
+      "count": 99
+    },
+    {
+      "addr": "800 SENECA ST, Seattle WA",
+      "slug": "800_SENECA_ST_SEATTLE_WA",
+      "count": 135
+    },
+    {
+      "addr": "811 W NICKERSON ST",
+      "slug": "811_W_NICKERSON_ST",
+      "count": 3
+    },
+    {
+      "addr": "823 MADISON ST, Seattle WA",
+      "slug": "823_MADISON_ST_SEATTLE_WA",
+      "count": 63
+    }
+  ]
+}

@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>STLCA Timeline â€” 4126 12TH AVE NE, Seattle WA</title>
+<style>
+  :root{
+    --bg:#070b12;--panel:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);
+    --text:#e9eef7;--muted:rgba(233,238,247,.65);--muted2:rgba(233,238,247,.40);
+    --blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#22c55e;
+    --max:900px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  nav{position:sticky;top:0;z-index:100;width:100%;height:52px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;background:rgba(7,11,18,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+  .nav-brand{font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff}
+  .nav-brand span{color:var(--blue)}
+  .nav-links{display:flex;gap:6px}
+  .nav-links a{font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.5px;transition:.15s}
+  .nav-links a:hover{background:rgba(255,255,255,.10)}
+  .nav-links a.cta{background:var(--orange);color:#000}
+
+  .wrap{width:min(100%,var(--max));margin:0 auto;padding:0 24px}
+
+  .page-header{padding:48px 0 32px}
+  .crumb{font-size:11px;color:var(--muted2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+  .crumb a{color:var(--blue)}
+  h1{font-size:clamp(22px,4vw,34px);font-weight:850;letter-spacing:-.4px;line-height:1.15;margin-bottom:8px}
+  .district-tag{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;
+    color:var(--blue);border:1px solid rgba(45,127,249,.30);background:rgba(45,127,249,.10);
+    border-radius:999px;padding:4px 13px;margin-bottom:18px}
+
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+  .sum-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
+  .sum-card.alert{border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.05)}
+  .sum-card .num{font-size:30px;font-weight:880;letter-spacing:-.5px;margin-bottom:6px;line-height:1}
+  .sum-card .lbl{font-size:11px;color:var(--muted);line-height:1.55}
+  .sum-card .lbl strong{color:var(--text)}
+  .lbl-sub{font-size:10px;color:var(--muted2);font-weight:700;letter-spacing:.5px}
+  .num.blue{color:var(--blue)} .num.orange{color:var(--orange)} .num.red{color:var(--red)} .num.green{color:var(--green)}
+  .pct-bar-wrap{height:4px;background:rgba(255,255,255,.07);border-radius:3px;margin:8px 0 4px}
+  .pct-bar{height:4px;border-radius:3px}
+  .red-bar{background:var(--red);opacity:.7}
+  .blue-bar{background:var(--blue);opacity:.7}
+  .pct-label{font-size:10px;color:var(--muted2);font-weight:700}
+  .type-card{grid-column:span 2}
+  .type-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--muted2);margin-bottom:10px}
+  .type-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .type-name{font-size:11px;color:var(--muted);min-width:160px;flex-shrink:0}
+  .type-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px}
+  .type-bar{display:block;height:6px;background:var(--blue);border-radius:3px;opacity:.6}
+  .type-count{font-size:11px;font-weight:800;color:var(--text);min-width:28px;text-align:right}
+
+  .section-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted2);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+  /* Timeline */
+  .timeline{position:relative;padding-left:28px;margin-bottom:48px}
+  .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.07)}
+
+  .tl-item{position:relative;margin-bottom:20px}
+  .tl-dot{position:absolute;left:-25px;top:5px;width:12px;height:12px;border-radius:50%;flex-shrink:0;border:2px solid rgba(7,11,18,1)}
+  .tl-body{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px 15px}
+
+  .tl-header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .tl-date{font-size:12px;font-weight:800;color:var(--muted2);font-variant-numeric:tabular-nums}
+  .tl-recnum{font-size:12px;font-weight:800;color:var(--blue);border:1px solid rgba(45,127,249,.25);background:rgba(45,127,249,.08);border-radius:6px;padding:2px 8px}
+  .tl-recnum:hover{background:rgba(45,127,249,.18)}
+  .tl-type{font-size:11px;color:var(--muted2);background:rgba(255,255,255,.05);border-radius:6px;padding:2px 8px}
+
+  .complaint-desc{font-size:13px;color:var(--text);line-height:1.7;margin-bottom:10px;padding:10px 12px;
+    background:rgba(255,255,255,.03);border-left:3px solid rgba(45,127,249,.35);border-radius:0 8px 8px 0}
+  .no-desc{color:var(--muted2);font-style:italic}
+  .sdci-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;padding:8px 12px;
+    background:rgba(255,255,255,.02);border-left:3px solid rgba(245,158,11,.30);border-radius:0 8px 8px 0}
+  .sdci-label{font-weight:800;color:var(--orange)}
+
+  .tl-outcome{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;margin-top:8px}
+  .tl-status{font-weight:800}
+  .tl-sep{color:var(--muted2)}
+  .tl-insp,.tl-result{color:var(--muted)}
+
+  footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted2);font-size:11px;line-height:1.8;margin-top:16px}
+  footer a{color:rgba(233,238,247,.5)}
+  footer a:hover{color:var(--text)}
+
+  @media(max-width:600px){
+    .summary-row{flex-direction:column}
+    .tl-header{flex-direction:column;align-items:flex-start;gap:5px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance</div>
+  <div class="nav-links">
+    <a href="../STLCA_Home.html">Home</a>
+    <a href="../STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="../STLCA_District_4.html">District 4</a>
+    <a href="../STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-header">
+    <div class="crumb"><a href="../STLCA_Home.html">Home</a> / <a href="../STLCA_District_4.html">District 4 (Rivera)</a> / Complaint Timeline</div>
+    <div class="district-tag">District 4 â€” Rivera</div>
+    <h1>4126 12TH AVE NE, Seattle WA</h1>
+    <p style="color:var(--muted);font-size:14px;margin-top:8px;line-height:1.7">
+      Every SDCI complaint and enforcement record on file for this address, in chronological order.
+      Complaint descriptions are drawn directly from the public SDCI dataset.
+    </p>
+  </div>
+
+  <!-- TOP STATS -->
+  <div class="stats-grid">
+
+    <div class="sum-card">
+      <div class="num blue">38</div>
+      <div class="lbl">Total records on file<br><span class="lbl-sub">2013â€“2025</span></div>
+    </div>
+
+    <div class="sum-card alert">
+      <div class="num red">13</div>
+      <div class="lbl">Closed / Completed with<br><strong>no inspection result recorded</strong></div>
+      <div class="pct-bar-wrap"><div class="pct-bar red-bar" style="width:62%"></div></div>
+      <div class="pct-label">62% of all closed cases</div>
+    </div>
+
+    <div class="sum-card alert">
+      <div class="num red">30</div>
+      <div class="lbl">Records with<br><strong>no inspection date in public record</strong></div>
+      <div class="pct-bar-wrap"><div class="pct-bar red-bar" style="width:79%"></div></div>
+      <div class="pct-label">79% of all records</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num orange">17</div>
+      <div class="lbl">Still open /<br>under investigation</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num red">0</div>
+      <div class="lbl">Enforcement actions<br>(NOV / Order / Referral)</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num orange">8</div>
+      <div class="lbl">Records with a documented<br>inspection result</div>
+      <div class="pct-bar-wrap"><div class="pct-bar blue-bar" style="width:21%"></div></div>
+      <div class="pct-label">21% inspection rate</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num orange">1,073</div>
+      <div class="lbl">Days â€” longest single<br>case on record at this address</div>
+    </div>
+
+    <div class="sum-card type-card">
+      <div class="type-title">Record Types</div>
+      
+            <div class="type-row">
+              <span class="type-name">LANDLORD/TENANT</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:53%"></span></span>
+              <span class="type-count">20</span>
+            </div>
+            <div class="type-row">
+              <span class="type-name">BLANK/LLT</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:29%"></span></span>
+              <span class="type-count">11</span>
+            </div>
+            <div class="type-row">
+              <span class="type-name">NOISE</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:18%"></span></span>
+              <span class="type-count">7</span>
+            </div>
+    </div>
+
+  </div>
+
+  <div class="section-title" style="margin-top:28px">Complaint &amp; Enforcement Timeline â€” 38 Records</div>
+
+  <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2013-06-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=003052-13CP" rel="noopener">003052-13CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">BED BUGS</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2013-06-24</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2013-06-18</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=003149-13CP" rel="noopener">003149-13CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">BED BUGS.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2013-07-01</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2013-07-01</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1029939-VI" rel="noopener">1029939-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">BED BUGS.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2013-08-06</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2014-09-15</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1032905-VI" rel="noopener">1032905-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc no-desc">No complaint description in public record</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2014-09-03</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2017-05-23</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=003504-17CP" rel="noopener">003504-17CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE COMPLAINT: THIS HOUSING LOCATION POSES A CONSTANT RISK FOR THE HEALTH AND SAFETY OF ITS TENANTS. THE HOUSE IS INFESTED WITH PESTS AND DESPITE CONTINUED COMPLAINTS TO THE LANDLORD, NOTHING HAS BEEN DONE. THIS HOUSE IS ADDITIONALLY INFESTED WITH MOLD. OVERALL IT IS AN INHABITABLE AND DANGEROUS ENVIRONMENT.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ST 6/2/17 HBMC VIOLATIONS INCLUDING BUT NOT LIMITED TO NOT HAVING SMOKE DETECTORS PROPERLY INSTALLED, OBSERVATION PORTS AND A HAND RAIL.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2017-06-02</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2017-06-02</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1040308-VI" rel="noopener">1040308-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE COMPLAINT: THIS HOUSING LOCATION POSES A CONSTANT RISK FOR THE HEALTH AND SAFETY OF ITS TENANTS. THE HOUSE IS INFESTED WITH PESTS AND DESPITE CONTINUED COMPLAINTS TO THE LANDLORD, NOTHING HAS BEEN DONE. THIS HOUSE IS ADDITIONALLY INFESTED WITH MOLD. OVERALL IT IS AN INHABITABLE AND DANGEROUS ENVIRONMENT.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ST 6/2/17 HBMC VIOLATIONS INCLUDING BUT NOT LIMITED TO NOT HAVING SMOKE DETECTORS PROPERLY INSTALLED, OBSERVATION PORTS AND A HAND RAIL.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2017-08-21</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2017-06-05</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=003806-17CP" rel="noopener">003806-17CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">BED BUGS IN UNIT, FIRE ALARM SYSTEM DOES NOT WORK, DRAINAGE PROBLEMS IN THE SHOWER, WORRIED ABOUT RETALIATION. BEEN AN ONGOING ISSUE</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ST 12/18/17 BED BUGS FOUND AND HBMC VIOLATIONS WERE FOUND. THIS WAS CLOSED EARLIER THIS YEAR BUT NOT CLOSED ON HANSEN TIL TODAY.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2017-12-18</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2018-09-05</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=008466-18CP" rel="noopener">008466-18CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">PM UNRESPONSIVE TO HARASSMENT COMPLAINTS ABOUT ANOTHER TENANT. BELIEVES LACK OF RESPONSE IS RETALIATION OVER PERCEPTION THAT COMPLAINANT WRONGED PM IN GIVING INFO ABOUT BEDBUG INFESTATION IN 2017.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA - RETALIATION CONCERNS</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">CLOSED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2019-07-26</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1047504-TR" rel="noopener">1047504-TR</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">POTA - TRAO LICENSE</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA - TRAO LICENSE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2020-08-03</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=006604-20CP" rel="noopener">006604-20CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">HOUSE HAS BEEN SOLD, BUT TENANT ON MONTH TO MONTH LEASE AND NEEDS GUIDANCE. RECEIVED NOTICE APPROX 1.5 MONTHS AGO TO BE OUT BY JULY 30. LANGUAGE LINE ASSISTANCE REQUESTED. SPANISH SPEAKER.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">CLOSED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2020-11-04</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=009533-20CP" rel="noopener">009533-20CP</a>
+            <span class="tl-type">NOISE</span>
+          </div>
+          <div class="complaint-desc">LOUD CONSTRUCTION NOISES STARTING BEFORE 7AM DURING THE WEEK AND CONTINUING THROUGHOUT THE DAY IN EXCESSIVE AMOUNT. REPETITIVE BANGING AND CRUMBLING OF CONCRETE AND CONSTRUCTION MACHINES, IN AN AREA FILLED WITH STUDENTS TRYING TO PARTICIPATE IN ONLINE SCHOOL FROM THEIR APARTMENTS.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> NOISE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2020-11-24</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=009978-20CP" rel="noopener">009978-20CP</a>
+            <span class="tl-type">NOISE</span>
+          </div>
+          <div class="complaint-desc">REPORTING LOUD CONST. NOISE STARTING AT 7AM - PILE DRIVING, TRUCKS HONKING HORNS</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> NOISE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-06-26</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004933-21CP" rel="noopener">004933-21CP</a>
+            <span class="tl-type">NOISE</span>
+          </div>
+          <div class="complaint-desc">CONSTRUCTING BEGINS WELL BEFORE 7AM (OFTEN BEFORE 6 AM) BOTH WEEKDAYS AND WEEKENDS</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> NOISE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-06-28</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004960-21CP" rel="noopener">004960-21CP</a>
+            <span class="tl-type">NOISE</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE; 06/28/2021 CONSTRUCTION BEGINS AT 4:58.  JUST BECAUSE IT IS HOT DOES NOT MEAN NOISE POLLUTION IS WITHOUT CONSEQUENCE.  BE A HUMAN AND GIVE YOUR EMPLOYEES THE DAY OFF (PAID) IF IT IS TOO HOT TO REASONABLY WORK.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> CONSTRUCTION NOISE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-07-10</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005408-21CP" rel="noopener">005408-21CP</a>
+            <span class="tl-type">NOISE</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE; COMPILED WITH PREVIOUS NOISE COMPLAINTS, THE CONSISTENT EARLY MORNING CONSTRUCTION CONTINUES.  6AM SATURDAY MORNING IN RESIDENTIAL AREA.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> CONSTRUCTION NOISE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-10-06</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=008386-21CP" rel="noopener">008386-21CP</a>
+            <span class="tl-type">NOISE</span>
+          </div>
+          <div class="complaint-desc">IMPACT MACHINERYNOISES ABOVE ALLOWABLE LEVELS.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> CONSTRUCTION NOISE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2022-06-28</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=006102-22CP" rel="noopener">006102-22CP</a>
+            <span class="tl-type">NOISE</span>
+          </div>
+          <div class="complaint-desc">EVERYDAY FOR THE PAST WEEK THEY SET OFF THEIR FIREALARMS AT 7AM. ONE DAY LAST WEEK IT WENT OFF FOR 5 HOURS. THIS IS CRAZY UNACCEPTABLE! I COULD UNDERSTAND ONCE, BUT IT JUST KEEPS GOING. IT CONSTANTLY WAKES UP MY NEW BORN. WHICH  IS NFURIATING.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> NOISE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2022-10-03</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=010990-22CP" rel="noopener">010990-22CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE; NO WORKING GARBAGE DISPOSAL FOR THE ENTIRE BUILDING, WATER LEAKAGES IN OUR APARTMENT UNIT, NO MAINTENANCE CREW ON SITE OR ANYONE RESPONDING TO REQUESTS FOR 2 WEEKS NOW</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HOUSING - RRIO #001-0105081 - SUPPORTING DOCUMENTS AVAILABLE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">CLOSED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2023-01-23</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000824-23CP" rel="noopener">000824-23CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">HELLO. SO MY COMPLAINT IS PRETTY SIMPLE. I WANT OUT OF MY LEASE BC I CAN'T RECEIVE USPS MAIL AT MY PLACE? IS THAT LEGAL? LIKE FOR REALL DO I HAVE A CASE AGAINST MY LANDLORD BC IT KINDA FEELS LIKE I DO. OK THX. GREG SMOLARZ</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2023-01-25</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000893-23CP" rel="noopener">000893-23CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">YES HI MY LANDLORD IS BEING A REAL DICK ABOUT MY LEASE AND EVERYTHING, EVEN THOUGH WE CAN'T EVEN RECEIVE MAIL AT MY ADDRESS? RIGHT? I MEAN WTF? HUH? SO YEAH FOR SURE AND THEY'RE MAKING THREATS AGAINST ME!!</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA, RENTAG</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2023-01-26</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000940-23CP" rel="noopener">000940-23CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE; HELLO I'VE GOT A COMPLAINT THAT I CANNOT RECEIVE MAIL AT MY RESIDENCE? AND I'M IN A BATTLE WITH LANDLORD OVER IT RIGHT NOW, AND THEY'RE MAKING THREATS AGAINST ME. SO YEAH FOR SURE! OK. THX.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA - RELATED TO RECORD #000824-23CP</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2023-01-26</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000920-23CP" rel="noopener">000920-23CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE; MY COMPLAINT IS THAT I CAN'T RECEIVE MAIL AT MY PLACE. YA KNOW? AND I WANT OUT OF MY LEASE ABOUT IT, AND NOW MY LANDLORD IS MAKING THREATS TO ME ABOUT IT. OK. THX. GREG SMOLARZ</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA - RELATED TO RECORD #000824-23CP</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2024-10-21</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011978-24CP" rel="noopener">011978-24CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">THE LANDLORD OF ACCOLADE IS ERRONEOUSLY CHARGING US FOR DAMAGE AND CLEANING AND PAINTING</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2024-11-19</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=013062-24CP" rel="noopener">013062-24CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">OVER THE PAST FEW MONTHS, THE ELEVATOR IN OUR BUILDING HAS FREQUENTLY BROKEN DOWN, LEAVING RESIDENTS STUCK INSIDE MULTIPLE TIMES. THERE HAVE BEEN APPROXIMATELY 4-5 INCIDENTS SO FAR. THIS IS A MAJOR INCONVENIENCE FOR RESIDENTS AND POSES A SERIOUS SAFETY HAZARD. I REQUEST AN INSPECTION AND PROMPT RESOLUTION OF THIS ISSUE.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HOUSING - RRIO REG-RECORD: 001-0148012</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2024-12-02</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011775-25CP" rel="noopener">011775-25CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">THE ACCOLADE U DISTRICT UNDER GREYSTAR IS CHARGING ME EXTRA MOVE OUT STATEMENT. IN SOME I ALREADY PAID AND NOT RESPONSIBLE FOR. THIS MOVE OUT STATEMENT INCLUDE EXTRA UTILITY BILLS WHICH I PAID VIA CONSERVICE EVERY MONTH, AND DIDN'T GIVE BACK MY DEPOSIT AND BASED RENT BACK TO ME.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">CLOSED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011777-25CP" rel="noopener">011777-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM A FORMER TENANT OF THE ACCOLADE APARTMENTS (UNIT 1807A, 4126 12TH AVE NE, SEATTLE, WA 98105). AFTER MOVING OUT ON AUGUST 17, 2025, I RECEIVED A MOVE-OUT STATEMENT CHARGING ME FOR MULTIPLE DAMAGES AND CLEANING FEES (SOFA REPLACEMENT/CLEANING, WALL AND CEILING PAINT, APPLIANCE CLEANING, TRASH REMOVAL, ETC.).HOWEVER, THE MANAGEMENT DID NOT PROVIDE ANY PHOTOS, INSPECTION REPORTS, OR DOCUMENTATION TO SUBSTANTIATE THESE CHARGES. UNDER WASHINGTON STATE LANDLORD-TENANT LAW, LANDLORDS ARE REQUI</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011773-25CP" rel="noopener">011773-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM A FORMER TENANT OF THE ACCOLADE (4126 12TH AVE NE, SEATTLE, MANAGED BY GREYSTAR). AFTER MOVE-OUT, I RECEIVED A BILL WITH NUMEROUS EXCESSIVE AND UNREASONABLE CHARGES.1. LACK OF DOCUMENTATION: THE STATEMENT LISTED MANY CLEANING AND REPAIR CHARGES BUT NO RECEIPTS, INVOICES, ESTIMATES, OR PHOTOS WERE PROVIDED. UNDER RCW 59.18.280(1)(B), LANDLORDS MUST INCLUDE DOCUMENTATION TO SUBSTANTIATE SUCH CHARGES.2. CHARGES FOR NORMAL WEAR AND TEAR: THE BILL INCLUDES COSTS FOR ITEMS SUCH AS LIGHT</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011772-25CP" rel="noopener">011772-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM WRITING TO FILE A COMPLAINT REGARDING MY FORMER LANDLORD/PROPERTY MANAGEMENT COMPANY IN WASHINGTON STATE. AFTER I MOVED OUT OF MY APARTMENT, THEY PROVIDED ME WITH A LIST OF CHARGES, INCLUDING CLEANING AND DAMAGE FEES. HOWEVER:		THESE CHARGES ARE NOT ACCURATE, AS I DID NOT CAUSE THE ALLEGED DAMAGES.		THE STATEMENT PROVIDED WAS VAGUE AND UNCLEAR, WITH NO SUPPORTING EVIDENCE SUCH AS PHOTOS OR RECEIPTS.		THE CHARGES APPEAR UNREASONABLE AND DO NOT REFLECT NORMAL WEAR AND TEAR FROM ORDI</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011771-25CP" rel="noopener">011771-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM FILING THIS CLAIM AGAINST MY LANDLORD/PROPERTY MANAGEMENT (ACCOLADE, MANAGED BY GREYSTAR) FOR UNFAIR CHARGES AND MISHANDLING OF MY TENANCY.PRE-EXISTING CONDITIONSBEFORE MOVING IN, THE UNIT ALREADY HAD VISIBLE WALL DAMAGE, SCRATCHES, AND PATCH MARKS. I HAVE PHOTOGRAPHS FROM THE MOVE-IN INSPECTION THAT CLEARLY SHOW THESE CONDITIONS EXISTED PRIOR TO MY TENANCY.FALSE DAMAGE CLAIMSDESPITE THIS, THE LANDLORD HAS CLAIMED THAT I CAUSED DAMAGE TO THE UNIT AND IS ATTEMPTING TO HOLD ME FINANC</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011769-25CP" rel="noopener">011769-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">THE ACCOLADE APARTMENT CHARGED ME RANDOMLY AFTER THE LEASE PERIOD ENDED. NOT ONLY DID THEY NOT PROVIDE ME WITH SPECIFIC CHARGE DETAILS AND RECEIPTS, BUT THEY ALSO MADE ME MAKE UNREASONABLE COMPENSATION AND CHARGED ME MORE THAN 1,000 US DOLLARS FOR DAMAGE. THIS IS DEFINITELY ILLEGAL AND HEINOUS.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-14</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011780-25CP" rel="noopener">011780-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM FILING A COMPLAINT REGARDING THE ACCOLADE APARTMENTS (4126 12TH AVE NE, SEATTLE, WA 98105), MANAGED BY GREYSTAR. AFTER MOVING OUT ON AUGUST 31, 2025, I RECEIVED A MOVE-OUT STATEMENT DATED SEPTEMBER 10, 2025, WHICH CHARGED ME $2,572.18 IN DAMAGES AND CLEANING FEES. AFTER APPLYING MY CREDITS (DEPOSIT AND LAST MONTH'S RENT), I WAS STILL BILLED $1,042.50.THESE CHARGES ARE UNREASONABLE AND CONSTITUTE UNFAIR LANDLORD PRACTICES. PRIOR TO MOVING OUT, I THOROUGHLY CLEANED THE UNIT AND RECORDED</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-15</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=011798-25CP" rel="noopener">011798-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM WRITING TO FILE A COMPLAINT REGARDING UNFAIR AND UNREASONABLE MOVE-OUT CHARGES AT THE ACCOLADE APARTMENTS, MANAGED BY GREYSTAR, IN SEATTLE'S UNIVERSITY DISTRICT. UPON MOVING OUT, MY ROOMMATES AND I WERE BILLED EXTENSIVE CLEANING AND DAMAGE FEES THAT I BELIEVE ARE EXCESSIVE AND UNSUBSTANTIATED. MANY TENANTS AT THIS PROPERTY HAVE REPORTED BEING CHARGED HUNDREDS, AND IN SOME CASES MORE THAN $1,000, FOR ALLEGED DAMAGES-EVEN WHEN THEY LEFT THEIR UNITS IN GOOD CONDITION OR WHEN THE ISSUES WERE C</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-19</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=012000-25CP" rel="noopener">012000-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM FILING THIS COMPLAINT AGAINST GREYSTAR / THE ACCOLADE APARTMENTS REGARDING IMPROPER HANDLING OF MY SECURITY DEPOSIT. AFTER MOVING OUT ON AUGUST 29, 2025, I RECEIVED A PARTIAL REFUND NOTICE OF $162.50 ON SEPTEMBER 18, 2025. HOWEVER, THE PROPERTY MANAGEMENT HAS FAILED TO PROVIDE AN ITEMIZED LIST OF DEDUCTIONS, RECEIPTS, OR PHOTOGRAPHIC EVIDENCE TO JUSTIFY WITHHOLDING THE MAJORITY OF MY DEPOSIT.INSTEAD, THEY ARE ATTEMPTING TO CHARGE ME FOR GENERAL CLEANING, PARTIAL PAINTING, AND OTHER FEE</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-09-30</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=012369-25CP" rel="noopener">012369-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM A FORMER TENANT OF THE ACCOLADE APARTMENTS. AFTER MOVING OUT, I WAS CHARGED MULTIPLE UNJUSTIFIED FEES, INCLUDING BED REPAIR, DESK AND CHAIR REPAIR, DOOR REPAIR, SOFA REPAIR, WALL PAINT CLEANING, AND FLOOR CLEANING. MANY OF THESE ITEMS WERE LISTED MULTIPLE TIMES ON MY BILL.I LIVED IN A 4BED ROOM 2 BATH ROOM UNIT, BUT CHARGES FOR COMMON AREAS SUCH AS SOFA REPAIR, STOVE CLEANING, AND REFRIGERATOR CLEANING WERE BILLED ONLY TO ME, RATHER THAN BEING SHARED. AT MOVE-OUT, MY BED, DESK, CHAIR,</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-10-02</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=012470-25CP" rel="noopener">012470-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I LIVED AT THE ACCOLADE (4126 12TH AVE NE) LAST YEAR IN APT. 901. AFTER I MOVED TO A NEW ROOM, THE ACCOLADE SENT ME A DAMAGE FEE REQUEST FOR THE COST OF CLEANING AND DAMAGE. HOWEVER, THE AMOUNT THEY'VE REQUESTED IS REALLY UNREASONABLE. FOR EVERY WALL PAINTING, THEY HAVE TO CHARGE 145-200 DOLLARS EACH, AND THEY ALSO ASKED ME TO PAY FOR THE CEILING PAINTING, BUT IN FACT THEY HADN'T PAINTED IT BEFORE I MOVED IN. I HAVE ASKED THEM FOR A BREAKDOWN AND PHOTO DOCUMENTATION OF ANY FEE THEY ARE GOING TO</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-10-05</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=012632-25CP" rel="noopener">012632-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM FILING A COMPLAINT REGARDING IMPROPER AND ABUSIVE CHARGES I RECEIVED AFTER MOVING OUT OF THE ACCOLADE APARTMENT AND THE LANDLORD'S FAILURE TO PROVIDE LEGALLY REQUIRED DOCUMENTATION WITHIN 30 DAYS OF MOVE-OUT.AFTER VACATING THE ACCOLADE (UNIT 1807-B) ON AUGUST 31, 2025, I WAS BILLED $587 FOR ITEMS INCLUDING CEILING AND WALL PAINT TOUCH-UPS AND CLEANING OF BED/SOFA/APPLIANCES. THESE APPEAR TO BE ORDINARY WEAR AND TEAR AND THEREFORE NOT CHARGEABLE TO A TENANT'S DEPOSIT UNDER RCW 59.18.280</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-10-14</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=013057-25CP" rel="noopener">013057-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM FILING A COMPLAINT AGAINST GREYSTAR PROPERTY MANAGEMENT FOR ISSUING POST MOVE-OUT CHARGES IN VIOLATION OF RCW 59.18.280. MY TENANCY ENDED AND I VACATED THE UNIT ON AUGUST 31, 2025. THE LANDLORD ISSUED A MOVE-OUT STATEMENT ON OCTOBER 6, 2025-MORE THAN 30 DAYS AFTER I VACATED-WHICH EXCEEDS THE LEGAL TIMEFRAME FOR PROVIDING AN ITEMIZED STATEMENT OF DEDUCTIONS. UNDER RCW 59.18.280, ANY CHARGES NOT PROVIDED WITHIN 30 DAYS ARE NOT LEGALLY ENFORCEABLE.THE CLEANING AND TOUCH-UP PAINT FEES LIST</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-10-20</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=013357-25CP" rel="noopener">013357-25CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">I AM FILING A COMPLAINT AGAINST GREYSTAR PROPERTY MANAGEMENT FOR ISSUING POST MOVE-OUT CHARGES IN VIOLATION OF RCW 59.18.280. MY TENANCY ENDED AND I VACATED THE UNIT ON AUGUST 31, 2025. THE LANDLORD ISSUED A MOVE-OUT FINAL BALANCE STATEMENT ON SEPTEMBER 13, 2025, WHICH WAS $45 AND I ALREADY PAID FOR IT. HOWEVER, THEY ISSUED A MOVE-OUT STATEMENT AGAIN ON OCTOBER 6, 2025 FOR CHARGING $222.5-MORE THAN 30 DAYS AFTER I VACATED-WHICH EXCEEDS THE LEGAL TIMEFRAME FOR PROVIDING AN ITEMIZED STATEMENT OF</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<footer>
+  Seattle Tenant Landlord Compliance Authority (STLCA) |
+  Independent public-data analysis, not legal representation<br>
+  All records sourced from City of Seattle Open Data Portal â€” SDCI Enforcement dataset, extracted 2025-12-31<br><br>
+  <a href="../STLCA_Council_Briefing.html">Council Briefing</a> |
+  <a href="../STLCA_Citywide_KPI.html">Citywide Audit</a> |
+  <a href="../STLCA_Methodology.html">Methodology</a> |
+  <a href="https://github.com/seattletlca-justice/DATASETS_AND_DASHBOARDS" rel="noopener">GitHub</a>
+</footer>
+</body>
+</html>

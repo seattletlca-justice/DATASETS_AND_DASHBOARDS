@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>STLCA Timeline â€” 9103 8TH AVE S</title>
+<style>
+  :root{
+    --bg:#070b12;--panel:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);
+    --text:#e9eef7;--muted:rgba(233,238,247,.65);--muted2:rgba(233,238,247,.40);
+    --blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#22c55e;
+    --max:900px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  nav{position:sticky;top:0;z-index:100;width:100%;height:52px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;background:rgba(7,11,18,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+  .nav-brand{font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff}
+  .nav-brand span{color:var(--blue)}
+  .nav-links{display:flex;gap:6px}
+  .nav-links a{font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.5px;transition:.15s}
+  .nav-links a:hover{background:rgba(255,255,255,.10)}
+  .nav-links a.cta{background:var(--orange);color:#000}
+
+  .wrap{width:min(100%,var(--max));margin:0 auto;padding:0 24px}
+
+  .page-header{padding:48px 0 32px}
+  .crumb{font-size:11px;color:var(--muted2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+  .crumb a{color:var(--blue)}
+  h1{font-size:clamp(22px,4vw,34px);font-weight:850;letter-spacing:-.4px;line-height:1.15;margin-bottom:8px}
+  .district-tag{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;
+    color:var(--blue);border:1px solid rgba(45,127,249,.30);background:rgba(45,127,249,.10);
+    border-radius:999px;padding:4px 13px;margin-bottom:18px}
+
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+  .sum-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
+  .sum-card.alert{border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.05)}
+  .sum-card .num{font-size:30px;font-weight:880;letter-spacing:-.5px;margin-bottom:6px;line-height:1}
+  .sum-card .lbl{font-size:11px;color:var(--muted);line-height:1.55}
+  .sum-card .lbl strong{color:var(--text)}
+  .lbl-sub{font-size:10px;color:var(--muted2);font-weight:700;letter-spacing:.5px}
+  .num.blue{color:var(--blue)} .num.orange{color:var(--orange)} .num.red{color:var(--red)} .num.green{color:var(--green)}
+  .pct-bar-wrap{height:4px;background:rgba(255,255,255,.07);border-radius:3px;margin:8px 0 4px}
+  .pct-bar{height:4px;border-radius:3px}
+  .red-bar{background:var(--red);opacity:.7}
+  .blue-bar{background:var(--blue);opacity:.7}
+  .pct-label{font-size:10px;color:var(--muted2);font-weight:700}
+  .type-card{grid-column:span 2}
+  .type-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--muted2);margin-bottom:10px}
+  .type-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .type-name{font-size:11px;color:var(--muted);min-width:160px;flex-shrink:0}
+  .type-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px}
+  .type-bar{display:block;height:6px;background:var(--blue);border-radius:3px;opacity:.6}
+  .type-count{font-size:11px;font-weight:800;color:var(--text);min-width:28px;text-align:right}
+
+  .section-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted2);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+  /* Timeline */
+  .timeline{position:relative;padding-left:28px;margin-bottom:48px}
+  .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.07)}
+
+  .tl-item{position:relative;margin-bottom:20px}
+  .tl-dot{position:absolute;left:-25px;top:5px;width:12px;height:12px;border-radius:50%;flex-shrink:0;border:2px solid rgba(7,11,18,1)}
+  .tl-body{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px 15px}
+
+  .tl-header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .tl-date{font-size:12px;font-weight:800;color:var(--muted2);font-variant-numeric:tabular-nums}
+  .tl-recnum{font-size:12px;font-weight:800;color:var(--blue);border:1px solid rgba(45,127,249,.25);background:rgba(45,127,249,.08);border-radius:6px;padding:2px 8px}
+  .tl-recnum:hover{background:rgba(45,127,249,.18)}
+  .tl-type{font-size:11px;color:var(--muted2);background:rgba(255,255,255,.05);border-radius:6px;padding:2px 8px}
+
+  .complaint-desc{font-size:13px;color:var(--text);line-height:1.7;margin-bottom:10px;padding:10px 12px;
+    background:rgba(255,255,255,.03);border-left:3px solid rgba(45,127,249,.35);border-radius:0 8px 8px 0}
+  .no-desc{color:var(--muted2);font-style:italic}
+  .sdci-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;padding:8px 12px;
+    background:rgba(255,255,255,.02);border-left:3px solid rgba(245,158,11,.30);border-radius:0 8px 8px 0}
+  .sdci-label{font-weight:800;color:var(--orange)}
+
+  .tl-outcome{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;margin-top:8px}
+  .tl-status{font-weight:800}
+  .tl-sep{color:var(--muted2)}
+  .tl-insp,.tl-result{color:var(--muted)}
+
+  footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted2);font-size:11px;line-height:1.8;margin-top:16px}
+  footer a{color:rgba(233,238,247,.5)}
+  footer a:hover{color:var(--text)}
+
+  @media(max-width:600px){
+    .summary-row{flex-direction:column}
+    .tl-header{flex-direction:column;align-items:flex-start;gap:5px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance</div>
+  <div class="nav-links">
+    <a href="../STLCA_Home.html">Home</a>
+    <a href="../STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="../STLCA_District_1.html">District 1</a>
+    <a href="../STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-header">
+    <div class="crumb"><a href="../STLCA_Home.html">Home</a> / <a href="../STLCA_District_1.html">District 1 (Saka)</a> / Complaint Timeline</div>
+    <div class="district-tag">District 1 â€” Saka</div>
+    <h1>9103 8TH AVE S</h1>
+    <p style="color:var(--muted);font-size:14px;margin-top:8px;line-height:1.7">
+      Every SDCI complaint and enforcement record on file for this address, in chronological order.
+      Complaint descriptions are drawn directly from the public SDCI dataset.
+    </p>
+  </div>
+
+  <!-- TOP STATS -->
+  <div class="stats-grid">
+
+    <div class="sum-card">
+      <div class="num blue">49</div>
+      <div class="lbl">Total records on file<br><span class="lbl-sub">2005â€“2025</span></div>
+    </div>
+
+    <div class="sum-card alert">
+      <div class="num red">16</div>
+      <div class="lbl">Closed / Completed with<br><strong>no inspection result recorded</strong></div>
+      <div class="pct-bar-wrap"><div class="pct-bar red-bar" style="width:38%"></div></div>
+      <div class="pct-label">38% of all closed cases</div>
+    </div>
+
+    <div class="sum-card alert">
+      <div class="num red">21</div>
+      <div class="lbl">Records with<br><strong>no inspection date in public record</strong></div>
+      <div class="pct-bar-wrap"><div class="pct-bar red-bar" style="width:43%"></div></div>
+      <div class="pct-label">43% of all records</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num orange">3</div>
+      <div class="lbl">Still open /<br>under investigation</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num orange">1</div>
+      <div class="lbl">Enforcement actions<br>(NOV / Order / Referral)</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num green">28</div>
+      <div class="lbl">Records with a documented<br>inspection result</div>
+      <div class="pct-bar-wrap"><div class="pct-bar blue-bar" style="width:57%"></div></div>
+      <div class="pct-label">57% inspection rate</div>
+    </div>
+
+    <div class="sum-card">
+      <div class="num orange">3,983</div>
+      <div class="lbl">Days â€” longest single<br>case on record at this address</div>
+    </div>
+
+    <div class="sum-card type-card">
+      <div class="type-title">Record Types</div>
+      
+            <div class="type-row">
+              <span class="type-name">LAND USE</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:39%"></span></span>
+              <span class="type-count">19</span>
+            </div>
+            <div class="type-row">
+              <span class="type-name">BLANK/LLT</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:33%"></span></span>
+              <span class="type-count">16</span>
+            </div>
+            <div class="type-row">
+              <span class="type-name">CONSTRUCTION</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:14%"></span></span>
+              <span class="type-count">7</span>
+            </div>
+            <div class="type-row">
+              <span class="type-name">WEEDS</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:8%"></span></span>
+              <span class="type-count">4</span>
+            </div>
+            <div class="type-row">
+              <span class="type-name">LANDLORD/TENANT</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:4%"></span></span>
+              <span class="type-count">2</span>
+            </div>
+            <div class="type-row">
+              <span class="type-name">VACANT BUILDING</span>
+              <span class="type-bar-wrap"><span class="type-bar" style="width:2%"></span></span>
+              <span class="type-count">1</span>
+            </div>
+    </div>
+
+  </div>
+
+  <div class="section-title" style="margin-top:28px">Complaint &amp; Enforcement Timeline â€” 49 Records</div>
+
+  <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2005-04-04</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001974-05CP" rel="noopener">001974-05CP</a>
+            <span class="tl-type">CONSTRUCTION</span>
+          </div>
+          <div class="complaint-desc">FROM ONLINE COMPLAINT DATED 4/3/05: "HIRING ILLEGAL ALIENS, NOT LICENSED CONTRACTORS, INSTALLING CONCRETE BLOCKS AND FOUNDATION WITHOUT PERMIT. THESE PEOPLE HAVE OBTAINED ILLEGAL DOCUMENTATIONS INCLUDING SOCIAL SECURITY NUMBERS AND CONTRACTOR NUMBERS. THEY ARE NOT REGISTERED IN SEATTLE. COMPANY NAME IVAN'S COMPLETE DRYWALL, BUT DOING FOUNDATION AND CONCRETE WORK,"**FOUNDATION WORK W/O PERMIT**</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2005-04-05</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2005-04-06</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1004900-VI" rel="noopener">1004900-VI</a>
+            <span class="tl-type">CONSTRUCTION</span>
+          </div>
+          <div class="complaint-desc">FROM ONLINE COMPLAINT DATED 4/3/05: "HIRING ILLEGAL ALIENS, NOT LICENSED CONTRACTORS, INSTALLING CONCRETE BLOCKS AND FOUNDATION WITHOUT PERMIT. THESE PEOPLE HAVE OBTAINED ILLEGAL DOCUMENTATIONS INCLUDING SOCIAL SECURITY NUMBERS AND CONTRACTOR NUMBERS. THEY ARE NOT REGISTERED IN SEATTLE. COMPANY NAME IVAN'S COMPLETE DRYWALL, BUT DOING FOUNDATION AND CONCRETE WORK,"**FOUNDATION WORK W/O PERMIT**</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2010-07-26</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2009-08-28</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004465-09CP" rel="noopener">004465-09CP</a>
+            <span class="tl-type">CONSTRUCTION</span>
+          </div>
+          <div class="complaint-desc">NEW OWNER HAS BEEN POURING CONCRETE FOR SEVERAL DAYS ON PROPERTY ADJACENT TO DIRECTOR STREET</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2009-08-31</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2014-04-18</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=002352-14CP" rel="noopener">002352-14CP</a>
+            <span class="tl-type">CONSTRUCTION</span>
+          </div>
+          <div class="complaint-desc">OWNER HAS IS ADDING ROOMS TO HIS HOUSE W/OUT PERMITS.  CAN BE SEEN FROM SIDEWALK.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2014-11-04</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2014-05-05</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1031888-VI" rel="noopener">1031888-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc no-desc">No complaint description in public record</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">NOV ISSUED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2014-10-30</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005874-14CP" rel="noopener">005874-14CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">ADDING ROOMS TO EXISTING HOUSE W/O A PERMIT.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2014-11-04</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1033321-VI" rel="noopener">1033321-VI</a>
+            <span class="tl-type">CONSTRUCTION</span>
+          </div>
+          <div class="complaint-desc">OWNER HAS IS ADDING ROOMS TO HIS HOUSE W/OUT PERMITS.  CAN BE SEEN FROM SIDEWALK.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2025-09-30</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2015-04-28</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=002860-15CP" rel="noopener">002860-15CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">REFRIGERATOR DOESN'T KEEP FOOD CLOSED. INFESTATION OF ANTS AND BED BUGS. NO SHOWER KNOB - USING WRENCH TO TURN WATER ON/OFF.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> BRADRICK 5.14.15 NO CONTACT FROM THE TENANT.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2015-05-14</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2015-07-23</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004835-15CP" rel="noopener">004835-15CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE COMPLAINT: HOUSE OWNER KEEPS ADDING ROOMS ONTO THEIR HOME, THEN RENTING THEM OUT. HAVING WORKED IN THE CONSTRUCTION TRADES I KNOW THAT THESE NEED TO BE PERMITTED, AS POTENTIAL FIRE HAZARDS, AND THAT OVER CERTAIN OCCUPAINTS ALSO NEED EGRESS, AND FIRE SUPPRESSION AS PER NEW STATE REQUIREMENTS.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> 08/03/15 DW REQUEST RESEARCH WITH PLANS TO DETERMINE IF THIS COMPLAINT IS CORRECT. INSPECTION WAS CONDUCTED FROM THE EXTERIOR. THE CORNER HOUSE IS LARGE AND UNABLE TO GAIN ACCESS BY THE TENANTS THAT WERE PRESENT.08/24/15 DW RESEARCH INDICATED THAT WORK WAS COMPLETED WITHOUT AN APPROVED PERMIT. IN ADDITION, OUTDOOR STORAGE WAS FOUNDED INSIDE THE WOODEN FENCE.THIS IS A CONSTRUCTION ISSUE. I WILL FORWARD TO BUILDING PER RESIDENTIAL NOTICE SIGNED BY JEFF KRIEG ON 11/06/1408/26/15 DW REQUEST AN INSPECTION WITH PROPERTY OWNER SCHEDULED FOR 9/3/15 @ 11:30AM09/03/15 DW REQUESTED AN INSPECTION FOR TODAY AND NO ONE ANSWERED THE DOOR. I LEFT MY CARD IN THE FRONT DOOR. THIS SERVICE REQUEST HAS BEEN CLOSED DUE TO UNABLE TO GAIN ACCESS TO DETERMINE IF VIOLATIONS EXIST. MY SUPERVISOR, REIC JENKIN WAS MADE AWARE OF THIS ATTEMPT TO CONDUCT AN INSPECTION.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2015-08-03</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2015-09-02</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005842-15CP" rel="noopener">005842-15CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">OWNER BUILDING ROOMS THAT ARE NOT LIVABLE, KEEPS BUILDING, SHARING BATHROOMS, 9-10 ROOMS. NO PERMITS. RENTS TO DRUG ADDICTS. UNSAFE, NO BACKGROUND CHECK.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> 11/25/15 DW TSR WAS LOST IN A PILE IN MY IN BASKET. SPOKE WITH THE NEIGHBOR WHO FILED THE COMPLAINT. NON OF THE TENANTS WHICH TO FILE A COMPLAINT.I WILL REQUEST AN INSPECTION FOR THE ENTIRE RESIDENTS.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2015-11-25</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2016-01-13</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001135-16CP" rel="noopener">001135-16CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">1)HOLE IN CEILING LEAKING.2)LEAKING WATER AROUND HOUSE. 3) HEAT IN BEDROOM AND BATHROOM NOT WORKING.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> 02/19/16 DW SPOKE WITH TENANT, THE MANAGER HAS FIXED THE BATHROOM BUT THERE'S NO HOT WATER IN THE UPPER SHOWER/BATHROOM.02/19/16 DW SPOKE WITH OWNER AND SCHEDULED AN INSPECTION FOR 02/23/16 @ 10AM03/01/16 DW PLEASE REFERR ANY CONCERNS TO SR58071 OR CASE 1036892.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2016-03-01</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2016-03-01</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1036892-VI" rel="noopener">1036892-VI</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE COMPLAINT: HOUSE OWNER KEEPS ADDING ROOMS ONTO THEIR HOME, THEN RENTING THEM OUT. HAVING WORKED IN THE CONSTRUCTION TRADES I KNOW THAT THESE NEED TO BE PERMITTED, AS POTENTIAL FIRE HAZARDS, AND THAT OVER CERTAIN OCCUPAINTS ALSO NEED EGRESS, AND FIRE SUPPRESSION AS PER NEW STATE REQUIREMENTS.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> 08/03/15 DW REQUEST RESEARCH WITH PLANS TO DETERMINE IF THIS COMPLAINT IS CORRECT. INSPECTION WAS CONDUCTED FROM THE EXTERIOR. THE CORNER HOUSE IS LARGE AND UNABLE TO GAIN ACCESS BY THE TENANTS THAT WERE PRESENT.08/24/15 DW RESEARCH INDICATED THAT WORK WAS COMPLETED WITHOUT AN APPROVED PERMIT. IN ADDITION, OUTDOOR STORAGE WAS FOUNDED INSIDE THE WOODEN FENCE.THIS IS A CONSTRUCTION ISSUE. I WILL FORWARD TO BUILDING PER RESIDENTIAL NOTICE SIGNED BY JEFF KRIEG ON 11/06/1408/26/15 DW REQUEST AN INSPECTION WITH PROPERTY OWNER SCHEDULED FOR 9/3/15 @ 11:30AM09/03/15 DW REQUESTED AN INSPECTION FOR TODAY AND NO ONE ANSWERED THE DOOR. I LEFT MY CARD IN THE FRONT DOOR. THIS SERVICE REQUEST HAS BEEN CLOSED DUE TO UNABLE TO GAIN ACCESS TO DETERMINE IF VIOLATIONS EXIST. MY SUPERVISOR, REIC JENKIN WAS MADE AWARE OF THIS ATTEMPT TO CONDUCT AN INSPECTION.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2016-09-09</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2016-03-03</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1036915-VI" rel="noopener">1036915-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc no-desc">No complaint description in public record</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> VIOLATION OF THE SEATTLE JUST CAUSE EVICTION ORDINANCE - SMC 22.206.160(C), FAILURE TO STATE A JUST CAUSE REASON FOR THE TERMINATION.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2016-03-03</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2017-01-06</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001082-17CP" rel="noopener">001082-17CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE COMPLAINT: SUBSTANDARD RENTAL HOUSING CONDITIONS: LEAKY ROOF, BLACK MOLD, BROKEN HEATERS IN EVERY ROOM, DOOR JAMS CRUMBLING, MASSIVE PESTS INFESTATION; ZONING VIOLATIONS; NO RRIO, CONSTRUCTION WITHOUT PERMITS; UNSAFE LIVING CONDITIONS EVERYWHERE.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> 01/23/17 DW I ATTEMPTED TO CONTACT PRIMARY CALLER. WHEN CALL THE NUMBER THE GENTLEMAN SAID THERE'S NO ROB HERE AND HUNG UP. I HAVE ADMINISTRATIVE CLOSED THIS CASE.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2017-01-23</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2017-04-05</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=002580-17CP" rel="noopener">002580-17CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">COMPLAINANT RENTS A ROOM IN AN OWNER-OCCUPIED HOUSE. THERE ARE LEAKS IN THE ROOF, WHICH IS CAUSING LARGE SECTIONS OF DRYWALL FROM THE CEILING TO FALL IN THE BEDROOM AND LIVING ROOM. BLACK MOLD IS PRESENT THROUGHOUT THE UNIT.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> 04/11/17 DW THE FRONT DOOR LOCK NEEDS TO BE REPAIRED. THE FRONT DOOR HAS NO WAY OF LOCKING.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2017-04-11</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2017-04-10</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=002649-17CP" rel="noopener">002649-17CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">COMPLAINANT RENTS A ROOM IN AN OWNER-OCCUPIED HOUSE. THERE ARE LEAKS IN THE ROOF, WHICH IS CAUSING LARGE SECTIONS OF DRYWALL FROM THE CEILING TO FALL IN THE BEDROOM AND LIVING ROOM. BLACK MOLD IS PRESENT THROUGHOUT THE UNIT. LANDLORD IS CONTINUALLY HARASSING TENANT (I.E., ENTERING TENANT'S ROOM WITHOUT PERMISSION; DAMAGING TENANT'S PROPERTY; LOCKING TENANT OUT OF COMMON AREAS, ETC.). TENANT BELIEVES THESE ARE RETALIATORY ACTS FOR LATE RENT PAYMENTS.***SEE HOUSING SR 69894***</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> PAOTHR</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2017-04-11</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1039920-VI" rel="noopener">1039920-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">COMPLAINANT RENTS A ROOM IN AN OWNER-OCCUPIED HOUSE. THERE ARE LEAKS IN THE ROOF, WHICH IS CAUSING LARGE SECTIONS OF DRYWALL FROM THE CEILING TO FALL IN THE BEDROOM AND LIVING ROOM. BLACK MOLD IS PRESENT THROUGHOUT THE UNIT.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> 04/11/17 DW THE FRONT DOOR LOCK NEEDS TO BE REPAIRED. THE FRONT DOOR HAS NO WAY OF LOCKING.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2017-04-14</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2018-01-23</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001416-18CP" rel="noopener">001416-18CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">PER ONLINE COMPLAINT: THE PLACE IS BASICALLY A SLUM. HOLES IN THE CEILING, LEAKY PIPES, POTENTIAL BLACK MOLD AROUND SOME OF THE SKYLIGHTS, A DRUG ADDICT IN THE "MANAGERIAL" POSITION. NOT ENOUGH TRASH COLLECTION. RATS ALL OVER THE PLACE. FILTHY LIVING CONDITIONS. POOR ELECTRICAL. POOR BUILDING MAINTENANCE/UPKEEP.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2018-06-20</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1044442-VI" rel="noopener">1044442-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">SEWAGE COMING THRU THE CEILING, SMOKE ALARM, TOILET NOT IN GOOD WORKING ORDER, 14-16 PEOPLE NOW WINDOWS IN SOME ROOMS, TOTAL OF 10 ROOMS IN HOUSE</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HOUSING COMPLAINT</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">UNDER INVESTIGATION</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2018-06-20</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005752-18CP" rel="noopener">005752-18CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">SEWAGE COMING THRU THE CEILING, SMOKE ALARM, TOILET NOT IN GOOD WORKING ORDER, 14-16 PEOPLE NOW WINDOWS IN SOME ROOMS, TOTAL OF 10 ROOMS IN HOUSE</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HOUSING COMPLAINT</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2018-06-25</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1044453-VI" rel="noopener">1044453-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">SEWAGE COMING THRU THE CEILING, SMOKE ALARM, TOILET NOT IN GOOD WORKING ORDER, 14-16 PEOPLE NOW WINDOWS IN SOME ROOMS, TOTAL OF 10 ROOMS IN HOUSE</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HOUSING COMPLAINT</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#6b7280"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2018-06-28</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1044504-VI" rel="noopener">1044504-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">SEWAGE COMING THRU THE CEILING, SMOKE ALARM, TOILET NOT IN GOOD WORKING ORDER, 14-16 PEOPLE NOW WINDOWS IN SOME ROOMS, TOTAL OF 10 ROOMS IN HOUSE</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HOUSING COMPLAINT</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#6b7280">EO VACATE CLOSE ISSUED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2020-08-12</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=006929-20CP" rel="noopener">006929-20CP</a>
+            <span class="tl-type">CONSTRUCTION</span>
+          </div>
+          <div class="complaint-desc">REMODEL WITHOUT A PERMIT</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> RELATED TO 1051101-VI.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2014-11-04</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2020-10-12</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1051101-VI" rel="noopener">1051101-VI</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">REMODEL WITHOUT A PERMIT</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> AS OF 9/30/2025, DEMOLITION PERMIT 6903335-DM HAS RECEIVED FINAL APPROVAL FOR DEMOLISHING THIS SFR AND ALL BUILDINGS ON THIS SITE WHICH CONFIRMS ALL CONSTRUCTION WITHOUT PERMITS ON THIS SITE HAS BEEN REMOVED.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2025-09-30</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLIANCE ACHIEVED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-01-10</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000303-21CP" rel="noopener">000303-21CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THERE IS A BUNCH OF TRASH BUILDING UP AT THIS HOUSE. THERE ARE OIL CANS STREWN ABOUT ON THE S DIRECTOR ST SIDE OF THE HOUSE.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2021-03-08</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-01-28</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000828-21CP" rel="noopener">000828-21CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">PER CSB; CUSTOMER CALLED CSB CONCERNED ABOUT HER NEIGHBOR AT THE CORNER PROPERTY, 9103 8TH AVE S, RENTING OUT 7 ROOMS IN A RESIDENTIAL AREA. IS THIS LEGAL/ZONED FOR? IF THIS IS NOT LEGAL, SHE ASKS FOR ADVICE ON ENTERING A COMPLAINT. SHE IS WORRIED ABOUT THESE RENTERS ACTIVITIES, SHE SAID.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2021-03-08</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-01-28</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000811-21CP" rel="noopener">000811-21CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">MULTIPLE FAMILIES LIVING IN A SINGLE FAMILY DWELLING, AS ROOMS ARE RENTED OUT TO NON FAMILY MEMBERS. AS A LICENSED ELECTRICIAN I UNDERSTAND THE EXTRA BURDEN ON THE ELECTRICAL SYSTEM DURING THE COLD MONTHS AND A FIRE IS JUST ONE OVERLOADED CIRCUIT AWAY FROM A HOUSE NOT BUILT FOR THE ADDED USE. I DOUBT THIS BUILDING WAS EVER PERMITTED TO BE USED IN SUCH A MANNER. THE RESIDENCE HAS NO CONTRACT WITH WASTE MANAGEMENT AND REFUSE BUILDS UP ON THE PROPERTY ATTRACTING RODENTS THAT</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING - RELATED: 000303-21CP</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2021-03-17</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-01-31</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=000866-21CP" rel="noopener">000866-21CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">ROOMS ARE BEING RENTED OUT IN A SINGLE FAMILY HOME. HOUSE IS NOT BUILT FOR OR PERMITTED FOR RENTALS.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING - RELATED: 000303-21CP</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-02-12</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001216-21CP" rel="noopener">001216-21CP</a>
+            <span class="tl-type">CONSTRUCTION</span>
+          </div>
+          <div class="complaint-desc">ADDITIONAL ROOMS ADDED ONTO HOME - WORKING WITHOUT ISSUED CONSTRUCTION PERMIT</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> AS OF 2/25/2021, UNABLE TO SEE ALLEGED CONSTRUCTION WITHOUT PERMIT. NO ONE ON SITE.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2021-02-25</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: NO ACCESS/UNABLE TO OBSERVE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-03-10</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001860-21CP" rel="noopener">001860-21CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THIS HOME IS BEING USED FOR A MULTI-TENANT ROOMING HOUSE (USING A BUILDING IN A WAY THAT DOES NOT CONFORM TO THE ISSUED CERTIFICATE OF OCCUPANCY) AND THE PROPERTY IS NOT ZONED FOR THIS.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING - RELATED: 000303-21CP</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-03-11</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001908-21CP" rel="noopener">001908-21CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THIS HOME SEEMS TO BE ACTING AS A ROOMING HOUSE. PEOPLE ARE COMING AND GOING AT ALL HOURS. CARS ARE BLOCKING THE ROAD OFTEN, WITH PEOPLE IDLING IN THE CAR WHILE IN THE MIDDLE OF THE STREET.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING - RELATED: 000303-21CP</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2021-03-08</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-06-29</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005008-21CP" rel="noopener">005008-21CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">EXCESSIVE TRASH AND GARBAGE PILING UP.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING - RELATED: 000303-21CP</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2021-11-04</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-09-24</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=010218-23CP" rel="noopener">010218-23CP</a>
+            <span class="tl-type">LANDLORD/TENANT</span>
+          </div>
+          <div class="complaint-desc">3 DAY NOTICE; SMC 22.205.010.P</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> POTA; JCEO; 3 DAY NOTICE TO TERMINATE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">CLOSED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#f59e0b"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-11-08</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1053259-CT" rel="noopener">1053259-CT</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">JUNK STORAGE</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> JUNK STORAGE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#f59e0b">WARNING</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2021-11-04</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2021-12-01</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=009935-21CP" rel="noopener">009935-21CP</a>
+            <span class="tl-type">nan</span>
+          </div>
+          <div class="complaint-desc">I AM THE OWNER OF THE HOME, THE OCCUPANTS HAVE BOARDED UP WINDOWS, DOORS. I WAS PERMITTED BY ONE OF THE OCCUPANTS TO VIEW THE PROPERTY AND WAS A DISATER AND UNSAFE FOR OCCUPANTS. IT IS LEAKING GRAY WATER (SEWAGE) FROM THE UPPER FLOOR INTO A LIVING AREA. THE OCCUPANTS HAVE PAD LOCKS ON ARE LOCKING IN OTHER OCCUPANTS IN DIFFERENT ROOMS. THE ELECTRICAL PANEL HAS LOOSE WIRE STICKING OUT FROM THE PANEL. THERE HAS BEEN ADDED ELECTRICAL OUTLETS TO THE EXTERIOR OF THE HOME (NOT</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING - SEE ATTACHED DOCUMENT</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">CLOSED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2022-07-05</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=006331-22CP" rel="noopener">006331-22CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THERE HAVE BEEN PILES OF GARBAGE IN THE DRIVEWAY FOR OVER A MONTH.</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> ZONING</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">CLOSED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#f59e0b"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2022-07-25</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=008016-22CP" rel="noopener">008016-22CP</a>
+            <span class="tl-type">VACANT BUILDING</span>
+          </div>
+          <div class="complaint-desc">PER CSB: GARBAGE ACCUMULATION ON BOARDED UP PROPERTY- PRIVATE PROPERTYREFERENCE 006331-22</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> VACANT BUILDING COMPLAINT</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#f59e0b">OPEN DUPLICATE</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2023-05-25</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=005682-23CP" rel="noopener">005682-23CP</a>
+            <span class="tl-type">WEEDS</span>
+          </div>
+          <div class="complaint-desc">OVERGROWN PARKING STRIP GOING INTO ROAD</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HAZARDOUS WEEDS COMPLAINT</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2023-08-02</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=009480-23CP" rel="noopener">009480-23CP</a>
+            <span class="tl-type">WEEDS</span>
+          </div>
+          <div class="complaint-desc">STABBY OVERGROWN VEGETATION</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HAZARDOUS WEEDS - PHOTOS AVAILABLE</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2024-07-02</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007793-24CP" rel="noopener">007793-24CP</a>
+            <span class="tl-type">WEEDS</span>
+          </div>
+          <div class="complaint-desc">VERY OVERGROWN VEGETATION EXTENDING ONTO SIDEWALK AND ROAD</div>
+          <div class="sdci-desc"><span class="sdci-label">SDCI Notes:</span> HAZARDOUS WEEDS COMPLAINT SR NUMBER: 24-00179711VEGETATION ALERT LETTER SENT TO CORRECT ADDRESS 1-16-25.</div>
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-02-11</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001590-25CP" rel="noopener">001590-25CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">EMPTY LOT BECOMING A DUMPING GROUND FOR ALL KINDS OF GARBAGE. OWNER DOESN'T MAINTAIN PROPERTY AT ALL.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2025-02-25</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-04-14</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004243-25CP" rel="noopener">004243-25CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">MORE TRASH PILING IN THIS LOT, BECOMING UNSAFE.  PLEASE DO NOT ALLOW IT TO BECOME A DUMPING GROUND</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-04-14</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004240-25CP" rel="noopener">004240-25CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THIS PROPERTY IS BEING ALLOWED TO BECOME A GARBAGE DUMP. IT'S UNSAFE AND UNSANITARY.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2025-06-04</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-04-15</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004270-25CP" rel="noopener">004270-25CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THIS LOT IS VACANT AND BEING USED AS A TRASH DUMP. NO ONE IS CLEANING THE PROPERTY AND IT'S COVERED WITH HAZARDOUS MATERIALS LIKE TIRES AND OLD APPLIANCES. IT'S ATTRACTING RATS AND A HEALTH HAZARD FOR OUR NEIGHBORHOOD.REFERENCE 004240-25</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#ef4444"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-04-16</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=004313-25CP" rel="noopener">004313-25CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THAT PROPERTY 9103 8TH AVE S IS GETTING OUT OF HAND BECOMING A PLACE OF DUMPING AND MAKING ALL THE NEIGHBOR HOOD LOOK BAD AND VERY UNSAFEREFERENCE 004240-25</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#ef4444">COMPLETED</span>
+            <span class="tl-flag" style="font-size:10px;font-weight:800;color:#ef4444;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 7px">CLOSED â€” NO INSPECTION DOCUMENTED</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#f59e0b"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-06-17</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=1061151-CT" rel="noopener">1061151-CT</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">JUNK STORAGE VIOLATION</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#f59e0b">WARNING</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2025-06-04</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-06-19</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=007416-25CP" rel="noopener">007416-25CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THERE IS GARBAGE, RUBBLE, AND ILLEGAL DUMPING OCCURRING ON THE PROPERTY.</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2025-07-15</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#22c55e"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-06-23</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=008046-25CP" rel="noopener">008046-25CP</a>
+            <span class="tl-type">WEEDS</span>
+          </div>
+          <div class="complaint-desc">HELLO, THIS ABANDONED LOT HAS VEGETATION GROWING OVER THE SIDEWALK ON THE DIRECTOR SIDE OF THE STREET MAKING IT UNWALKABLE. PLEASE HELP!</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#22c55e">COMPLETED</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: 2025-11-04</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: COMPLETED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#f59e0b"></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-date">2025-10-18</span>
+            <a class="tl-recnum" href="https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=013254-25CP" rel="noopener">013254-25CP</a>
+            <span class="tl-type">LAND USE</span>
+          </div>
+          <div class="complaint-desc">THIS LOT HAS BEEN ABANDONED FOR OVER A YEAR. IT IS NOT WELL MAINTAINED OR SECURED AND PRESENTS VARIOUS SAFETY HAZARDS INCLUDING RODENTS, TRASH, AND ENCAMPMENTS..REFERENCE 1053259-CT</div>
+          
+          <div class="tl-outcome">
+            <span class="tl-status" style="color:#f59e0b">OPEN DUPLICATE</span>
+            
+            <span class="tl-sep">Â·</span>
+            <span class="tl-insp">Inspection: No inspection date</span>
+            <span class="tl-sep">Â·</span>
+            <span class="tl-result">Result: No result recorded</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<footer>
+  Seattle Tenant Landlord Compliance Authority (STLCA) |
+  Independent public-data analysis, not legal representation<br>
+  All records sourced from City of Seattle Open Data Portal â€” SDCI Enforcement dataset, extracted 2025-12-31<br><br>
+  <a href="../STLCA_Council_Briefing.html">Council Briefing</a> |
+  <a href="../STLCA_Citywide_KPI.html">Citywide Audit</a> |
+  <a href="../STLCA_Methodology.html">Methodology</a> |
+  <a href="https://github.com/seattletlca-justice/DATASETS_AND_DASHBOARDS" rel="noopener">GitHub</a>
+</footer>
+</body>
+</html>
