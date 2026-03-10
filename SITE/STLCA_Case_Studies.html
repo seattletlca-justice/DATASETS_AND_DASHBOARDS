@@ -1,597 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>STLCA — Case Study Master Index</title>
-<!-- Open Graph / Social Media -->
-<meta property="og:title" content="STLCA: Seattle Tenant Landlord Compliance Authority">
-<meta property="og:description" content="Independent analysis of Seattle housing enforcement: 59.8% of landlord-tenant cases close with no inspection record. 9 missing reports. SDCI admits: 'Never prepared such a report.'">
-<meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
-<meta property="og:url" content="https://www.seattletlca.com">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>STLCA | Case Studies</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --ink: #0d1117;
-    --paper: #f5f2ec;
-    --warm: #ede9e1;
-    --rule: #c8bfaa;
-    --red: #c0392b;
-    --teal: #1a6b6b;
-    --gold: #b5872a;
-    --blue: #1a4a7a;
-    --muted: #5a6372;
-  }
-  body { font-family: 'Georgia', serif; background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.7; }
-  header { background: var(--ink); color: #fff; padding: 2.5rem 3rem; border-bottom: 4px solid var(--red); }
-  header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.02em; }
-  header p { color: #aab; font-size: 0.9rem; margin-top: 0.4rem; font-family: monospace; }
-  .status-bar { background: var(--red); color: #fff; padding: 0.6rem 3rem; font-family: monospace; font-size: 0.85rem; }
-  main { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 4rem; }
-  .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--warm); border: 1px solid var(--rule); border-radius: 6px; font-size: 0.85rem; }
-  .legend span { display: flex; align-items: center; gap: 0.4rem; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-  .dot-red { background: var(--red); }
-  .dot-teal { background: var(--teal); }
-  .dot-gold { background: var(--gold); }
-  .dot-blue { background: var(--blue); }
-  .dot-gray { background: var(--muted); }
-  section.case { margin-bottom: 2.5rem; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
-  .case-header { padding: 1.2rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; border-bottom: 1px solid var(--rule); }
-  .case-num { font-family: monospace; font-size: 0.75rem; background: var(--ink); color: #fff; padding: 0.2rem 0.6rem; border-radius: 3px; flex-shrink: 0; margin-top: 0.25rem; }
-  .case-title { flex: 1; }
-  .case-title h2 { font-size: 1.15rem; font-weight: 700; }
-  .case-title .address { font-family: monospace; font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
-  .badge { display: inline-block; font-family: monospace; font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 3px; margin-left: 0.5rem; font-weight: 700; vertical-align: middle; }
-  .badge-3p { background: #d5f5e3; color: #1a6b3a; }
-  .badge-personal { background: #fde8e8; color: #922b21; }
-  .badge-cross { background: #e8edf8; color: #1a4a7a; }
-  .badge-ready { background: #fff3cd; color: #856404; }
-  .case-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .case-col { padding: 1.2rem 1.5rem; }
-  .case-col:first-child { border-right: 1px solid var(--rule); }
-  .case-col h3 { font-size: 0.75rem; font-family: monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.6rem; }
-  .failures li, .files li { font-size: 0.875rem; margin-bottom: 0.35rem; padding-left: 0.8rem; position: relative; list-style: none; }
-  .failures li::before { content: '✗'; position: absolute; left: 0; color: var(--red); font-size: 0.75rem; }
-  .files li::before { content: '▸'; position: absolute; left: 0; color: var(--teal); font-size: 0.75rem; }
-  .file-path { font-family: monospace; font-size: 0.78rem; color: var(--blue); word-break: break-all; }
-  .case-footer { background: var(--warm); padding: 0.8rem 1.5rem; border-top: 1px solid var(--rule); font-size: 0.82rem; }
-  .case-footer strong { color: var(--red); }
-  .personnel { font-family: monospace; font-size: 0.8rem; color: var(--ink); }
-  .personnel span { display: inline-block; background: #eee; padding: 0.1rem 0.4rem; border-radius: 3px; margin: 0.1rem; }
-  .cross-cutting { background: #e8edf8; border-color: var(--blue); }
-  .cross-cutting .case-header { background: var(--blue); color: #fff; }
-  .cross-cutting .case-header .case-num { background: #fff; color: var(--blue); }
-  .cross-cutting .case-header .address { color: #aac; }
-  .section-label { font-family: monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 2.5rem 0 0.8rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--rule); }
-  @media (max-width: 700px) { .case-body { grid-template-columns: 1fr; } .case-col:first-child { border-right: none; border-bottom: 1px solid var(--rule); } }
+  :root{--bg:#070b12;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.65);--muted2:rgba(233,238,247,.38);--blue:#2d7ff9;--orange:#f59e0b;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  nav{position:sticky;top:0;z-index:100;width:100%;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(7,11,18,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+  .nav-brand{font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff}
+  .nav-brand span{color:var(--blue)}
+  .nav-links{display:flex;gap:6px}
+  .nav-links a{font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.5px;transition:.15s}
+  .nav-links a:hover{background:rgba(255,255,255,.10)}
+  .nav-links a.cta{background:var(--orange);color:#000}
+  .wrap{width:min(100%,680px);margin:0 auto;padding:0 24px}
+  .page{padding:90px 0 60px;text-align:center}
+  .badge{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);border:1px solid rgba(45,127,249,.30);background:rgba(45,127,249,.10);border-radius:999px;padding:5px 16px;margin-bottom:22px}
+  h1{font-size:clamp(24px,4vw,38px);font-weight:850;letter-spacing:-.4px;margin-bottom:16px}
+  .sub{color:var(--muted);font-size:15px;line-height:1.8;max-width:520px;margin:0 auto 40px}
+  .box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:18px;padding:36px 40px;text-align:left;margin-bottom:16px}
+  .box h2{font-size:15px;font-weight:800;margin-bottom:10px}
+  .box p{color:var(--muted);font-size:13px;line-height:1.8}
+  .form-row{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+  .form-row input,.form-row textarea{width:100%;background:rgba(0,0,0,.30);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color .2s;resize:vertical}
+  .form-row input:focus,.form-row textarea:focus{border-color:rgba(45,127,249,.50)}
+  .form-row input::placeholder,.form-row textarea::placeholder{color:var(--muted2)}
+  .submit-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;transition:opacity .2s;margin-top:4px}
+  .submit-btn:hover{opacity:.88}
+  .divider{text-align:center;color:var(--muted2);font-size:12px;margin:28px 0 20px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-block;font-size:13px;font-weight:800;border-radius:12px;padding:12px 24px;transition:.2s;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text)}
+  .btn:hover{background:rgba(255,255,255,.09)}
+  footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted2);font-size:11px;line-height:1.8;margin-top:40px}
+  footer a{color:rgba(233,238,247,.5)}
+  footer a:hover{color:var(--text)}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>STLCA — Case Study Master Index</h1>
-  <p>Seattle Tenant &amp; Landlord Compliance Analysis · Evidence Inventory · Updated March 2026</p>
-</header>
-<div class="status-bar">
-  11 case studies documented · 9 third-party properties · 1 cross-cutting evidence file · 1 anchor/personal case · Generated from local file inventory
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="STLCA_Methodology.html">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page">
+    <div class="badge">Case Studies — Coming Soon</div>
+    <h1>Property Case Files</h1>
+    <p class="sub">
+      STLCA maintains documented case files on specific Seattle properties.
+      Full case studies are being finalized and will be published here.
+      To request a specific property, submit your information below.
+    </p>
+
+    <div class="box">
+      <h2>Request a Property Case File</h2>
+      <p>Enter the property address you're interested in and we'll get back to you. Requests from researchers, journalists, legal representatives, and city council offices are prioritized.</p>
+      <form class="form-row" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Property address (e.g. 308 4th Ave S)" required/>
+        <input type="email" placeholder="Your email address" required/>
+        <textarea rows="3" placeholder="Any additional context (optional)"></textarea>
+        <button type="submit" class="submit-btn">Submit Request</button>
+      </form>
+      <p id="confirm" style="display:none;margin-top:14px;color:#22c55e;font-size:13px;font-weight:700">Request received. We'll follow up via email.</p>
+    </div>
+
+    <div class="divider">— or explore the full dataset —</div>
+
+    <div class="actions">
+      <a href="STLCA_Citywide_KPI.html" class="btn">Citywide Audit</a>
+      <a href="STLCA_District_1.html" class="btn">District Reports</a>
+      <a href="STLCA_Council_Briefing.html" class="btn">Council Briefing</a>
+    </div>
+  </div>
 </div>
 
-<main>
-
-<div class="legend">
-  <span><span class="dot dot-teal"></span> Third-party case (no personal stake)</span>
-  <span><span class="dot dot-red"></span> Personal/anchor case</span>
-  <span><span class="dot dot-blue"></span> Cross-cutting / systemic</span>
-  <span><span class="dot dot-gold"></span> Case study HTML built &amp; ready</span>
-  <span><span class="dot dot-gray"></span> Evidence only / needs case study built</span>
-</div>
-
-<div class="section-label">Ordinance 125054 — The Centerpiece</div>
-
-<!-- CS001 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-001</span>
-    <div class="case-title">
-      <h2>Nine Years. Zero Reports. <span class="badge badge-cross">Cross-Cutting</span> <span class="badge badge-ready">HTML Built</span></h2>
-      <div class="address">Ordinance 125054 · Annual Reporting Mandate · All of Seattle</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>Ordinance passed 8–0 June 2016; first report due June 15, 2017</li>
-        <li>Zero annual reports filed in 9 years — not once</li>
-        <li>Required: inspection counts, inquiry counts, eviction crossref, budget allocation</li>
-        <li>Required eviction record crossref never attempted</li>
-        <li>85.3% of eviction complaints closed without documented inspection</li>
-        <li>2021: 98.8% uninspected — worst year on record</li>
-        <li>Geoff Tallent denied ordinance obligation in writing: "I to K" claim</li>
-        <li>Determination made unilaterally without City Attorney opinion</li>
-        <li>City Council never notified that mandate went unfulfilled</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><a href="STLCA_CaseStudy_Ord125054.html" class="file-path">STLCA_CaseStudy_Ord125054.html</a> — Full case study</li>
-        <li><span class="file-path">ORD 12/Signed Ord 125054.pdf</span> — Signed ordinance</li>
-        <li><span class="file-path">ORD 12/006346-24CP.png</span> — Tallent denial email screenshot (Exhibit A)</li>
-        <li><span class="file-path">ORD 12/Public-Records-Request-Center-Public-Records-02-22-2026_03_19_AM.png</span> — PRR portal receipt</li>
-        <li><span class="file-path">ORD 12/Gmail - Construction & Inspections __ C229429-061625.pdf</span> — Full PRR correspondence</li>
-        <li><span class="file-path">ORD 12/Gmail - Follow-Up on Status of 100% RRIO Inspections – Lowell Emerson.pdf</span></li>
-        <li><span class="file-path">ORD 12/Gmail - Notice of Extension_ Appeal to SDCI Disclosure Office.pdf</span></li>
-        <li><span class="file-path">ORD 12/Gmail - Request for Accountability in RRIO Enforcement.pdf</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="case-footer">
-    <strong>Key Personnel:</strong>
-    <span class="personnel"><span>Geoff Tallent — RRIO Manager (denial author)</span> <span>Danielle Priest — Dir. Org. Strategy (appeals)</span> <span>Josy Rush — Public Disclosure Officer</span></span>
-    &nbsp;&bull;&nbsp; <a href="STLCA_CaseStudy_Ord125054.html" style="color:inherit;font-weight:700">View Full Case Study &rarr;</a>
-  </div>
-</section>
-
-<div class="section-label">Third-Party Case Studies (Lead Cases)</div>
-
-<!-- CS002 -->
-<section class="case" id="cs002">
-  <div class="case-header">
-    <span class="case-num">CS-002</span>
-    <div class="case-title">
-      <h2>The Addison on 4th — Fire After Delayed Inspection <span class="badge badge-3p">Third-Party</span> <span class="badge badge-ready">Docs Built</span></h2>
-      <div class="address">308 4th Ave S, Seattle, WA 98104 · Owner: GRE Downtowners LLC · District 7</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>133 elevator rescues (2016–2022) — no enforcement action</li>
-        <li>136+ complaints filed 2004–2025; 69% had zero inspection</li>
-        <li>SFD fire safety alert issued Nov 6, 2019</li>
-        <li>SDCI took 29 days to inspect (Dec 5, 2019)</li>
-        <li>NOV issued Dec 13; compliance deadline Jan 13, 2020</li>
-        <li><strong>FIRE broke out January 7, 2020</strong> — before NOV deadline</li>
-        <li>Post-fire complaints disappeared from public database</li>
-        <li>Zero financial penalties ever assessed</li>
-        <li>Owner sued City 2024 claiming housing regs caused hardship</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">Addison/Case-Study-The-Addison-on-4th.pdf</span> — Full case study</li>
-        <li><span class="file-path">Addison/The-Addison-Fire-Tragedy-Institutional-Negligence-and-Cover-Up.pdf</span> — Fire incident report</li>
-        <li><span class="file-path">Addison/The Addison Fire Tragedy_ Institutional Negligence and Cover-Up.pptx</span> — Presentation</li>
-        <li><span class="file-path">Addison/ADDISON Code_Complaints_and_Violations_20250509.csv</span> — Full complaint record</li>
-        <li><span class="file-path">Addison/Addison Fire & Complaint Data Analysis (2016–2025).md</span> — Data analysis</li>
-        <li><span class="file-path">Addison/ADDISON NOV2025.pdf</span> — NOV record</li>
-        <li><span class="file-path">Addison/83471 - ADDISON ON FOURTH_e7192a6f.pdf</span> — SDCI inspection records</li>
-        <li><span class="file-path">STLCA/CASE STUDYS/ADDISON ON 4TH/</span> — Additional case files</li>
-      </ul>
-    </div>
-  </div>
-  <div class="case-footer">
-    <strong>Key Personnel:</strong>
-    <span class="personnel"><span>Steven (SDCI Inspector) — improper closures</span></span>
-    &nbsp;&bull;&nbsp; <a href="STLCA_CaseStudy_Addison.html" style="color:inherit;font-weight:700">View Full Case Study &rarr;</a>
-  </div>
-</section>
-
-<!-- CS003 -->
-<section class="case" id="cs003">
-  <div class="case-header">
-    <span class="case-num">CS-003</span>
-    <div class="case-title">
-      <h2>Everspring Inn — Mass COVID Evictions <span class="badge badge-3p">Third-Party</span> <span class="badge badge-ready">Docs Built</span></h2>
-      <div class="address">8201 Aurora Ave N, Seattle, WA 98103 · Owner: Ryan Kang (Myung Ha Kang) · District 6</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>August 18, 2020: Mass illegal evictions during COVID moratorium</li>
-        <li>Water shut off Aug 8; police threats Aug 11 (false); armed guard Aug 12</li>
-        <li>Disabled, elderly, low-income residents displaced to streets in 24 hours</li>
-        <li>13 complaints filed in one day</li>
-        <li>ALL 13 closed "Admin Closure / Voluntary Compliance" — same day, no inspections</li>
-        <li>Stella Washington + James Hammon signed closures without investigation</li>
-        <li>Conveyor equipment certificate lapsed since 1996</li>
-        <li>Owner is largest single recipient of rapid rehousing funds in King County (2018)</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">Everspring/Case-Study-Everspring-Inn-Illegal-Evictions-Life-Safety-Neglect-and-Data-Manipulation.pdf</span> — Primary</li>
-        <li><span class="file-path">Everspring/Case Study_ Everspring Inn - Unlawful Mass Evictions During the COVID-19 Pandemic.pdf</span></li>
-        <li><span class="file-path">Everspring/THE-EVERSPRING-INN-EVICTIONS-REGULATORY-FAILURE-and-TENANT-ABANDONMENT.pdf</span></li>
-        <li><span class="file-path">Everspring/NOV Everspring Final.pdf</span> — NOV record</li>
-        <li><span class="file-path">STLCA/CASE STUDYS/EVERSPRING/</span> — Additional files</li>
-        <li><span class="file-path">STLCA/CASE STUDYS/8201 Aurora ave n evergreen/</span> — Additional files</li>
-        <li><span class="file-path">THE CASE CASE STUDYS/EVERSPRING/RecordList20250929.csv</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="case-footer">
-    <strong>Key Personnel:</strong>
-    <span class="personnel"><span>Stella Washington — SDCI (closed complaints day-of)</span> <span>James Hammon — SDCI (closed complaints day-of)</span></span>
-    &nbsp;&bull;&nbsp; <a href="STLCA_CaseStudy_Everspring.html" style="color:inherit;font-weight:700">View Full Case Study &rarr;</a>
-  </div>
-</section>
-
-<!-- CS004 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-004</span>
-    <div class="case-title">
-      <h2>Gallery Belltown Unit 515 — Court Order Ignored <span class="badge badge-3p">Third-Party</span></h2>
-      <div class="address">2911 2nd Ave, Unit 515, Seattle · Owner: Gallery Belltown HOA · District 7</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>Unauthorized demolition/alteration began before permit filed</li>
-        <li>Superior Court found HOA in contempt Oct 2021; ordered 30 days housing</li>
-        <li>SDCI closed complaint "No Violation Observed" Dec 2021 — treating occupant as owner</li>
-        <li>Contradictory owner designation: HOA on permit, occupant treated as owner for POTA</li>
-        <li>Second complaint Nov 2022 also closed "No Violation Observed"</li>
-        <li>Civil penalties available ($500/day) — never assessed</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">THE CASE CASE STUDYS/GALLERY-BELLTOWN D/Exhibit_D-515_GalleryBelltown_OnePager.pdf</span></li>
-        <li><span class="file-path">THE CASE CASE STUDYS/GALLERY-BELLTOWN D/CodeViolationComplaint.pdf</span></li>
-        <li><span class="file-path">THE CASE CASE STUDYS/GALLERY-BELLTOWN D/MinutesMotionhearing.pdf</span> — Court minutes</li>
-        <li><span class="file-path">THE CASE CASE STUDYS/GALLERY-BELLTOWN D/SDCI.pdf</span></li>
-        <li><span class="file-path">THE CASE CASE STUDYS/GALLERY-BELLTOWN D/SI-07956.pdf</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="case-footer"><strong>Status:</strong> Court ordered relief; SDCI unresponsive. Needs case study HTML built.</div>
-</section>
-
-<!-- CS005 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-005</span>
-    <div class="case-title">
-      <h2>Hiawatha Place / ARTSPACE — Mass Admin Closures <span class="badge badge-3p">Third-Party</span></h2>
-      <div class="address">843 Hiawatha Pl S, Seattle · ADA 843 / ARTSPACE · District 2</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>40+ complaints filed 2023–2025 (POTA, JCEO, Housing, Emergency)</li>
-        <li>Inappropriate 30-day eviction notices issued to multiple tenants (Sep 2024)</li>
-        <li>Heavy volume of complaints marked "Open Duplicate" or admin-closed</li>
-        <li>Pattern of POTA/JCEO violations with no enforcement</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">THE CASE CASE STUDYS/NO INVESTIGATION-COMPLETEDHIWATHA/ADA 843 HIAWATHA PL S ARTSPACE Record-Number-006845-24CP</span></li>
-        <li><span class="file-path">THE CASE CASE STUDYS/NO INVESTIGATION-COMPLETEDHIWATHA/HIAWATHA RECORDLLIST.csv</span></li>
-        <li><span class="file-path">THE CASE CASE STUDYS/NO INVESTIGATION-COMPLETEDHIWATHA/HIAWATHA.csv</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="case-footer"><strong>Status:</strong> Evidence gathered; needs case study HTML built.</div>
-</section>
-
-<!-- CS006 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-006</span>
-    <div class="case-title">
-      <h2>The Olivian — Appeal Dismissed <span class="badge badge-3p">Third-Party</span></h2>
-      <div class="address">809 Olive Way, Seattle · District 7</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">THE CASE CASE STUDYS/THE OLIVIAN 809 OLIVE WAY/Item1Final.pdf</span></li>
-        <li><span class="file-path">THE CASE CASE STUDYS/THE OLIVIAN 809 OLIVE WAY/item2appeal (1).pdf</span></li>
-        <li><span class="file-path">THE CASE CASE STUDYS/Olivian_Appeal_Narrative_With_Dismissal.markdown</span></li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Status</h3>
-      <ul class="failures">
-        <li>Appeal narrative written; needs full case study HTML built</li>
-        <li>Post-appeal documentation available</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CS007 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-007</span>
-    <div class="case-title">
-      <h2>Larkspur Cadence — Property Records <span class="badge badge-3p">Third-Party</span></h2>
-      <div class="address">1727 Summit Ave, Seattle · District 3</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">THE CASE CASE STUDYS/LARKSPUR/</span> — 6 files: landmark/court records, RECORDLIST.csv</li>
-        <li><span class="file-path">THE CASE CASE STUDYS/LARKSPUR/LARKSPUR CADENCE 1727 SUMMIT AVERECORDLIST.csv</span></li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Status</h3>
-      <ul class="failures">
-        <li>Historical deed, violation, inspection records gathered</li>
-        <li>Needs analysis and case study built</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CS008 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-008</span>
-    <div class="case-title">
-      <h2>Manchester Arms <span class="badge badge-3p">Third-Party</span></h2>
-      <div class="address">Evidence: Record 002073-16CP (2016) · District TBD</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">STLCA/CASE STUDYS/MANCHESTER ARMS/Record-Number-002073-16CP-Seattle-Services-Portal-Seattle-gov-31-03-2025_03_23_PM.png</span></li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Status</h3>
-      <ul class="failures">
-        <li>Single record screenshot; early case (2016)</li>
-        <li>Needs additional evidence gathering and analysis</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CS009 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-009</span>
-    <div class="case-title">
-      <h2>Park Meridian — Permit / Inspection Records <span class="badge badge-3p">Third-Party</span></h2>
-      <div class="address">Evidence: Multiple permit PDFs · District TBD</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">STLCA/CASE STUDYS/PARK MERIDIAN/000003ZK_2.pdf</span></li>
-        <li><span class="file-path">STLCA/CASE STUDYS/PARK MERIDIAN/00002BKO_11.pdf</span></li>
-        <li><span class="file-path">STLCA/CASE STUDYS/PARK MERIDIAN/00002BTA_48.pdf</span></li>
-        <li><span class="file-path">STLCA/CASE STUDYS/PARK MERIDIAN/00002HR1_66.pdf</span></li>
-        <li><span class="file-path">STLCA/CASE STUDYS/PARK MERIDIAN/00002O9N_1 (1).pdf</span></li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Status</h3>
-      <ul class="failures">
-        <li>Permit/inspection PDFs gathered</li>
-        <li>Needs full analysis and case study built</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CS010 -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-010</span>
-    <div class="case-title">
-      <h2>Lunde Property — Permit Identity Conflicts <span class="badge badge-3p">Third-Party</span></h2>
-      <div class="address">7023 16th Ave SW / 8421 referenced · Owner: Alfred Lunde (conflicting: Martin Lunde)</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>Conflicting owner names on same permit (Alfred vs. Martin Lunde)</li>
-        <li>Unusual permit: lists both single-family AND adult family home with ADU</li>
-        <li>Certificate of Owner Occupancy never provided</li>
-        <li>Note in file: "very odd" — stalled since 2018</li>
-        <li>Extended analysis: Lunde Salvage Demolition Permit — 938 N 86th St</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">LUNDE/VIOLATION -ODDLicenses and Regulatory Compliance.pdf</span> — Violation record 1032437-VI</li>
-        <li><span class="file-path">LUNDE/LUNDE 8421 NO TAX PAYER King-County-Parcel-Viewer.png</span> — County parcel record</li>
-        <li><span class="file-path">STLCA/CASE STUDYS/LUNDE/</span> — Additional files</li>
-        <li><span class="file-path">THE CASE CASE STUDYS/Analysis of the Lunde Salvage Demolition Permit - 938 N 86th St, Seattle, WA.docx</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<div class="section-label">Cross-Cutting Evidence</div>
-
-<!-- TAMPERING -->
-<section class="case cross-cutting">
-  <div class="case-header">
-    <span class="case-num">XC-001</span>
-    <div class="case-title">
-      <h2>SDCI Data Tampering Evidence <span class="badge badge-cross">Cross-Cutting</span></h2>
-      <div class="address">29 numbered screenshots · Applies across multiple case studies</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">SDCI Data Tampering Evidence – Supporting Documents/1.png through 29.png</span></li>
-        <li>29 sequential numbered screenshots documenting data irregularities</li>
-        <li>Applies to: Addison (post-fire complaint suppression), Everspring (same-day closures), Lowell Emerson (false certifications)</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Key Issues Documented</h3>
-      <ul class="failures">
-        <li>Complaints retroactively altered or removed from public database</li>
-        <li>Administrative closures recorded without inspection</li>
-        <li>Implausible compliance timestamps (major issues resolved in 1 day)</li>
-        <li>Needs full review and case-by-case mapping</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<div class="section-label">Anchor / Personal Case (Present Last)</div>
-
-<!-- CS011 LOWELL EMERSON -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-011</span>
-    <div class="case-title">
-      <h2>Lowell Emerson Apartments — All Failures In One Building <span class="badge badge-personal">Personal/Anchor</span> <span class="badge badge-ready">Extensive Docs</span></h2>
-      <div class="address">1102–1110 8th Ave, Seattle · Owner: Metropolitan Management Company (MMC) · District 7</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>4.5 years documented issues; Lowell Emerson Tenant Association founded 2023</li>
-        <li>80+ violations found May 2023; MMC self-certified compliance Nov 2023 (false)</li>
-        <li>Feb 2024: plumbing → June 2024: severe flooding, multiple floors, no mold remediation</li>
-        <li>Inspector Pamela Bruner closed complaint as "withdrawn" — never withdrawn</li>
-        <li>$30M+ in potential fines documented but never assessed</li>
-        <li>12+ violation records; 65 violations marked "compliance achieved" without verification</li>
-        <li>100% RRIO inspections promised Oct 2024 — never happened</li>
-        <li>PRR appeal filed Feb 2025 — SDCI never answered</li>
-        <li>25+ year conveyance/elevator failure history</li>
-        <li>Connects directly to Ord 125054 denial by Geoff Tallent</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><span class="file-path">ORD 12/Gmail - 1110 8th Ave 006346-24CP.pdf</span> — 55-page primary email chain</li>
-        <li><span class="file-path">STLCA/</span> — Main evidence folder (100+ files)</li>
-        <li><span class="file-path">STLCA/1PAMELAGmail - Record Number_ 011882-24CP-001 through 012.png</span> — Pamela Bruner series</li>
-        <li><span class="file-path">STLCA/BLDG CMPLS SDCI - LOWELL BLDG CMPL-001 through 021.png</span> — SDCI portal records</li>
-        <li><span class="file-path">STLCA/STLCA RRIOAudit-001 through 081.png + STLCA RRIOAudit.pdf</span> — Full RRIO audit</li>
-        <li><span class="file-path">STLCA/LOWELL/</span> — RRIO records, parcel data, elevator history</li>
-        <li><span class="file-path">STLCA/NOVS/Complaint-Violation_Report_-_1102_8th_Ave_Redacted.pdf (20 pages)</span></li>
-        <li><span class="file-path">STLCA/SDCI EMAIL/</span> — SDCI correspondence archive</li>
-        <li><span class="file-path">STLCA/RECORDS REQUEST/</span> — PRR documentation</li>
-        <li><span class="file-path">STLCA/CASE STUDYS/2023 FLOODING AND 2 VI 85 VI/</span> — Flooding evidence</li>
-        <li><span class="file-path">STLCA/CASE STUDYS/CONVEYANCE/</span> — 25-year elevator history</li>
-        <li><span class="file-path">THE CASE CASE STUDYS/CONVEYANCE/</span> — Additional conveyance records</li>
-        <li><span class="file-path">STLCA/VIDEO/back door em.mp4</span> — Video evidence</li>
-        <li><span class="file-path">STLCA/CHARTS/</span> — Analysis charts</li>
-      </ul>
-    </div>
-  </div>
-  <div class="case-footer">
-    <strong>Key Personnel:</strong>
-    <span class="personnel">
-      <span>Geoff Tallent — RRIO Manager</span>
-      <span>Stephen Hinch — Code Compliance Buildings Mgr</span>
-      <span>Kevin Hou — Housing & Zoning Inspector Mgr</span>
-      <span>Lisa Schwartzenberger — Sr. RRIO Inspector</span>
-      <span>Anissa Streb — Housing Zoning Inspector</span>
-      <span>Pamela Bruner — Inspector (false withdrawal closure)</span>
-      <span>Eric Jenkins — SDCI</span>
-      <span>Scott Thiessen — SDCI</span>
-    </span>
-    <br/><br/>
-    <strong>Strategy Note:</strong> Present this case LAST. By the time it appears, the systemic pattern is already proven by CS-002 through CS-010. This case then demonstrates you had direct personal knowledge of the same failures from inside a building — not bias, but a primary source.
-  </div>
-</section>
-
-<!-- CS014 QUINTESSA -->
-<section class="case">
-  <div class="case-header">
-    <span class="case-num">CS-014</span>
-    <div class="case-title">
-      <h2>Quintessa Apartments — 14 Years, 100 Complaints, Same Failures <span class="badge badge-3p">Third-Party</span> <span class="badge badge-ready">HTML Built</span></h2>
-      <div class="address">201 Yesler Way, Seattle, WA 98104 · District 1 · 12-story residential building</div>
-    </div>
-  </div>
-  <div class="case-body">
-    <div class="case-col">
-      <h3>Key Failures</h3>
-      <ul class="failures">
-        <li>100 SDCI records 2011–2025; 87 LLT cases; 72% with no inspection date</li>
-        <li>16 elevator complaints spanning 14 years — no permanent resolution documented</li>
-        <li>2021: elevator out 4 months after basement flood; tenants can't access garage</li>
-        <li>2024: both elevators simultaneously out of service</li>
-        <li>Fire exit door not SFD-compliant (2021) — still referenced in new complaints</li>
-        <li>Emergency stairwell — fused door (2018), locked hallway with no exit (2021)</li>
-        <li>No hot water: 2011, 2017, 2021, June 2025 (4 days), September 2025</li>
-        <li>Severe roach and bedbug infestations 2021–2022; one tenant displaced 14 of 20 months</li>
-        <li>2025: maintenance harassed senior disabled veteran with PTSD/heart condition</li>
-        <li>2025: building disclosed tenant SSN to money lender ESUSU without consent</li>
-        <li>Only 6 NOVs issued across entire 14-year period vs. 87 LLT complaints</li>
-        <li>Admin closures: "No contact information provided" used for fire safety and elevator complaints</li>
-      </ul>
-    </div>
-    <div class="case-col">
-      <h3>Evidence Files</h3>
-      <ul class="files">
-        <li><a href="STLCA_CaseStudy_Quintessa.html" class="file-path">STLCA_CaseStudy_Quintessa.html</a> — Full case study</li>
-        <li><span class="file-path">CASE_STUDIES/CS-014_QUINTESSAAPARTMENTS2 _201_YESLER AVE/201 YESLER QUINTESSA APARTMENTS.csv</span> — Full SDCI record export (100 records)</li>
-      </ul>
-    </div>
-  </div>
-  <div class="case-footer">
-    <strong>Key Pattern:</strong> Same mechanical systems failing since 2011 without documented permanent resolution. Elevator failures in 2011, 2017, 2021, 2024, 2025. Hot water outages recurring across same years. Admin closure mechanism used repeatedly to close life-safety complaints without field inspection.
-    &nbsp;&bull;&nbsp; <a href="STLCA_CaseStudy_Quintessa.html" style="color:inherit;font-weight:700">View Full Case Study &rarr;</a>
-  </div>
-</section>
-
-<div class="section-label">Supporting Citywide Analysis</div>
-
-<div style="background: var(--warm); border: 1px solid var(--rule); border-radius: 8px; padding: 1.5rem; font-size: 0.875rem; margin-bottom: 2rem;">
-  <h3 style="font-size: 0.8rem; font-family: monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.8rem;">Citywide Data Foundation</h3>
-  <ul class="files" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem;">
-    <li><span class="file-path">STLCA_Citywide_KPI.html</span> — Primary interactive citywide dashboard</li>
-    <li><span class="file-path">STLCA_Home.html</span> — Public homepage</li>
-    <li><span class="file-path">STLCA_District_1.html through STLCA_District_7.html</span> — All 7 district dashboards</li>
-    <li><span class="file-path">D1_Accountability_Dossier.html through D7_Accountability_Dossier.html</span> — Narrative dossiers</li>
-    <li><span class="file-path">SDCI Complaint Record Verification Audit 2003–2025.html</span> — Verification audit</li>
-    <li><span class="file-path">STLCA_CaseStudy_Ord125054.html</span> — CS-001</li>
-    <li><span class="file-path">ANALYSIS/D1_ALL_Smart_Analysis.csv through D7_LLT_Smart_Analysis.csv</span> — All district keyword analysis</li>
-    <li><span class="file-path">RANKINGS/DISTRICT_RANKING.xlsx</span> — Enforcement rankings by district</li>
-  </ul>
-</div>
-
-</main>
-
-<footer style="background: var(--ink); color: #666; padding: 1.5rem 3rem; font-family: monospace; font-size: 0.8rem;">
-  STLCA — Seattle Tenant &amp; Landlord Compliance Analysis · Case Study Master Index · Generated March 2026 · Not for public distribution — internal evidence map
+<footer>
+  Seattle Tenant Landlord Compliance Authority (STLCA) |
+  Independent public-data analysis, not legal representation<br>
+  All figures derived from publicly available City of Seattle enforcement records<br><br>
+  <a href="STLCA_Council_Briefing.html">Council Briefing</a> |
+  <a href="STLCA_Citywide_KPI.html">Citywide Audit</a> |
+  <a href="STLCA_Methodology.html">Methodology</a>
 </footer>
 
+<script>
+function handleSubmit(e){
+  e.preventDefault();
+  e.target.style.display='none';
+  document.getElementById('confirm').style.display='block';
+}
+</script>
 </body>
 </html>
