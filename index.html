@@ -1,11 +1,94 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta http-equiv="refresh" content="0; url=STLCA_Home.html"/>
-<title>STLCA — Seattle Tenant Landlord Compliance Authority</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Seattle Tenant Landlord Compliance Authority</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:system-ui,-apple-system,sans-serif}
+  body{
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 120%, rgba(45,127,249,.18), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(245,158,11,.10), transparent 60%),
+      #05080f;
+    color:#e9eef7;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    overflow:hidden;
+    position:relative;
+  }
+  body::before{
+    content:'';
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:45%;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='rgba(15,25,50,0.8)' d='M0,320 L0,200 L40,200 L40,160 L60,160 L60,140 L80,140 L80,100 L100,100 L100,80 L110,80 L110,60 L120,60 L120,80 L130,80 L130,100 L150,100 L150,160 L170,160 L170,120 L185,120 L185,90 L195,90 L195,70 L205,70 L205,90 L215,90 L215,120 L230,120 L230,160 L260,160 L260,140 L275,140 L275,110 L285,110 L285,85 L295,85 L295,65 L305,65 L305,85 L315,85 L315,110 L325,110 L325,140 L360,140 L360,170 L390,170 L390,130 L405,130 L405,100 L415,100 L415,75 L425,75 L425,55 L435,55 L435,75 L445,75 L445,100 L455,100 L455,130 L490,130 L490,160 L520,160 L520,120 L535,120 L535,85 L550,85 L550,60 L565,60 L565,85 L580,85 L580,120 L600,120 L600,180 L640,180 L640,140 L660,140 L660,110 L675,110 L675,80 L690,80 L690,110 L705,110 L705,140 L730,140 L730,170 L770,170 L770,130 L790,130 L790,100 L805,100 L805,70 L820,70 L820,50 L830,50 L830,70 L840,70 L840,100 L855,100 L855,130 L890,130 L890,160 L920,160 L920,120 L940,120 L940,90 L955,90 L955,65 L970,65 L970,90 L985,90 L985,120 L1010,120 L1010,150 L1050,150 L1050,110 L1070,110 L1070,80 L1085,80 L1085,55 L1100,55 L1100,80 L1115,80 L1115,110 L1140,110 L1140,160 L1180,160 L1180,130 L1200,130 L1200,100 L1215,100 L1215,130 L1240,130 L1240,170 L1280,170 L1280,140 L1300,140 L1300,110 L1320,110 L1320,140 L1360,140 L1360,180 L1440,180 L1440,320 Z'/%3E%3C/svg%3E") center bottom / cover no-repeat;
+    pointer-events:none;
+    z-index:0;
+  }
+  body::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(90deg,transparent,transparent 120px,rgba(45,127,249,.03) 120px,rgba(45,127,249,.03) 121px),
+      repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(45,127,249,.02) 80px,rgba(45,127,249,.02) 81px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .card{
+    position:relative;z-index:1;
+    background:rgba(12,20,36,.85);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:48px 52px;
+    max-width:480px;width:90%;
+    text-align:center;
+    backdrop-filter:blur(12px);
+    box-shadow:0 24px 64px rgba(0,0,0,.5);
+  }
+  .org{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(45,127,249,.8);margin-bottom:24px}
+  h1{font-size:26px;font-weight:800;line-height:1.25;margin-bottom:8px}
+  h1 span{color:#2d7ff9}
+  .sub{font-size:13px;color:rgba(233,238,247,.5);margin-bottom:36px;line-height:1.6}
+  input[type=password]{
+    width:100%;background:rgba(0,0,0,.4);
+    border:1px solid rgba(255,255,255,.15);border-radius:10px;
+    padding:14px 16px;color:#e9eef7;font-size:15px;
+    margin-bottom:12px;outline:none;text-align:center;letter-spacing:4px;
+  }
+  input[type=password]:focus{border-color:rgba(45,127,249,.5)}
+  input::placeholder{letter-spacing:1px;color:rgba(233,238,247,.3);font-size:13px}
+  button{
+    width:100%;background:#2d7ff9;color:#fff;border:none;
+    border-radius:10px;padding:14px;font-size:15px;font-weight:700;
+    cursor:pointer;transition:background .2s;
+  }
+  button:hover{background:#1f6ee6}
+  .err{color:#ef4444;font-size:12px;margin-top:10px;min-height:18px}
+  .footer-note{position:relative;z-index:1;margin-top:28px;font-size:11px;color:rgba(233,238,247,.2);text-align:center}
+</style>
 </head>
 <body>
-<a href="STLCA_Home.html">Click here if not redirected automatically</a>
+<div class="card">
+  <div class="org">Seattle Tenant Landlord Compliance Authority</div>
+  <h1>Independent <span>Enforcement</span> Analysis</h1>
+  <p class="sub">This site is in preview. Enter access code to continue.</p>
+  <input type="password" id="pw" placeholder="Enter access code" onkeydown="if(event.key==='Enter')check()"/>
+  <button onclick="check()">Enter Site</button>
+  <div class="err" id="err"></div>
+</div>
+<div class="footer-note">STLCA &mdash; Public data analysis &mdash; Not legal representation</div>
+<script>
+function check(){
+  var pw=document.getElementById('pw').value.trim();
+  if(pw==='stlca2026'){window.location.href='STLCA_Home.html';}
+  else{document.getElementById('err').textContent='Incorrect code. Try again.';document.getElementById('pw').value='';document.getElementById('pw').focus();}
+}
+</script>
 </body>
 </html>
