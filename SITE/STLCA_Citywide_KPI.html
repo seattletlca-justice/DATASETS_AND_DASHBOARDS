@@ -279,29 +279,6 @@
 
     <div class="panel side">
       <div class="sideStack">
-        <div class="panel sideCard">
-          <h3>LLT Keyword Flags — Citywide (All Years)</h3>
-          <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Complaint records flagged by issue type — 58,761 total LLT cases. Cases may match multiple categories.</div>
-          <div style="font-size:12px;line-height:1.8;">
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Habitability</span><strong>22,569</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Tenant Rights</span><strong>20,849</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Plumbing</span><strong>13,876</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Pests</span><strong>11,972</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Displacement</span><strong>10,660</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Structural</span><strong>9,641</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Eviction</span><strong>8,450</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Appliances</span><strong>8,454</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Electrical</span><strong>6,227</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Rent / Deposit</span><strong>5,074</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Mold</span><strong>5,035</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Legal / Enforcement</span><strong>4,674</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>No Heat</span><strong>3,303</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Fire Safety</span><strong>3,126</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>No Hot Water</span><strong>1,651</strong></div>
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0"><span>Security / Retaliation</span><strong>1,844</strong></div>
-            <div style="display:flex;justify-content:space-between;padding:3px 0"><span>Gas Shutoff</span><strong>655</strong></div>
-          </div>
-        </div>
 
         <div class="panel sideCard">
           <h3>Closed/Completed with no inspection date</h3>
@@ -315,12 +292,35 @@
           <div class="muted" style="font-size:12px;line-height:1.35;">Work that can’t be traced to a department or type.</div>
         </div>
 
-        <div class="panel sideCard">
-          <h3>NOV rate by district (quick view)</h3>
-          <div id="mini_nov" class="miniPlot"></div>
-        </div>
+
       </div>
     </div>
+  </div>
+</div>
+
+<div class="wrap" style="margin-top:16px;margin-bottom:8px">
+  <div class="dividerText">
+    <h2>LLT Keyword Flags &mdash; Citywide (All Years)</h2>
+    <p>Complaint records flagged by issue type across 58,761 landlord-tenant cases. Cases may match multiple categories.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:12px">
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Habitability</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">22,569</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Tenant Rights</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">20,849</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Plumbing</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">13,876</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Pests</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">11,972</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Displacement</div><div style="font-size:22px;font-weight:750;color:#f59e0b">10,660</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Structural</div><div style="font-size:22px;font-weight:750;color:#f59e0b">9,641</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Eviction</div><div style="font-size:22px;font-weight:750;color:#ef4444">8,450</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Appliances</div><div style="font-size:22px;font-weight:750;color:#f59e0b">8,454</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Electrical</div><div style="font-size:22px;font-weight:750;color:#f59e0b">6,227</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Rent / Deposit</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">5,074</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Mold</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">5,035</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Legal / Enforcement</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">4,674</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">No Heat</div><div style="font-size:22px;font-weight:750;color:#ef4444">3,303</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Fire Safety</div><div style="font-size:22px;font-weight:750;color:#ef4444">3,126</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">No Hot Water</div><div style="font-size:22px;font-weight:750;color:#ef4444">1,651</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Security / Retaliation</div><div style="font-size:22px;font-weight:750;color:#ef4444">1,844</div></div>
+    <div class="panel" style="padding:12px"><div style="font-size:11px;color:var(--muted);margin-bottom:4px">Gas Shutoff</div><div style="font-size:22px;font-weight:750;color:#2d7ff9">655</div></div>
   </div>
 </div>
 
