@@ -3,15 +3,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Seattle Tenant Landlord Compliance Authority</title>
+<title>Seattle Housing Enforcement — STLCA</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:system-ui,-apple-system,sans-serif}
   body{
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 120%, rgba(45,127,249,.18), transparent 70%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(245,158,11,.10), transparent 60%),
-      #05080f;
+    background:#04070e;
     color:#e9eef7;
     display:flex;
     flex-direction:column;
@@ -21,72 +18,322 @@
     overflow:hidden;
     position:relative;
   }
-  body::before{
-    content:'';
-    position:absolute;
-    bottom:0;left:0;right:0;
-    height:45%;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='rgba(15,25,50,0.8)' d='M0,320 L0,200 L40,200 L40,160 L60,160 L60,140 L80,140 L80,100 L100,100 L100,80 L110,80 L110,60 L120,60 L120,80 L130,80 L130,100 L150,100 L150,160 L170,160 L170,120 L185,120 L185,90 L195,90 L195,70 L205,70 L205,90 L215,90 L215,120 L230,120 L230,160 L260,160 L260,140 L275,140 L275,110 L285,110 L285,85 L295,85 L295,65 L305,65 L305,85 L315,85 L315,110 L325,110 L325,140 L360,140 L360,170 L390,170 L390,130 L405,130 L405,100 L415,100 L415,75 L425,75 L425,55 L435,55 L435,75 L445,75 L445,100 L455,100 L455,130 L490,130 L490,160 L520,160 L520,120 L535,120 L535,85 L550,85 L550,60 L565,60 L565,85 L580,85 L580,120 L600,120 L600,180 L640,180 L640,140 L660,140 L660,110 L675,110 L675,80 L690,80 L690,110 L705,110 L705,140 L730,140 L730,170 L770,170 L770,130 L790,130 L790,100 L805,100 L805,70 L820,70 L820,50 L830,50 L830,70 L840,70 L840,100 L855,100 L855,130 L890,130 L890,160 L920,160 L920,120 L940,120 L940,90 L955,90 L955,65 L970,65 L970,90 L985,90 L985,120 L1010,120 L1010,150 L1050,150 L1050,110 L1070,110 L1070,80 L1085,80 L1085,55 L1100,55 L1100,80 L1115,80 L1115,110 L1140,110 L1140,160 L1180,160 L1180,130 L1200,130 L1200,100 L1215,100 L1215,130 L1240,130 L1240,170 L1280,170 L1280,140 L1300,140 L1300,110 L1320,110 L1320,140 L1360,140 L1360,180 L1440,180 L1440,320 Z'/%3E%3C/svg%3E") center bottom / cover no-repeat;
-    pointer-events:none;
-    z-index:0;
-  }
-  body::after{
-    content:'';
-    position:absolute;
+
+  /* Sky glow */
+  .sky{
+    position:fixed;
     inset:0;
     background:
-      repeating-linear-gradient(90deg,transparent,transparent 120px,rgba(45,127,249,.03) 120px,rgba(45,127,249,.03) 121px),
-      repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(45,127,249,.02) 80px,rgba(45,127,249,.02) 81px);
-    pointer-events:none;
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(10,30,80,.6), transparent 65%),
+      radial-gradient(ellipse 40% 30% at 30% 40%, rgba(45,127,249,.07), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 70% 60%, rgba(245,158,11,.05), transparent 60%),
+      #04070e;
     z-index:0;
   }
+
+  /* Cityscape SVG container */
+  .city{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    height:55%;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  /* Grid lines */
+  .grid{
+    position:fixed;
+    inset:0;
+    background:
+      repeating-linear-gradient(90deg,transparent,transparent 100px,rgba(45,127,249,.025) 100px,rgba(45,127,249,.025) 101px),
+      repeating-linear-gradient(0deg,transparent,transparent 70px,rgba(45,127,249,.018) 70px,rgba(45,127,249,.018) 71px);
+    z-index:2;
+    pointer-events:none;
+  }
+
+  /* Card */
+  .wrap{
+    position:relative;
+    z-index:10;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:32px;
+  }
+
+  /* Logo mark */
+  .logo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .logo-icon{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+  }
+  .logo-icon span{
+    display:block;
+    background:#2d7ff9;
+    border-radius:2px 2px 0 0;
+    opacity:.9;
+  }
+  .logo-wordmark{
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#2d7ff9;
+  }
+  .logo-rule{
+    width:40px;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#2d7ff9,transparent);
+    margin-top:2px;
+  }
+
   .card{
-    position:relative;z-index:1;
-    background:rgba(12,20,36,.85);
-    border:1px solid rgba(255,255,255,.1);
+    background:rgba(8,14,28,.82);
+    border:1px solid rgba(45,127,249,.18);
     border-radius:20px;
-    padding:48px 52px;
-    max-width:480px;width:90%;
+    padding:44px 52px 40px;
+    max-width:460px;width:90%;
     text-align:center;
-    backdrop-filter:blur(12px);
-    box-shadow:0 24px 64px rgba(0,0,0,.5);
+    backdrop-filter:blur(16px);
+    box-shadow:0 0 0 1px rgba(255,255,255,.04), 0 32px 80px rgba(0,0,0,.6);
   }
-  .org{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(45,127,249,.8);margin-bottom:24px}
-  h1{font-size:26px;font-weight:800;line-height:1.25;margin-bottom:8px}
-  h1 span{color:#2d7ff9}
-  .sub{font-size:13px;color:rgba(233,238,247,.5);margin-bottom:36px;line-height:1.6}
+  .eyebrow{
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:2.5px;
+    color:rgba(45,127,249,.6);
+    margin-bottom:14px;
+  }
+  h1{
+    font-size:28px;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:6px;
+    letter-spacing:-.3px;
+  }
+  h1 em{
+    font-style:normal;
+    color:#2d7ff9;
+  }
+  .sub{
+    font-size:13px;
+    color:rgba(233,238,247,.4);
+    margin-bottom:32px;
+    line-height:1.6;
+    margin-top:8px;
+  }
   input[type=password]{
-    width:100%;background:rgba(0,0,0,.4);
-    border:1px solid rgba(255,255,255,.15);border-radius:10px;
-    padding:14px 16px;color:#e9eef7;font-size:15px;
-    margin-bottom:12px;outline:none;text-align:center;letter-spacing:4px;
+    width:100%;
+    background:rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+    padding:14px 16px;
+    color:#e9eef7;
+    font-size:15px;
+    margin-bottom:10px;
+    outline:none;
+    text-align:center;
+    letter-spacing:4px;
+    transition:border-color .2s;
   }
-  input[type=password]:focus{border-color:rgba(45,127,249,.5)}
-  input::placeholder{letter-spacing:1px;color:rgba(233,238,247,.3);font-size:13px}
+  input[type=password]:focus{border-color:rgba(45,127,249,.55);background:rgba(0,0,0,.5)}
+  input::placeholder{letter-spacing:1px;color:rgba(233,238,247,.25);font-size:13px}
   button{
-    width:100%;background:#2d7ff9;color:#fff;border:none;
-    border-radius:10px;padding:14px;font-size:15px;font-weight:700;
-    cursor:pointer;transition:background .2s;
+    width:100%;
+    background:linear-gradient(135deg,#2d7ff9,#1a5fd4);
+    color:#fff;border:none;
+    border-radius:10px;
+    padding:14px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:opacity .2s, transform .1s;
+    letter-spacing:.3px;
   }
-  button:hover{background:#1f6ee6}
+  button:hover{opacity:.9}
+  button:active{transform:scale(.99)}
   .err{color:#ef4444;font-size:12px;margin-top:10px;min-height:18px}
-  .footer-note{position:relative;z-index:1;margin-top:28px;font-size:11px;color:rgba(233,238,247,.2);text-align:center}
+
+  .footer-note{
+    position:relative;z-index:10;
+    font-size:10px;
+    color:rgba(233,238,247,.18);
+    text-align:center;
+    letter-spacing:.5px;
+  }
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="org">Seattle Tenant Landlord Compliance Authority</div>
-  <h1>Independent <span>Enforcement</span> Analysis</h1>
-  <p class="sub">This site is in preview. Enter access code to continue.</p>
-  <input type="password" id="pw" placeholder="Enter access code" onkeydown="if(event.key==='Enter')check()"/>
-  <button onclick="check()">Enter Site</button>
-  <div class="err" id="err"></div>
+
+<div class="sky"></div>
+
+<!-- SEATTLE CITYSCAPE -->
+<svg class="city" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Horizon glow -->
+  <defs>
+    <linearGradient id="bldg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d2448"/>
+      <stop offset="100%" stop-color="#081830"/>
+    </linearGradient>
+    <linearGradient id="tall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#112b55"/>
+      <stop offset="100%" stop-color="#071525"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(45,127,249,0.15)"/>
+      <stop offset="100%" stop-color="rgba(45,127,249,0)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Horizon ambient glow -->
+  <ellipse cx="720" cy="400" rx="900" ry="120" fill="rgba(20,60,140,0.25)"/>
+
+  <!-- Background low buildings -->
+  <rect x="0" y="280" width="1440" height="120" fill="#060e1e"/>
+  <rect x="0" y="300" width="60" height="100" fill="url(#bldg)"/>
+  <rect x="65" y="320" width="45" height="80" fill="url(#bldg)"/>
+  <rect x="115" y="310" width="30" height="90" fill="url(#bldg)"/>
+  <rect x="150" y="330" width="55" height="70" fill="url(#bldg)"/>
+  <rect x="210" y="290" width="40" height="110" fill="url(#bldg)"/>
+  <rect x="255" y="315" width="35" height="85" fill="url(#bldg)"/>
+  <rect x="295" y="325" width="50" height="75" fill="url(#bldg)"/>
+
+  <!-- Mid buildings left -->
+  <rect x="350" y="260" width="55" height="140" fill="url(#bldg)"/>
+  <rect x="410" y="245" width="40" height="155" fill="url(#tall)"/>
+  <rect x="455" y="270" width="70" height="130" fill="url(#bldg)"/>
+  <rect x="530" y="255" width="35" height="145" fill="url(#bldg)"/>
+
+  <!-- Space Needle simplified (left-center) -->
+  <rect x="575" y="160" width="10" height="240" fill="url(#tall)"/>
+  <polygon points="580,160 555,200 605,200" fill="url(#tall)"/>
+  <rect x="560" y="195" width="40" height="12" fill="#0d2448"/>
+  <rect x="565" y="192" width="30" height="18" rx="2" fill="#112b55"/>
+
+  <!-- Columbia Center (tallest — center) -->
+  <rect x="640" y="80" width="50" height="320" fill="url(#tall)"/>
+  <rect x="648" y="78" width="34" height="15" fill="#0d2448"/>
+  <!-- Antenna -->
+  <rect x="663" y="30" width="4" height="52" fill="#0a1e3a"/>
+
+  <!-- Buildings center-right -->
+  <rect x="700" y="160" width="55" height="240" fill="url(#bldg)"/>
+  <rect x="760" y="190" width="45" height="210" fill="url(#tall)"/>
+  <rect x="810" y="210" width="60" height="190" fill="url(#bldg)"/>
+  <rect x="875" y="175" width="40" height="225" fill="url(#tall)"/>
+  <rect x="920" y="220" width="50" height="180" fill="url(#bldg)"/>
+
+  <!-- Right mid buildings -->
+  <rect x="975" y="240" width="45" height="160" fill="url(#bldg)"/>
+  <rect x="1025" y="255" width="60" height="145" fill="url(#tall)"/>
+  <rect x="1090" y="270" width="40" height="130" fill="url(#bldg)"/>
+  <rect x="1135" y="285" width="55" height="115" fill="url(#bldg)"/>
+  <rect x="1195" y="295" width="35" height="105" fill="url(#bldg)"/>
+  <rect x="1235" y="305" width="50" height="95" fill="url(#bldg)"/>
+  <rect x="1290" y="315" width="40" height="85" fill="url(#bldg)"/>
+  <rect x="1335" y="300" width="45" height="100" fill="url(#bldg)"/>
+  <rect x="1385" y="320" width="55" height="80" fill="url(#bldg)"/>
+
+  <!-- Ground -->
+  <rect x="0" y="395" width="1440" height="5" fill="#04070e"/>
+
+  <!-- WINDOW LIGHTS — amber/gold (occupied) -->
+  <rect x="645" y="100" width="4" height="3" fill="rgba(255,200,80,.55)" rx="1"/>
+  <rect x="654" y="108" width="4" height="3" fill="rgba(255,200,80,.4)" rx="1"/>
+  <rect x="645" y="120" width="4" height="3" fill="rgba(255,200,80,.5)" rx="1"/>
+  <rect x="660" y="130" width="4" height="3" fill="rgba(255,200,80,.45)" rx="1"/>
+  <rect x="648" y="145" width="4" height="3" fill="rgba(255,200,80,.5)" rx="1"/>
+  <rect x="658" y="155" width="4" height="3" fill="rgba(255,200,80,.4)" rx="1"/>
+  <rect x="645" y="170" width="4" height="3" fill="rgba(255,200,80,.35)" rx="1"/>
+  <rect x="662" y="180" width="4" height="3" fill="rgba(255,200,80,.4)" rx="1"/>
+  <rect x="648" y="195" width="4" height="3" fill="rgba(255,200,80,.45)" rx="1"/>
+  <rect x="657" y="210" width="4" height="3" fill="rgba(255,200,80,.35)" rx="1"/>
+  <rect x="645" y="225" width="4" height="3" fill="rgba(255,200,80,.4)" rx="1"/>
+  <rect x="660" y="238" width="4" height="3" fill="rgba(255,200,80,.35)" rx="1"/>
+
+  <!-- Window lights — other buildings -->
+  <rect x="708" y="175" width="4" height="3" fill="rgba(255,210,100,.45)" rx="1"/>
+  <rect x="718" y="185" width="4" height="3" fill="rgba(255,210,100,.35)" rx="1"/>
+  <rect x="730" y="195" width="4" height="3" fill="rgba(255,210,100,.4)" rx="1"/>
+  <rect x="708" y="210" width="4" height="3" fill="rgba(255,210,100,.4)" rx="1"/>
+  <rect x="725" y="225" width="4" height="3" fill="rgba(255,210,100,.3)" rx="1"/>
+  <rect x="765" y="200" width="4" height="3" fill="rgba(200,220,255,.35)" rx="1"/>
+  <rect x="778" y="215" width="4" height="3" fill="rgba(200,220,255,.3)" rx="1"/>
+  <rect x="770" y="230" width="4" height="3" fill="rgba(255,210,100,.4)" rx="1"/>
+  <rect x="820" y="220" width="4" height="3" fill="rgba(255,210,100,.4)" rx="1"/>
+  <rect x="833" y="235" width="4" height="3" fill="rgba(200,220,255,.35)" rx="1"/>
+  <rect x="845" y="248" width="4" height="3" fill="rgba(255,210,100,.3)" rx="1"/>
+  <rect x="882" y="190" width="4" height="3" fill="rgba(255,210,100,.45)" rx="1"/>
+  <rect x="895" y="205" width="4" height="3" fill="rgba(255,210,100,.35)" rx="1"/>
+  <rect x="355" y="270" width="4" height="3" fill="rgba(255,210,100,.4)" rx="1"/>
+  <rect x="368" y="285" width="4" height="3" fill="rgba(200,220,255,.3)" rx="1"/>
+  <rect x="415" y="255" width="4" height="3" fill="rgba(255,210,100,.45)" rx="1"/>
+  <rect x="428" y="268" width="4" height="3" fill="rgba(255,210,100,.35)" rx="1"/>
+  <rect x="460" y="280" width="4" height="3" fill="rgba(255,210,100,.4)" rx="1"/>
+  <rect x="475" y="292" width="4" height="3" fill="rgba(200,220,255,.3)" rx="1"/>
+  <rect x="1030" y="265" width="4" height="3" fill="rgba(255,210,100,.4)" rx="1"/>
+  <rect x="1045" y="278" width="4" height="3" fill="rgba(255,210,100,.3)" rx="1"/>
+  <rect x="1060" y="268" width="4" height="3" fill="rgba(200,220,255,.35)" rx="1"/>
+
+  <!-- Stars -->
+  <circle cx="100" cy="40" r="1" fill="rgba(255,255,255,.4)"/>
+  <circle cx="220" cy="25" r="1.2" fill="rgba(255,255,255,.35)"/>
+  <circle cx="380" cy="55" r="1" fill="rgba(255,255,255,.3)"/>
+  <circle cx="510" cy="20" r="1.5" fill="rgba(255,255,255,.25)"/>
+  <circle cx="780" cy="30" r="1" fill="rgba(255,255,255,.4)"/>
+  <circle cx="900" cy="15" r="1.2" fill="rgba(255,255,255,.3)"/>
+  <circle cx="1050" cy="45" r="1" fill="rgba(255,255,255,.35)"/>
+  <circle cx="1200" cy="20" r="1.5" fill="rgba(255,255,255,.25)"/>
+  <circle cx="1350" cy="38" r="1" fill="rgba(255,255,255,.4)"/>
+  <circle cx="480" cy="70" r="0.8" fill="rgba(255,255,255,.3)"/>
+  <circle cx="630" cy="55" r="1" fill="rgba(255,255,255,.35)"/>
+  <circle cx="1100" cy="60" r="0.8" fill="rgba(255,255,255,.3)"/>
+</svg>
+
+<div class="grid"></div>
+
+<div class="wrap">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <div class="logo-icon">
+      <span style="width:6px;height:18px"></span>
+      <span style="width:8px;height:26px"></span>
+      <span style="width:6px;height:34px"></span>
+      <span style="width:10px;height:44px"></span>
+      <span style="width:6px;height:28px"></span>
+      <span style="width:8px;height:20px"></span>
+      <span style="width:6px;height:16px"></span>
+    </div>
+    <div class="logo-wordmark">STLCA</div>
+    <div class="logo-rule"></div>
+  </div>
+
+  <!-- CARD -->
+  <div class="card">
+    <div class="eyebrow">Seattle Tenant Landlord Compliance Authority</div>
+    <h1>Seattle <em>Housing</em><br>Enforcement</h1>
+    <p class="sub">Independent data analysis of SDCI enforcement records.<br>Enter access code to continue.</p>
+    <input type="password" id="pw" placeholder="Enter access code" onkeydown="if(event.key==='Enter')check()"/>
+    <button onclick="check()">Enter Site</button>
+    <div class="err" id="err"></div>
+  </div>
+
 </div>
-<div class="footer-note">STLCA &mdash; Public data analysis &mdash; Not legal representation</div>
+
+<div class="footer-note" style="margin-top:24px">STLCA &mdash; Public data analysis &mdash; Not legal representation</div>
+
 <script>
 function check(){
   var pw=document.getElementById('pw').value.trim();
-  if(pw==='stlca2026'){window.location.href='STLCA_Home.html';}
+  if(pw==='stlca2026'){window.location.href='SITE/STLCA_Home.html';}
   else{document.getElementById('err').textContent='Incorrect code. Try again.';document.getElementById('pw').value='';document.getElementById('pw').focus();}
 }
 </script>
