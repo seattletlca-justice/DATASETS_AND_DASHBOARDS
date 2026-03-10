@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>STLCA — Address Timeline Index</title>
+<style>
+  :root{
+    --bg:#070b12;--panel:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);
+    --text:#e9eef7;--muted:rgba(233,238,247,.65);--muted2:rgba(233,238,247,.38);
+    --blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;
+    --max:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  nav{position:sticky;top:0;z-index:100;width:100%;height:52px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;background:rgba(7,11,18,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+  .nav-brand{font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff}
+  .nav-brand span{color:var(--blue)}
+  .nav-links{display:flex;gap:6px}
+  .nav-links a{font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.5px;transition:.15s}
+  .nav-links a:hover{background:rgba(255,255,255,.10)}
+  .nav-links a.cta{background:var(--orange);color:#000}
+
+  .wrap{width:min(100%,var(--max));margin:0 auto;padding:0 24px}
+
+  .page-header{padding:52px 0 36px;text-align:center}
+  .header-badge{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+    color:var(--blue);border:1px solid rgba(45,127,249,.30);background:rgba(45,127,249,.10);
+    border-radius:999px;padding:5px 16px;margin-bottom:18px}
+  h1{font-size:clamp(26px,4vw,42px);font-weight:850;letter-spacing:-.5px;margin-bottom:10px}
+  .header-sub{color:var(--muted);font-size:15px;line-height:1.7;max-width:660px;margin:0 auto 28px}
+
+  .jump-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+  .jump-nav a{font-size:12px;font-weight:800;padding:7px 16px;border-radius:999px;
+    border:1px solid rgba(45,127,249,.25);background:rgba(45,127,249,.08);color:var(--blue);transition:.15s}
+  .jump-nav a:hover{background:rgba(45,127,249,.18)}
+
+  .district-section{padding:32px 0 20px;border-top:1px solid var(--border)}
+  .dist-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+  .dist-badge{width:42px;height:42px;border-radius:50%;background:rgba(45,127,249,.15);border:1px solid rgba(45,127,249,.30);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--blue);flex-shrink:0}
+  .dist-header h2{font-size:20px;font-weight:800;margin-bottom:3px}
+  .dist-header p{font-size:12px;color:var(--muted)}
+  .dist-link{margin-left:auto;font-size:12px;font-weight:800;color:var(--orange);padding:7px 14px;
+    border:1px solid rgba(245,158,11,.25);border-radius:10px;background:rgba(245,158,11,.08);white-space:nowrap}
+  .dist-link:hover{background:rgba(245,158,11,.15)}
+
+  .addr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-bottom:12px}
+
+  .addr-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px;
+    transition:.18s;display:block}
+  .addr-card:hover{background:rgba(45,127,249,.08);border-color:rgba(45,127,249,.25);transform:translateY(-1px)}
+  .addr-count{font-size:22px;font-weight:880;color:var(--blue);letter-spacing:-.3px;margin-bottom:4px}
+  .addr-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.4}
+  .addr-bar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-bottom:8px}
+  .addr-bar-fill{height:3px;background:var(--blue);border-radius:2px;opacity:.6}
+  .addr-link{font-size:11px;color:var(--blue);font-weight:700}
+
+  footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted2);font-size:11px;line-height:1.8;margin-top:20px}
+  footer a{color:rgba(233,238,247,.5)} footer a:hover{color:var(--text)}
+
+  @media(max-width:600px){.dist-link{margin-left:0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span>STLCA</span> Seattle Tenant Landlord Compliance</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html">Case Studies</a>
+    <a href="STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-header">
+    <div class="header-badge">SDCI Public Data</div>
+    <h1>Address Complaint Timelines</h1>
+    <p class="header-sub">
+      Every SDCI complaint and enforcement record for 157 Seattle addresses —
+      organized by complaint text, inspection outcome, and case status.
+      Data sourced from the City of Seattle Open Data Portal, extracted December 31, 2025.
+    </p>
+    <nav class="jump-nav">
+      <a href="#d1">District 1</a><a href="#d2">District 2</a><a href="#d3">District 3</a><a href="#d4">District 4</a><a href="#d5">District 5</a><a href="#d6">District 6</a><a href="#d7">District 7</a>
+    </nav>
+  </div>
+</div>
+
+
+  <section class="district-section" id="d1">
+    <div class="wrap">
+      <div class="dist-header">
+        <div class="dist-badge">D1</div>
+        <div>
+          <h2>District 1 — Saka</h2>
+          <p>23 addresses with complaint timelines</p>
+        </div>
+        <a href="STLCA_District_1.html" class="dist-link">District Dossier &rarr;</a>
+      </div>
+      <div class="addr-grid">
+        
+      <a class="addr-card" href="timelines/201_YESLER_WAY_SEATTLE_WA.html">
+        <div class="addr-count">100</div>
+        <div class="addr-name">201 YESLER WAY, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:50%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4545_42ND_AVE_SW_SEATTLE_WA.html">
+        <div class="addr-count">71</div>
+        <div class="addr-name">4545 42ND AVE SW, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:36%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/223_YESLER_WAY_SEATTLE_WA.html">
+        <div class="addr-count">68</div>
+        <div class="addr-name">223 YESLER WAY, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:34%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/212_ALASKAN_WAY_S_SEATTLE_WA.html">
+        <div class="addr-count">66</div>
+        <div class="addr-name">212 ALASKAN WAY S, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:33%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9434_DELRIDGE_WAY_SW_SEATTLE_WA.html">
+        <div class="addr-count">60</div>
+        <div class="addr-name">9434 DELRIDGE WAY SW, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:30%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9103_8TH_AVE_S.html">
+        <div class="addr-count">49</div>
+        <div class="addr-name">9103 8TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:24%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3021_SW_BRADFORD_ST_SEATTLE_WA.html">
+        <div class="addr-count">42</div>
+        <div class="addr-name">3021 SW BRADFORD ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:21%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4040_26TH_AVE_SW_SEATTLE_WA.html">
+        <div class="addr-count">39</div>
+        <div class="addr-name">4040 26TH AVE SW, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:20%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/65_S_WASHINGTON_ST_SEATTLE_WA.html">
+        <div class="addr-count">35</div>
+        <div class="addr-name">65 S WASHINGTON ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:18%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/5930_34TH_AVE_SW.html">
+        <div class="addr-count">22</div>
+        <div class="addr-name">5930 34TH AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:11%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1313_SUNSET_AVE_SW.html">
+        <div class="addr-count">10</div>
+        <div class="addr-name">1313 SUNSET AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:5%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9057_9TH_AVE_SW.html">
+        <div class="addr-count">10</div>
+        <div class="addr-name">9057 9TH AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:5%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1653_EDGEWOOD_AVE_SW.html">
+        <div class="addr-count">6</div>
+        <div class="addr-name">1653 EDGEWOOD AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:3%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/215_2ND_AVE_S.html">
+        <div class="addr-count">6</div>
+        <div class="addr-name">215 2ND AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:3%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2810_ALKI_AVE_SW.html">
+        <div class="addr-count">4</div>
+        <div class="addr-name">2810 ALKI AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/500_S_RIVER_ST.html">
+        <div class="addr-count">4</div>
+        <div class="addr-name">500 S RIVER ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/5424_DELRIDGE_WAY_SW.html">
+        <div class="addr-count">4</div>
+        <div class="addr-name">5424 DELRIDGE WAY SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1313_CALIFORNIA_AVE_SW.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">1313 CALIFORNIA AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2611_45TH_AVE_SW.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">2611 45TH AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/7140_18TH_AVE_SW.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">7140 18TH AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/7560_CALIFORNIA_AVE_SW.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">7560 CALIFORNIA AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1218_ALKI_AVE_SW.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">1218 ALKI AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2626_ALKI_AVE_SW.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">2626 ALKI AVE SW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="district-section" id="d2">
+    <div class="wrap">
+      <div class="dist-header">
+        <div class="dist-badge">D2</div>
+        <div>
+          <h2>District 2 — Lin</h2>
+          <p>23 addresses with complaint timelines</p>
+        </div>
+        <a href="STLCA_District_2.html" class="dist-link">District Dossier &rarr;</a>
+      </div>
+      <div class="addr-grid">
+        
+      <a class="addr-card" href="timelines/308_4TH_AVE_S.html">
+        <div class="addr-count">162</div>
+        <div class="addr-name">308 4TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:81%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/308_4TH_AVE_S_SEATTLE_WA.html">
+        <div class="addr-count">162</div>
+        <div class="addr-name">308 4TH AVE S, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:81%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3621_33RD_AVE_S_SEATTLE_WA.html">
+        <div class="addr-count">161</div>
+        <div class="addr-name">3621 33RD AVE S, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:80%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9061_SEWARD_PARK_AVE_S_SEATTLE_WA.html">
+        <div class="addr-count">106</div>
+        <div class="addr-name">9061 SEWARD PARK AVE S, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:53%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3642_33RD_AVE_S_SEATTLE_WA.html">
+        <div class="addr-count">72</div>
+        <div class="addr-name">3642 33RD AVE S, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:36%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/800_JEFFERSON_ST_SEATTLE_WA.html">
+        <div class="addr-count">58</div>
+        <div class="addr-name">800 JEFFERSON ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:29%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/913_S_JACKSON_ST_SEATTLE_WA.html">
+        <div class="addr-count">55</div>
+        <div class="addr-name">913 S JACKSON ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:28%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1203_JAMES_ST_SEATTLE_WA.html">
+        <div class="addr-count">48</div>
+        <div class="addr-name">1203 JAMES ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:24%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1308_12TH_AVE_S_SEATTLE_WA.html">
+        <div class="addr-count">38</div>
+        <div class="addr-name">1308 12TH AVE S, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:19%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/5913_RAINIER_AVE_S.html">
+        <div class="addr-count">38</div>
+        <div class="addr-name">5913 RAINIER AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:19%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/8801_36TH_AVE_S.html">
+        <div class="addr-count">29</div>
+        <div class="addr-name">8801 36TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4222_37TH_AVE_S.html">
+        <div class="addr-count">18</div>
+        <div class="addr-name">4222 37TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:9%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2921_S_AUSTIN_ST.html">
+        <div class="addr-count">15</div>
+        <div class="addr-name">2921 S AUSTIN ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/705_S_WELLER_ST.html">
+        <div class="addr-count">11</div>
+        <div class="addr-name">705 S WELLER ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9833_RAINIER_AVE_S.html">
+        <div class="addr-count">11</div>
+        <div class="addr-name">9833 RAINIER AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3714_S_HOLLY_ST.html">
+        <div class="addr-count">10</div>
+        <div class="addr-name">3714 S HOLLY ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:5%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3208_CLAREMONT_AVE_S.html">
+        <div class="addr-count">8</div>
+        <div class="addr-name">3208 CLAREMONT AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9759_ARROWSMITH_AVE_S.html">
+        <div class="addr-count">5</div>
+        <div class="addr-name">9759 ARROWSMITH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/5614_RAINIER_AVE_S.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">5614 RAINIER AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/6514_S_NORFOLK_ST.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">6514 S NORFOLK ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/710_6TH_AVE_S.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">710 6TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9007_A_46TH_AVE_S.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">9007 A 46TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1722_13TH_AVE_S.html">
+        <div class="addr-count">1</div>
+        <div class="addr-name">1722 13TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:0%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="district-section" id="d3">
+    <div class="wrap">
+      <div class="dist-header">
+        <div class="dist-badge">D3</div>
+        <div>
+          <h2>District 3 — Hollingsworth</h2>
+          <p>23 addresses with complaint timelines</p>
+        </div>
+        <a href="STLCA_District_3.html" class="dist-link">District Dossier &rarr;</a>
+      </div>
+      <div class="addr-grid">
+        
+      <a class="addr-card" href="timelines/1727_SUMMIT_AVE_SEATTLE_WA.html">
+        <div class="addr-count">98</div>
+        <div class="addr-name">1727 SUMMIT AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:49%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/430_12TH_AVE_E_SEATTLE_WA.html">
+        <div class="addr-count">79</div>
+        <div class="addr-name">430 12TH AVE E, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:40%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/903_UNION_ST_SEATTLE_WA.html">
+        <div class="addr-count">65</div>
+        <div class="addr-name">903 UNION ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:32%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/915_E_HARRISON_ST_SEATTLE_WA.html">
+        <div class="addr-count">59</div>
+        <div class="addr-name">915 E HARRISON ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:30%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1400_MADISON_ST_SEATTLE_WA.html">
+        <div class="addr-count">54</div>
+        <div class="addr-name">1400 MADISON ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:27%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1317_BOREN_AVE_SEATTLE_WA.html">
+        <div class="addr-count">50</div>
+        <div class="addr-name">1317 BOREN AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:25%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/418_E_LORETTA_PL_SEATTLE_WA.html">
+        <div class="addr-count">47</div>
+        <div class="addr-name">418 E LORETTA PL, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:24%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/155_21ST_AVE_SEATTLE_WA.html">
+        <div class="addr-count">46</div>
+        <div class="addr-name">155 21ST AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:23%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/355_15TH_AVE.html">
+        <div class="addr-count">31</div>
+        <div class="addr-name">355 15TH AVE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:16%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3016_E_HOWELL_ST.html">
+        <div class="addr-count">25</div>
+        <div class="addr-name">3016 E HOWELL ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:12%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/316_27TH_AVE.html">
+        <div class="addr-count">22</div>
+        <div class="addr-name">316 27TH AVE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:11%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3014_E_HOWELL_ST.html">
+        <div class="addr-count">21</div>
+        <div class="addr-name">3014 E HOWELL ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:10%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1737_BELMONT_AVE.html">
+        <div class="addr-count">17</div>
+        <div class="addr-name">1737 BELMONT AVE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2415_S_HOLGATE_ST.html">
+        <div class="addr-count">17</div>
+        <div class="addr-name">2415 S HOLGATE ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/534_26TH_AVE_S.html">
+        <div class="addr-count">17</div>
+        <div class="addr-name">534 26TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1909_25TH_AVE_S.html">
+        <div class="addr-count">14</div>
+        <div class="addr-name">1909 25TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:7%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1906_24TH_AVE_S.html">
+        <div class="addr-count">13</div>
+        <div class="addr-name">1906 24TH AVE S</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2423_S_HOLGATE_ST.html">
+        <div class="addr-count">8</div>
+        <div class="addr-name">2423 S HOLGATE ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/513_31ST_AVE.html">
+        <div class="addr-count">8</div>
+        <div class="addr-name">513 31ST AVE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/126_27TH_AVE_E.html">
+        <div class="addr-count">6</div>
+        <div class="addr-name">126 27TH AVE E</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:3%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1820_E_UNION_ST.html">
+        <div class="addr-count">5</div>
+        <div class="addr-name">1820 E UNION ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1520_11TH_AVE.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">1520 11TH AVE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2411_24TH_AVE_E.html">
+        <div class="addr-count">1</div>
+        <div class="addr-name">2411 24TH AVE E</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:0%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="district-section" id="d4">
+    <div class="wrap">
+      <div class="dist-header">
+        <div class="dist-badge">D4</div>
+        <div>
+          <h2>District 4 — Rivera</h2>
+          <p>20 addresses with complaint timelines</p>
+        </div>
+        <a href="STLCA_District_4.html" class="dist-link">District Dossier &rarr;</a>
+      </div>
+      <div class="addr-grid">
+        
+      <a class="addr-card" href="timelines/4547_19TH_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">46</div>
+        <div class="addr-name">4547 19TH AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:23%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/6620_ROOSEVELT_WAY_NE_SEATTLE_WA.html">
+        <div class="addr-count">39</div>
+        <div class="addr-name">6620 ROOSEVELT WAY NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:20%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4126_12TH_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">38</div>
+        <div class="addr-name">4126 12TH AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:19%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/7101_62ND_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">38</div>
+        <div class="addr-name">7101 62ND AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:19%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4730_UNIVERSITY_WAY_NE_SEATTLE_WA.html">
+        <div class="addr-count">36</div>
+        <div class="addr-name">4730 UNIVERSITY WAY NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:18%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4754_19TH_AVE_NE.html">
+        <div class="addr-count">34</div>
+        <div class="addr-name">4754 19TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:17%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4750_15TH_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">32</div>
+        <div class="addr-name">4750 15TH AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:16%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/6515_16TH_AVE_NE.html">
+        <div class="addr-count">30</div>
+        <div class="addr-name">6515 16TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:15%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4238_12TH_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">29</div>
+        <div class="addr-name">4238 12TH AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/5033_BROOKLYN_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">28</div>
+        <div class="addr-name">5033 BROOKLYN AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/5014_15TH_AVE_NE.html">
+        <div class="addr-count">25</div>
+        <div class="addr-name">5014 15TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:12%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/6514_15TH_AVE_NE.html">
+        <div class="addr-count">18</div>
+        <div class="addr-name">6514 15TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:9%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3000_NE_85TH_ST.html">
+        <div class="addr-count">17</div>
+        <div class="addr-name">3000 NE 85TH ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/8540_23RD_AVE_NE.html">
+        <div class="addr-count">9</div>
+        <div class="addr-name">8540 23RD AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1006_N_39TH_ST.html">
+        <div class="addr-count">4</div>
+        <div class="addr-name">1006 N 39TH ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4532_20TH_AVE_NE.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">4532 20TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/5204_12TH_AVE_NE.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">5204 12TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/6338_14TH_AVE_NE.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">6338 14TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4033_7TH_AVE_NE.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">4033 7TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1616_N_36TH_ST.html">
+        <div class="addr-count">1</div>
+        <div class="addr-name">1616 N 36TH ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:0%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="district-section" id="d5">
+    <div class="wrap">
+      <div class="dist-header">
+        <div class="dist-badge">D5</div>
+        <div>
+          <h2>District 5 — Juarez</h2>
+          <p>23 addresses with complaint timelines</p>
+        </div>
+        <a href="STLCA_District_5.html" class="dist-link">District Dossier &rarr;</a>
+      </div>
+      <div class="addr-grid">
+        
+      <a class="addr-card" href="timelines/12740_30TH_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">83</div>
+        <div class="addr-name">12740 30TH AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:42%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/14100_LINDEN_AVE_N_SEATTLE_WA.html">
+        <div class="addr-count">73</div>
+        <div class="addr-name">14100 LINDEN AVE N, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:36%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/13000_LINDEN_AVE_N_SEATTLE_WA.html">
+        <div class="addr-count">72</div>
+        <div class="addr-name">13000 LINDEN AVE N, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:36%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/14002_LINDEN_AVE_N_SEATTLE_WA.html">
+        <div class="addr-count">56</div>
+        <div class="addr-name">14002 LINDEN AVE N, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:28%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/747_N_135TH_ST_SEATTLE_WA.html">
+        <div class="addr-count">55</div>
+        <div class="addr-name">747 N 135TH ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:28%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/13751_32ND_AVE_NE_SEATTLE_WA.html">
+        <div class="addr-count">46</div>
+        <div class="addr-name">13751 32ND AVE NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:23%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/13280_LINDEN_AVE_N_SEATTLE_WA.html">
+        <div class="addr-count">41</div>
+        <div class="addr-name">13280 LINDEN AVE N, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:20%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/11038_LAKE_CITY_WAY_NE.html">
+        <div class="addr-count">37</div>
+        <div class="addr-name">11038 LAKE CITY WAY NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:18%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/11038_LAKE_CITY_WAY_NE_SEATTLE_WA.html">
+        <div class="addr-count">37</div>
+        <div class="addr-name">11038 LAKE CITY WAY NE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:18%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/14033_32ND_AVE_NE.html">
+        <div class="addr-count">19</div>
+        <div class="addr-name">14033 32ND AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:10%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/10540_GREENWOOD_AVE_N.html">
+        <div class="addr-count">18</div>
+        <div class="addr-name">10540 GREENWOOD AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:9%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1030_NE_125TH_ST.html">
+        <div class="addr-count">14</div>
+        <div class="addr-name">1030 NE 125TH ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:7%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2350_N_115TH_ST.html">
+        <div class="addr-count">14</div>
+        <div class="addr-name">2350 N 115TH ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:7%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/14092_23RD_PL_NE.html">
+        <div class="addr-count">13</div>
+        <div class="addr-name">14092 23RD PL NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/11004_14TH_AVE_NE.html">
+        <div class="addr-count">8</div>
+        <div class="addr-name">11004 14TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/9530_AURORA_AVE_N.html">
+        <div class="addr-count">8</div>
+        <div class="addr-name">9530 AURORA AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/11743_5TH_AVE_NE.html">
+        <div class="addr-count">6</div>
+        <div class="addr-name">11743 5TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:3%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/10329_WALLINGFORD_AVE_N.html">
+        <div class="addr-count">4</div>
+        <div class="addr-name">10329 WALLINGFORD AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/10112_4TH_AVE_NW.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">10112 4TH AVE NW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/8515_11TH_AVE_NW.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">8515 11TH AVE NW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/10110_4TH_AVE_NW.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">10110 4TH AVE NW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/12557_35TH_AVE_NE.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">12557 35TH AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/8516_1ST_AVE_NE.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">8516 1ST AVE NE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="district-section" id="d6">
+    <div class="wrap">
+      <div class="dist-header">
+        <div class="dist-badge">D6</div>
+        <div>
+          <h2>District 6 — Strauss</h2>
+          <p>22 addresses with complaint timelines</p>
+        </div>
+        <a href="STLCA_District_6.html" class="dist-link">District Dossier &rarr;</a>
+      </div>
+      <div class="addr-grid">
+        
+      <a class="addr-card" href="timelines/618_NW_58TH_ST_SEATTLE_WA.html">
+        <div class="addr-count">45</div>
+        <div class="addr-name">618 NW 58TH ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:22%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2233_NW_58TH_ST_SEATTLE_WA.html">
+        <div class="addr-count">35</div>
+        <div class="addr-name">2233 NW 58TH ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:18%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/6900_EAST_GREEN_LAKE_WAY_N_SEATTLE_WA.html">
+        <div class="addr-count">34</div>
+        <div class="addr-name">6900 EAST GREEN LAKE WAY N, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:17%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/414_NE_RAVENNA_BLVD_SEATTLE_WA.html">
+        <div class="addr-count">33</div>
+        <div class="addr-name">414 NE RAVENNA BLVD, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:16%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1545_NW_MARKET_ST_SEATTLE_WA.html">
+        <div class="addr-count">30</div>
+        <div class="addr-name">1545 NW MARKET ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:15%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4339_29TH_AVE_W.html">
+        <div class="addr-count">29</div>
+        <div class="addr-name">4339 29TH AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/505_NE_70TH_ST_SEATTLE_WA.html">
+        <div class="addr-count">29</div>
+        <div class="addr-name">505 NE 70TH ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2035_NW_63RD_ST_SEATTLE_WA.html">
+        <div class="addr-count">28</div>
+        <div class="addr-name">2035 NW 63RD ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1701_NW_56TH_ST_SEATTLE_WA.html">
+        <div class="addr-count">27</div>
+        <div class="addr-name">1701 NW 56TH ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/7708_GREENWOOD_AVE_N.html">
+        <div class="addr-count">21</div>
+        <div class="addr-name">7708 GREENWOOD AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:10%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3047_30TH_AVE_W.html">
+        <div class="addr-count">15</div>
+        <div class="addr-name">3047 30th AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3412_34TH_AVE_W.html">
+        <div class="addr-count">15</div>
+        <div class="addr-name">3412 34TH AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2359_N_62ND_ST.html">
+        <div class="addr-count">14</div>
+        <div class="addr-name">2359 N 62ND ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:7%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1515_NW_52ND_ST.html">
+        <div class="addr-count">10</div>
+        <div class="addr-name">1515 NW 52ND ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:5%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/105_N_40TH_ST.html">
+        <div class="addr-count">8</div>
+        <div class="addr-name">105 N 40TH ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1544_NW_52ND_ST.html">
+        <div class="addr-count">7</div>
+        <div class="addr-name">1544 NW 52ND ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3613_EVANSTON_AVE_N.html">
+        <div class="addr-count">7</div>
+        <div class="addr-name">3613 EVANSTON AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/4051_GILMAN_AVE_W.html">
+        <div class="addr-count">4</div>
+        <div class="addr-name">4051 GILMAN AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1547_NW_63RD_ST.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">1547 NW 63RD ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/200_N_85TH_ST.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">200 N 85TH ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1733_NW_61ST_ST.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">1733 NW 61ST ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/7510_15TH_AVE_NW.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">7510 15TH AVE NW</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="district-section" id="d7">
+    <div class="wrap">
+      <div class="dist-header">
+        <div class="dist-badge">D7</div>
+        <div>
+          <h2>District 7 — Kettle</h2>
+          <p>23 addresses with complaint timelines</p>
+        </div>
+        <a href="STLCA_District_7.html" class="dist-link">District Dossier &rarr;</a>
+      </div>
+      <div class="addr-grid">
+        
+      <a class="addr-card" href="timelines/800_SENECA_ST_SEATTLE_WA.html">
+        <div class="addr-count">135</div>
+        <div class="addr-name">800 SENECA ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:68%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1102_8TH_AVE_SEATTLE_WA.html">
+        <div class="addr-count">120</div>
+        <div class="addr-name">1102 8TH AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:60%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/700_5TH_AVE_SEATTLE_WA.html">
+        <div class="addr-count">99</div>
+        <div class="addr-name">700 5TH AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:50%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1820_MINOR_AVE_SEATTLE_WA.html">
+        <div class="addr-count">83</div>
+        <div class="addr-name">1820 MINOR AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:42%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1110_8TH_AVE_SEATTLE_WA.html">
+        <div class="addr-count">72</div>
+        <div class="addr-name">1110 8TH AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:36%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/823_MADISON_ST_SEATTLE_WA.html">
+        <div class="addr-count">63</div>
+        <div class="addr-name">823 MADISON ST, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:32%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1902_2ND_AVE_SEATTLE_WA.html">
+        <div class="addr-count">62</div>
+        <div class="addr-name">1902 2ND AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:31%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1823_TERRY_AVE_SEATTLE_WA.html">
+        <div class="addr-count">58</div>
+        <div class="addr-name">1823 TERRY AVE, Seattle WA</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:29%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/420_BLANCHARD_ST.html">
+        <div class="addr-count">37</div>
+        <div class="addr-name">420 BLANCHARD ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:18%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3402_15TH_AVE_W.html">
+        <div class="addr-count">27</div>
+        <div class="addr-name">3402 15TH AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:14%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/524_5TH_AVE_W.html">
+        <div class="addr-count">25</div>
+        <div class="addr-name">524 5TH AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:12%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/3039_HUMES_PL_W.html">
+        <div class="addr-count">21</div>
+        <div class="addr-name">3039 HUMES PL W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:10%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2834_15TH_AVE_W.html">
+        <div class="addr-count">17</div>
+        <div class="addr-name">2834 15TH AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:8%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1501_2ND_AVE.html">
+        <div class="addr-count">13</div>
+        <div class="addr-name">1501 2ND AVE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1920_1ST_AVE.html">
+        <div class="addr-count">13</div>
+        <div class="addr-name">1920 1ST AVE</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/304_BELL_ST.html">
+        <div class="addr-count">13</div>
+        <div class="addr-name">304 BELL ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2505_AURORA_AVE_N.html">
+        <div class="addr-count">11</div>
+        <div class="addr-name">2505 AURORA AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:6%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/1518_5TH_AVE_N.html">
+        <div class="addr-count">8</div>
+        <div class="addr-name">1518 5TH AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:4%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2423_5TH_AVE_W.html">
+        <div class="addr-count">4</div>
+        <div class="addr-name">2423 5TH AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/2216_11TH_AVE_W.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">2216 11TH AVE W</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/811_W_NICKERSON_ST.html">
+        <div class="addr-count">3</div>
+        <div class="addr-name">811 W NICKERSON ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:2%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/526_W_MERCER_ST.html">
+        <div class="addr-count">2</div>
+        <div class="addr-name">526 W MERCER ST</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:1%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+
+      <a class="addr-card" href="timelines/104_1ST_AVE_N.html">
+        <div class="addr-count">1</div>
+        <div class="addr-name">104 1ST AVE N</div>
+        <div class="addr-bar"><div class="addr-bar-fill" style="width:0%"></div></div>
+        <div class="addr-link">View Timeline &rarr;</div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  Seattle Tenant Landlord Compliance Authority (STLCA) |
+  Independent public-data analysis, not legal representation<br>
+  All records from City of Seattle Open Data Portal — SDCI enforcement dataset, extracted 2025-12-31<br><br>
+  <a href="STLCA_Council_Briefing.html">Council Briefing</a> |
+  <a href="STLCA_Citywide_KPI.html">Citywide Audit</a> |
+  <a href="STLCA_Methodology.html">Methodology</a> |
+  <a href="https://github.com/seattletlca-justice/DATASETS_AND_DASHBOARDS" rel="noopener">GitHub</a>
+</footer>
+</body>
+</html>
