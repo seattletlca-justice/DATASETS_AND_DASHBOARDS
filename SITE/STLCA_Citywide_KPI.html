@@ -132,12 +132,12 @@
 <nav style="position:sticky;top:0;z-index:100;background:rgba(7,11,18,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px">
   <div style="font-size:13px;font-weight:700;color:#2d7ff9;letter-spacing:.5px"><span style="color:#2d7ff9">STLCA</span> Seattle Tenant Landlord Compliance Authority</div>
   <div style="display:flex;gap:18px">
-    <a href="https://www.seattletlca.com" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" target="_blank" rel="noopener">Home</a>
-    <a href="STLCA_Citywide_KPI.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" target="_blank" rel="noopener">Citywide Audit</a>
-    <a href="STLCA_Case_Studies.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" target="_blank" rel="noopener">Case Studies</a>
-    <a href="STLCA_District_1.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" target="_blank" rel="noopener">Districts</a>
-    <a href="STLCA_Methodology.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" target="_blank" rel="noopener">Methodology</a>
-    <a href="STLCA_Council_Briefing.html" style="font-size:12px;color:#000;background:#f59e0b;text-decoration:none;padding:6px 14px;border-radius:999px;font-weight:700" target="_blank" rel="noopener">Council Briefing</a>
+    <a href="https://www.seattletlca.com" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" rel="noopener">Home</a>
+    <a href="STLCA_Citywide_KPI.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" rel="noopener">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" rel="noopener">Case Studies</a>
+    <a href="STLCA_District_1.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" rel="noopener">Districts</a>
+    <a href="STLCA_Methodology.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none" rel="noopener">Methodology</a>
+    <a href="STLCA_Council_Briefing.html" style="font-size:12px;color:#000;background:#f59e0b;text-decoration:none;padding:6px 14px;border-radius:999px;font-weight:700" rel="noopener">Council Briefing</a>
   </div>
 </nav>
 <div class="wrap">
@@ -589,7 +589,7 @@ function renderTable(pack){
     const category = escapeHtml(r.Category);
     const address = escapeHtml(r.Address);
     const complaintUrl = sdciComplaintUrl(r.Record);
-    tr.innerHTML = `<td>${openDate}</td><td><a class="recordLink" href="${complaintUrl}" target="_blank" rel="noopener noreferrer">${rec}</a></td><td>${status}</td><td>${category}</td><td>${address}</td>`;
+    tr.innerHTML = `<td>${openDate}</td><td><a class="recordLink" href="${complaintUrl}" rel="noopener noreferrer">${rec}</a></td><td>${status}</td><td>${category}</td><td>${address}</td>`;
     tbody.appendChild(tr);
   });
 }

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study: Quintessa Apartments — STLCA</title>
+  <meta property="og:title" content="CS-014: Quintessa Apartments — STLCA Case Study">
+  <meta property="og:description" content="201 Yesler Way: 100 complaints over 14 years. Elevator failures, fire exit obstructions, boiler outages. 72% of landlord-tenant cases closed without inspection.">
+  <meta property="og:image" content="https://www.seattletlca.com/stlca-preview.png">
+  <meta property="og:url" content="https://www.seattletlca.com/STLCA_CaseStudy_Quintessa.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:          #0d1117;
+      --ink-mid:      #1c2433;
+      --paper:        #f5f2ec;
+      --paper-warm:   #ede9e1;
+      --rule:         #c8bfaa;
+      --accent:       #c0392b;
+      --accent-muted: #922b21;
+      --teal:         #1a6b6b;
+      --gold:         #b5872a;
+      --text-body:    #2c3340;
+      --text-muted:   #5a6372;
+      --col-gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background-color: var(--paper);
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background-color: var(--ink);
+      color: var(--paper);
+      border-bottom: 3px solid var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%; height: 100%;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+      pointer-events: none;
+    }
+    .masthead-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.5rem, 5vw, 3rem);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 1rem;
+    }
+    .site-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .report-kicker {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.4);
+      margin-bottom: 0.75rem;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+    }
+    .masthead h1 em { font-style: italic; color: var(--accent); }
+    .masthead-nav { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
+    .nav-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,242,236,0.4); }
+    .nav-links-inner { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links-inner a { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,236,0.6); text-decoration: none; transition: color 0.2s; }
+    .nav-links-inner a:hover { color: var(--paper); }
+
+    /* ── RULE BAND ── */
+    .rule-band { background: var(--ink-mid); padding: 0.6rem clamp(1.5rem, 5vw, 3rem); }
+    .rule-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 2rem; }
+    .rule-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+    .rule-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+    .rule-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: rgba(245,242,236,0.3); white-space: nowrap; }
+
+    /* ── HERO ── */
+    .hero { max-width: 1100px; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); align-items: start; border-bottom: 1px solid var(--rule); }
+    .hero-lede { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 2.8vw, 2.1rem); font-weight: 700; line-height: 1.35; color: var(--ink); letter-spacing: -0.01em; }
+    .hero-lede em { font-style: italic; color: var(--accent); }
+    .hero-body { font-size: 1rem; line-height: 1.85; color: var(--text-body); font-weight: 300; }
+    .hero-body p + p { margin-top: 1rem; }
+
+    .cite-strip { background: var(--ink-mid); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+    .cite-field label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,242,236,0.35); display: block; margin-bottom: 0.2rem; }
+    .cite-field value { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--gold); display: block; }
+    .cite-field value.red { color: var(--accent); }
+
+    /* ── PULL STATS ── */
+    .pull-stat-row { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--rule); }
+    .pull-stat { padding: 2rem 0; padding-right: 2rem; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 0.35rem; }
+    .pull-stat:last-child { border-right: none; padding-right: 0; padding-left: 2rem; }
+    .pull-stat:nth-child(n+2) { padding-left: 2rem; }
+    .pull-stat:first-child { padding-left: 0; }
+    .pull-stat-num { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--ink); line-height: 1; }
+    .pull-stat-num.red  { color: var(--accent); }
+    .pull-stat-num.teal { color: var(--teal); }
+    .pull-stat-num.gold { color: var(--gold); }
+    .pull-stat-label { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.8rem; line-height: 1.4; color: var(--text-body); }
+    .pull-stat-source { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 0.1rem; }
+
+    /* ── CONTENT ── */
+    .content-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
+    .section { padding: clamp(2.5rem, 5vw, 4rem) 0; border-bottom: 1px solid var(--rule); }
+    .section:last-child { border-bottom: none; }
+    .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem; }
+    .section-body { font-size: 1rem; line-height: 1.85; color: var(--text-body); font-weight: 300; max-width: 680px; }
+    .section-body + .section-body { margin-top: 1rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); align-items: start; margin-top: 1.5rem; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; margin: 2.5rem 0; }
+    .timeline::before { content: ''; position: absolute; left: 110px; top: 0; bottom: 0; width: 2px; background: var(--rule); }
+    .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 1.5rem; align-items: start; padding: 0 0 2rem 0; position: relative; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--text-muted); text-align: right; padding-top: 0.2rem; line-height: 1.5; }
+    .tl-dot { position: absolute; left: 104px; top: 0.35rem; width: 14px; height: 14px; border-radius: 50%; background: var(--paper-warm); border: 2px solid var(--rule); z-index: 1; }
+    .tl-dot.red { background: var(--accent); border-color: var(--accent); }
+    .tl-dot.gold { background: var(--gold); border-color: var(--gold); }
+    .tl-dot.teal { background: var(--teal); border-color: var(--teal); }
+    .tl-content { padding-left: 2rem; }
+    .tl-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .tl-label.alert { color: var(--accent); }
+    .tl-text { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); font-weight: 300; }
+    .tl-gap-note { background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.25); border-left: 3px solid var(--accent); padding: 0.6rem 1rem; margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--accent); }
+    .tl-note-teal { background: rgba(26,107,107,0.07); border: 1px solid rgba(26,107,107,0.2); border-left: 3px solid var(--teal); padding: 0.6rem 1rem; margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--teal); }
+
+    /* ── DATA TABLE ── */
+    .data-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+    .data-table thead th { background: var(--ink-mid); color: rgba(245,242,236,0.7); font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1rem; text-align: left; font-weight: 400; }
+    .data-table tbody tr { border-bottom: 1px solid var(--rule); }
+    .data-table tbody tr:hover { background: var(--paper-warm); }
+    .data-table td { padding: 0.75rem 1rem; vertical-align: top; line-height: 1.5; color: var(--text-body); font-weight: 300; }
+    .data-table td.record-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent); font-weight: 500; white-space: nowrap; }
+    .data-table td.record-num a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(192,57,43,0.3); }
+    .data-table td.record-num a:hover { border-bottom-color: var(--accent); }
+    .data-table td.closure { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-muted); }
+    .data-table td.closure.flagged { color: var(--accent); }
+    .data-table tr.highlight-row { background: rgba(192,57,43,0.04); }
+
+    /* ── ALERT BOX ── */
+    .alert-box { background: var(--ink-mid); border-left: 4px solid var(--accent); padding: 1.75rem 2rem; margin: 2rem 0; }
+    .alert-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .alert-box p { font-size: 0.95rem; line-height: 1.75; color: rgba(245,242,236,0.8); font-weight: 300; }
+    .alert-box p + p { margin-top: 0.75rem; }
+
+    .gold-box { background: var(--ink-mid); border-left: 4px solid var(--gold); padding: 1.75rem 2rem; margin: 2rem 0; }
+    .gold-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .gold-box p { font-size: 0.95rem; line-height: 1.75; color: rgba(245,242,236,0.8); font-weight: 300; }
+    .gold-box p + p { margin-top: 0.75rem; }
+
+    /* ── FINDINGS ── */
+    .findings-list { margin-top: 1.5rem; }
+    .finding-item { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.25rem; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
+    .finding-item:last-child { border-bottom: none; }
+    .finding-n { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--accent); opacity: 0.3; line-height: 1; }
+    .finding-body h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .finding-body p { font-size: 0.95rem; line-height: 1.75; color: var(--text-body); font-weight: 300; }
+    .finding-body p + p { margin-top: 0.5rem; }
+
+    /* ── PULLQUOTE ── */
+    .pullquote { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 1.75rem 0; margin: 2.5rem 0; }
+    .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.5vw, 1.75rem); font-weight: 700; font-style: italic; color: var(--ink); line-height: 1.35; }
+    .pullquote p em { color: var(--accent); font-style: normal; }
+
+    /* ── CLOSING ── */
+    .closing { background: var(--ink); color: var(--paper); padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem); margin: 3rem 0 0; }
+    .closing-inner { max-width: 1100px; margin: 0 auto; }
+    .closing h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; color: var(--paper); margin-bottom: 1.5rem; }
+    .closing p { font-size: 1rem; line-height: 1.85; color: rgba(245,242,236,0.75); font-weight: 300; max-width: 760px; }
+    .closing p + p { margin-top: 1rem; }
+    .closing strong { color: var(--paper); font-weight: 500; }
+    .closing em { color: var(--gold); font-style: italic; }
+    .closing-links { display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+    .closing-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(245,242,236,0.5); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .closing-link:hover { color: var(--paper); border-color: rgba(255,255,255,0.5); }
+
+    /* ── SOURCES ── */
+    .sources-block { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 2rem clamp(1.5rem, 5vw, 3rem); }
+    .sources-inner { max-width: 1100px; margin: 0 auto; }
+    .sources-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .sources-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; line-height: 1.9; color: var(--text-muted); max-width: 900px; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem clamp(1.5rem, 5vw, 3rem); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-org { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.5); }
+    .footer-tagline { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(245,242,236,0.25); margin-top: 0.2rem; }
+    .footer-data-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: rgba(245,242,236,0.2); display: block; text-align: right; }
+    .footer-data-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: rgba(245,242,236,0.2); display: block; text-align: right; letter-spacing: 0.08em; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+    .masthead h1 { animation: slideIn 0.6s ease both; }
+    .site-label  { animation: slideIn 0.4s ease both; }
+    .hero-lede   { animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-body   { animation: fadeUp 0.6s 0.35s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .masthead-inner { grid-template-columns: 1fr; }
+      .masthead-nav { align-items: flex-start; }
+      .pull-stat-row { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .timeline::before { left: 80px; }
+      .tl-item { grid-template-columns: 70px 1fr; }
+      .tl-dot { left: 74px; }
+    }
+    @media (max-width: 480px) {
+      .pull-stat-row { grid-template-columns: 1fr; }
+      .timeline::before { display: none; }
+      .tl-item { grid-template-columns: 1fr; }
+      .tl-dot { display: none; }
+      .tl-date { text-align: left; }
+      .tl-content { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav style="position:sticky;top:0;z-index:200;background:rgba(7,11,18,.97);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;font-family:system-ui,sans-serif">
+  <div style="font-size:13px;font-weight:700;color:#2d7ff9;letter-spacing:.5px">STLCA Seattle Tenant Landlord Compliance Authority</div>
+  <div style="display:flex;gap:18px">
+    <a href="https://www.seattletlca.com" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Home</a>
+    <a href="STLCA_Citywide_KPI.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Citywide Audit</a>
+    <a href="STLCA_Case_Studies.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Case Studies</a>
+    <a href="STLCA_District_1.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Districts</a>
+    <a href="STLCA_Methodology.html" style="font-size:12px;color:rgba(233,238,247,.55);text-decoration:none">Methodology</a>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="site-label">STLCA &mdash; Case Study CS-014</div>
+      <div class="report-kicker">Seattle Tenant Landlord Compliance Authority &mdash; District 1 &mdash; Independent Data Analysis</div>
+      <h1>Quintessa <em>Apartments</em></h1>
+    </div>
+    <nav class="masthead-nav">
+      <span class="nav-tag">Related Reports</span>
+      <ul class="nav-links-inner">
+        <li><a href="STLCA_Case_Studies.html">All Cases</a></li>
+        <li><a href="STLCA_District_1.html">District 1</a></li>
+        <li><a href="STLCA_Citywide_KPI.html">Citywide KPI</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- RULE BAND -->
+<div class="rule-band">
+  <div class="rule-band-inner">
+    <span class="rule-tag">201 Yesler Way &mdash; Seattle, WA 98104</span>
+    <div class="rule-line"></div>
+    <span class="rule-date">Data period: 2011&ndash;2025 &mdash; Source: SDCI Public Records</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-lede">100 complaints over 14 years. <em>72% never inspected.</em> The elevators keep failing. The fire exits keep breaking. The boiler keeps going out. The complaints keep coming.</p>
+    <div class="cite-strip">
+      <div class="cite-field"><label>Address</label><value>201 Yesler Way</value></div>
+      <div class="cite-field"><label>City / Zip</label><value>Seattle, WA 98104</value></div>
+      <div class="cite-field"><label>Council District</label><value>District 1</value></div>
+      <div class="cite-field"><label>Building</label><value>12 Stories</value></div>
+      <div class="cite-field"><label>RRIO Registration</label><value>001-0100953</value></div>
+      <div class="cite-field"><label>Record Span</label><value>2011&ndash;2025</value></div>
+      <div class="cite-field"><label>Total Records</label><value class="red">100</value></div>
+      <div class="cite-field"><label>LLT Cases</label><value class="red">87</value></div>
+    </div>
+  </div>
+  <div class="hero-body">
+    <p>Quintessa Apartments is a 12-story residential building in Seattle's Pioneer Square/First Hill area. SDCI records show 100 code complaint and enforcement records filed between June 2011 and December 2025 — spanning elevator outages, fire safety door failures, no-heat and no-hot-water emergencies, roach and bedbug infestations, flooding, and repeated eviction pressure on tenants.</p>
+    <p>Of the 87 records classified as landlord-tenant cases under STLCA's LLT filter (RecordTypeDesc: blank, Emergency, or LandLord/Tenant), <strong>72% were closed with no inspection date recorded</strong> — consistent with the citywide pattern (62.3%) but exceeding it by nearly 10 percentage points. Only 6 Notices of Violation were issued across the entire 14-year period.</p>
+    <p>Complaints document the same mechanical failures returning year after year without permanent resolution: elevator breakdowns first recorded in 2011 persisting through 2025, a boiler that fails repeatedly leaving tenants without heat and hot water, and emergency exit stairwells cited for hazardous conditions across multiple years.</p>
+  </div>
+</section>
+
+<!-- PULL STATS -->
+<div class="pull-stat-row">
+  <div class="pull-stat">
+    <span class="pull-stat-num red">100</span>
+    <span class="pull-stat-label">Total SDCI records, 2011&ndash;2025</span>
+    <span class="pull-stat-source">SDCI Code Compliance database</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num red">72%</span>
+    <span class="pull-stat-label">LLT cases with no inspection date recorded</span>
+    <span class="pull-stat-source">63 of 87 LLT records &mdash; citywide avg: 62.3%</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num gold">16</span>
+    <span class="pull-stat-label">Elevator complaints spanning 14 years</span>
+    <span class="pull-stat-source">2011 through 2025, recurring failures</span>
+  </div>
+  <div class="pull-stat">
+    <span class="pull-stat-num teal">6</span>
+    <span class="pull-stat-label">Notices of Violation issued in 14 years</span>
+    <span class="pull-stat-source">vs. 87 LLT complaints filed</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="content-wrapper">
+
+  <!-- SECTION 1: ELEVATOR FAILURES -->
+  <section class="section">
+    <div class="section-eyebrow">Finding 01 &mdash; Infrastructure Failure</div>
+    <h2 class="section-title">Fourteen Years of Elevator Failures, Never Resolved</h2>
+    <p class="section-body">The building's two elevators have been the subject of 16 SDCI complaints since 2011. The pattern is consistent: one or both elevators fail, tenants file complaints, management promises action, SDCI responds with housing notes or closes without inspection, and the elevators fail again. No permanent mechanical resolution is documented in the public record.</p>
+    <p class="section-body" style="margin-top:1rem;">The severity escalated in 2021 when a basement flood knocked out one elevator for nearly four months, leaving a 12-story building's residents — including elderly and disabled tenants — dependent on a single elevator. By July 2024, both elevators were simultaneously out of service. In June 2025, the 9th-floor elevator button went offline, and tenants expressed concern that emergency personnel would be unable to reach upper floors.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-date">Jun 2011</span>
+        <div class="tl-dot gold"></div>
+        <div class="tl-content">
+          <div class="tl-label">First elevator complaint on record</div>
+          <p class="tl-text">Record 002839-11CP: "Building has two elevators — one was shut down yesterday (6/16/11) and the other one works only intermittently." Status: Completed. No inspection date.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Aug 2017</span>
+        <div class="tl-dot gold"></div>
+        <div class="tl-content">
+          <div class="tl-label">Elevator non-functional for over a week</div>
+          <p class="tl-text">Record 006226-17CP: "The elevator does not work; it has not worked for over a week." Status: Closed. Inspection date recorded but result: Closed.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Jan–Apr 2021</span>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">4-month outage — flood damage</div>
+          <p class="tl-text">Multiple complaints (001241-21CP, 001318-21CP, 1051966-VI): "1 of 2 elevators out for nearly 4 months after a basement flood damaged equipment. Tenants can't access garage or lower floors." One complaint withdrawn after tenant lost contact with SDCI.</p>
+          <div class="tl-gap-note">NOV 1051966-VI issued. Resolved as "Housing and Bldg. Maintenance Code Violation." No further enforcement documented.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Apr 2021</span>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Getting stuck between floors</div>
+          <p class="tl-text">Records 002628-21CP and 002631-21CP: "Consistently getting stuck in elevator in between floors." SDCI response: "Not an SDCI issue. No contact info provided." Both closed without inspection.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Jul 2024</span>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Both elevators simultaneously out</div>
+          <p class="tl-text">Record 007636-24CP: "The one working elevator has been down since 7/12/24 in the early A.M. The other elevator has been out for several months." Record 007532-24CP: Building flood on 5th floor affected elevator service. NOV 1058960-VI issued: "West elevator down."</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Jun 2025</span>
+        <div class="tl-dot gold"></div>
+        <div class="tl-content">
+          <div class="tl-label">Floor button inoperative — emergency access concern</div>
+          <p class="tl-text">Records 006589-25CP and 006752-25CP: "9th floor button is completely offline — elevator #2." Record 006260-25CP: "Corresponding buttons to some floors are out of order. Concerned about emergency personnel not being able to reach floors." All three closed without inspection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: FIRE SAFETY -->
+  <section class="section">
+    <div class="section-eyebrow">Finding 02 &mdash; Life Safety</div>
+    <h2 class="section-title">Fire Exits Compromised — Multiple Years, No Permanent Fix</h2>
+    <p class="section-body">Emergency exit stairwells at 201 Yesler Way were the subject of repeated complaints between 2018 and 2021. Issues documented include an exit door fused shut due to urine decay, a fire door that would not close and was out of SFD compliance, an emergency stairwell ending in a locked hallway with no way out, and stairwells containing large dog droppings described as a "severe health and safety issue."</p>
+
+    <div class="timeline" style="margin-top:2rem">
+      <div class="tl-item">
+        <span class="tl-date">Jul 2018</span>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Exit door fused shut</div>
+          <p class="tl-text">Record 006896-18CP: "Emergency exit staircase (East) door to alley is fused shut due to urine decay." Resolved as "Housing." No inspection date.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Jun 2021</span>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">SFD non-compliant fire door</div>
+          <p class="tl-text">Record 004982-21CP: "Fire/stairs door doesn't close and is not SFD compliant. Won't close and is noisy/screeching. No response from management." Status: Closed. Resolution: "Not an SDCI issue."</p>
+          <div class="tl-gap-note">NOV 1052446-VI issued Jul 2021. Despite same language about SFD compliance, NOV was closed with no inspection result recorded.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Aug 2021</span>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Stairwell with no exit</div>
+          <p class="tl-text">Record 008728-21CP: "East side emergency stairs end in a locked hallway. With no way out in any direction." Status: Closed. Resolution: "No contact information provided. Admin Closure."</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Aug 2021</span>
+        <div class="tl-dot red"></div>
+        <div class="tl-content">
+          <div class="tl-label alert">Dog waste biohazard in exit stairs</div>
+          <p class="tl-text">Record 006654-21CP: "Severe health and safety issue in the emergency exit stairs. Numerous large dog droppings covering the stairway. Urine smell makes the stairs nearly impassable." Status: Closed. Resolution: "Not an SDCI issue. No contact information provided."</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Sep–Nov 2021</span>
+        <div class="tl-dot gold"></div>
+        <div class="tl-content">
+          <div class="tl-label">Fire exit door still broken — new complaints</div>
+          <p class="tl-text">Records 009449-21CP: "Fire exit door is not working correctly and 12th floor leak has not been repaired." Status: Closed. The fire door first cited in June 2021 remained unresolved through at least fall 2021.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: HABITABILITY -->
+  <section class="section">
+    <div class="section-eyebrow">Finding 03 &mdash; Habitability</div>
+    <h2 class="section-title">No Heat, No Hot Water, Infestations — Recurring Across a Decade</h2>
+
+    <div class="two-col">
+      <div>
+        <p class="section-body">Hot water and heat failures at 201 Yesler Way are documented from 2011 through 2025. The boiler that supplies building heat and hot water has failed repeatedly, with multi-day outages described across at least six separate years. In June 2025, tenants reported four consecutive days without hot water — the boiler failed again in September 2025.</p>
+        <p class="section-body" style="margin-top:1rem;">Pest infestations — roaches and bedbugs — were documented from 2021 through 2022, with one complaint describing a tenant displaced from their unit for 14 of the prior 20 months due to "repeated bedbug infestations." A separate 2021 complaint described "severe roach infestation attracting rodents" throughout the building.</p>
+      </div>
+      <div>
+        <div class="gold-box">
+          <div class="gold-box-label">Habitability Complaint Sample</div>
+          <p>"Both the elevators and the boiler (that provides hot water for the building) fail several times per year. We are often without hot water for days at a time." &mdash; Record 008207-24CP, filed Aug 2024. Closed: "No contact information. Calling and left 2 voicemails for tenant."</p>
+          <p style="margin-top:.75rem">"We have not had hot water in our apartment since June 6th, Sunday evening. The landlord said parts have been ordered." &mdash; Record 007086-25CP, filed Jun 13, 2025. Closed without inspection.</p>
+          <p style="margin-top:.75rem">"Something is wrong here at the Quintessa Apartments. On 9-26-25 the boiler broke, again, leaving us without hot water." &mdash; Record 015579-25CP, filed Nov 2025. Under investigation.</p>
+        </div>
+      </div>
+    </div>
+
+    <table class="data-table" style="margin-top:2rem">
+      <thead>
+        <tr>
+          <th>Record #</th>
+          <th>Date Filed</th>
+          <th>Issue</th>
+          <th>Status</th>
+          <th>Inspected?</th>
+          <th>Resolution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="record-num"><a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=004289-11CP">004289-11CP</a></td>
+          <td>Sep 2011</td>
+          <td>No hot water — boiler failure, 4 days</td>
+          <td>Completed</td>
+          <td>Yes</td>
+          <td class="closure">—</td>
+        </tr>
+        <tr>
+          <td class="record-num"><a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=004687-17CP">004687-17CP</a></td>
+          <td>Jul 2017</td>
+          <td>No hot water — turned off whole building</td>
+          <td>Completed</td>
+          <td>No</td>
+          <td class="closure flagged">Withdrawn</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="record-num"><a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=002279-21CP">002279-21CP</a></td>
+          <td>Mar 2021</td>
+          <td>Severe roach infestation, rodent attraction</td>
+          <td>Closed</td>
+          <td>Yes</td>
+          <td class="closure">Housing / RRIO</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="record-num"><a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=002960-22CP">002960-22CP</a></td>
+          <td>Apr 2022</td>
+          <td>Bedbug infestation — slow/no landlord response</td>
+          <td>Closed</td>
+          <td>No</td>
+          <td class="closure flagged">Housing / RRIO — no inspection</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="record-num"><a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=008671-22CP">008671-22CP</a></td>
+          <td>Jul 2022</td>
+          <td>Displaced 14 of last 20 months — repeated bedbugs</td>
+          <td>Closed</td>
+          <td>No</td>
+          <td class="closure flagged">Housing / RRIO — no inspection</td>
+        </tr>
+        <tr>
+          <td class="record-num"><a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=007086-25CP">007086-25CP</a></td>
+          <td>Jun 2025</td>
+          <td>No hot water since June 6th — parts ordered</td>
+          <td>Completed</td>
+          <td>No</td>
+          <td class="closure flagged">No inspection documented</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="record-num"><a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=015579-25CP">015579-25CP</a></td>
+          <td>Nov 2025</td>
+          <td>Boiler broke Sep 26 — no hot water</td>
+          <td>Under Investigation</td>
+          <td>No</td>
+          <td class="closure">Pending</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 4: TENANT RIGHTS VIOLATIONS -->
+  <section class="section">
+    <div class="section-eyebrow">Finding 04 &mdash; Tenant Rights</div>
+    <h2 class="section-title">Eviction Pressure, Retaliation, and Privacy Violations</h2>
+    <p class="section-body">Tenant rights complaints at 201 Yesler Way span 2018–2025 and include illegal eviction notices, lockouts, unauthorized unit entry, retaliation against tenants who filed court petitions, and — in 2025 — disclosure of tenant Social Security numbers to a third-party money lender without tenant consent.</p>
+
+    <div class="findings-list">
+      <div class="finding-item">
+        <div class="finding-n">01</div>
+        <div class="finding-body">
+          <h4>Eviction Pressure — 14-Day Notices, Court Actions</h4>
+          <p>Records filed in 2021 (005862-21CP, 007228-21CP), 2022 (002357-22CP, 002875-22CP, 011719-22CP), and 2024 (004040-24CP) document tenants receiving 14-day pay-or-vacate notices and court eviction proceedings. Several complaints reference eviction notices combined with habitability violations — broken appliances, infestation, flooding — filed simultaneously in the same complaint. All resolved as "POTA" (phone or technical assistance) referrals with no inspections conducted.</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-n">02</div>
+        <div class="finding-body">
+          <h4>Retaliation After Court Filing</h4>
+          <p>Record 002410-22CP (Mar 2022): "Landlord is entering my unit without permission and I filed a petition against them in court. Now I'm being retaliated against. What are my rights?" Closed with POTA referral. No inspection, no follow-up documented.</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-n">03</div>
+        <div class="finding-body">
+          <h4>Hostile Maintenance Conduct — Senior, Disabled Veteran</h4>
+          <p>Record 012456-25CP (Sep 2025): "On 9/15/25 at 16:28, building maintenance proceeded to pound on my door in a loud, hostile, angry and aggressive manner. I did not have an appointment scheduled. I suffer from PTSD from several previous attempts of another resident trying to break into my apartment. I am a senior and a disabled veteran with severe anxiety and a heart condition. The maintenance person pounding on my door violated my tenant rights and disturbed me on purpose." Status: Completed. No inspection date recorded.</p>
+        </div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-n">04</div>
+        <div class="finding-body">
+          <h4>SSN Disclosed to Third-Party Money Lender</h4>
+          <p>Record 015810-25CP (Nov 2025): "Tenant found out apartments gave SS number and personal information to money lender called ESUSU to report to credit bureaus without tenant's knowledge or consent." Under investigation as of December 2025 data pull. No inspection date recorded.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <p>"Violations in unit, nothing was fixed. Tenant had to <em>move due to illness</em> from maintenance issues. Several violations were present. Now charging tenant $8,000. What are rights?" &mdash; Record 013963-25CP, Oct 2025 &mdash; Under Investigation</p>
+    </div>
+  </section>
+
+  <!-- SECTION 5: ENFORCEMENT PATTERNS -->
+  <section class="section">
+    <div class="section-eyebrow">Finding 05 &mdash; Enforcement Analysis</div>
+    <h2 class="section-title">The Closure Pattern: "No Contact Information" as Administrative Shield</h2>
+    <p class="section-body">A recurring closure reason across 201 Yesler Way complaints is "No contact information provided — Admin Closure." SDCI applied this reason to fire safety, elevator, and habitability complaints — effectively converting legitimate life-safety concerns into administrative non-events without inspection or follow-up.</p>
+    <p class="section-body" style="margin-top:1rem;">This pattern is consistent with STLCA's citywide finding that 62.3% of all LLT cases lack an inspection date, and that the "Admin Closure" mechanism is frequently used to resolve complaints without documented field response. At 201 Yesler Way, the rate exceeds the citywide average by nearly 10 points.</p>
+
+    <div class="alert-box">
+      <div class="alert-box-label">Documented Closure Language — 201 Yesler Way</div>
+      <p>"Not an SDCI issue. No contact information provided." (Records 002628-21CP, 002631-21CP, 006654-21CP, 008728-21CP)</p>
+      <p>"Withdrawn — No contact information provided to offer referral." (Records 000104-24CP, 011857-24CP, 011858-24CP)</p>
+      <p>"Calling and left 2 voicemails for tenant." (Record 008207-24CP — both elevators and boiler failing)</p>
+      <p>"Not a SDCI issue. Forwarded anonymous complaint." (Elevator stuck between floors, 2021)</p>
+    </div>
+
+    <p class="section-body" style="margin-top:1.5rem">The building's RRIO registration history documents at least four distinct RRIO registration numbers appearing in resolution notes across different years (001-0002688, 001-0004720-001R, 001-0100953, 001-0150990). This suggests ownership or management transitions that may have fragmented the enforcement record across multiple registration cycles, with each transition potentially resetting the documented complaint history from SDCI's perspective.</p>
+  </section>
+
+</main>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-inner">
+    <h3>What the Record Shows</h3>
+    <p>201 Yesler Way (Quintessa Apartments) is a 12-story residential building in District 1 that SDCI data shows receiving 100 complaint records over 14 years — 87 classified as landlord-tenant cases, 72% of which were closed without a documented inspection. Sixteen separate elevator complaints span the entire 14-year period with no documented permanent mechanical resolution. Fire exit safety concerns were raised across 2018, 2021, and remain unresolved in the public record.</p>
+    <p>The data pattern at this property reflects the same enforcement gap documented citywide: <strong>complaints are received and logged; inspections are frequently not conducted; and the same conditions recur year after year</strong>. As of the December 2025 data pull, five complaints at this address remain under investigation, including a boiler failure, a privacy violation, and a complaint alleging a tenant was displaced by unresolved maintenance conditions and then charged $8,000.</p>
+    <p><em>Source: SDCI Code Compliance and Enforcement database, public records through December 31, 2025. Analysis: STLCA independent review.</em></p>
+    <div class="closing-links">
+      <a href="STLCA_Case_Studies.html" class="closing-link">All Case Studies</a>
+      <a href="STLCA_Citywide_KPI.html" class="closing-link">Citywide KPI Dashboard</a>
+      <a href="STLCA_District_1.html" class="closing-link">District 1 Dossier</a>
+      <a href="STLCA_Methodology.html" class="closing-link">Methodology</a>
+      <a href="https://services.seattle.gov/portal/customize/linktorecord.aspx?altid=001-0100953" class="closing-link">RRIO Record 001-0100953</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="sources-block">
+  <div class="sources-inner">
+    <div class="sources-label">Data Sources &amp; Methodology</div>
+    <div class="sources-text">
+      All complaint, enforcement, and NOV records: SDCI Code Compliance and Enforcement public database, accessed December 31, 2025. Total records analyzed: 233,543 citywide (2003&ndash;2025). LLT filter applied: RecordTypeDesc = blank, "Emergency," or "LandLord/Tenant." Property-level analysis: all records where ORIGINALADDRESS1 = "201 YESLER WAY." Inspection rate computed as proportion of LLT records with no LASTINSPDATE value. RRIO registration numbers drawn from SDCI complaint resolution notes; not independently verified against current RRIO database. This analysis is based solely on publicly available government records. STLCA makes no claims about ownership, management identity, or legal liability. This report does not constitute legal representation.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-org">Seattle Tenant Landlord Compliance Authority</div>
+      <div class="footer-tagline">Independent data analysis &mdash; Public records &mdash; Not legal representation</div>
+    </div>
+    <div>
+      <span class="footer-data-num">233,543</span>
+      <span class="footer-data-label">SDCI records analyzed citywide</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
