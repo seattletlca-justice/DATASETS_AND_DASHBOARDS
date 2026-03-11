@@ -16,8 +16,17 @@
   .nav-links a{font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;color:#fff;text-transform:uppercase;letter-spacing:.5px;transition:.15s}
   .nav-links a:hover{background:rgba(255,255,255,.10)}
   .nav-links a.cta{background:var(--orange);color:#000}
-  .wrap{width:min(100%,600px);margin:0 auto;padding:0 24px}
+  .nav-links a.active{background:rgba(255,255,255,.12)}
+  .wrap{width:min(100%,680px);margin:0 auto;padding:0 24px}
   .page{padding:90px 0 80px;text-align:center}
+  .cases{display:flex;flex-direction:column;gap:14px;margin-bottom:48px;text-align:left}
+  .case-card{display:block;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:12px;transition:background .2s,border-color .2s}
+  .case-card:hover{background:rgba(45,127,249,.08);border-color:rgba(45,127,249,.30)}
+  .case-card .case-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+  .case-card h3{font-size:15px;font-weight:800;margin-bottom:4px}
+  .case-card p{font-size:12px;color:var(--muted);line-height:1.6}
+  .divider{border:none;border-top:1px solid var(--border);margin:40px 0}
+  .request-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;text-align:center}
   h1{font-size:clamp(22px,4vw,34px);font-weight:850;letter-spacing:-.4px;margin-bottom:12px}
   .sub{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:36px}
   form{display:flex;flex-direction:column;gap:12px;text-align:left}
@@ -39,15 +48,38 @@
   <div class="nav-links">
     <a href="STLCA_Home.html">Home</a>
     <a href="STLCA_Citywide_KPI.html">Citywide Audit</a>
-    <a href="STLCA_Methodology.html">Methodology</a>
-    <a href="STLCA_Council_Briefing.html" class="cta">Council Briefing</a>
+    <a href="STLCA_Case_Studies.html" class="active">Case Studies</a>
+    <a href="STLCA_District_1.html">Districts</a>
+    <a href="STLCA_About.html">About</a>
+    <a href="STLCA_Contact.html">Contact</a>
   </div>
 </nav>
 
 <div class="wrap">
   <div class="page">
-    <h1>Case Studies — Coming Soon</h1>
-    <p class="sub">Property case files are being finalized and will be published here.<br>Request a specific property below and we will follow up.</p>
+    <h1>Case Studies</h1>
+    <p class="sub">Published property case files based on City of Seattle enforcement records.</p>
+
+    <div class="cases">
+      <a href="STLCA_CaseStudy_Addison.html" class="case-card">
+        <div class="case-label">District 7 &mdash; Fire Safety</div>
+        <h3>The Addison on 4th &mdash; Fire After Delayed Inspection</h3>
+        <p>308 4th Ave S &bull; Addison Partners LLC &bull; Pattern of uninspected violations preceding a fatal fire</p>
+      </a>
+      <a href="STLCA_CaseStudy_Everspring.html" class="case-card">
+        <div class="case-label">District 6 &mdash; Evictions</div>
+        <h3>Everspring Inn &mdash; Mass COVID Evictions</h3>
+        <p>Unlawful mass evictions during the COVID-19 pandemic and regulatory failure to protect tenants</p>
+      </a>
+      <a href="STLCA_CaseStudy_MissingReports.html" class="case-card">
+        <div class="case-label">Citywide &mdash; Data Integrity</div>
+        <h3>Missing Inspection Reports</h3>
+        <p>Systematic gaps in SDCI inspection records across multiple properties and districts</p>
+      </a>
+    </div>
+
+    <hr class="divider"/>
+    <p class="request-label">Request a Property Lookup</p>
 
     <form onsubmit="handleSubmit(event)">
       <input type="text" placeholder="Your name" required/>
