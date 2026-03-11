@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>District 2 Accountability Dossier  -  Eddie Lin</title>
+<style>
+:root{--bg:#070b12;--panel:#0c1424;--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#10b981;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.55)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Georgia',serif;font-size:15px;line-height:1.8}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);font-family:'Inter',system-ui,sans-serif;letter-spacing:.5px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;transition:color .2s}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.hdr{border-left:4px solid var(--blue);padding:0 0 0 24px;margin-bottom:40px}
+.hdr .kicker{font-family:'Inter',system-ui,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:10px}
+.hdr h1{font-size:32px;font-weight:400;line-height:1.25;margin-bottom:12px}
+.hdr .byline{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
+.stat-row{display:flex;gap:32px;margin:32px 0;flex-wrap:wrap}
+.stat{text-align:center;flex:1;min-width:120px}
+.stat .s-val{font-size:36px;font-weight:700;font-family:'Inter',system-ui,sans-serif;line-height:1}
+.stat .s-lbl{font-size:11px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.stat .s-cw{font-size:10px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;margin-top:4px}
+.blue{color:var(--blue)}.orange{color:var(--orange)}.red{color:var(--red)}.green{color:var(--green)}
+h2{font-size:20px;font-weight:400;margin:40px 0 12px;border-bottom:1px solid var(--border);padding-bottom:10px}
+h3{font-size:16px;font-weight:700;font-family:'Inter',system-ui,sans-serif;margin:28px 0 8px;color:var(--orange)}
+p{margin-bottom:16px;color:var(--text)}
+.quote{background:rgba(45,127,249,.05);border-left:3px solid rgba(45,127,249,.4);padding:14px 18px;margin:16px 0;font-style:italic;font-size:14px;color:rgba(233,238,247,.8);border-radius:0 8px 8px 0}
+.quote .q-src{font-style:normal;font-size:11px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;margin-top:8px;display:block}
+.case-box{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:24px 24px 20px;margin:24px 0}
+.case-box .c-addr{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px}
+.case-box .c-count{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--muted);margin-bottom:14px}
+.case-box .c-pattern{font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--orange);margin-bottom:10px}
+.finding{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:16px 20px;margin:8px 0;font-size:13px;font-family:'Inter',system-ui,sans-serif}
+.finding::before{content:'▸ ';color:var(--red);font-weight:700}
+ul{margin:0 0 16px 20px}
+ul li{margin-bottom:8px;font-size:14px}
+.section-intro{font-size:14px;color:rgba(233,238,247,.7);font-style:italic;margin-bottom:20px}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-size:11px;color:rgba(233,238,247,.3);font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">STLCA  -  Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="STLCA_District_2.html">D2 Dashboard</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#findings">Key Findings</a>
+  </div>
+</nav>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="kicker">District 2 &bull; Eddie Lin &bull; Accountability Dossier</div>
+  <h1>SDCI Enforcement Record: What the Complaints Say<br>About Landlord Accountability in District 2</h1>
+  <p class="byline">Source: CITYWIDE_ALL_20251231_ENRICHED_01272025 &bull; Seattle Department of Construction and Inspections public complaint records, 2003-2025 &bull; LLT filter: RecordTypeDesc blank, contains &ldquo;Emergency,&rdquo; or contains &ldquo;LandLord/Tenant&rdquo; &bull; All case study quotations are verbatim from SDCI complaint records &bull; 2,671 citywide records (1.1%) lacked district geocodes and are excluded from district counts</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat"><div class="s-val blue">9,353</div><div class="s-lbl">LLT Records</div><div class="s-cw">D2 total, all years</div></div>
+  <div class="stat"><div class="s-val blue">6,337</div><div class="s-lbl">LLT Complaints</div><div class="s-cw">filed by tenants</div></div>
+  <div class="stat"><div class="s-val orange">2,245</div><div class="s-lbl">NOVs Issued</div><div class="s-cw">NOV rate: 35.4% &bull; CW: 27.2%</div></div>
+  <div class="stat"><div class="s-val green">55.0%</div><div class="s-lbl">No Inspection Date</div><div class="s-cw">citywide avg: 62.3%</div></div>
+  <div class="stat"><div class="s-val green">52.3%</div><div class="s-lbl">Closed / No Result</div><div class="s-cw">of closed LLT cases &bull; CW: 59.8%</div></div>
+  <div class="stat"><div class="s-val red">+325%</div><div class="s-lbl">LLT Growth</div><div class="s-cw">215 (2015) &rarr; 914 (2025)</div></div>
+</div>
+
+<h2>District Overview</h2>
+<p class="section-intro">Beacon Hill, Rainier Valley, Columbia City, Seward Park, Georgetown</p>
+<p>District 2 runs from Georgetown north through Rainier Valley, Columbia City, and Seward Park — a corridor of dense rental housing, large affordable apartment complexes, and some of the most economically vulnerable renters in Seattle. The district has generated 38,165 total SDCI complaint records, 9,353 of which are landlord-tenant. With 6,337 complaints and 2,245 Notices of Violation, District 2 has the highest absolute NOV count of any district — evidence that SDCI finds code violations when it looks, but the question of whether it looks consistently enough is answered by 55% of LLT records having no inspection date at all.</p>
+
+<h2>What the Pattern Looks Like</h2>
+<p>The defining pattern in District 2 is pest infestation at scale. Bed bugs. Cockroaches. Rats. These conditions appear in the complaint record not as isolated incidents but as building-wide crises that persist across years while management responds inadequately or tries to shift the cost and responsibility to tenants. The second pattern is heat failure paired with management indifference — tenants told to buy their own space heaters, to use their stoves for warmth, to accept that the boiler "costs money" to run.</p>
+
+<h2 id="cases">Case Studies: The Highest-Activity Addresses</h2>
+<p class="section-intro">The following case studies draw directly from SDCI public complaint records at District 2&rsquo;s most-documented LLT addresses. All quoted text is verbatim from the complaint record. Record numbers and addresses link to the SDCI public portal.</p>
+
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=9061%20SEWARD%20PARK%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">9061 SEWARD PARK AVE S - Lake Washington Apartments, Seattle WA</a></div>
+  <div class="c-count">107 Complaint and Citation Records in SDCI Dataset | 2005-2025 | RRIO Registration 001-0004689 | 366 Units</div>
+  <div class="c-pattern">Twenty-year complaint record - pests, appliance failures, mold, water outages, structural concerns, eviction notices</div>
+
+  <p>Lake Washington Apartments at 9061 Seward Park Ave S is a 366-unit affordable housing complex in the Seward Park neighborhood of District 2. The SDCI complaint and citation record at this address spans 20 years: 107 records from 2005 through 2025. Of those, 56.1% are closed or completed with no inspection result documented. The complaint record documents six recurring issue categories across multiple years.</p>
+
+  <h3>Pest Infestation - 2006 through 2024</h3>
+  <p>Pest complaints at this address begin in 2006 and appear in records through 2024. Documented pests include roaches, rats, bed bugs, ants, and silverfish. A 2014 record documents a single father with a seven-year-old child reporting severe bed bug and cockroach infestation. A 2022 record documents a tenant who was relocated from one unit due to infestation and found pests in the replacement unit as well.</p>
+  <div class="quote">"Some kind of bug infestation: bugs eating him up and has had to go to Harborview. Property managers tell complainant he is crazy and they won't come into apartment anymore. Complainant scared because he has diabetes."<span class="q-src">SDCI Complaint Record - 2006</span></div>
+  <div class="quote">"Roach infestation. The landlord had an exterminator out a month ago, but the exterminator did an inadequate job."<span class="q-src">SDCI Complaint Record - 2009</span></div>
+  <div class="quote">"Complainant stated he is a single father with a 7 year old who have been renting this apt for quite some time. There has been a severe bed bug and cockroach infestation for a long time and the property management has not done anything about it."<span class="q-src">SDCI Complaint Record - 2014</span></div>
+  <div class="quote">"PEST INFESTATION IN ACCOMMODATION UNIT PROVIDED (MOVED FROM PREVIOUS UNIT DUE TO INFESTATION IN OLD UNIT). BEDBUGS, ANTS AND SILVER FISH."<span class="q-src">SDCI Complaint Record - 2022 - No inspection result recorded</span></div>
+
+  <h3>Appliance Failures - 2017 through 2024 (Eight Consecutive Years)</h3>
+  <p>Beginning in 2017, washing machine complaints appear in the record continuously through 2024. Complaints describe machines that went unrepaired for weeks, then months, then years. Multiple tenants across multiple units filed separate complaints about the same condition during the same periods. A 2019 tenant described struggling with the issue for two years. A 2022 record states laundry had been broken for three years.</p>
+  <div class="quote">"I've been struggling for about 2 years now with the washer and dryer in my apartment home that doesn't work and I keep going in to ask for them to come fix it, they said they will come, they never do."<span class="q-src">SDCI Complaint Record - 2019 - No inspection result recorded</span></div>
+  <div class="quote">"LAUNDRY BROKEN FOR 3 YEARS"<span class="q-src">SDCI Complaint Record - 2022 - No inspection result recorded</span></div>
+  <div class="quote">"Washing machine has been out for 4 months. Mgmt. is not doing anything about it. Would like to know rights."<span class="q-src">SDCI Complaint Record - 2024 - No inspection result recorded</span></div>
+
+  <h3>Mold and Water Damage - 2011 through 2024</h3>
+  <p>Mold complaints appear in 2011, 2012, 2021, 2022, and 2024. A 2011 record documents a tenant who had contacted the American Lung Association and an attorney. A 2022 record documents breathing problems and physical symptoms attributed to black mold. A 2024 record notes a child unable to sleep at the property due to mold.</p>
+  <div class="quote">"Severe mold from walls that leak in unit, tenant has contacted American Lung Assoc. and an attorney."<span class="q-src">SDCI Complaint Record - 2011</span></div>
+  <div class="quote">"Black mold issue, landlord aware of problem not addressing it. I am having breathing problems and getting blisters on my body because of this -- need inspection asap."<span class="q-src">SDCI Complaint Record - 2022 - No inspection result recorded</span></div>
+  <div class="quote">"Mold at property, my child cannot sleep at property, management is not doing anything to fix it."<span class="q-src">SDCI Complaint Record - 2024</span></div>
+
+  <h3>Water Outages - 2024</h3>
+  <p>Multiple records in late 2024 document water outages lasting more than 24 hours with no management communication beyond the initial notice. A separate record documents a tenant displaced after a pipe burst being charged full rent for a smaller unit.</p>
+  <div class="quote">"My apartment has been without water since 10am yesterday and it is now 5:22 pm the next day and still no water. We were given notices that the water would be out only on 12/11/2024 from 9am-5pm but it is now 12/12/2024 with still no water."<span class="q-src">SDCI Complaint Record - December 2024 - No inspection result recorded</span></div>
+
+  <h3>Structural and Safety Concerns - 2016 through 2023</h3>
+  <p>A 2016 citation documents a boiler operating without a valid equipment certification. A 2022 record describes holes around the building's base structure with concern about ground stability. A separate 2022 record documents a faulty fire alarm with no management response. A 2023 permit application documents a kitchen fire in Building 9, Unit 163 requiring electrical and structural repair.</p>
+  <div class="quote">"There are holes around the base structure of the building. I am concerned that the building has hollow ground underneath it and will collapse or fall into a sinkhole. The holes get bigger when it rains."<span class="q-src">SDCI Complaint Record - 2022 - No inspection result recorded</span></div>
+  <div class="quote">"FAULTY FIRE ALARM. SLOW/NO RESPONSE FROM LANDLORD."<span class="q-src">SDCI Complaint Record - 2022 - No inspection result recorded</span></div>
+
+  <h3>Eviction Notices Concurrent with Habitability Complaints</h3>
+  <p>Records document eviction-related notices in 2017, 2022, and 2025. The 2022 records include multiple 14-day pay or vacate notices filed in the same period as the highest documented habitability complaint volume at this address.</p>
+
+  <h3>Post-2018 Inspection Record</h3>
+  <p>Of the 107 records at this address, 60 (56.1%) have no documented inspection result. The pattern is concentrated after 2018: of 82 complaints filed from 2018 through 2025, 57 (69.5%) carry no inspection result. The 2022 spike of 23 complaints produced documented inspection results in 2 records. The data does not indicate whether inspections occurred but went undocumented, or whether complaints were closed without field response.</p>
+
+  <h3>Ownership and Public Funding Structure</h3>
+  <p>The property was originally constructed in 1948 as Seward Park Estates (also recorded as Lakeshore Village Apartments). In 1996, it was acquired by Lake Washington Limited Partnership, a partnership between SouthEast Effective Development (SEED), a Seattle-based nonprofit community development corporation founded in 1975, and A.F. Evans Co. Inc. of San Francisco. The property has operated as affordable housing under the name Lake Washington Apartments since that acquisition. Day-to-day property management is currently contracted to FPI Management.</p>
+
+  <p>The property carries a Low-Income Housing Tax Credit (LIHTC) designation with a 40/60 AMI election, committing at least 40% of units to households at or below 60% of Area Median Income. Washington State Housing Finance Commission (WSHFC) records identify a bond closing on 3/14/2014 (project 97-45Q), consistent with a major rehabilitation. SEED's public materials describe the rehabilitation as including roof replacement, heating and electrical upgrades, appliance replacement, and bathroom and kitchen upgrades. The property accepts Section 8 Housing Choice Vouchers. SEED has an active funding relationship with the City of Seattle; in January 2025, SEED received a City Equitable Development Initiative (EDI) award of $1,750,000 for a separate project.</p>
+
+  <p>Regulatory oversight at this property is distributed across multiple agencies: WSHFC and the IRS hold LIHTC compliance authority; HUD and the Seattle Housing Authority administer the Section 8 program; and SDCI holds housing habitability code enforcement jurisdiction. The complaint and citation record summarized above is the SDCI record only and does not reflect the compliance status under LIHTC or Section 8 program requirements. SDCI is a department of the City of Seattle; the City of Seattle is also a funding source for SEED through the EDI program and other community development channels.</p>
+
+  <p style="font-size:12px;color:rgba(233,238,247,.45);margin-top:16px">Ownership sources: Seattle Times archive (6/22/1996), SEED Seattle property portfolio (seedseattle.org), WSHFC property data (project 97-45Q, bond 3/14/2014), AffordableHousingOnline property record, City of Seattle EDI award announcement (1/14/2025). All ownership and funding information drawn from public records.</p>
+
+  <p style="font-size:12px;color:rgba(233,238,247,.45);margin-top:16px">Source: SDCI complaint database (CITYWIDE_ALL_20251231_ENRICHED_01272025) and SDCI record portal export (RecordList20260207). All quoted text verbatim from SDCI records. RRIO registration 001-0004689. Unit count from 2014 SDCI exemption certification record on file.</p>
+</div>
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=3621%2033RD%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">3621 33RD AVE S, Seattle WA</a></div>
+  <div class="c-count">134 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">Bed bug epidemic across entire complex — management shifting costs to tenants</div>
+  <p>The Courtland Place at Rainier Court complex has 134 LLT complaint records in the dataset. The bed bug complaint history here is extensive and distressing: multiple tenants across multiple years reporting infestations that spread through the building, with at least one tenant reporting she had "thrown out her bed and all her clothes" in response. By 2014, the same building appears in the record with a tenant who had been served a 3-day pay or vacate notice while simultaneously dealing with ongoing habitability issues.</p>
+  <div class="quote">&ldquo;Bed bug infestation. They have sprayed but still has the infestation.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2011 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=3621%2033RD%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Bed bugs. Tenant has already thrown out her bed and all her clothes. She said she also contacted channel 5 news.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2012 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=3621%2033RD%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Fan over stove was taken out and never replaced. Bathtub keeps running water. Spoke to POTA after being served 3 day pay or vacate and was advised to call the complaint line.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2014 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=3621%2033RD%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> A building where tenants throw out their beds and clothing due to infestation, while simultaneously receiving eviction notices, represents the exact intersection of habitability failure and legal pressure that tenant advocates have long documented as a displacement pipeline. The SDCI record at 3621 33rd Ave S runs across multiple years and shows the infestation returning despite claimed treatment — a pattern consistent with inadequate remediation rather than resolved conditions.</p>
+</div>
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=308%204TH%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">308 4TH AVE S, Seattle WA</a></div>
+  <div class="c-count">142 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">No heat + rodent/roach infestation — tenants told to heat apartments with stoves</div>
+  <p>The highest LLT complaint count in District 2 belongs to 308 4th Ave S, with 142 records. The complaint text from the earliest entries — 2004 and 2005 — already documents the two conditions that will appear repeatedly throughout the record: no hot water and roach infestation. By 2005, a tenant is reporting that management's response to the heat failure was to suggest tenants "buy their own space heaters" — and that the tenant is "forced to turn oven from the stove to try and keep warm." Heating a home with an oven is a documented fire hazard and a sign of complete management abandonment.</p>
+  <div class="quote">&ldquo;HAS NO HOT WATER IN KITCHEN SINK.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2004 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=308%204TH%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;No heat in the apartment. Told by management that tenants should buy their own space heaters. Forced to turn oven from the stove to try and keep warm. Apartment is infested with roaches.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2005 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=308%204TH%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Roach infestation in unit. Rodent and roach infestation throughout building. Water pressure throughout unit is low. Sometimes no hot water available.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2005 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=308%204TH%20AVE%20S&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> Using a stove oven as a heat source is not just a code violation — it is a carbon monoxide risk and a fire hazard. At 308 4th Ave S, it was management's documented suggestion. The SDCI record at this address spans decades and consistently returns to the same conditions: heat failure, pest infestation, inadequate hot water. The record marks most complaints as "Completed" — but the conditions returned year after year, which means completion documented a visit, not a resolution.</p>
+</div>
+
+<h2 id="findings">Key Findings  -  District 2</h2>
+<p class="section-intro">Based on analysis of 9,353 LLT records across all years in District 2. Figures verified from primary source: CITYWIDE_ALL_20251231_ENRICHED_01272025.</p>
+<div class="finding">D2 LLT records grew 325% from 2015 (215) to 2025 (914) — among the largest absolute growth in the city</div><div class="finding">2,245 Notices of Violation — the highest NOV count of any district, confirming SDCI finds violations when it looks</div><div class="finding">55.0% of LLT records have no inspection date — more than half of cases with no confirmed field response</div><div class="finding">Bed bug infestations at large complexes persist across multiple years with inadequate treatment — a systematic failure, not isolated incidents</div><div class="finding">Tenants receiving eviction notices while simultaneously dealing with habitability failures — the displacement pipeline in the data</div><div class="finding">Management telling tenants to use stoves for heat is a documented fire and carbon monoxide hazard appearing in SDCI records with no subsequent enforcement visible</div>
+
+<h2>A Note on Enforcement Metrics</h2>
+<p>Two numbers define the enforcement accountability gap in District 2: <strong>55.0%</strong> of LLT records have no inspection date in the dataset — meaning SDCI cannot confirm from its own records that a field inspector visited in response to these complaints. And <strong>52.3%</strong> of closed LLT cases show no inspection result — cases that were closed without any documented finding. These are not data errors. They are the shape of an enforcement system that handles high complaint volume with insufficient inspection follow-through.</p>
+<p>When a complaint is filed and closed without inspection, the tenant receives no acknowledgment that their conditions were witnessed or documented. The landlord faces no accountability. And the same conditions appear again in the next complaint at the same address.</p>
+
+</div>
+<footer>STLCA  -  Seattle Tenant Landlord Compliance Authority &bull; All case study quotations verbatim from SDCI open data &bull; <a href="STLCA_District_2.html">D2 Data Dashboard</a> &bull; <a href="STLCA_Home.html">Home</a> &bull; <a href="STLCA_Citywide_KPI.html">Citywide Audit</a></footer>
+</body>
+</html>

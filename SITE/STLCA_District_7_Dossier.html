@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>District 7 Accountability Dossier &mdash; Bob Kettle</title>
+<style>
+:root{--bg:#070b12;--panel:#0c1424;--blue:#2d7ff9;--orange:#f59e0b;--red:#ef4444;--green:#10b981;--border:rgba(255,255,255,.08);--text:#e9eef7;--muted:rgba(233,238,247,.55)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Georgia',serif;font-size:15px;line-height:1.8}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,11,18,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav-brand{font-size:13px;font-weight:700;color:var(--blue);font-family:'Inter',system-ui,sans-serif;letter-spacing:.5px}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;transition:color .2s}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.hdr{border-left:4px solid var(--blue);padding:0 0 0 24px;margin-bottom:40px}
+.hdr .kicker{font-family:'Inter',system-ui,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:10px}
+.hdr h1{font-size:32px;font-weight:400;line-height:1.25;margin-bottom:12px}
+.hdr .byline{font-size:12px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
+.stat-row{display:flex;gap:32px;margin:32px 0;flex-wrap:wrap}
+.stat{text-align:center;flex:1;min-width:120px}
+.stat .s-val{font-size:36px;font-weight:700;font-family:'Inter',system-ui,sans-serif;line-height:1}
+.stat .s-lbl{font-size:11px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.stat .s-cw{font-size:10px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;margin-top:4px}
+.blue{color:var(--blue)}.orange{color:var(--orange)}.red{color:var(--red)}.green{color:var(--green)}
+h2{font-size:20px;font-weight:400;margin:40px 0 12px;border-bottom:1px solid var(--border);padding-bottom:10px}
+h3{font-size:16px;font-weight:700;font-family:'Inter',system-ui,sans-serif;margin:28px 0 8px;color:var(--orange)}
+p{margin-bottom:16px;color:var(--text)}
+.quote{background:rgba(45,127,249,.05);border-left:3px solid rgba(45,127,249,.4);padding:14px 18px;margin:16px 0;font-style:italic;font-size:14px;color:rgba(233,238,247,.8);border-radius:0 8px 8px 0}
+.quote .q-src{font-style:normal;font-size:11px;color:var(--muted);font-family:'Inter',system-ui,sans-serif;margin-top:8px;display:block}
+.case-box{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:24px 24px 20px;margin:24px 0}
+.case-box .c-addr{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px}
+.case-box .c-count{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--muted);margin-bottom:14px}
+.case-box .c-pattern{font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--orange);margin-bottom:10px}
+.finding{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:16px 20px;margin:8px 0;font-size:13px;font-family:'Inter',system-ui,sans-serif}
+.finding::before{content:'▸ ';color:var(--red);font-weight:700}
+ul{margin:0 0 16px 20px}
+ul li{margin-bottom:8px;font-size:14px}
+.section-intro{font-size:14px;color:rgba(233,238,247,.7);font-style:italic;margin-bottom:20px}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;font-size:11px;color:rgba(233,238,247,.3);font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">STLCA &mdash; Seattle Tenant Landlord Compliance Authority</div>
+  <div class="nav-links">
+    <a href="STLCA_Home.html">Home</a>
+    <a href="STLCA_District_7.html">D7 Dashboard</a>
+    <a href="STLCA_Citywide_KPI.html">Citywide</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#findings">Key Findings</a>
+  </div>
+</nav>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="kicker">District 7 &bull; Bob Kettle &bull; Accountability Dossier</div>
+  <h1>SDCI Enforcement Record: What the Complaints Say<br>About Landlord Accountability in District 7</h1>
+  <p class="byline">Source: CITYWIDE_ALL_20251231_ENRICHED_01272025 &bull; Seattle Department of Construction and Inspections public complaint records, 2003&ndash;2025 &bull; LLT filter: RecordTypeDesc blank, contains &ldquo;Emergency,&rdquo; or contains &ldquo;LandLord/Tenant&rdquo; &bull; All case study quotations are verbatim from SDCI complaint records &bull; 2,671 citywide records (1.1%) lacked district geocodes and are excluded from district counts</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat"><div class="s-val blue">8,094</div><div class="s-lbl">LLT Records</div><div class="s-cw">D7 total, all years</div></div>
+  <div class="stat"><div class="s-val blue">6,513</div><div class="s-lbl">LLT Complaints</div><div class="s-cw">filed by tenants</div></div>
+  <div class="stat"><div class="s-val orange">1,051</div><div class="s-lbl">NOVs Issued</div><div class="s-cw">NOV rate: 16.1% &bull; CW: 27.2%</div></div>
+  <div class="stat"><div class="s-val red">69.7%</div><div class="s-lbl">No Inspection Date</div><div class="s-cw">citywide avg: 62.3%</div></div>
+  <div class="stat"><div class="s-val red">67.2%</div><div class="s-lbl">Closed / No Result</div><div class="s-cw">of closed LLT cases &bull; CW: 59.8%</div></div>
+  <div class="stat"><div class="s-val red">+745%</div><div class="s-lbl">LLT Growth</div><div class="s-cw">148 (2015) &rarr; 1,250 (2025)</div></div>
+</div>
+
+<h2>District Overview</h2>
+<p class="section-intro">Downtown, Queen Anne, Magnolia, South Lake Union, Belltown</p>
+<p>District 7 — Downtown, Belltown, South Lake Union, Queen Anne — has the most alarming trend line in the dataset. LLT records grew 745% from 148 in 2015 to 1,250 in 2025 — by far the highest growth rate of any district. It also has the worst performance on enforcement metrics: 69.7% of LLT records have no inspection date, and 67.2% of closed LLT cases show no inspection result — the highest rates in the city on both measures. Downtown Seattle has 8,094 LLT complaint records and a 16.1% NOV rate — the lowest of any district, meaning fewer than 1 in 6 LLT complaints results in a Notice of Violation. The buildings here are often high-rise towers serving thousands of residents, and the enforcement record suggests they are largely escaping accountability.</p>
+
+<h2>What the Pattern Looks Like</h2>
+<p>District 7's complaint record reflects the specific conditions of downtown high-rise residential buildings: elevator failures at scale (multiple elevators in the same building inoperable simultaneously), persistent bed bug infestations that management cycles through surface-level treatment without resolution, and electrical hazards documented with tenant-submitted complaints that receive no visible enforcement follow-through. Alongside these physical conditions is a pattern of financial and legal pressure: illegal mid-lease fee changes, management harassment after move-out, and retaliation complaints.</p>
+
+<h2 id="cases">Case Studies: The Highest-Activity Addresses</h2>
+<p class="section-intro">The following case studies draw directly from SDCI public complaint records at District 7&rsquo;s most-documented LLT addresses. All quoted text is verbatim from the complaint record. Record numbers and addresses link to the SDCI public portal.</p>
+
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=800%20SENECA%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">800 SENECA ST, Seattle WA</a></div>
+  <div class="c-count">121 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">Two of three elevators inoperable — stairway locked — management harassment</div>
+  <p>The Cielo Building at 800 Seneca St has 121 LLT complaint records — the highest of any address in District 7. A 2016 complaint documents two of three elevators simultaneously inoperable, with Elevator 1 having been out for three months. Critically, management refused to unlock the building's stairway to provide an alternative access route. This means residents in a high-rise building — including anyone with mobility limitations — had limited or no vertical access for an extended period. Later records document mid-lease parking fee changes framed as a "city tax," management harassment via email after a tenant moved out, and disputes over freight elevator access during move-out.</p>
+  <div class="quote">&ldquo;Two inoperable elevators in bank of three. Elevator 1 has been inoperable for 3 months. Elevator 2 is intermittently operational. Management will not unlock stairway to provide alternative access to upper floors.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2016 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=800%20SENECA%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Per CSB: I have a Fee assessed for Parking described as a Tx of $25.00. The Building Manager states it's a City Tax. Other Buildings I ask about this Tax Do Not and Have Not Heard of such a thing.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2019 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=800%20SENECA%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;The landlord has been harassing complainant via email. When complainant moved from residence they were not allowed to take belongings down in the freight elevator.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2019 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=800%20SENECA%20ST&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> Two of three elevators inoperable for months, with the stairway locked, describes a high-rise building where management's response to a major systems failure was to provide no alternative whatsoever. At 800 Seneca St, that condition is documented in the SDCI record alongside what appears to be a made-up "city tax" on parking and retaliatory behavior toward departing tenants. The pattern at this building is not isolated mechanical failure — it is documented management indifference across multiple domains simultaneously.</p>
+</div>
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1102%208TH%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">1102 8TH AVE, Seattle WA</a></div>
+  <div class="c-count">101 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">Building-wide bed bug epidemic — management aware for years — no resolution</div>
+  <p>With 101 LLT complaint records, 1102 8th Ave has one of the longest-running pest infestation histories in the dataset. Bed bug complaints appear as early as 2009 and continue through at least 2014 — a five-year documented epidemic in the same building. By 2013, a tenant reported that "she has been hearing from other tenants that they have bed bugs too, but the landlord is" — the complaint cuts off, but the pattern is clear. No power plus bed bugs appears in the same building. Cockroaches are documented as "not properly handled in required time."  The building managed these complaints one at a time while the infestation was building-wide.</p>
+  <div class="quote">&ldquo;Infestation of bedbugs.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2009 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1102%208TH%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;She has been getting bites...been there 2.5 months. She has been hearing from other tenants that they have bed bugs too, but the landlord is [response cut off in record].&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2013 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1102%208TH%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Bed bugs in entire bldg specifically my unit #707&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2014 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1102%208TH%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Repeated issues with cockroaches not being properly handled in required time by an exterminator. Repeated requests to fix hot water and not being addressed in required time.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2012 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1102%208TH%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> A building-wide bed bug infestation treated as individual unit complaints is an infestation that will never be resolved. At 1102 8th Ave, the complaint record spans five years of documented bed bugs with no point at which SDCI appears to have treated the problem at the building level rather than responding to individual complaints. Each case is completed. The next tenant files. The bed bugs were never gone — they were just temporarily quieter.</p>
+</div>
+<div class="case-box">
+  <div class="c-addr"><a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1902%202ND%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">1902 2ND AVE, Seattle WA</a></div>
+  <div class="c-count">54 LLT Complaint Records in SDCI Dataset</div>
+  <div class="c-pattern">Electrical fire sparks from socket — ceiling leak one year — 96-degree apartment</div>
+  <p>The Josephinum building at 1902 2nd Ave has 54 LLT complaint records that paint a portrait of a historic downtown building in managed deterioration. In 2013, a tenant reported "blue electrical flames of electric current" coming out of an electrical socket — a documented electrical fire hazard. The same building appears with a ceiling leak that had been present for a year before the complaint, "blistering peeling paint," an apartment measured at 96.5 degrees Fahrenheit at 9pm in the evening, a broken door lock that was defeated by someone with a credit card, and a refrigerator that could not keep food cold. Each condition appears in a separate complaint. Each is marked completed. Together they describe a building where basic systems have been failing for years.</p>
+  <div class="quote">&ldquo;I have a concern of a possible electrical fire. I had blue electrical flames of electric current come out of my electrical socket.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2013 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1902%202ND%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Leak for 1 year that is in the drain pipe, it then saturates the ceiling and wall. Blistering peeling paint.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2013 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1902%202ND%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Dealing with substandard rental conditions — no working fridge as well as health risks — rental unit average temp 96.5°F as tested at 9pm–10pm.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2012 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1902%202ND%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div><div class="quote">&ldquo;Passage lock only on the front door to the apartment. Was broken into with a credit card. SPD took a report. Landlord said they will not put a deadbolt lock but tenant has to pay $250 for it.&rdquo;<span class="q-src">SDCI Complaint Record &bull; 2011 &bull; <a href="https://cosaccela.seattle.gov/portal/welcome.aspx?tabname=DPDComplaints&SearchType=Address&QueryText=1902%202ND%20AVE&city=Seattle&state=WA" target="_blank" rel="noopener">Search this address in SDCI &rarr;</a></span></div>
+  <p><strong>The story:</strong> Blue electrical flames from an outlet, a 96-degree apartment, a year-old ceiling leak, and a landlord who refused to install a deadbolt after a break-in and offered a tenant the option to pay $250 for the lock themselves. Each of these conditions was filed as a separate SDCI complaint. Each was handled as an individual unit issue. Together they describe a building where every basic system — electrical, temperature control, plumbing, security — has failed simultaneously while management's consistent response has been to minimize, delay, or shift cost to tenants. The Josephinum's record is not an anomaly. It is a pattern.</p>
+</div>
+
+<h2 id="findings">Key Findings &mdash; District 7</h2>
+<p class="section-intro">Based on analysis of 8,094 LLT records across all years in District 7. Figures verified from primary source: CITYWIDE_ALL_20251231_ENRICHED_01272025.</p>
+<div class="finding">D7 LLT records grew 745% from 2015 (148) to 2025 (1,250) — the highest growth rate of any district in the city</div><div class="finding">69.7% of LLT records have NO inspection date — the worst rate in the city; most complaints cannot be confirmed to have received a field response</div><div class="finding">67.2% of closed LLT cases show no inspection result — the worst closure accountability rate in the city</div><div class="finding">16.1% LLT NOV rate — the lowest of any district; fewer than 1 in 6 LLT complaints results in a Notice of Violation</div><div class="finding">Two of three elevators inoperable for 3 months with stairway locked documented at 800 Seneca St — zero alternative access provided</div><div class="finding">Electrical fire hazard (blue sparks from socket) documented at 1902 2nd Ave and marked completed — no visible enforcement action in the subsequent record</div><div class="finding">Building-wide bed bug infestation at 1102 8th Ave documented across 5+ years — treated as individual complaints rather than a building-level crisis</div><div class="finding">Downtown's enforcement gap — lowest NOV rate, worst inspection metrics — while having the fastest-growing LLT complaint volume in the city</div>
+
+<h2>A Note on Enforcement Metrics</h2>
+<p>Two numbers define the enforcement accountability gap in District 7: <strong>69.7%</strong> of LLT records have no inspection date in the dataset — meaning SDCI cannot confirm from its own records that a field inspector visited in response to these complaints. And <strong>67.2%</strong> of closed LLT cases show no inspection result — cases that were closed without any documented finding. These are not data errors. They are the shape of an enforcement system that handles high complaint volume with insufficient inspection follow-through.</p>
+<p>When a complaint is filed and closed without inspection, the tenant receives no acknowledgment that their conditions were witnessed or documented. The landlord faces no accountability. And the same conditions appear again in the next complaint at the same address.</p>
+
+</div>
+<footer>STLCA &mdash; Seattle Tenant Landlord Compliance Authority &bull; All case study quotations verbatim from SDCI open data &bull; <a href="STLCA_District_7.html">D7 Data Dashboard</a> &bull; <a href="STLCA_Home.html">Home</a> &bull; <a href="STLCA_Citywide_KPI.html">Citywide Audit</a></footer>
+</body>
+</html>
