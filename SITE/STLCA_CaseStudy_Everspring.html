@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study: Everspring Inn — STLCA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0d1117; --ink-mid: #1c2433; --paper: #f5f2ec;
+      --paper-warm: #ede9e1; --rule: #c8bfaa; --accent: #c0392b;
+      --accent-muted: #922b21; --teal: #1a6b6b; --gold: #b5872a;
+      --text-body: #2c3340; --text-muted: #5a6372;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'IBM Plex Sans', sans-serif; background-color: var(--paper); color: var(--text-body); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.6; }
+
+    /* MASTHEAD */
+    .masthead { background-color: var(--ink); color: var(--paper); border-bottom: 3px solid var(--accent); position: relative; overflow: hidden; }
+    .masthead::after { content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px); pointer-events: none; }
+    .masthead-inner { max-width: 1100px; margin: 0 auto; padding: 2.5rem clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 1rem; }
+    .site-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .report-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.5); margin-bottom: 0.75rem; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; color: var(--paper); }
+    h1 em { font-style: italic; color: var(--accent); }
+    .masthead-nav { text-align: right; }
+    .nav-tag { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,242,236,0.35); margin-bottom: 0.5rem; }
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; align-items: flex-end; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,236,0.6); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--paper); }
+
+    /* RULE BAND */
+    .rule-band { background: var(--accent); color: #fff; padding: 0.5rem clamp(1.5rem, 5vw, 3rem); }
+    .rule-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+    .rule-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+    .rule-line { flex: 1; height: 1px; background: rgba(255,255,255,0.4); }
+    .rule-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em; opacity: 0.85; white-space: nowrap; }
+
+    /* HERO */
+    .hero { max-width: 1100px; margin: 0 auto; padding: 3rem clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; border-bottom: 1px solid var(--rule); }
+    @media(max-width:700px){ .hero{ grid-template-columns:1fr; } }
+    .hero-lede { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.5; color: var(--ink); font-style: italic; margin-bottom: 1.5rem; }
+    .hero-lede em { color: var(--accent); font-style: normal; font-weight: 700; }
+    .cite-strip { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cite-field { display: flex; gap: 0.75rem; align-items: baseline; }
+    .cite-field label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); min-width: 120px; flex-shrink: 0; }
+    .cite-field value { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--ink); font-weight: 500; }
+    .cite-field value.red { color: var(--accent); font-weight: 700; }
+    .hero-body p { margin-bottom: 1rem; font-size: 0.95rem; color: var(--text-body); }
+
+    /* PULL STATS */
+    .pull-stat-row { background: var(--ink-mid); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-bottom: 3px solid var(--accent); }
+    .pull-stat { padding: 1.5rem 2rem; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 0.4rem; }
+    .pull-stat:last-child { border-right: none; }
+    .pull-stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; line-height: 1; }
+    .pull-stat-num.red { color: var(--accent); }
+    .pull-stat-num.teal { color: #4db6ac; }
+    .pull-stat-num.gold { color: var(--gold); }
+    .pull-stat-label { font-size: 0.8rem; color: rgba(245,242,236,0.75); line-height: 1.4; }
+    .pull-stat-source { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: rgba(245,242,236,0.35); }
+
+    /* CONTENT */
+    .content-wrapper { max-width: 1100px; margin: 0 auto; padding: 3rem clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+    @media(max-width:800px){ .content-wrapper{ grid-template-columns:1fr; } }
+    .section { margin-bottom: 2.5rem; }
+    .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    h2.section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; border-bottom: 2px solid var(--rule); padding-bottom: 0.5rem; }
+    .section p { font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-body); }
+    .finding-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+    .finding-list li { padding: 0.75rem 1rem 0.75rem 1.2rem; background: var(--paper-warm); border-left: 3px solid var(--accent); font-size: 0.9rem; line-height: 1.5; }
+    .finding-list li strong { color: var(--ink); }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .sidebar-card { background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 4px; padding: 1.25rem; }
+    .sidebar-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .sidebar-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .sidebar-card p + p { margin-top: 0.5rem; }
+    .doc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .doc-list li { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--text-muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+    .doc-list li:last-child { border-bottom: none; }
+    .status-badge { display: inline-block; background: var(--teal); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.75rem; }
+    .status-badge.pending { background: var(--gold); color: var(--ink); }
+
+    /* PREP NOTICE */
+    .prep-notice { background: var(--ink); color: var(--paper); border-left: 4px solid var(--gold); padding: 1.5rem 1.75rem; margin-bottom: 2rem; border-radius: 0 4px 4px 0; }
+    .prep-notice h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .prep-notice p { font-size: 0.875rem; color: rgba(245,242,236,0.8); line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: rgba(245,242,236,0.4); border-top: 3px solid var(--accent); padding: 2rem clamp(1.5rem, 5vw, 3rem); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; line-height: 1.8; }
+    footer a { color: rgba(245,242,236,0.55); text-decoration: none; }
+    footer a:hover { color: var(--paper); }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <p class="site-label">Seattle Tenant-Landlord Compliance Authority</p>
+        <p class="report-kicker">Case Study CS-003 &nbsp;·&nbsp; Independent Research Report &nbsp;·&nbsp; District 6</p>
+        <h1>Everspring Inn.<br><em>Mass Evictions.</em> During a Pandemic.</h1>
+      </div>
+      <nav class="masthead-nav">
+        <span class="nav-tag">Navigation</span>
+        <ul class="nav-links">
+          <li><a href="STLCA_Case_Studies.html">Research</a></li>
+          <li><a href="STLCA_District_1.html">Districts</a></li>
+          <li><a href="STLCA_Citywide_KPI.html">Data</a></li>
+          <li><a href="STLCA_Contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- RULE BAND -->
+  <div class="rule-band">
+    <div class="rule-band-inner">
+      <span class="rule-tag">Unlawful Evictions &nbsp;·&nbsp; COVID-19 &nbsp;·&nbsp; Regulatory Failure &nbsp;·&nbsp; Data Manipulation</span>
+      <div class="rule-line"></div>
+      <span class="rule-date">Everspring Inn &nbsp;·&nbsp; District 6 &nbsp;·&nbsp; Seattle, WA</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-lede">
+        During the COVID-19 pandemic, tenants at Everspring Inn were <em>mass-evicted</em> while regulators failed to intervene — and records were manipulated.
+      </div>
+      <div class="cite-strip">
+        <div class="cite-field"><label>Property</label><value>Everspring Inn, Seattle, WA</value></div>
+        <div class="cite-field"><label>District</label><value>Council District 6</value></div>
+        <div class="cite-field"><label>Period</label><value>COVID-19 Pandemic (2020–2021)</value></div>
+        <div class="cite-field"><label>Category</label><value>Unlawful Evictions / Life Safety</value></div>
+        <div class="cite-field"><label>Classification</label><value class="red">Third-Party · Docs Built</value></div>
+      </div>
+    </div>
+    <div class="hero-body">
+      <p>STLCA's investigation of the Everspring Inn documents a case in which tenants — many of them long-term, lower-income residents — were subjected to unlawful mass evictions during the COVID-19 pandemic, a period when Seattle had enacted emergency protections specifically designed to prevent this outcome.</p>
+      <p>SDCI's regulatory response to the Everspring situation failed to protect the affected tenants. STLCA's analysis further identified evidence of data manipulation in records related to the evictions and life safety complaints at this property.</p>
+      <p>The full case report, including the complete eviction and complaint timeline and documentary record, is under preparation and will be published here.</p>
+    </div>
+  </div>
+
+  <!-- PULL STATS -->
+  <div class="pull-stat-row">
+    <div class="pull-stat">
+      <span class="pull-stat-num red">Mass</span>
+      <span class="pull-stat-label">Evictions executed during COVID-19 emergency protections</span>
+      <span class="pull-stat-source">Everspring Inn — SDCI Records</span>
+    </div>
+    <div class="pull-stat">
+      <span class="pull-stat-num red">Failed</span>
+      <span class="pull-stat-label">Regulatory intervention by SDCI during eviction period</span>
+      <span class="pull-stat-source">STLCA Analysis of Enforcement Response</span>
+    </div>
+    <div class="pull-stat">
+      <span class="pull-stat-num teal">D6</span>
+      <span class="pull-stat-label">Council District — one of seven analyzed by STLCA</span>
+      <span class="pull-stat-source">Seattle City Council Districts</span>
+    </div>
+    <div class="pull-stat">
+      <span class="pull-stat-num gold">Review</span>
+      <span class="pull-stat-label">Full case report under preparation</span>
+      <span class="pull-stat-source">STLCA Case Study CS-003</span>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <div>
+
+      <div class="prep-notice">
+        <h3>Full Report In Preparation</h3>
+        <p>The complete Everspring Inn case study — including the eviction timeline, life safety complaint record, SDCI response analysis, and evidence of data manipulation — is being finalized for publication. Check back or use the <a href="STLCA_Case_Studies.html" style="color:var(--gold);">Case Studies request form</a> to be notified when it goes live.</p>
+      </div>
+
+      <div class="section">
+        <p class="section-eyebrow">Section 01 — The Evictions</p>
+        <h2 class="section-title">What Happened at Everspring Inn</h2>
+        <p>Everspring Inn was home to a population of tenants who depended on the property for stable, long-term housing. During the COVID-19 pandemic, Seattle — along with the State of Washington — enacted emergency moratoriums and protections specifically to prevent exactly the kind of displacement that occurred at this property.</p>
+        <p>STLCA's review of the available record documents a mass eviction pattern that proceeded despite these protections. The regulatory mechanism that should have intervened — SDCI's enforcement apparatus — failed to do so in a manner consistent with the protections tenants were legally entitled to.</p>
+        <ul class="finding-list">
+          <li><strong>Unlawful mass evictions:</strong> Tenants were evicted during the COVID-19 pandemic in apparent violation of emergency protections in force at the time.</li>
+          <li><strong>Life safety neglect:</strong> Concurrent life safety complaints at the property were not addressed in a manner consistent with standard enforcement expectations.</li>
+          <li><strong>Data manipulation:</strong> STLCA identified evidence that records associated with the Everspring evictions and complaints were manipulated — a finding documented in STLCA's compiled case files.</li>
+          <li><strong>Regulatory abandonment:</strong> The regulatory response to conditions at Everspring represented a systemic failure to use available enforcement tools to protect residents.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <p class="section-eyebrow">Section 02 — Context</p>
+        <h2 class="section-title">Part of a Citywide Pattern</h2>
+        <p>The Everspring case did not occur in isolation. STLCA's citywide analysis found that eviction-related complaints across all seven Council districts are closed without documented inspections at rates exceeding 85%. The Everspring Inn is one of several properties where this systemic failure had direct human consequences for tenants who had no other protective recourse.</p>
+        <p>The same enforcement gaps that enabled the Addison fire and the Missing Reports pattern also enabled the Everspring evictions. STLCA's full case report will document the complete connection between these patterns and the specific facts of this case.</p>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>Case Status</h3>
+        <span class="status-badge pending">Report In Preparation</span>
+        <p>Document compilation complete. Full case study narrative, findings, and supporting exhibits are being finalized for publication.</p>
+      </div>
+      <div class="sidebar-card">
+        <h3>Documents Compiled</h3>
+        <ul class="doc-list">
+          <li>Primary case study (PDF)</li>
+          <li>Unlawful mass evictions during COVID-19 (PDF)</li>
+          <li>Evictions, Regulatory Failure &amp; Tenant Abandonment (PDF)</li>
+          <li>NOV Everspring Final (PDF)</li>
+          <li>Record List 20250929 (CSV)</li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Property Details</h3>
+        <p>Everspring Inn<br>Seattle, WA</p>
+        <p>Council District 6</p>
+        <p>Period: 2020–2021 (COVID-19)</p>
+      </div>
+      <div class="sidebar-card">
+        <h3>Related Reports</h3>
+        <p><a href="STLCA_CaseStudy_MissingReports.html" style="color:var(--teal);text-decoration:none;">→ Missing Inspection Reports (CS-001)</a></p>
+        <p style="margin-top:0.5rem"><a href="STLCA_CaseStudy_Addison.html" style="color:var(--teal);text-decoration:none;">→ The Addison on 4th — Fire (CS-002)</a></p>
+        <p style="margin-top:0.5rem"><a href="STLCA_Citywide_KPI.html" style="color:var(--teal);text-decoration:none;">→ Citywide KPI Dashboard</a></p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    Seattle Tenant Landlord Compliance Authority (STLCA) &nbsp;·&nbsp; Independent public-data analysis, not legal representation<br>
+    All figures derived from publicly available City of Seattle enforcement records &nbsp;·&nbsp; Analysis current as of December 31, 2025<br><br>
+    <a href="STLCA_Home.html">Home</a> &nbsp;|&nbsp;
+    <a href="STLCA_Case_Studies.html">Case Studies</a> &nbsp;|&nbsp;
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a> &nbsp;|&nbsp;
+    <a href="STLCA_Methodology.html">Methodology</a> &nbsp;|&nbsp;
+    <a href="STLCA_Contact.html">Contact</a>
+  </footer>
+
+</body>
+</html>

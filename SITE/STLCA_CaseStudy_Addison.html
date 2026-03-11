@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study: The Addison on 4th — STLCA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0d1117; --ink-mid: #1c2433; --paper: #f5f2ec;
+      --paper-warm: #ede9e1; --rule: #c8bfaa; --accent: #c0392b;
+      --accent-muted: #922b21; --teal: #1a6b6b; --gold: #b5872a;
+      --text-body: #2c3340; --text-muted: #5a6372;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'IBM Plex Sans', sans-serif; background-color: var(--paper); color: var(--text-body); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.6; }
+
+    /* MASTHEAD */
+    .masthead { background-color: var(--ink); color: var(--paper); border-bottom: 3px solid var(--accent); position: relative; overflow: hidden; }
+    .masthead::after { content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px); pointer-events: none; }
+    .masthead-inner { max-width: 1100px; margin: 0 auto; padding: 2.5rem clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 1rem; }
+    .site-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .report-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.5); margin-bottom: 0.75rem; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; color: var(--paper); }
+    h1 em { font-style: italic; color: var(--accent); }
+    .masthead-nav { text-align: right; }
+    .nav-tag { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,242,236,0.35); margin-bottom: 0.5rem; }
+    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; align-items: flex-end; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,236,0.6); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--paper); }
+
+    /* RULE BAND */
+    .rule-band { background: var(--accent); color: #fff; padding: 0.5rem clamp(1.5rem, 5vw, 3rem); }
+    .rule-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+    .rule-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+    .rule-line { flex: 1; height: 1px; background: rgba(255,255,255,0.4); }
+    .rule-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em; opacity: 0.85; white-space: nowrap; }
+
+    /* HERO */
+    .hero { max-width: 1100px; margin: 0 auto; padding: 3rem clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; border-bottom: 1px solid var(--rule); }
+    @media(max-width:700px){ .hero{ grid-template-columns:1fr; } }
+    .hero-lede { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.5; color: var(--ink); font-style: italic; margin-bottom: 1.5rem; }
+    .hero-lede em { color: var(--accent); font-style: normal; font-weight: 700; }
+    .cite-strip { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cite-field { display: flex; gap: 0.75rem; align-items: baseline; }
+    .cite-field label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); min-width: 120px; flex-shrink: 0; }
+    .cite-field value { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--ink); font-weight: 500; }
+    .cite-field value.red { color: var(--accent); font-weight: 700; }
+    .hero-body p { margin-bottom: 1rem; font-size: 0.95rem; color: var(--text-body); }
+
+    /* PULL STATS */
+    .pull-stat-row { background: var(--ink-mid); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-bottom: 3px solid var(--accent); }
+    .pull-stat { padding: 1.5rem 2rem; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 0.4rem; }
+    .pull-stat:last-child { border-right: none; }
+    .pull-stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; line-height: 1; }
+    .pull-stat-num.red { color: var(--accent); }
+    .pull-stat-num.teal { color: #4db6ac; }
+    .pull-stat-num.gold { color: var(--gold); }
+    .pull-stat-label { font-size: 0.8rem; color: rgba(245,242,236,0.75); line-height: 1.4; }
+    .pull-stat-source { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: rgba(245,242,236,0.35); }
+
+    /* CONTENT */
+    .content-wrapper { max-width: 1100px; margin: 0 auto; padding: 3rem clamp(1.5rem, 5vw, 3rem); display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+    @media(max-width:800px){ .content-wrapper{ grid-template-columns:1fr; } }
+    .section { margin-bottom: 2.5rem; }
+    .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    h2.section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; border-bottom: 2px solid var(--rule); padding-bottom: 0.5rem; }
+    .section p { font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-body); }
+    .finding-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+    .finding-list li { padding: 0.75rem 1rem 0.75rem 1.2rem; background: var(--paper-warm); border-left: 3px solid var(--accent); font-size: 0.9rem; line-height: 1.5; }
+    .finding-list li strong { color: var(--ink); }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .sidebar-card { background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 4px; padding: 1.25rem; }
+    .sidebar-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .sidebar-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .sidebar-card p + p { margin-top: 0.5rem; }
+    .doc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .doc-list li { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--text-muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+    .doc-list li:last-child { border-bottom: none; }
+    .status-badge { display: inline-block; background: var(--teal); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.75rem; }
+    .status-badge.pending { background: var(--gold); color: var(--ink); }
+
+    /* PREP NOTICE */
+    .prep-notice { background: var(--ink); color: var(--paper); border-left: 4px solid var(--gold); padding: 1.5rem 1.75rem; margin-bottom: 2rem; border-radius: 0 4px 4px 0; }
+    .prep-notice h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .prep-notice p { font-size: 0.875rem; color: rgba(245,242,236,0.8); line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: rgba(245,242,236,0.4); border-top: 3px solid var(--accent); padding: 2rem clamp(1.5rem, 5vw, 3rem); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; line-height: 1.8; }
+    footer a { color: rgba(245,242,236,0.55); text-decoration: none; }
+    footer a:hover { color: var(--paper); }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <p class="site-label">Seattle Tenant-Landlord Compliance Authority</p>
+        <p class="report-kicker">Case Study CS-002 &nbsp;·&nbsp; Independent Research Report &nbsp;·&nbsp; District 7</p>
+        <h1>The Addison on 4th.<br><em>Fire.</em> After Delayed Inspection.</h1>
+      </div>
+      <nav class="masthead-nav">
+        <span class="nav-tag">Navigation</span>
+        <ul class="nav-links">
+          <li><a href="STLCA_Case_Studies.html">Research</a></li>
+          <li><a href="STLCA_District_1.html">Districts</a></li>
+          <li><a href="STLCA_Citywide_KPI.html">Data</a></li>
+          <li><a href="STLCA_Contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- RULE BAND -->
+  <div class="rule-band">
+    <div class="rule-band-inner">
+      <span class="rule-tag">Fire Safety &nbsp;·&nbsp; Inspection Delays &nbsp;·&nbsp; Complaint Suppression</span>
+      <div class="rule-line"></div>
+      <span class="rule-date">308 4th Ave S, Seattle &nbsp;·&nbsp; District 7 &nbsp;·&nbsp; Owner: Addison Partners LLC</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-lede">
+        A pattern of <em>uninspected violations</em> preceded a fatal fire at a building where SDCI had open complaints on file.
+      </div>
+      <div class="cite-strip">
+        <div class="cite-field"><label>Property</label><value>308 4th Ave S, Seattle, WA 98104</value></div>
+        <div class="cite-field"><label>Owner</label><value>Addison Partners LLC</value></div>
+        <div class="cite-field"><label>District</label><value>Council District 7</value></div>
+        <div class="cite-field"><label>Category</label><value>Fire Safety / Inspection Failure</value></div>
+        <div class="cite-field"><label>Classification</label><value class="red">Third-Party · Docs Built</value></div>
+      </div>
+    </div>
+    <div class="hero-body">
+      <p>STLCA analysis of SDCI enforcement records documents a history of open code complaints at The Addison on 4th that were closed without documented inspections — a pattern consistent with systemic enforcement gaps identified across multiple properties in our citywide audit.</p>
+      <p>Following a fire at the property, STLCA identified evidence of complaint suppression and delayed regulatory response. Documents covering the full complaint history, NOV records, and SDCI inspection files have been compiled and are under review.</p>
+      <p>This case is part of STLCA's broader analysis of Seattle's rental housing enforcement system. The full case report will be published here when finalized.</p>
+    </div>
+  </div>
+
+  <!-- PULL STATS -->
+  <div class="pull-stat-row">
+    <div class="pull-stat">
+      <span class="pull-stat-num red">Open</span>
+      <span class="pull-stat-label">Complaints on file at time of fire incident</span>
+      <span class="pull-stat-source">SDCI Records — Addison on 4th</span>
+    </div>
+    <div class="pull-stat">
+      <span class="pull-stat-num red">Delayed</span>
+      <span class="pull-stat-label">Inspection response to prior code violations</span>
+      <span class="pull-stat-source">SDCI Complaint &amp; Violation Record</span>
+    </div>
+    <div class="pull-stat">
+      <span class="pull-stat-num teal">D7</span>
+      <span class="pull-stat-label">Council District — one of seven analyzed by STLCA</span>
+      <span class="pull-stat-source">Seattle City Council Districts</span>
+    </div>
+    <div class="pull-stat">
+      <span class="pull-stat-num gold">Review</span>
+      <span class="pull-stat-label">Full case report under preparation</span>
+      <span class="pull-stat-source">STLCA Case Study CS-002</span>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <div>
+
+      <div class="prep-notice">
+        <h3>Full Report In Preparation</h3>
+        <p>The complete Addison on 4th case study — including compiled complaint records, NOV documentation, SDCI inspection files, and STLCA findings — is currently being prepared for publication. Check back or use the <a href="STLCA_Case_Studies.html" style="color:var(--gold);">Case Studies request form</a> to be notified when it goes live.</p>
+      </div>
+
+      <div class="section">
+        <p class="section-eyebrow">Section 01 — The Property Record</p>
+        <h2 class="section-title">What SDCI Records Show</h2>
+        <p>STLCA compiled the full SDCI complaint and violation history for 308 4th Ave S using publicly available enforcement data. The record documents a pattern of code complaints that were resolved without documented on-site inspections — a closure method that STLCA's citywide analysis found accounts for the majority of eviction and habitability complaints across Seattle.</p>
+        <p>At The Addison on 4th, this pattern was present in the complaint record prior to the fire incident. Open violations and unresolved complaints were on file with SDCI at the time of the incident.</p>
+        <ul class="finding-list">
+          <li><strong>Complaint suppression post-fire:</strong> STLCA identified evidence that complaint activity following the fire incident was not fully reflected in publicly accessible records in a manner consistent with standard enforcement timelines.</li>
+          <li><strong>Uninspected closures:</strong> Consistent with citywide patterns, multiple complaints at this property were closed without documented site visits.</li>
+          <li><strong>NOV record compiled:</strong> A Notice of Violation record for this property has been compiled as part of STLCA's document package.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <p class="section-eyebrow">Section 02 — Context</p>
+        <h2 class="section-title">Part of a Citywide Pattern</h2>
+        <p>The Addison case is one of several third-party property cases STLCA has documented as part of its analysis of SDCI enforcement systemics. Across all seven Council districts, STLCA found that eviction-related complaints are closed without documented inspections at rates exceeding 85%, peaking at 98.8% in 2021.</p>
+        <p>The Addison on 4th represents a case where those enforcement gaps had direct safety consequences. STLCA's full report will present the complete timeline and documentary record.</p>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>Case Status</h3>
+        <span class="status-badge pending">Report In Preparation</span>
+        <p>Document compilation complete. Full case study narrative, findings, and supporting exhibits are being finalized for publication.</p>
+      </div>
+      <div class="sidebar-card">
+        <h3>Documents Compiled</h3>
+        <ul class="doc-list">
+          <li>Full case study (PDF)</li>
+          <li>Fire incident report analysis</li>
+          <li>ADDISON Code Complaints &amp; Violations 2016–2025</li>
+          <li>Fire &amp; Complaint Data Analysis (MD)</li>
+          <li>NOV Record — Nov 2025</li>
+          <li>SDCI Inspection Records (83471)</li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Property Details</h3>
+        <p>308 4th Ave S<br>Seattle, WA 98104</p>
+        <p>Owner Entity: Addison Partners LLC</p>
+        <p>Council District 7</p>
+      </div>
+      <div class="sidebar-card">
+        <h3>Related Reports</h3>
+        <p><a href="STLCA_CaseStudy_MissingReports.html" style="color:var(--teal);text-decoration:none;">→ Missing Inspection Reports (CS-001)</a></p>
+        <p style="margin-top:0.5rem"><a href="STLCA_CaseStudy_Everspring.html" style="color:var(--teal);text-decoration:none;">→ Everspring Inn — Mass COVID Evictions (CS-003)</a></p>
+        <p style="margin-top:0.5rem"><a href="STLCA_Citywide_KPI.html" style="color:var(--teal);text-decoration:none;">→ Citywide KPI Dashboard</a></p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    Seattle Tenant Landlord Compliance Authority (STLCA) &nbsp;·&nbsp; Independent public-data analysis, not legal representation<br>
+    All figures derived from publicly available City of Seattle enforcement records &nbsp;·&nbsp; Analysis current as of December 31, 2025<br><br>
+    <a href="STLCA_Home.html">Home</a> &nbsp;|&nbsp;
+    <a href="STLCA_Case_Studies.html">Case Studies</a> &nbsp;|&nbsp;
+    <a href="STLCA_Citywide_KPI.html">Citywide Audit</a> &nbsp;|&nbsp;
+    <a href="STLCA_Methodology.html">Methodology</a> &nbsp;|&nbsp;
+    <a href="STLCA_Contact.html">Contact</a>
+  </footer>
+
+</body>
+</html>
