@@ -185,6 +185,20 @@ Each output CSV contains binary tag columns for all 19 categories alongside the 
 
 ---
 
+## Automated Seattle Open Data Pulls
+
+The repository now includes a starter pipeline for refreshing two Seattle SDCI open datasets on a daily schedule:
+
+- `scripts/fetch_sdci_data.py` downloads **Code Complaints and Violations** from dataset `ez4a-iug7` and **Rental Property Registration (RRIO)** from dataset `j2xh-c7vt`, uses only the Python standard library, normalizes dashboard-friendly columns, and exports four CSVs into `data/`.
+- `.github/workflows/update-data.yml` runs that script every day at `10:00 UTC`, plus on manual dispatch, and commits updated CSV outputs back to the repository when they change.
+- The pipeline writes `complaints_latest.csv`, `complaints_asof_2025-12-31.csv`, `rrio_latest.csv`, and `rrio_asof_2025-12-31.csv` for live and point-in-time dashboard use.
+
+To run locally:
+
+```bash
+python scripts/fetch_sdci_data.py
+```
+
 ## Reproducing This Analysis
 
 All source data is publicly available on the [Seattle Open Data Portal](https://data.seattle.gov). The LLT filter rule, district breakdowns, and keyword methodology are fully documented in this repository.
