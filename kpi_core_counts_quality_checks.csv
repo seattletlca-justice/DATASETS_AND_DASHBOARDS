@@ -1,0 +1,9 @@
+check,value
+Total rows in source file,233543
+Rows with CP suffix,177431
+Rows with VI suffix,31409
+Rows where suffix=CP and CP column != True,0
+Rows where suffix=VI and VI column != True,0
+CP/VI rows with null RECORDNUM,0
+CP/VI rows with null OPENYEAR,0
+CP/VI rows with null STATUSCURRENT,0
