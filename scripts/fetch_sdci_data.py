@@ -99,16 +99,28 @@ def parse_date(value: str) -> dt.date | None:
     if not cleaned:
         return None
 
-    cleaned = cleaned.replace("Z", "+00:00")
-    date_portion = cleaned.split("T", 1)[0].split(" ", 1)[0]
+    normalized = cleaned.replace("Z", "+00:00")
+    iso_candidates: list[str] = [normalized]
+    if "T" in normalized:
+        iso_candidates.append(normalized.split("T", 1)[0])
 
-    for parser in (dt.date.fromisoformat,):
+    for candidate in iso_candidates:
         try:
-            return parser(date_portion)
+            return dt.date.fromisoformat(candidate)
         except ValueError:
-            continue
+            try:
+                return dt.datetime.fromisoformat(candidate).date()
+            except ValueError:
+                continue
 
-    for fmt in ("%m/%d/%Y", "%m/%d/%y"):
+    for fmt in (
+        "%m/%d/%Y",
+        "%m/%d/%y",
+        "%m/%d/%Y %I:%M:%S %p",
+        "%m/%d/%y %I:%M:%S %p",
+        "%Y %b %d %I:%M:%S %p",
+        "%Y %B %d %I:%M:%S %p",
+    ):
         try:
             return dt.datetime.strptime(cleaned, fmt).date()
         except ValueError:
