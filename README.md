@@ -1,4 +1,4 @@
-# STLCA: Seattle Tenant Landlord Compliance Authority
+# STLCA: Seattle Tenant Landlord Compliance & Accountabiity
 
 **Live site:** https://seattletlca-justice.github.io/DATASETS_AND_DASHBOARDS/STLCA_Home.html
 
@@ -6,9 +6,9 @@
 
 ## What This Is
 
-STLCA is an independent, non-partisan data analytics and oversight project. It analyzes publicly available City of Seattle enforcement records, specifically complaint data from the Seattle Department of Construction and Inspections (SDCI), to produce structured, verifiable assessments of how code compliance is documented, and where the public record cannot confirm that enforcement occurred.
+STLCA is an independent, non-partisan data analytics and oversight organization. STLCA analyzes publicly available City of Seattle enforcement records, specifically complaint data from the Seattle Department of Construction and Inspections (SDCI), to produce structured, verifiable assessments of how code compliance is documented, and where the public record cannot confirm that enforcement occurred.
 
-This is not a tenant advocacy organization. It is an oversight project that presents verified findings from public data. The work contains no political asks and no calls to action. The data speaks on its own terms, measured against itself.
+This is not a tenant advocacy organization. It is an analytics organization that presents verified findings from public data. The data speaks on its own terms, measured against itself.
 
 The methodology is fully transparent and independently replicable from Seattle's Open Data Portal.
 
